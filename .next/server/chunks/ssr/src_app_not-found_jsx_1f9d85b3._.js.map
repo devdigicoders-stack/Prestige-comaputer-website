@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/Desktop/E-Commerce/website/src/app/not-found.jsx"],"sourcesContent":["import Link from 'next/link'\n\nexport default function NotFound() {\n  return (\n    <div className=\"min-h-[60vh] flex flex-col items-center justify-center px-4 text-center\">\n      <h1 className=\"text-6xl font-extrabold text-[#dc1414]\">404</h1>\n      <h2 className=\"mt-4 text-2xl font-bold text-[#111827]\">Page Not Found</h2>\n      <p className=\"mt-2 text-[#6b7280]\">\n        Sorry, the page you are looking for does not exist or has been moved.\n      </p>\n      <Link\n        href=\"/\"\n        className=\"mt-6 px-6 py-2.5 rounded-lg bg-[#dc1414] text-white font-semibold hover:bg-[#b91c1c] transition-colors cursor-pointer\"\n      >\n        Back to Home\n      </Link>\n    </div>\n  )\n}\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;gBAAG,WAAU;0BAAyC;;;;;;0BACvD,8OAAC;gBAAG,WAAU;0BAAyC;;;;;;0BACvD,8OAAC;gBAAE,WAAU;0BAAsB;;;;;;0BAGnC,8OAAC,uKAAI;gBACH,MAAK;gBACL,WAAU;0BACX;;;;;;;;;;;;AAKP","debugId":null}}]
+}
