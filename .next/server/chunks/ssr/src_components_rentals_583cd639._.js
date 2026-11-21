@@ -8,6 +8,9 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 ;
 function CalendarSmallIcon({ className = 'w-4 h-4' }) {
@@ -29,20 +32,20 @@ function CalendarSmallIcon({ className = 'w-4 h-4' }) {
                 rx: "2"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 15,
+                lineNumber: 18,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M16 2v4M8 2v4M3 10h18"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 16,
+                lineNumber: 19,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-        lineNumber: 5,
+        lineNumber: 8,
         columnNumber: 5
     }, this);
 }
@@ -63,20 +66,20 @@ function RupeeSmallIcon({ className = 'w-4 h-4' }) {
                 r: "10"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 33,
+                lineNumber: 36,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M7 8h10M7 11.5h6.5M13.5 8a3.5 3.5 0 0 1-3.5 3.5H7l7 6"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 34,
+                lineNumber: 37,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-        lineNumber: 23,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
 }
@@ -95,34 +98,34 @@ function LoopSmallIcon({ className = 'w-4 h-4' }) {
                 d: "M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 51,
+                lineNumber: 54,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M3 3v5h5"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 52,
+                lineNumber: 55,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 53,
+                lineNumber: 56,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                 d: "M16 16h5v5"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 54,
+                lineNumber: 57,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-        lineNumber: 41,
+        lineNumber: 44,
         columnNumber: 5
     }, this);
 }
@@ -140,16 +143,17 @@ function ArrowRightIcon({ className = 'w-4 h-4' }) {
             d: "M5 12h14M13 6l6 6-6 6"
         }, void 0, false, {
             fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-            lineNumber: 71,
+            lineNumber: 74,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-        lineNumber: 61,
+        lineNumber: 64,
         columnNumber: 5
     }, this);
 }
 function RentalsHeroBanner() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         "aria-label": "Rent On Hero Banner",
         className: "relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#090204] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] mb-8 sm:mb-10 min-h-[290px] sm:min-h-[340px] lg:min-h-[380px] flex items-stretch",
@@ -160,14 +164,14 @@ function RentalsHeroBanner() {
                 className: "absolute inset-0 w-full h-full object-cover object-right sm:object-center pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 83,
+                lineNumber: 88,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 bg-gradient-to-r from-[#070103]/95 via-[#070103]/80 sm:via-[#070103]/50 to-transparent pointer-events-none"
+                className: `absolute inset-0 ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-[#070103]/95 via-[#070103]/80 sm:via-[#070103]/50 to-transparent pointer-events-none`
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 90,
+                lineNumber: 95,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -180,47 +184,61 @@ function RentalsHeroBanner() {
                                 className: "w-5 sm:w-6 h-[2px] bg-[#dc1414]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                lineNumber: 96,
+                                lineNumber: 101,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "text-[11px] sm:text-[12px] font-bold text-[#e5e7eb] uppercase tracking-[0.14em]",
-                                children: "Computer & Laptop Rental"
+                                children: isRtl ? 'تأجير أجهزة الكمبيوتر واللابتوب' : 'Computer & Laptop Rental'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                lineNumber: 97,
+                                lineNumber: 102,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                        lineNumber: 95,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-[34px] sm:text-[46px] lg:text-[54px] font-bold italic tracking-[-0.03em] leading-[1.08] text-white",
-                        children: [
-                            "Rent ",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]",
-                                children: "On"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                lineNumber: 104,
-                                columnNumber: 16
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                        children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                "استأجر ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]",
+                                    children: "الآن"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
+                                    lineNumber: 111,
+                                    columnNumber: 22
+                                }, this)
+                            ]
+                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                "Rent ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]",
+                                    children: "On"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
+                                    lineNumber: 115,
+                                    columnNumber: 20
+                                }, this)
+                            ]
+                        }, void 0, true)
+                    }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                        lineNumber: 103,
+                        lineNumber: 108,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "mt-3 sm:mt-3.5 text-[13.5px] sm:text-[15px] lg:text-[16px] text-[#e5e7eb] font-normal leading-relaxed max-w-[430px]",
-                        children: "High-Performance Laptops, Desktops & Workstations on Flexible Rental Plans."
+                        children: isRtl ? 'أجهزة لابتوب وكمبيوتر ومحطات عمل عالية الأداء بخطط إيجار مرنة للأفراد والشركات في قطر.' : 'High-Performance Laptops, Desktops & Workstations on Flexible Rental Plans.'
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                        lineNumber: 108,
+                        lineNumber: 121,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -231,21 +249,21 @@ function RentalsHeroBanner() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(CalendarSmallIcon, {}, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                        lineNumber: 115,
+                                        lineNumber: 130,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "font-medium",
-                                        children: "Flexible Tenure"
+                                        children: isRtl ? 'مدة مرنة' : 'Flexible Tenure'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                        lineNumber: 116,
+                                        lineNumber: 131,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                lineNumber: 114,
+                                lineNumber: 129,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -253,21 +271,21 @@ function RentalsHeroBanner() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(RupeeSmallIcon, {}, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                        lineNumber: 120,
+                                        lineNumber: 135,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "font-medium",
-                                        children: "Cost Effective"
+                                        children: isRtl ? 'أفضل تكلفة' : 'Cost Effective'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                        lineNumber: 121,
+                                        lineNumber: 136,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                lineNumber: 119,
+                                lineNumber: 134,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -275,27 +293,27 @@ function RentalsHeroBanner() {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoopSmallIcon, {}, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                        lineNumber: 125,
+                                        lineNumber: 140,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "font-medium",
-                                        children: "Hassle-Free"
+                                        children: isRtl ? 'بدون متاعب' : 'Hassle-Free'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                        lineNumber: 126,
+                                        lineNumber: 141,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                lineNumber: 124,
+                                lineNumber: 139,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                        lineNumber: 113,
+                        lineNumber: 128,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -305,38 +323,40 @@ function RentalsHeroBanner() {
                             className: "inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13.5px] font-semibold shadow-[0_6px_20px_rgba(220,16,16,0.45)] transition-all cursor-pointer",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "Explore Rental Plans"
+                                    children: isRtl ? 'استكشف خطط الإيجار' : 'Explore Rental Plans'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                    lineNumber: 136,
+                                    lineNumber: 151,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ArrowRightIcon, {}, void 0, false, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ArrowRightIcon, {
+                                    className: "rtl:rotate-180"
+                                }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                                    lineNumber: 137,
+                                    lineNumber: 152,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                            lineNumber: 132,
+                            lineNumber: 147,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                        lineNumber: 131,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-                lineNumber: 93,
+                lineNumber: 98,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
-        lineNumber: 78,
+        lineNumber: 83,
         columnNumber: 5
     }, this);
 }
@@ -349,13 +369,17 @@ __turbopack_context__.s([
     ()=>RentalsTrustStrip
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 function RentalsTrustStrip() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const trustItems = [
         {
             id: 'delivery',
-            title: 'Quick Setup',
-            subtitle: '& Delivery',
+            title: isRtl ? 'إعداد سريع' : 'Quick Setup',
+            subtitle: isRtl ? 'وتوصيل في قطر' : '& Delivery',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -374,14 +398,14 @@ function RentalsTrustStrip() {
                         rx: "1"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 9,
+                        lineNumber: 15,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
                         points: "16 8 20 8 23 11 23 16 16 16 16 8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 10,
+                        lineNumber: 16,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -390,7 +414,7 @@ function RentalsTrustStrip() {
                         r: "2.5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 11,
+                        lineNumber: 17,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -399,20 +423,20 @@ function RentalsTrustStrip() {
                         r: "2.5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 12,
+                        lineNumber: 18,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                lineNumber: 8,
+                lineNumber: 14,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'tested',
-            title: 'Fully Tested',
-            subtitle: '& Reliable Devices',
+            title: isRtl ? 'أجهزة مفحوصة' : 'Fully Tested',
+            subtitle: isRtl ? 'وموثوقة 100%' : '& Reliable Devices',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -427,27 +451,27 @@ function RentalsTrustStrip() {
                         d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 22,
+                        lineNumber: 28,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m9 12 2 2 4-4"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 23,
+                        lineNumber: 29,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                lineNumber: 21,
+                lineNumber: 27,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'support',
-            title: 'Technical Support',
-            subtitle: 'Included',
+            title: isRtl ? 'دعم فني واستبدال' : 'Technical Support',
+            subtitle: isRtl ? 'مشمول بالكامل' : 'Included',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -461,19 +485,19 @@ function RentalsTrustStrip() {
                     d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
                 }, void 0, false, {
                     fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                    lineNumber: 33,
+                    lineNumber: 39,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                lineNumber: 32,
+                lineNumber: 38,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'upgrade',
-            title: 'Upgrade or Extend',
-            subtitle: 'Anytime',
+            title: isRtl ? 'ترقية وتمديد' : 'Upgrade or Extend',
+            subtitle: isRtl ? 'في أي وقت' : 'Anytime',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -488,14 +512,14 @@ function RentalsTrustStrip() {
                         d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 43,
+                        lineNumber: 49,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                         points: "14 2 14 8 20 8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 44,
+                        lineNumber: 50,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -505,7 +529,7 @@ function RentalsTrustStrip() {
                         y2: "13"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 45,
+                        lineNumber: 51,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -515,27 +539,27 @@ function RentalsTrustStrip() {
                         y2: "17"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 46,
+                        lineNumber: 52,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                         points: "10 9 9 9 8 9"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 47,
+                        lineNumber: 53,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                lineNumber: 42,
+                lineNumber: 48,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'duration',
-            title: 'Rent for Short',
-            subtitle: 'or Long Term',
+            title: isRtl ? 'تأجير مرن' : 'Rent for Short',
+            subtitle: isRtl ? 'قصير أو طويل الأجل' : 'or Long Term',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -552,20 +576,20 @@ function RentalsTrustStrip() {
                         r: "10"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 57,
+                        lineNumber: 63,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M7 8h10M7 11.5h6.5M13.5 8a3.5 3.5 0 0 1-3.5 3.5H7l7 6"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 58,
+                        lineNumber: 64,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                lineNumber: 56,
+                lineNumber: 62,
                 columnNumber: 9
             }, this)
         }
@@ -576,16 +600,16 @@ function RentalsTrustStrip() {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "bg-[#fff5f5] border border-[#fecaca] rounded-2xl p-4 sm:p-5 lg:p-6 shadow-xs",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-3 items-center divide-y sm:divide-y-0 sm:divide-x divide-[#fee2e2]/80",
+                className: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-3 items-center divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-[#fee2e2]/80",
                 children: trustItems.map((item, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: `flex items-center gap-3 ${idx > 0 ? 'pt-3 sm:pt-0 sm:pl-4 lg:pl-3' : ''}`,
+                        className: `flex items-center gap-3 ${idx > 0 ? 'pt-3 sm:pt-0 sm:pl-4 lg:pl-3 rtl:sm:pr-4 rtl:lg:pr-3' : ''}`,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-10 h-10 rounded-xl bg-white border border-[#fecaca] flex items-center justify-center shadow-xs shrink-0",
                                 children: item.icon
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                                lineNumber: 75,
+                                lineNumber: 81,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -596,42 +620,42 @@ function RentalsTrustStrip() {
                                         children: item.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                                        lineNumber: 79,
+                                        lineNumber: 85,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[11.5px] sm:text-[12px] font-semibold text-[#374151]",
+                                        className: "text-[11px] sm:text-[11.5px] text-[#6b7280] mt-0.5",
                                         children: item.subtitle
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                                        lineNumber: 82,
+                                        lineNumber: 88,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                                lineNumber: 78,
+                                lineNumber: 84,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, item.id, true, {
                         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                        lineNumber: 69,
+                        lineNumber: 75,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-                lineNumber: 67,
+                lineNumber: 73,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-            lineNumber: 66,
+            lineNumber: 72,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsTrustStrip.jsx",
-        lineNumber: 65,
+        lineNumber: 71,
         columnNumber: 5
     }, this);
 }
@@ -1497,6 +1521,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$categoryApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/categoryApi.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/rentals/RentalsCategoryVisuals.jsx [app-ssr] (ecmascript)");
 'use client';
 ;
@@ -1504,44 +1529,63 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals
 ;
 ;
 ;
+;
+const CATEGORY_TRANSLATIONS = {
+    'laptops': 'أجهزة لابتوب',
+    'laptop': 'أجهزة لابتوب',
+    'desktops': 'أجهزة مكتبية',
+    'desktop': 'أجهزة مكتبية',
+    'workstations': 'محطات عمل',
+    'workstation': 'محطات عمل',
+    'gaming-pcs': 'تجميعات ألعاب',
+    'gaming': 'تجميعات ألعاب',
+    'components': 'قطع غيار',
+    'monitors': 'شاشات عرض',
+    'monitor': 'شاشات عرض',
+    'accessories': 'ملحقات وإكسسوارات',
+    'networking': 'أجهزة شبكات',
+    'software': 'برمجيات',
+    'all-in-one': 'الكل في واحد'
+};
 const VISUAL_MAP = {
     laptops: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalLaptopVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 15,
+        lineNumber: 34,
         columnNumber: 12
     }, ("TURBOPACK compile-time value", void 0)),
     laptop: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalLaptopVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 16,
+        lineNumber: 35,
         columnNumber: 11
     }, ("TURBOPACK compile-time value", void 0)),
     desktops: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalDesktopVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 17,
+        lineNumber: 36,
         columnNumber: 13
     }, ("TURBOPACK compile-time value", void 0)),
     desktop: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalDesktopVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 18,
+        lineNumber: 37,
         columnNumber: 12
     }, ("TURBOPACK compile-time value", void 0)),
     workstations: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalWorkstationVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 19,
+        lineNumber: 38,
         columnNumber: 17
     }, ("TURBOPACK compile-time value", void 0)),
     monitors: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalMonitorVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 20,
+        lineNumber: 39,
         columnNumber: 13
     }, ("TURBOPACK compile-time value", void 0)),
     accessories: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalAccessoriesVisual"], {}, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 21,
+        lineNumber: 40,
         columnNumber: 16
     }, ("TURBOPACK compile-time value", void 0))
 };
 function RentalsCategoryGrid() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [categories, setCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -1558,7 +1602,7 @@ function RentalsCategoryGrid() {
                         image: c.image ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$categoryApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getCategoryImageUrl"])(c.image) : '',
                         visual: VISUAL_MAP[c.iconType || c.slug] || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalsCategoryVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RentalLaptopVisual"], {}, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                            lineNumber: 43,
+                            lineNumber: 63,
                             columnNumber: 57
                         }, this)
                     }));
@@ -1587,42 +1631,56 @@ function RentalsCategoryGrid() {
                             className: "w-8 sm:w-12 h-[2px] bg-[#dc1414]/70 inline-block"
                         }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                            lineNumber: 64,
+                            lineNumber: 84,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            children: [
-                                "Explore ",
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-[#dc1414]",
-                                    children: "Rental Categories"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                    lineNumber: 66,
-                                    columnNumber: 21
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                            children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "استكشف ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "تصنيفات التأجير"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
+                                        lineNumber: 88,
+                                        columnNumber: 24
+                                    }, this)
+                                ]
+                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "Explore ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "Rental Categories"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
+                                        lineNumber: 92,
+                                        columnNumber: 25
+                                    }, this)
+                                ]
+                            }, void 0, true)
+                        }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                            lineNumber: 65,
+                            lineNumber: 85,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "w-8 sm:w-12 h-[2px] bg-[#dc1414]/70 inline-block"
                         }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                            lineNumber: 68,
+                            lineNumber: 96,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                    lineNumber: 63,
+                    lineNumber: 83,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                lineNumber: 62,
+                lineNumber: 82,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1636,7 +1694,7 @@ function RentalsCategoryGrid() {
                                 className: "h-[120px] bg-gray-100 rounded-xl mb-3.5"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                lineNumber: 80,
+                                lineNumber: 108,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1646,28 +1704,30 @@ function RentalsCategoryGrid() {
                                         className: "h-4 bg-gray-200/70 rounded w-3/4"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                        lineNumber: 82,
+                                        lineNumber: 110,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-3 bg-gray-100 rounded w-1/2"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                        lineNumber: 83,
+                                        lineNumber: 111,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                lineNumber: 81,
+                                lineNumber: 109,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, i, true, {
                         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                        lineNumber: 76,
+                        lineNumber: 104,
                         columnNumber: 13
-                    }, this)) : categories.length > 0 ? categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                    }, this)) : categories.length > 0 ? categories.map((cat)=>{
+                    const catTitle = isRtl ? CATEGORY_TRANSLATIONS[cat.id] ? `${CATEGORY_TRANSLATIONS[cat.id]} للإيجار` : cat.title : cat.title;
+                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                         href: cat.href,
                         className: "group bg-white rounded-2xl border border-[#e5e7eb] p-4 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_10px_24px_rgba(0,0,0,0.07)] hover:border-[#dc1414]/40",
                         children: [
@@ -1675,17 +1735,17 @@ function RentalsCategoryGrid() {
                                 className: "h-[120px] bg-[#f8fafc] rounded-xl flex items-center justify-center p-2 mb-3.5 transition-transform duration-200 group-hover:scale-103",
                                 children: cat.image ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                     src: cat.image,
-                                    alt: cat.title,
+                                    alt: catTitle,
                                     className: "max-h-[96px] max-w-[120px] object-contain drop-shadow-sm"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                    lineNumber: 97,
-                                    columnNumber: 19
+                                    lineNumber: 127,
+                                    columnNumber: 21
                                 }, this) : cat.visual
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                lineNumber: 95,
-                                columnNumber: 15
+                                lineNumber: 125,
+                                columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "flex items-end justify-between gap-2 mt-auto",
@@ -1694,25 +1754,25 @@ function RentalsCategoryGrid() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                 className: "text-[14px] sm:text-[14.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors leading-snug",
-                                                children: cat.title
+                                                children: catTitle
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                                lineNumber: 110,
-                                                columnNumber: 19
+                                                lineNumber: 140,
+                                                columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "mt-0.5 text-[11.5px] text-[#6b7280] leading-snug line-clamp-1",
-                                                children: cat.desc
+                                                children: isRtl ? 'خطط إيجار مرنة' : cat.desc
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                                lineNumber: 113,
-                                                columnNumber: 19
+                                                lineNumber: 143,
+                                                columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                        lineNumber: 109,
-                                        columnNumber: 17
+                                        lineNumber: 139,
+                                        columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "w-8 h-8 rounded-full border border-[#fecaca] bg-[#fff5f5] text-[#dc1414] group-hover:bg-[#dc1414] group-hover:text-white transition-all duration-200 flex items-center justify-center shrink-0 shadow-xs",
@@ -1723,46 +1783,47 @@ function RentalsCategoryGrid() {
                                             strokeWidth: "2.2",
                                             strokeLinecap: "round",
                                             strokeLinejoin: "round",
-                                            className: "w-4 h-4 transition-transform group-hover:translate-x-0.5",
+                                            className: "w-4 h-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5",
                                             "aria-hidden": "true",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                 d: "M4 10h12M11 5l5 5-5 5"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                                lineNumber: 130,
-                                                columnNumber: 21
+                                                lineNumber: 160,
+                                                columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                            lineNumber: 120,
-                                            columnNumber: 19
+                                            lineNumber: 150,
+                                            columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                        lineNumber: 119,
-                                        columnNumber: 17
+                                        lineNumber: 149,
+                                        columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                                lineNumber: 108,
-                                columnNumber: 15
+                                lineNumber: 138,
+                                columnNumber: 17
                             }, this)
                         ]
                     }, cat.id, true, {
                         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                        lineNumber: 89,
-                        columnNumber: 13
-                    }, this)) : null
+                        lineNumber: 119,
+                        columnNumber: 15
+                    }, this);
+                }) : null
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-                lineNumber: 73,
+                lineNumber: 101,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsCategoryGrid.jsx",
-        lineNumber: 60,
+        lineNumber: 80,
         columnNumber: 5
     }, this);
 }
@@ -1775,13 +1836,17 @@ __turbopack_context__.s([
     ()=>RentalsHowItWorks
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 function RentalsHowItWorks() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const steps = [
         {
             id: 'step-1',
-            title: 'Choose a Device',
-            desc: 'Select the right laptop, desktop or workstation.',
+            title: isRtl ? 'اختر الجهاز المناسب' : 'Choose a Device',
+            desc: isRtl ? 'اختر اللابتوب أو الكمبيوتر أو محطة العمل المناسبة لاحتياجاتك.' : 'Select the right laptop, desktop or workstation.',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -1798,7 +1863,7 @@ function RentalsHowItWorks() {
                         r: "8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 9,
+                        lineNumber: 17,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1808,20 +1873,20 @@ function RentalsHowItWorks() {
                         y2: "16.65"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 10,
+                        lineNumber: 18,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                lineNumber: 8,
+                lineNumber: 16,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'step-2',
-            title: 'Select Rental Plan',
-            desc: 'Pick a flexible duration (daily, weekly or monthly).',
+            title: isRtl ? 'حدد خطة الإيجار' : 'Select Rental Plan',
+            desc: isRtl ? 'اختر مدة مرنة مناسبة (أسبوعي، شهري أو سنوي).' : 'Pick a flexible duration (daily, weekly or monthly).',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -1840,7 +1905,7 @@ function RentalsHowItWorks() {
                         rx: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 20,
+                        lineNumber: 30,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1850,7 +1915,7 @@ function RentalsHowItWorks() {
                         y2: "6"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 21,
+                        lineNumber: 31,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1860,7 +1925,7 @@ function RentalsHowItWorks() {
                         y2: "6"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 22,
+                        lineNumber: 32,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1870,20 +1935,20 @@ function RentalsHowItWorks() {
                         y2: "10"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 23,
+                        lineNumber: 33,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                lineNumber: 19,
+                lineNumber: 29,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'step-3',
-            title: 'Get it Delivered',
-            desc: 'We deliver and set it up at your location.',
+            title: isRtl ? 'التوصيل والإعداد' : 'Get it Delivered',
+            desc: isRtl ? 'نقوم بالتوصيل والإعداد الفوري في موقعك داخل دولة قطر.' : 'We deliver and set it up at your location.',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -1902,14 +1967,14 @@ function RentalsHowItWorks() {
                         rx: "1"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 33,
+                        lineNumber: 45,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
                         points: "16 8 20 8 23 11 23 16 16 16 16 8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 34,
+                        lineNumber: 46,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1918,7 +1983,7 @@ function RentalsHowItWorks() {
                         r: "2.5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 35,
+                        lineNumber: 47,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1927,20 +1992,20 @@ function RentalsHowItWorks() {
                         r: "2.5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 36,
+                        lineNumber: 48,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                lineNumber: 32,
+                lineNumber: 44,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'step-4',
-            title: 'Use & Return',
-            desc: 'Use without worry and return or extend easily.',
+            title: isRtl ? 'استخدم أو مدد براحة' : 'Use & Return',
+            desc: isRtl ? 'استخدم الجهاز بأمان تام مع إمكانية التمديد أو الترقية بسهولة.' : 'Use without worry and return or extend easily.',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -1959,7 +2024,7 @@ function RentalsHowItWorks() {
                         rx: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 46,
+                        lineNumber: 60,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1969,13 +2034,13 @@ function RentalsHowItWorks() {
                         y2: "20"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 47,
+                        lineNumber: 61,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                lineNumber: 45,
+                lineNumber: 59,
                 columnNumber: 9
             }, this)
         }
@@ -1993,43 +2058,57 @@ function RentalsHowItWorks() {
                             className: "w-8 sm:w-12 h-[2px] bg-[#dc1414]/70 inline-block"
                         }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                            lineNumber: 58,
+                            lineNumber: 72,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            children: [
-                                "How ",
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-[#dc1414]",
-                                    children: "Rent On"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                    lineNumber: 60,
-                                    columnNumber: 17
-                                }, this),
-                                " Works?"
-                            ]
-                        }, void 0, true, {
+                            children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "كيف تعمل خدمة ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "التأجير؟"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
+                                        lineNumber: 76,
+                                        columnNumber: 31
+                                    }, this)
+                                ]
+                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "How ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "Rent On"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
+                                        lineNumber: 80,
+                                        columnNumber: 21
+                                    }, this),
+                                    " Works?"
+                                ]
+                            }, void 0, true)
+                        }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                            lineNumber: 59,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "w-8 sm:w-12 h-[2px] bg-[#dc1414]/70 inline-block"
                         }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                            lineNumber: 62,
+                            lineNumber: 84,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                    lineNumber: 57,
+                    lineNumber: 71,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                lineNumber: 56,
+                lineNumber: 70,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2042,7 +2121,7 @@ function RentalsHowItWorks() {
                                 children: st.icon
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                lineNumber: 71,
+                                lineNumber: 93,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2050,7 +2129,7 @@ function RentalsHowItWorks() {
                                 children: st.title
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                lineNumber: 76,
+                                lineNumber: 98,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2058,12 +2137,12 @@ function RentalsHowItWorks() {
                                 children: st.desc
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                lineNumber: 81,
+                                lineNumber: 103,
                                 columnNumber: 13
                             }, this),
                             idx < steps.length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 "aria-hidden": "true",
-                                className: "hidden lg:flex absolute top-7 -right-3 text-[#dc1414] font-bold z-10",
+                                className: "hidden lg:flex absolute top-7 -right-3 rtl:-left-3 rtl:right-auto text-[#dc1414] font-bold z-10",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                     viewBox: "0 0 24 24",
                                     fill: "none",
@@ -2071,39 +2150,39 @@ function RentalsHowItWorks() {
                                     strokeWidth: "2.2",
                                     strokeLinecap: "round",
                                     strokeLinejoin: "round",
-                                    className: "w-5 h-5",
+                                    className: "w-5 h-5 rtl:rotate-180",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                         d: "M5 12h14M13 6l6 6-6 6"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                        lineNumber: 100,
+                                        lineNumber: 122,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                    lineNumber: 91,
+                                    lineNumber: 113,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                                lineNumber: 87,
+                                lineNumber: 109,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, st.id, true, {
                         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                        lineNumber: 69,
+                        lineNumber: 91,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-                lineNumber: 67,
+                lineNumber: 89,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsHowItWorks.jsx",
-        lineNumber: 54,
+        lineNumber: 68,
         columnNumber: 5
     }, this);
 }
@@ -2118,13 +2197,16 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/productApi.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalBookingModal$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/rentals/RentalBookingModal.jsx [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
 ;
 ;
+;
 function RentalsPopularPlans() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [selectedPlan, setSelectedPlan] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isModalOpen, setIsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [liveProducts, setLiveProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -2200,32 +2282,32 @@ function RentalsPopularPlans() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         className: "inline-block px-3.5 py-1 rounded-full text-[12px] font-bold tracking-wide uppercase bg-[#fee2e2] text-[#dc1414] mb-2",
-                        children: "Affordable Monthly Plans"
+                        children: isRtl ? 'باقات شهرية بأسعار مناسبة' : 'Affordable Monthly Plans'
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                        lineNumber: 89,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                         className: "text-[26px] sm:text-[32px] font-extrabold text-[#111827] tracking-tight",
-                        children: "Popular Rental Packages"
+                        children: isRtl ? 'باقات التأجير الأكثر طلباً' : 'Popular Rental Packages'
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                        lineNumber: 92,
+                        lineNumber: 94,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "mt-2 text-[14px] sm:text-[15px] text-[#6b7280] max-w-[560px] mx-auto",
-                        children: "Choose from verified, pre-configured workstations and laptops with free doorstep delivery, zero deposit options, and instant swap warranty."
+                        children: isRtl ? 'اختر من بين أجهزة لابتوب ومحطات عمل معتمدة ومفحوصة مع توصيل مجاني لباب منزلك وضمان استبدال فوري في دولة قطر.' : 'Choose from verified, pre-configured workstations and laptops with free doorstep delivery, zero deposit options, and instant swap warranty.'
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                        lineNumber: 95,
+                        lineNumber: 97,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                lineNumber: 88,
+                lineNumber: 90,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2239,34 +2321,34 @@ function RentalsPopularPlans() {
                                 className: "h-5 w-24 bg-gray-100 rounded"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 108,
+                                lineNumber: 112,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-28 w-full bg-gray-100 rounded-xl my-2"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 109,
+                                lineNumber: 113,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-4 w-3/4 bg-gray-100 rounded mb-1"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 110,
+                                lineNumber: 114,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-8 w-full bg-gray-100 rounded-lg mt-2"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 111,
+                                lineNumber: 115,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, `skel-${idx}`, true, {
                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                        lineNumber: 104,
+                        lineNumber: 108,
                         columnNumber: 13
                     }, this)) : plans.map((plan)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "group bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#dc1414]/40 relative",
@@ -2278,12 +2360,12 @@ function RentalsPopularPlans() {
                                     children: plan.badge
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                    lineNumber: 122,
+                                    lineNumber: 126,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 121,
+                                lineNumber: 125,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2297,12 +2379,12 @@ function RentalsPopularPlans() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                    lineNumber: 131,
+                                    lineNumber: 135,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 130,
+                                lineNumber: 134,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2313,7 +2395,7 @@ function RentalsPopularPlans() {
                                         children: plan.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 143,
+                                        lineNumber: 147,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2321,7 +2403,7 @@ function RentalsPopularPlans() {
                                         children: plan.specs
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 146,
+                                        lineNumber: 150,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2332,27 +2414,27 @@ function RentalsPopularPlans() {
                                                 children: plan.formattedPrice
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                                lineNumber: 152,
+                                                lineNumber: 156,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-[12px] font-medium text-[#6b7280]",
-                                                children: "/ Month"
+                                                children: isRtl ? '/ شهرياً' : '/ Month'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                                lineNumber: 155,
+                                                lineNumber: 159,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 151,
+                                        lineNumber: 155,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 142,
+                                lineNumber: 146,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2361,10 +2443,10 @@ function RentalsPopularPlans() {
                                 className: "mt-4 w-full py-2.5 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13px] font-bold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(220,16,16,0.35)] transition-all cursor-pointer",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Rent Now"
+                                        children: isRtl ? 'استأجر الآن' : 'Rent Now'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 167,
+                                        lineNumber: 171,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2372,36 +2454,36 @@ function RentalsPopularPlans() {
                                         fill: "none",
                                         stroke: "currentColor",
                                         strokeWidth: "2.2",
-                                        className: "w-4 h-4",
+                                        className: "w-4 h-4 rtl:rotate-180",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M4 10h12M11 5l5 5-5 5",
                                             strokeLinecap: "round",
                                             strokeLinejoin: "round"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                            lineNumber: 175,
+                                            lineNumber: 179,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 168,
+                                        lineNumber: 172,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 162,
+                                lineNumber: 166,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, plan.id, true, {
                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                        lineNumber: 116,
+                        lineNumber: 120,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                lineNumber: 101,
+                lineNumber: 105,
                 columnNumber: 7
             }, this),
             isModalOpen && selectedPlan && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$rentals$2f$RentalBookingModal$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2413,13 +2495,13 @@ function RentalsPopularPlans() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                lineNumber: 185,
+                lineNumber: 189,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-        lineNumber: 86,
+        lineNumber: 88,
         columnNumber: 5
     }, this);
 }
@@ -2432,13 +2514,17 @@ __turbopack_context__.s([
     ()=>RentalsWhyChoose
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 function RentalsWhyChoose() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const cards = [
         {
             id: 'cost',
-            title: 'Lower Cost',
-            subtitle: 'than Buying',
+            title: isRtl ? 'تكلفة أقل' : 'Lower Cost',
+            subtitle: isRtl ? 'بكثير من الشراء' : 'than Buying',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -2456,34 +2542,34 @@ function RentalsWhyChoose() {
                         ry: "3"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 9,
+                        lineNumber: 15,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 10,
+                        lineNumber: 16,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 11,
+                        lineNumber: 17,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                lineNumber: 8,
+                lineNumber: 14,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'duration',
-            title: 'Flexible',
-            subtitle: 'Rental Duration',
+            title: isRtl ? 'مدة إيجار' : 'Flexible',
+            subtitle: isRtl ? 'مرنة وقابلة للتجديد' : 'Rental Duration',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -2498,41 +2584,41 @@ function RentalsWhyChoose() {
                         d: "M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 21,
+                        lineNumber: 27,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 3v5h5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 22,
+                        lineNumber: 28,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 23,
+                        lineNumber: 29,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M16 16h5v5"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 24,
+                        lineNumber: 30,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                lineNumber: 20,
+                lineNumber: 26,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'devices',
-            title: 'Latest &',
-            subtitle: 'Branded Devices',
+            title: isRtl ? 'أحدث الأجهزة' : 'Latest &',
+            subtitle: isRtl ? 'من كبرى الماركات' : 'Branded Devices',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -2551,7 +2637,7 @@ function RentalsWhyChoose() {
                         rx: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 34,
+                        lineNumber: 40,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -2561,20 +2647,20 @@ function RentalsWhyChoose() {
                         y2: "20"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 35,
+                        lineNumber: 41,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                lineNumber: 33,
+                lineNumber: 39,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'support',
-            title: 'Setup &',
-            subtitle: 'Maintenance Support',
+            title: isRtl ? 'دعم فني وصيانة' : 'Setup &',
+            subtitle: isRtl ? 'متواصلة وشاملة' : 'Maintenance Support',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -2588,19 +2674,19 @@ function RentalsWhyChoose() {
                     d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
                 }, void 0, false, {
                     fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                    lineNumber: 45,
+                    lineNumber: 51,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                lineNumber: 44,
+                lineNumber: 50,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'secure',
-            title: 'Reliable &',
-            subtitle: 'Secure Rental',
+            title: isRtl ? 'تأجير موثوق' : 'Reliable &',
+            subtitle: isRtl ? 'وآمن بنسبة 100%' : 'Secure Rental',
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                 viewBox: "0 0 24 24",
                 fill: "none",
@@ -2615,20 +2701,20 @@ function RentalsWhyChoose() {
                         d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 55,
+                        lineNumber: 61,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m9 12 2 2 4-4"
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                        lineNumber: 56,
+                        lineNumber: 62,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                lineNumber: 54,
+                lineNumber: 60,
                 columnNumber: 9
             }, this)
         }
@@ -2644,35 +2730,48 @@ function RentalsWhyChoose() {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                             className: "text-[24px] sm:text-[28px] font-bold text-[#111827] leading-tight",
-                            children: [
-                                "Why Rent from",
-                                ' ',
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-[#dc1414]",
-                                    children: "Prestige Computers?"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                                    lineNumber: 69,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                            children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "لماذا تستأجر من ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "بريستيج للكمبيوتر؟"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
+                                        lineNumber: 76,
+                                        columnNumber: 33
+                                    }, this)
+                                ]
+                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "Why Rent from ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "Prestige Computers?"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
+                                        lineNumber: 80,
+                                        columnNumber: 31
+                                    }, this)
+                                ]
+                            }, void 0, true)
+                        }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                            lineNumber: 67,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "mt-3 text-[13.5px] sm:text-[14px] text-[#4b5563] leading-relaxed",
-                            children: "A smart, affordable and flexible way to get the latest technology without a heavy upfront investment."
+                            children: isRtl ? 'طريقة ذكية واقتصادية ومرنة للحصول على أحدث التقنيات دون تكاليف شراء أولية باهظة في دولة قطر.' : 'A smart, affordable and flexible way to get the latest technology without a heavy upfront investment.'
                         }, void 0, false, {
                             fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                            lineNumber: 71,
+                            lineNumber: 84,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                    lineNumber: 66,
+                    lineNumber: 72,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2685,7 +2784,7 @@ function RentalsWhyChoose() {
                                     children: card.icon
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                                    lineNumber: 83,
+                                    lineNumber: 98,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2693,7 +2792,7 @@ function RentalsWhyChoose() {
                                     children: card.title
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                                    lineNumber: 86,
+                                    lineNumber: 101,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2701,29 +2800,29 @@ function RentalsWhyChoose() {
                                     children: card.subtitle
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                                    lineNumber: 89,
+                                    lineNumber: 104,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, card.id, true, {
                             fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                            lineNumber: 79,
+                            lineNumber: 94,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-                    lineNumber: 77,
+                    lineNumber: 92,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-            lineNumber: 64,
+            lineNumber: 70,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/rentals/RentalsWhyChoose.jsx",
-        lineNumber: 63,
+        lineNumber: 69,
         columnNumber: 5
     }, this);
 }
@@ -3114,9 +3213,13 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 ;
 function RentalsBottomCta() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         "aria-label": "Rental Bottom Call to Action",
         className: "relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#0d0204] via-[#200508] to-[#0c0204] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] p-6 sm:p-8 lg:p-10 text-white",
@@ -3125,53 +3228,68 @@ function RentalsBottomCta() {
                 className: "absolute -left-10 -bottom-10 w-60 h-60 bg-[#dc1414]/20 rounded-full blur-3xl pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                lineNumber: 10,
+                lineNumber: 15,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -right-10 -top-10 w-60 h-60 bg-[#dc1414]/25 rounded-full blur-3xl pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                lineNumber: 11,
+                lineNumber: 16,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "relative z-10 flex flex-col md:flex-row items-center justify-between gap-6",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "max-w-xl text-center md:text-left",
+                        className: "max-w-xl text-center md:text-left rtl:md:text-right",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                 className: "text-[22px] sm:text-[28px] lg:text-[32px] font-bold leading-tight tracking-tight",
-                                children: [
-                                    "Ready to ",
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[#e11414] italic",
-                                        children: "Rent"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                        lineNumber: 17,
-                                        columnNumber: 22
-                                    }, this),
-                                    " Your Next Device?"
-                                ]
-                            }, void 0, true, {
+                                children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                    children: [
+                                        "هل أنت جاهز ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[#e11414] italic",
+                                            children: "لاستئجار"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
+                                            lineNumber: 24,
+                                            columnNumber: 29
+                                        }, this),
+                                        " جهازك القادم؟"
+                                    ]
+                                }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                    children: [
+                                        "Ready to ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[#e11414] italic",
+                                            children: "Rent"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
+                                            lineNumber: 28,
+                                            columnNumber: 26
+                                        }, this),
+                                        " Your Next Device?"
+                                    ]
+                                }, void 0, true)
+                            }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                lineNumber: 16,
+                                lineNumber: 21,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "mt-2 text-[13px] sm:text-[14.5px] text-[#e5e7eb] font-normal leading-relaxed",
-                                children: "Get high-performance computers on flexible and affordable rental plans today."
+                                children: isRtl ? 'احصل على أجهزة كمبيوتر ولابتوب عالية الأداء بخطط تأجير مرنة وبأسعار تنافسية في قطر اليوم.' : 'Get high-performance computers on flexible and affordable rental plans today.'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                lineNumber: 19,
+                                lineNumber: 32,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                        lineNumber: 15,
+                        lineNumber: 20,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3194,7 +3312,7 @@ function RentalsBottomCta() {
                                                 stopColor: "#1e3a8a"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                                lineNumber: 29,
+                                                lineNumber: 44,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
@@ -3202,7 +3320,7 @@ function RentalsBottomCta() {
                                                 stopColor: "#3b82f6"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                                lineNumber: 30,
+                                                lineNumber: 45,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
@@ -3210,18 +3328,18 @@ function RentalsBottomCta() {
                                                 stopColor: "#06b6d4"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                                lineNumber: 31,
+                                                lineNumber: 46,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                        lineNumber: 28,
+                                        lineNumber: 43,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 27,
+                                    lineNumber: 42,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
@@ -3231,7 +3349,7 @@ function RentalsBottomCta() {
                                     strokeWidth: "1"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 35,
+                                    lineNumber: 50,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
@@ -3239,7 +3357,7 @@ function RentalsBottomCta() {
                                     fill: "url(#ctaLapScreen)"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 36,
+                                    lineNumber: 51,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
@@ -3247,7 +3365,7 @@ function RentalsBottomCta() {
                                     fill: "#1e293b"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 37,
+                                    lineNumber: 52,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
@@ -3255,7 +3373,7 @@ function RentalsBottomCta() {
                                     fill: "#0f172a"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 38,
+                                    lineNumber: 53,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -3269,7 +3387,7 @@ function RentalsBottomCta() {
                                     strokeWidth: "1.2"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 41,
+                                    lineNumber: 56,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -3281,7 +3399,7 @@ function RentalsBottomCta() {
                                     strokeWidth: "2"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 42,
+                                    lineNumber: 57,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -3293,7 +3411,7 @@ function RentalsBottomCta() {
                                     strokeWidth: "2"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 43,
+                                    lineNumber: 58,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -3305,18 +3423,18 @@ function RentalsBottomCta() {
                                     strokeWidth: "2"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 44,
+                                    lineNumber: 59,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                            lineNumber: 26,
+                            lineNumber: 41,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                        lineNumber: 25,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3326,41 +3444,41 @@ function RentalsBottomCta() {
                             className: "inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#111827] hover:bg-[#f3f4f6] text-[13.5px] font-bold shadow-lg transition-all active:scale-95 cursor-pointer",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "Rent Now"
+                                    children: isRtl ? 'استأجر الآن' : 'Rent Now'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 54,
+                                    lineNumber: 69,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-[#dc1414] font-bold text-base",
+                                    className: "text-[#dc1414] font-bold text-base rtl:rotate-180",
                                     children: "→"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                                    lineNumber: 55,
+                                    lineNumber: 70,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                            lineNumber: 50,
+                            lineNumber: 65,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                        lineNumber: 49,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-                lineNumber: 13,
+                lineNumber: 18,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/rentals/RentalsBottomCta.jsx",
-        lineNumber: 5,
+        lineNumber: 10,
         columnNumber: 5
     }, this);
 }

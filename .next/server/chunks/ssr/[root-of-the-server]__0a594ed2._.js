@@ -135,7 +135,7 @@ __turbopack_context__.s([
     "verifyResetCodeApi",
     ()=>verifyResetCodeApi
 ]);
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 function getToken() {
     if ("TURBOPACK compile-time truthy", 1) return null;
     //TURBOPACK unreachable
@@ -1345,8 +1345,8 @@ __turbopack_context__.s([
     "getCategoryImageUrl",
     ()=>getCategoryImageUrl
 ]);
-const BACKEND_URL = ("TURBOPACK compile-time value", "http://localhost:5000") || 'http://localhost:5000';
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const BACKEND_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com") || 'http://localhost:5000';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 function getCategoryImageUrl(imagePath) {
     if (!imagePath) return '';
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('data:')) {
@@ -1387,8 +1387,8 @@ __turbopack_context__.s([
     "getProducts",
     ()=>getProducts
 ]);
-const BACKEND_URL = ("TURBOPACK compile-time value", "http://localhost:5000") || 'http://localhost:5000';
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const BACKEND_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com") || 'http://localhost:5000';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 function getProductImageUrl(imagePath) {
     if (!imagePath) return '';
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://') || imagePath.startsWith('data:')) {
@@ -10530,7 +10530,7 @@ __turbopack_context__.s([
     "submitRentalRequest",
     ()=>submitRentalRequest
 ]);
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 function getAuthHeaders() {
     const token = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : null;
     const headers = {

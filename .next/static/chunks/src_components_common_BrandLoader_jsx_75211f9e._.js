@@ -3,151 +3,538 @@
 "use strict";
 
 __turbopack_context__.s([
-    "BrandLogoHeader",
-    ()=>BrandLogoHeader,
     "FullscreenLoader",
     ()=>FullscreenLoader,
-    "LaptopOutlineIcon",
-    ()=>LaptopOutlineIcon,
     "default",
     ()=>BrandLoader
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 'use client';
 ;
-function LaptopOutlineIcon(param) {
-    let { className = 'w-16 h-12' } = param;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        viewBox: "0 0 72 52",
-        fill: "none",
-        className: "".concat(className, " text-[#dc1414] drop-shadow-[0_2px_8px_rgba(220,20,20,0.2)]"),
-        "aria-hidden": "true",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                d: "M13 6C13 4.89543 13.8954 4 15 4H57C58.1046 4 59 4.89543 59 6V37H13V6Z",
-                stroke: "currentColor",
-                strokeWidth: "2.8",
-                strokeLinejoin: "round"
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 22,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                d: "M4 42C4 39.7909 5.79086 38 8 38H64C66.2091 38 68 39.7909 68 42L66.5 45C66.5 46.1046 65.6046 47 64.5 47H7.5C6.39543 47 5.5 46.1046 5.5 45L4 42Z",
-                stroke: "currentColor",
-                strokeWidth: "2.6",
-                strokeLinejoin: "round"
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 29,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
-                x: "31",
-                y: "39.5",
-                width: "10",
-                height: "2",
-                rx: "1",
-                fill: "currentColor"
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 36,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/common/BrandLoader.jsx",
-        lineNumber: 15,
-        columnNumber: 5
-    }, this);
-}
-_c = LaptopOutlineIcon;
-function BrandLogoHeader() {
+function BrandLoader(param) {
+    let { title = 'L o a d i n g . . .', className = '', size = 340 } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex items-center justify-center gap-2 mb-3",
+        className: "relative flex items-center justify-center select-none ".concat(className),
+        style: {
+            width: "".concat(size, "px"),
+            height: "".concat(size, "px"),
+            maxWidth: '90vw',
+            maxHeight: '90vw'
+        },
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-[25px] font-black italic tracking-tighter text-[#dc1414] leading-none",
-                children: "PCS"
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
+                children: "\n        @keyframes pcsGaugeSpin {\n          0% {\n            transform: rotate(0deg);\n          }\n          100% {\n            transform: rotate(360deg);\n          }\n        }\n\n        @keyframes pcsDotCycle {\n          0%, 20% {\n            background-color: #dc1414;\n            box-shadow: 0 0 10px #ef4444, 0 0 20px rgba(239, 68, 68, 0.7);\n            transform: scale(1.1);\n          }\n          40% {\n            background-color: #ef4444;\n            box-shadow: 0 0 8px #f87171, 0 0 16px rgba(248, 113, 113, 0.5);\n            transform: scale(1.05);\n          }\n          70%, 100% {\n            background-color: #52525b;\n            box-shadow: none;\n            transform: scale(0.9);\n          }\n        }\n\n        @keyframes pcsAmbientPulse {\n          0%, 100% {\n            opacity: 0.6;\n            transform: scale(1);\n          }\n          50% {\n            opacity: 0.95;\n            transform: scale(1.04);\n          }\n        }\n      "
             }, void 0, false, {
                 fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 45,
+                lineNumber: 25,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-[20px] text-[#cbd5e1] font-light leading-none -mt-0.5",
-                children: "|"
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 48,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col text-left leading-none",
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                viewBox: "0 0 360 360",
+                className: "w-full h-full absolute inset-0 pointer-events-none",
+                "aria-hidden": "true",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-[11.5px] font-black tracking-wider text-[#111827]",
-                        children: "PRESTIGE"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                id: "pcsOuterBezel",
+                                x1: "0%",
+                                y1: "0%",
+                                x2: "100%",
+                                y2: "100%",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "0%",
+                                        stopColor: "#3d3d45"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 74,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "25%",
+                                        stopColor: "#25252b"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 75,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "50%",
+                                        stopColor: "#18181c"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 76,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "85%",
+                                        stopColor: "#101013"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 77,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "100%",
+                                        stopColor: "#08080a"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 78,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 73,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                id: "pcsHairlineHighlight",
+                                x1: "0%",
+                                y1: "0%",
+                                x2: "0%",
+                                y2: "100%",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "0%",
+                                        stopColor: "#52525b",
+                                        stopOpacity: "0.8"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 83,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "50%",
+                                        stopColor: "#27272a",
+                                        stopOpacity: "0.4"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 84,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "100%",
+                                        stopColor: "#09090b",
+                                        stopOpacity: "0.2"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 85,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 82,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                id: "pcsGrooveReflection",
+                                x1: "0%",
+                                y1: "0%",
+                                x2: "100%",
+                                y2: "0%",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "0%",
+                                        stopColor: "#18181b",
+                                        stopOpacity: "0"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 90,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "35%",
+                                        stopColor: "#3f3f46",
+                                        stopOpacity: "0.55"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 91,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "60%",
+                                        stopColor: "#71717a",
+                                        stopOpacity: "0.85"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 92,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "85%",
+                                        stopColor: "#27272a",
+                                        stopOpacity: "0.3"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 93,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "100%",
+                                        stopColor: "#18181b",
+                                        stopOpacity: "0"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 94,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 89,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                id: "pcsInnerRim",
+                                x1: "0%",
+                                y1: "0%",
+                                x2: "100%",
+                                y2: "100%",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "0%",
+                                        stopColor: "#3f3f46"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 99,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "40%",
+                                        stopColor: "#27272a"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 100,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "70%",
+                                        stopColor: "#18181b"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 101,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "100%",
+                                        stopColor: "#09090b"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 102,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 98,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("radialGradient", {
+                                id: "pcsCenterAmbient",
+                                cx: "50%",
+                                cy: "50%",
+                                r: "50%",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "0%",
+                                        stopColor: "#dc1414",
+                                        stopOpacity: "0.16"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 107,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "45%",
+                                        stopColor: "#dc1414",
+                                        stopOpacity: "0.06"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 108,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "75%",
+                                        stopColor: "#000000",
+                                        stopOpacity: "0.85"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 109,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                        offset: "100%",
+                                        stopColor: "#000000",
+                                        stopOpacity: "1"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                        lineNumber: 110,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 106,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("filter", {
+                                id: "pcsDialDepth",
+                                x: "-20%",
+                                y: "-20%",
+                                width: "140%",
+                                height: "140%",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feDropShadow", {
+                                    dx: "0",
+                                    dy: "12",
+                                    stdDeviation: "24",
+                                    floodColor: "#000000",
+                                    floodOpacity: "0.9"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                    lineNumber: 115,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 114,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 53,
+                        lineNumber: 71,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "text-[9px] font-bold tracking-wider text-[#4b5563] mt-0.5",
-                        children: "COMPUTERS"
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "176",
+                        fill: "#030304",
+                        filter: "url(#pcsDialDepth)"
                     }, void 0, false, {
                         fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 56,
+                        lineNumber: 120,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "174",
+                        fill: "none",
+                        stroke: "url(#pcsOuterBezel)",
+                        strokeWidth: "6"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 123,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "176.5",
+                        fill: "none",
+                        stroke: "url(#pcsHairlineHighlight)",
+                        strokeWidth: "1.2"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 133,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "157",
+                        fill: "none",
+                        stroke: "#09090b",
+                        strokeWidth: "24"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 143,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "169",
+                        fill: "none",
+                        stroke: "#18181b",
+                        strokeWidth: "1",
+                        opacity: "0.6"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 153,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "145",
+                        fill: "none",
+                        stroke: "#000000",
+                        strokeWidth: "2"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 162,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M 68 180 A 112 112 0 0 1 180 68",
+                        fill: "none",
+                        stroke: "url(#pcsGrooveReflection)",
+                        strokeWidth: "18",
+                        strokeLinecap: "round",
+                        opacity: "0.45"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 172,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "144",
+                        fill: "none",
+                        stroke: "url(#pcsInnerRim)",
+                        strokeWidth: "4"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 182,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "142",
+                        fill: "none",
+                        stroke: "#000000",
+                        strokeWidth: "1.5"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 190,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "141",
+                        fill: "#000000"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 200,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                        cx: "180",
+                        cy: "180",
+                        r: "140",
+                        fill: "url(#pcsCenterAmbient)",
+                        style: {
+                            animation: 'pcsAmbientPulse 3s ease-in-out infinite'
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 201,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 52,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/common/BrandLoader.jsx",
-        lineNumber: 43,
-        columnNumber: 5
-    }, this);
-}
-_c1 = BrandLogoHeader;
-function BrandLoader(param) {
-    let { title = 'Loading...', subtitle = 'Please wait a moment', isCard = true, className = '' } = param;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col items-center text-center select-none ".concat(isCard ? 'bg-white rounded-[26px] p-7 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-[#f1f5f9] max-w-[280px] sm:max-w-[310px] w-full mx-auto' : '', " ").concat(className),
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
-                children: "\n        @keyframes pcsPillWave {\n          0%, 100% {\n            background-color: #fee2e2;\n            opacity: 0.45;\n            transform: scale(0.92);\n          }\n          33% {\n            background-color: #dc1414;\n            opacity: 1;\n            transform: scale(1);\n          }\n          66% {\n            background-color: #fca5a5;\n            opacity: 0.7;\n            transform: scale(0.96);\n          }\n        }\n        @keyframes pcsBreathe {\n          0%, 100% {\n            transform: scale(1);\n            opacity: 1;\n          }\n          50% {\n            transform: scale(1.05);\n            opacity: 0.95;\n          }\n        }\n      "
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 78,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BrandLogoHeader, {}, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 109,
+                lineNumber: 66,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative w-36 h-36 my-2 flex items-center justify-center",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                        viewBox: "0 0 120 120",
-                        className: "absolute inset-0 w-full h-full animate-spin",
-                        style: {
-                            animationDuration: '1.2s',
-                            animationTimingFunction: 'linear'
-                        },
-                        "aria-hidden": "true",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
-                                    id: "pcsSpinnerGradient",
+                className: "absolute inset-0 w-full h-full pointer-events-none",
+                style: {
+                    animation: 'pcsGaugeSpin 2.1s linear infinite',
+                    willChange: 'transform'
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 360 360",
+                    className: "w-full h-full overflow-visible",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("filter", {
+                                    id: "pcsNeonGlow",
+                                    x: "-50%",
+                                    y: "-50%",
+                                    width: "200%",
+                                    height: "200%",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feGaussianBlur", {
+                                            in: "SourceGraphic",
+                                            stdDeviation: "4",
+                                            result: "blurSmall"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 222,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feGaussianBlur", {
+                                            in: "SourceGraphic",
+                                            stdDeviation: "11",
+                                            result: "blurMed"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 223,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feGaussianBlur", {
+                                            in: "SourceGraphic",
+                                            stdDeviation: "22",
+                                            result: "blurLarge"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 224,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMerge", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMergeNode", {
+                                                    in: "blurLarge"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                                    lineNumber: 226,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMergeNode", {
+                                                    in: "blurMed"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                                    lineNumber: 227,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMergeNode", {
+                                                    in: "blurSmall"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                                    lineNumber: 228,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("feMergeNode", {
+                                                    in: "SourceGraphic"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                                    lineNumber: 229,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 225,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                    lineNumber: 221,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                    id: "pcsNeonGradient",
                                     x1: "0%",
                                     y1: "0%",
                                     x2: "100%",
@@ -155,29 +542,74 @@ function BrandLoader(param) {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                             offset: "0%",
-                                            stopColor: "#dc1414",
-                                            stopOpacity: "1"
+                                            stopColor: "#ff4d4d"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                            lineNumber: 122,
+                                            lineNumber: 235,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                            offset: "55%",
-                                            stopColor: "#ef4444",
-                                            stopOpacity: "0.8"
+                                            offset: "45%",
+                                            stopColor: "#e50914"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                            lineNumber: 123,
+                                            lineNumber: 236,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
                                             offset: "85%",
-                                            stopColor: "#dc1414",
-                                            stopOpacity: "0.15"
+                                            stopColor: "#dc1414"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                            lineNumber: 124,
+                                            lineNumber: 237,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                            offset: "100%",
+                                            stopColor: "#b91c1c"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 238,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                    lineNumber: 234,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                                    id: "pcsTubeHighlight",
+                                    x1: "0%",
+                                    y1: "0%",
+                                    x2: "100%",
+                                    y2: "100%",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                            offset: "0%",
+                                            stopColor: "#ffffff",
+                                            stopOpacity: "0.95"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 243,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                            offset: "40%",
+                                            stopColor: "#ffe4e6",
+                                            stopOpacity: "0.8"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 244,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                            offset: "80%",
+                                            stopColor: "#ff8585",
+                                            stopOpacity: "0.4"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                            lineNumber: 245,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
@@ -186,173 +618,188 @@ function BrandLoader(param) {
                                             stopOpacity: "0"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                            lineNumber: 125,
+                                            lineNumber: 246,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                    lineNumber: 121,
+                                    lineNumber: 242,
                                     columnNumber: 13
                                 }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                lineNumber: 120,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                cx: "60",
-                                cy: "60",
-                                r: "48",
-                                fill: "none",
-                                stroke: "#fef2f2",
-                                strokeWidth: "4"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                lineNumber: 130,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                cx: "60",
-                                cy: "60",
-                                r: "48",
-                                fill: "none",
-                                stroke: "url(#pcsSpinnerGradient)",
-                                strokeWidth: "4.5",
-                                strokeLinecap: "round",
-                                strokeDasharray: "235",
-                                strokeDashoffset: "65"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                                lineNumber: 140,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 114,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative z-10",
-                        style: {
-                            animation: 'pcsBreathe 2s ease-in-out infinite'
-                        },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LaptopOutlineIcon, {
-                            className: "w-16 h-12"
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                            lineNumber: 219,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: "180",
+                            cy: "180",
+                            r: "157",
+                            fill: "none",
+                            stroke: "#ff1a1a",
+                            strokeWidth: "20",
+                            strokeLinecap: "round",
+                            strokeDasharray: "395 590",
+                            strokeDashoffset: "0",
+                            opacity: "0.85",
+                            filter: "url(#pcsNeonGlow)"
                         }, void 0, false, {
                             fileName: "[project]/src/components/common/BrandLoader.jsx",
-                            lineNumber: 158,
+                            lineNumber: 251,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: "180",
+                            cy: "180",
+                            r: "157",
+                            fill: "none",
+                            stroke: "url(#pcsNeonGradient)",
+                            strokeWidth: "16",
+                            strokeLinecap: "round",
+                            strokeDasharray: "395 590",
+                            strokeDashoffset: "0"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                            lineNumber: 266,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: "180",
+                            cy: "180",
+                            r: "161.5",
+                            fill: "none",
+                            stroke: "url(#pcsTubeHighlight)",
+                            strokeWidth: "3.2",
+                            strokeLinecap: "round",
+                            strokeDasharray: "350 635",
+                            strokeDashoffset: "15"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                            lineNumber: 279,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: "337",
+                            cy: "180",
+                            r: "8.5",
+                            fill: "#ffffff",
+                            opacity: "0.75",
+                            filter: "drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 20px #ff2222)"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                            lineNumber: 292,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/common/BrandLoader.jsx",
+                    lineNumber: 218,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                lineNumber: 211,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 px-8",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative flex items-center justify-center -mt-2",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: "/logo-white.png",
+                            alt: "Prestige Computers",
+                            className: "w-[170px] sm:w-[195px] h-auto object-contain select-none pointer-events-none drop-shadow-[0_4px_16px_rgba(220,20,20,0.4)]",
+                            width: 195,
+                            height: 87
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/common/BrandLoader.jsx",
+                            lineNumber: 307,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 154,
+                        lineNumber: 306,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "text-[13px] sm:text-[14px] font-semibold text-white tracking-[0.38em] uppercase mt-2.5 drop-shadow-[0_0_8px_rgba(255,255,255,0.45)]",
+                        style: {
+                            letterSpacing: '0.38em',
+                            marginLeft: '0.38em'
+                        },
+                        children: title
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 317,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center gap-2.5 mt-2.5",
+                        children: [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ].map((idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "w-2.5 h-2.5 rounded-full transition-all duration-200",
+                                style: {
+                                    backgroundColor: idx === 4 ? '#52525b' : '#dc1414',
+                                    boxShadow: idx === 4 ? 'none' : '0 0 8px #ef4444, 0 0 16px rgba(239, 68, 68, 0.6)',
+                                    animation: 'pcsDotCycle 1.6s ease-in-out infinite',
+                                    animationDelay: "".concat(idx * 0.22, "s")
+                                }
+                            }, idx, false, {
+                                fileName: "[project]/src/components/common/BrandLoader.jsx",
+                                lineNumber: 327,
+                                columnNumber: 13
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/common/BrandLoader.jsx",
+                        lineNumber: 325,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 112,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                className: "text-[19px] sm:text-[20px] font-black text-[#111827] mt-3 tracking-tight leading-tight",
-                children: title
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 163,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "text-[13px] text-[#6b7280] mt-1 font-medium",
-                children: subtitle
-            }, void 0, false, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 166,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center justify-center gap-1.5 mt-4 pt-1",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "h-2 rounded-full",
-                        style: {
-                            width: '22px',
-                            animation: 'pcsPillWave 1.2s ease-in-out infinite',
-                            animationDelay: '0s'
-                        }
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 172,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "h-2 rounded-full",
-                        style: {
-                            width: '22px',
-                            animation: 'pcsPillWave 1.2s ease-in-out infinite',
-                            animationDelay: '0.4s'
-                        }
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 180,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: "h-2 rounded-full",
-                        style: {
-                            width: '22px',
-                            animation: 'pcsPillWave 1.2s ease-in-out infinite',
-                            animationDelay: '0.8s'
-                        }
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/common/BrandLoader.jsx",
-                        lineNumber: 188,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/common/BrandLoader.jsx",
-                lineNumber: 171,
+                lineNumber: 304,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/common/BrandLoader.jsx",
-        lineNumber: 71,
+        lineNumber: 20,
         columnNumber: 5
     }, this);
 }
-_c2 = BrandLoader;
+_c = BrandLoader;
 function FullscreenLoader(param) {
-    let { isOpen = true, isFading = false, title = 'Loading...', subtitle = 'Please wait a moment' } = param;
+    let { isOpen = true, isFading = false, title = 'L o a d i n g . . .' } = param;
     if (!isOpen) return null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         role: "status",
         "aria-live": "polite",
-        className: "fixed inset-0 z-[9999] flex items-center justify-center bg-white/75 backdrop-blur-sm p-4 transition-opacity duration-150 ease-out will-change-[opacity] ".concat(isFading ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'),
+        className: "fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-md p-4 transition-opacity duration-200 ease-out will-change-[opacity] ".concat(isFading ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BrandLoader, {
-            title: title,
-            subtitle: subtitle,
-            isCard: true
+            title: title
         }, void 0, false, {
             fileName: "[project]/src/components/common/BrandLoader.jsx",
-            lineNumber: 220,
+            lineNumber: 362,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/common/BrandLoader.jsx",
-        lineNumber: 213,
+        lineNumber: 355,
         columnNumber: 5
     }, this);
 }
-_c3 = FullscreenLoader;
-var _c, _c1, _c2, _c3;
-__turbopack_context__.k.register(_c, "LaptopOutlineIcon");
-__turbopack_context__.k.register(_c1, "BrandLogoHeader");
-__turbopack_context__.k.register(_c2, "BrandLoader");
-__turbopack_context__.k.register(_c3, "FullscreenLoader");
+_c1 = FullscreenLoader;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "BrandLoader");
+__turbopack_context__.k.register(_c1, "FullscreenLoader");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

@@ -7,8 +7,12 @@ __turbopack_context__.s([
     ()=>ContactHeroBanner
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 function ContactHeroBanner() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         "aria-label": "Contact Us Hero Banner",
         className: "relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#090204] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] mb-8 sm:mb-10 min-h-[260px] sm:min-h-[300px] lg:min-h-[330px] flex items-stretch",
@@ -19,14 +23,14 @@ function ContactHeroBanner() {
                 className: "absolute inset-0 w-full h-full object-cover object-right sm:object-center pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                lineNumber: 8,
+                lineNumber: 14,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 bg-gradient-to-r from-[#070103]/95 via-[#070103]/80 sm:via-[#070103]/50 to-transparent pointer-events-none"
+                className: `absolute inset-0 ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-[#070103]/95 via-[#070103]/80 sm:via-[#070103]/50 to-transparent pointer-events-none`
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                lineNumber: 15,
+                lineNumber: 21,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -39,69 +43,73 @@ function ContactHeroBanner() {
                                 className: "w-5 sm:w-6 h-[2.5px] bg-[#dc1414]"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                                lineNumber: 21,
+                                lineNumber: 27,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "text-[11px] sm:text-[12px] font-bold text-[#e5e7eb] uppercase tracking-[0.14em]",
-                                children: "Get In Touch"
+                                children: isRtl ? 'ابقَ على تواصل' : 'Get In Touch'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                                lineNumber: 22,
+                                lineNumber: 28,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                        lineNumber: 20,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-[34px] sm:text-[46px] lg:text-[52px] font-bold italic tracking-[-0.03em] leading-[1.08] text-white",
-                        children: [
-                            "Contact ",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]",
-                                children: "Us"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                                lineNumber: 29,
-                                columnNumber: 19
-                            }, this)
-                        ]
-                    }, void 0, true, {
+                        children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                "تواصل ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]",
+                                    children: "معنا"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
+                                    lineNumber: 37,
+                                    columnNumber: 21
+                                }, this)
+                            ]
+                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                "Contact ",
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]",
+                                    children: "Us"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
+                                    lineNumber: 41,
+                                    columnNumber: 23
+                                }, this)
+                            ]
+                        }, void 0, true)
+                    }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                        lineNumber: 28,
+                        lineNumber: 34,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "mt-3 sm:mt-3.5 text-[13.5px] sm:text-[15px] lg:text-[15.5px] text-[#e5e7eb] font-normal leading-relaxed max-w-[420px]",
-                        children: [
-                            "Have questions, need a quote, or want to rent a device?",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {
-                                className: "hidden sm:inline"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                                lineNumber: 35,
-                                columnNumber: 11
-                            }, this),
-                            "We're here to help you!"
-                        ]
-                    }, void 0, true, {
+                        children: isRtl ? 'هل لديك أي استفسار، ترغب في عرض أسعار، أو استئجار جهاز في قطر؟ نحن هنا لمساعدتك دائماً!' : "Have questions, need a quote, or want to rent a device? We're here to help you!"
+                    }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                        lineNumber: 33,
+                        lineNumber: 47,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-                lineNumber: 18,
+                lineNumber: 24,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactHeroBanner.jsx",
-        lineNumber: 3,
+        lineNumber: 9,
         columnNumber: 5
     }, this);
 }
@@ -115,7 +123,7 @@ __turbopack_context__.s([
     "submitEnquiry",
     ()=>submitEnquiry
 ]);
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 async function submitEnquiry(formData) {
     const res = await fetch(`${API_URL}/enquiries`, {
         method: 'POST',
@@ -142,11 +150,14 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$enquiryApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/enquiryApi.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
 ;
+;
 function ContactFormCard() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         fullName: '',
         email: '',
@@ -169,23 +180,23 @@ function ContactFormCard() {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         if (!formData.fullName.trim()) {
-            setErrorMessage('Please enter your full name.');
+            setErrorMessage(isRtl ? 'يرجى إدخال اسمك بالكامل.' : 'Please enter your full name.');
             return;
         }
         if (!formData.email.trim() || !formData.email.includes('@')) {
-            setErrorMessage('Please enter a valid email address.');
+            setErrorMessage(isRtl ? 'يرجى إدخال بريد إلكتروني صالح.' : 'Please enter a valid email address.');
             return;
         }
         if (!formData.phone.trim()) {
-            setErrorMessage('Please enter your contact phone number.');
+            setErrorMessage(isRtl ? 'يرجى إدخال رقم الهاتف للتواصل.' : 'Please enter your contact phone number.');
             return;
         }
         if (!formData.subject.trim()) {
-            setErrorMessage('Please enter the subject of your message.');
+            setErrorMessage(isRtl ? 'يرجى كتابة موضوع الرسالة.' : 'Please enter the subject of your message.');
             return;
         }
         if (!formData.message.trim()) {
-            setErrorMessage('Please write your message.');
+            setErrorMessage(isRtl ? 'يرجى كتابة نص رسالتك.' : 'Please write your message.');
             return;
         }
         try {
@@ -202,7 +213,7 @@ function ContactFormCard() {
                 message: ''
             });
         } catch (err) {
-            setErrorMessage(err.message || 'Failed to submit your message. Please try again or call us directly.');
+            setErrorMessage(err.message || (isRtl ? 'تعذر إرسال الرسالة. يرجى المحاولة مرة أخرى أو الاتصال بنا.' : 'Failed to submit your message. Please try again or call us directly.'));
         } finally{
             setIsSubmitting(false);
         }
@@ -225,47 +236,71 @@ function ContactFormCard() {
                                     d: "M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 80,
+                                    lineNumber: 83,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                lineNumber: 74,
+                                lineNumber: 77,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 73,
+                            lineNumber: 76,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                     className: "text-[20px] sm:text-[22px] font-bold text-[#111827] leading-tight",
-                                    children: "Send Us a Message"
+                                    children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                        children: [
+                                            "أرسل لنا ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[#dc1414]",
+                                                children: "رسالة"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/contact/ContactFormCard.jsx",
+                                                lineNumber: 89,
+                                                columnNumber: 28
+                                            }, this)
+                                        ]
+                                    }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                        children: [
+                                            "Send Us a ",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[#dc1414]",
+                                                children: "Message"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/contact/ContactFormCard.jsx",
+                                                lineNumber: 91,
+                                                columnNumber: 29
+                                            }, this)
+                                        ]
+                                    }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 84,
+                                    lineNumber: 87,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "mt-1 text-[12.5px] sm:text-[13px] text-[#6b7280]",
-                                    children: "Fill out the form below and our team will get back to you shortly."
+                                    children: isRtl ? 'املأ النموذج وسيقوم فريقنا بالرد والتواصل معك خلال وقت قصير.' : 'Fill out the form below and our team will get back to you shortly.'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 87,
+                                    lineNumber: 94,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 83,
+                            lineNumber: 86,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                    lineNumber: 72,
+                    lineNumber: 75,
                     columnNumber: 9
                 }, this),
                 submitted && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -284,12 +319,12 @@ function ContactFormCard() {
                                 points: "20 6 9 17 4 12"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                lineNumber: 96,
+                                lineNumber: 105,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 95,
+                            lineNumber: 104,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -297,23 +332,24 @@ function ContactFormCard() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                     className: "font-bold",
-                                    children: "Thank you!"
+                                    children: isRtl ? 'شكراً لك!' : 'Thank you!'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 99,
+                                    lineNumber: 108,
                                     columnNumber: 15
                                 }, this),
-                                " Your message has been sent successfully. One of our specialists will get back to you within 2 hours."
+                                ' ',
+                                isRtl ? 'تم إرسال رسالتك بنجاح. سيتواصل معك أحد المتخصصين لدينا في غضون ساعتين.' : 'Your message has been sent successfully. One of our specialists will get back to you within 2 hours.'
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 98,
+                            lineNumber: 107,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                    lineNumber: 94,
+                    lineNumber: 103,
                     columnNumber: 11
                 }, this),
                 errorMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -333,7 +369,7 @@ function ContactFormCard() {
                                     d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 107,
+                                    lineNumber: 119,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -343,7 +379,7 @@ function ContactFormCard() {
                                     y2: "13"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 108,
+                                    lineNumber: 120,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -353,26 +389,26 @@ function ContactFormCard() {
                                     y2: "17"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 109,
+                                    lineNumber: 121,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 106,
+                            lineNumber: 118,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             children: errorMessage
                         }, void 0, false, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 111,
+                            lineNumber: 123,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                    lineNumber: 105,
+                    lineNumber: 117,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -388,26 +424,27 @@ function ContactFormCard() {
                                             htmlFor: "fullName",
                                             className: "block text-[12.5px] font-semibold text-[#374151] mb-1.5",
                                             children: [
-                                                "Full Name ",
+                                                isRtl ? 'الاسم الكامل' : 'Full Name',
+                                                " ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-[#dc1414]",
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 124,
-                                                    columnNumber: 27
+                                                    lineNumber: 136,
+                                                    columnNumber: 56
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 120,
+                                            lineNumber: 132,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]",
+                                                    className: "absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         viewBox: "0 0 24 24",
                                                         fill: "none",
@@ -422,7 +459,7 @@ function ContactFormCard() {
                                                                 d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 129,
+                                                                lineNumber: 141,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -431,18 +468,18 @@ function ContactFormCard() {
                                                                 r: "4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 130,
+                                                                lineNumber: 142,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 128,
+                                                        lineNumber: 140,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 127,
+                                                    lineNumber: 139,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -452,23 +489,23 @@ function ContactFormCard() {
                                                     required: true,
                                                     value: formData.fullName,
                                                     onChange: handleChange,
-                                                    placeholder: "Enter your name",
-                                                    className: "w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                                                    placeholder: isRtl ? 'أدخل اسمك بالكامل' : 'Enter your name',
+                                                    className: "w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 145,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 126,
+                                            lineNumber: 138,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 119,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -477,26 +514,27 @@ function ContactFormCard() {
                                             htmlFor: "email",
                                             className: "block text-[12.5px] font-semibold text-[#374151] mb-1.5",
                                             children: [
-                                                "Email Address ",
+                                                isRtl ? 'البريد الإلكتروني' : 'Email Address',
+                                                " ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-[#dc1414]",
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 151,
-                                                    columnNumber: 31
+                                                    lineNumber: 163,
+                                                    columnNumber: 65
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 147,
+                                            lineNumber: 159,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]",
+                                                    className: "absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         viewBox: "0 0 24 24",
                                                         fill: "none",
@@ -515,25 +553,25 @@ function ContactFormCard() {
                                                                 rx: "2"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 156,
+                                                                lineNumber: 168,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                                 d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 157,
+                                                                lineNumber: 169,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 155,
+                                                        lineNumber: 167,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 166,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -543,29 +581,29 @@ function ContactFormCard() {
                                                     required: true,
                                                     value: formData.email,
                                                     onChange: handleChange,
-                                                    placeholder: "Enter your email",
-                                                    className: "w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                                                    placeholder: isRtl ? 'أدخل بريدك الإلكتروني' : 'Enter your email',
+                                                    className: "w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 160,
+                                                    lineNumber: 172,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 153,
+                                            lineNumber: 165,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 146,
+                                    lineNumber: 158,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 118,
+                            lineNumber: 130,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -577,26 +615,27 @@ function ContactFormCard() {
                                             htmlFor: "phone",
                                             className: "block text-[12.5px] font-semibold text-[#374151] mb-1.5",
                                             children: [
-                                                "Phone Number ",
+                                                isRtl ? 'رقم الهاتف' : 'Phone Number',
+                                                " ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-[#dc1414]",
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 181,
-                                                    columnNumber: 30
+                                                    lineNumber: 193,
+                                                    columnNumber: 57
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 177,
+                                            lineNumber: 189,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]",
+                                                    className: "absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         viewBox: "0 0 24 24",
                                                         fill: "none",
@@ -610,17 +649,17 @@ function ContactFormCard() {
                                                             d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 186,
+                                                            lineNumber: 198,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 185,
+                                                        lineNumber: 197,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 184,
+                                                    lineNumber: 196,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -630,23 +669,23 @@ function ContactFormCard() {
                                                     required: true,
                                                     value: formData.phone,
                                                     onChange: handleChange,
-                                                    placeholder: "Enter your phone number",
-                                                    className: "w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                                                    placeholder: isRtl ? '+974 ...' : 'Enter your phone number',
+                                                    className: "w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 189,
+                                                    lineNumber: 201,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 183,
+                                            lineNumber: 195,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 176,
+                                    lineNumber: 188,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,26 +694,27 @@ function ContactFormCard() {
                                             htmlFor: "inquiryType",
                                             className: "block text-[12.5px] font-semibold text-[#374151] mb-1.5",
                                             children: [
-                                                "Inquiry Type ",
+                                                isRtl ? 'نوع الاستفسار' : 'Inquiry Type',
+                                                " ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-[#dc1414]",
                                                     children: "*"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 207,
-                                                    columnNumber: 30
+                                                    lineNumber: 219,
+                                                    columnNumber: 60
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 203,
+                                            lineNumber: 215,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]",
+                                                    className: "absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         viewBox: "0 0 24 24",
                                                         fill: "none",
@@ -692,7 +732,7 @@ function ContactFormCard() {
                                                                 y2: "6"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 212,
+                                                                lineNumber: 224,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -702,7 +742,7 @@ function ContactFormCard() {
                                                                 y2: "12"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 213,
+                                                                lineNumber: 225,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -712,7 +752,7 @@ function ContactFormCard() {
                                                                 y2: "18"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 214,
+                                                                lineNumber: 226,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -722,7 +762,7 @@ function ContactFormCard() {
                                                                 y2: "6"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 215,
+                                                                lineNumber: 227,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -732,7 +772,7 @@ function ContactFormCard() {
                                                                 y2: "12"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 216,
+                                                                lineNumber: 228,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -742,18 +782,18 @@ function ContactFormCard() {
                                                                 y2: "18"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                                lineNumber: 217,
+                                                                lineNumber: 229,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 211,
+                                                        lineNumber: 223,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 210,
+                                                    lineNumber: 222,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -761,72 +801,64 @@ function ContactFormCard() {
                                                     name: "inquiryType",
                                                     value: formData.inquiryType,
                                                     onChange: handleChange,
-                                                    className: "w-full pl-9 pr-8 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] outline-none transition-all bg-white cursor-pointer appearance-none",
+                                                    className: "w-full pl-9 pr-8 rtl:pr-9 rtl:pl-8 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] outline-none transition-all bg-white cursor-pointer appearance-none",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                            value: "",
-                                                            children: "Select inquiry type"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 227,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "General Inquiry",
-                                                            children: "General Inquiry"
+                                                            children: isRtl ? 'استفسار عام' : 'General Inquiry'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 228,
+                                                            lineNumber: 239,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Product Purchase",
-                                                            children: "Product Purchase"
+                                                            children: isRtl ? 'شراء منتج' : 'Product Purchase'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 229,
+                                                            lineNumber: 240,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Computer & Laptop Rental",
-                                                            children: "Computer & Laptop Rental"
+                                                            children: isRtl ? 'تأجير لابتوب وكمبيوتر' : 'Computer & Laptop Rental'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 230,
+                                                            lineNumber: 241,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Bulk & Corporate Orders",
-                                                            children: "Bulk & Corporate Orders"
+                                                            children: isRtl ? 'طلبات الشركات والجملة' : 'Bulk & Corporate Orders'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 231,
+                                                            lineNumber: 242,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Technical Support",
-                                                            children: "Technical Support"
+                                                            children: isRtl ? 'دعم فني وصيانة' : 'Technical Support'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 232,
+                                                            lineNumber: 243,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Warranty & Repair",
-                                                            children: "Warranty & Repair"
+                                                            children: isRtl ? 'الضمان والإصلاح' : 'Warranty & Repair'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 233,
+                                                            lineNumber: 244,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 220,
+                                                    lineNumber: 232,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#9ca3af]",
+                                                    className: "absolute inset-y-0 right-0 pr-3 rtl:right-auto rtl:left-0 rtl:pl-3 flex items-center pointer-events-none text-[#9ca3af]",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                         viewBox: "0 0 20 20",
                                                         fill: "currentColor",
@@ -838,35 +870,35 @@ function ContactFormCard() {
                                                             clipRule: "evenodd"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                            lineNumber: 237,
+                                                            lineNumber: 248,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 236,
+                                                        lineNumber: 247,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 235,
+                                                    lineNumber: 246,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 209,
+                                            lineNumber: 221,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 202,
+                                    lineNumber: 214,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 175,
+                            lineNumber: 187,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -875,26 +907,27 @@ function ContactFormCard() {
                                     htmlFor: "subject",
                                     className: "block text-[12.5px] font-semibold text-[#374151] mb-1.5",
                                     children: [
-                                        "Subject ",
+                                        isRtl ? 'الموضوع' : 'Subject',
+                                        " ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[#dc1414]",
                                             children: "*"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 250,
-                                            columnNumber: 23
+                                            lineNumber: 261,
+                                            columnNumber: 47
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 246,
+                                    lineNumber: 257,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]",
+                                            className: "absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                 viewBox: "0 0 24 24",
                                                 fill: "none",
@@ -909,32 +942,32 @@ function ContactFormCard() {
                                                         points: "12 2 2 7 12 12 22 7 12 2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 255,
+                                                        lineNumber: 266,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                                         points: "2 17 12 22 22 17"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 256,
+                                                        lineNumber: 267,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                                         points: "2 12 12 17 22 12"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                        lineNumber: 257,
+                                                        lineNumber: 268,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                lineNumber: 254,
+                                                lineNumber: 265,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 253,
+                                            lineNumber: 264,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -944,23 +977,23 @@ function ContactFormCard() {
                                             required: true,
                                             value: formData.subject,
                                             onChange: handleChange,
-                                            placeholder: "Enter subject",
-                                            className: "w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                                            placeholder: isRtl ? 'أدخل موضوع الرسالة' : 'Enter subject',
+                                            className: "w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 260,
+                                            lineNumber: 271,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 252,
+                                    lineNumber: 263,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 245,
+                            lineNumber: 256,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -969,26 +1002,27 @@ function ContactFormCard() {
                                     htmlFor: "message",
                                     className: "block text-[12.5px] font-semibold text-[#374151] mb-1.5",
                                     children: [
-                                        "Your Message ",
+                                        isRtl ? 'نص الرسالة' : 'Your Message',
+                                        " ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-[#dc1414]",
                                             children: "*"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 279,
-                                            columnNumber: 28
+                                            lineNumber: 290,
+                                            columnNumber: 55
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 275,
+                                    lineNumber: 286,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-3 left-3 pointer-events-none text-[#9ca3af]",
+                                            className: "absolute top-3 left-3 rtl:left-auto rtl:right-3 pointer-events-none text-[#9ca3af]",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                 viewBox: "0 0 24 24",
                                                 fill: "none",
@@ -1002,17 +1036,17 @@ function ContactFormCard() {
                                                     d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                    lineNumber: 284,
+                                                    lineNumber: 295,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                                lineNumber: 283,
+                                                lineNumber: 294,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 282,
+                                            lineNumber: 293,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1022,23 +1056,23 @@ function ContactFormCard() {
                                             required: true,
                                             value: formData.message,
                                             onChange: handleChange,
-                                            placeholder: "Write your message here...",
-                                            className: "w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all resize-y"
+                                            placeholder: isRtl ? 'اكتب تفاصيل رسالتك أو استفسارك هنا...' : 'Write your message here...',
+                                            className: "w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all resize-y"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 287,
+                                            lineNumber: 298,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                    lineNumber: 281,
+                                    lineNumber: 292,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 274,
+                            lineNumber: 285,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1051,53 +1085,53 @@ function ContactFormCard() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                         viewBox: "0 0 24 24",
                                         fill: "currentColor",
-                                        className: "w-4 h-4 -rotate-45",
+                                        className: "w-4 h-4 -rotate-45 rtl:rotate-135",
                                         "aria-hidden": "true",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                            lineNumber: 313,
+                                            lineNumber: 324,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                        lineNumber: 307,
+                                        lineNumber: 318,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: isSubmitting ? 'Sending Message...' : 'Send Message'
+                                        children: isSubmitting ? isRtl ? 'جاري إرسال الرسالة...' : 'Sending Message...' : isRtl ? 'إرسال الرسالة' : 'Send Message'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                        lineNumber: 315,
+                                        lineNumber: 326,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                                lineNumber: 302,
+                                lineNumber: 313,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                            lineNumber: 301,
+                            lineNumber: 312,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-                    lineNumber: 116,
+                    lineNumber: 128,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-            lineNumber: 70,
+            lineNumber: 73,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/contact/ContactFormCard.jsx",
-        lineNumber: 69,
+        lineNumber: 72,
         columnNumber: 5
     }, this);
 }
@@ -1209,15 +1243,19 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/data/companyInfo.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 ;
 function ContactInfoCard() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const channels = [
         {
             id: 'address',
-            title: 'Our Showroom & Office',
-            detail: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].location.fullAddress,
-            btnText: 'Get Directions',
+            title: isRtl ? 'المعرض والمركز الرئيسي' : 'Our Showroom & Office',
+            detail: isRtl ? 'البرج 1، الطابق الثاني، مكتب 201، مول المرقاب، شارع المرقاب الجديد، الدوحة، دولة قطر' : __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].location.fullAddress,
+            btnText: isRtl ? 'الاتجاهات عبر الخريطة' : 'Get Directions',
             btnHref: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].location.googleMapsUrl,
             btnExternal: true,
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1234,7 +1272,7 @@ function ContactInfoCard() {
                         d: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 14,
+                        lineNumber: 21,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1243,13 +1281,13 @@ function ContactInfoCard() {
                         r: "3"
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 15,
+                        lineNumber: 22,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 13,
+                lineNumber: 20,
                 columnNumber: 9
             }, this),
             btnIcon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1265,20 +1303,30 @@ function ContactInfoCard() {
                     points: "3 11 22 2 13 21 11 13 3 11"
                 }, void 0, false, {
                     fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                    lineNumber: 20,
+                    lineNumber: 27,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 19,
+                lineNumber: 26,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'call',
-            title: 'Call Us Directly',
-            detail: `${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].phones.primary} (Showroom & B2B)`,
-            btnText: 'Call Now',
+            title: isRtl ? 'اتصل بنا مباشرة' : 'Call Us Directly',
+            detail: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("bdi", {
+                dir: "ltr",
+                children: [
+                    __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].phones.primary,
+                    " (Showroom & B2B)"
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
+                lineNumber: 35,
+                columnNumber: 9
+            }, this),
+            btnText: isRtl ? 'اتصل الآن' : 'Call Now',
             btnHref: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].phones.callUrl,
             btnExternal: false,
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1294,12 +1342,12 @@ function ContactInfoCard() {
                     d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                 }, void 0, false, {
                     fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                    lineNumber: 33,
+                    lineNumber: 42,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 32,
+                lineNumber: 41,
                 columnNumber: 9
             }, this),
             btnIcon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1315,20 +1363,20 @@ function ContactInfoCard() {
                     d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                 }, void 0, false, {
                     fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                    lineNumber: 38,
+                    lineNumber: 47,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 37,
+                lineNumber: 46,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'email',
-            title: 'Email Us',
+            title: isRtl ? 'راسلنا عبر البريد الإلكتروني' : 'Email Us',
             detail: `${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].emails.general} / ${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].emails.b2b}`,
-            btnText: 'Send Email',
+            btnText: isRtl ? 'إرسال بريد' : 'Send Email',
             btnHref: `mailto:${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].emails.general}`,
             btnExternal: false,
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1349,20 +1397,20 @@ function ContactInfoCard() {
                         rx: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 51,
+                        lineNumber: 60,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 52,
+                        lineNumber: 61,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 50,
+                lineNumber: 59,
                 columnNumber: 9
             }, this),
             btnIcon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1383,28 +1431,35 @@ function ContactInfoCard() {
                         rx: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 57,
+                        lineNumber: 66,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 58,
+                        lineNumber: 67,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 56,
+                lineNumber: 65,
                 columnNumber: 9
             }, this)
         },
         {
             id: 'whatsapp',
-            title: 'Official WhatsApp',
-            detail: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].phones.whatsapp,
-            btnText: 'Chat on WhatsApp',
+            title: isRtl ? 'المحادثة الفورية عبر الواتساب' : 'Official WhatsApp',
+            detail: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("bdi", {
+                dir: "ltr",
+                children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].phones.whatsapp
+            }, void 0, false, {
+                fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
+                lineNumber: 74,
+                columnNumber: 15
+            }, this),
+            btnText: isRtl ? 'محادثة واتساب' : 'Chat on WhatsApp',
             btnHref: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].phones.whatsappUrl,
             btnExternal: true,
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1420,12 +1475,12 @@ function ContactInfoCard() {
                     d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
                 }, void 0, false, {
                     fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                    lineNumber: 71,
+                    lineNumber: 80,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 70,
+                lineNumber: 79,
                 columnNumber: 9
             }, this),
             btnIcon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1438,15 +1493,15 @@ function ContactInfoCard() {
                 className: "w-3.5 h-3.5",
                 "aria-hidden": "true",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                    d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                    d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
                 }, void 0, false, {
                     fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                    lineNumber: 76,
+                    lineNumber: 85,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 75,
+                lineNumber: 84,
                 columnNumber: 9
             }, this)
         }
@@ -1472,57 +1527,71 @@ function ContactInfoCard() {
                                 d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                lineNumber: 88,
+                                lineNumber: 97,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                            lineNumber: 87,
+                            lineNumber: 96,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 86,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                 className: "text-[20px] sm:text-[22px] font-bold text-[#111827] leading-tight",
-                                children: [
-                                    "Contact ",
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[#dc1414]",
-                                        children: "Information"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                        lineNumber: 93,
-                                        columnNumber: 21
-                                    }, this)
-                                ]
-                            }, void 0, true, {
+                                children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                    children: [
+                                        "معلومات ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[#dc1414]",
+                                            children: "الاتصال"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
+                                            lineNumber: 104,
+                                            columnNumber: 25
+                                        }, this)
+                                    ]
+                                }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                    children: [
+                                        "Contact ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[#dc1414]",
+                                            children: "Information"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
+                                            lineNumber: 108,
+                                            columnNumber: 25
+                                        }, this)
+                                    ]
+                                }, void 0, true)
+                            }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                lineNumber: 92,
+                                lineNumber: 101,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "mt-1 text-[12.5px] sm:text-[13px] text-[#6b7280]",
-                                children: "Reach out to us through any of the following channels."
+                                children: isRtl ? 'تواصل معنا مباشرة عبر أي من القنوات الرسمية التالية.' : 'Reach out to us through any of the following channels.'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                lineNumber: 95,
+                                lineNumber: 112,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 91,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 85,
+                lineNumber: 94,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1538,7 +1607,7 @@ function ContactInfoCard() {
                                         children: ch.icon
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                        lineNumber: 110,
+                                        lineNumber: 129,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1548,31 +1617,31 @@ function ContactInfoCard() {
                                                 children: ch.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                                lineNumber: 114,
+                                                lineNumber: 133,
                                                 columnNumber: 17
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "mt-0.5 text-[12px] sm:text-[12.5px] text-[#4b5563] leading-relaxed max-w-[280px]",
                                                 children: ch.detail
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                                lineNumber: 117,
+                                                lineNumber: 136,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                        lineNumber: 113,
+                                        lineNumber: 132,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                lineNumber: 109,
+                                lineNumber: 128,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "shrink-0 self-start sm:self-center pl-13 sm:pl-0",
+                                className: "shrink-0 self-start sm:self-center pl-13 sm:pl-0 rtl:pr-13 rtl:sm:pr-0",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                     href: ch.btnHref,
                                     target: ch.btnExternal ? '_blank' : undefined,
@@ -1584,35 +1653,35 @@ function ContactInfoCard() {
                                             children: ch.btnText
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                            lineNumber: 132,
+                                            lineNumber: 151,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                    lineNumber: 125,
+                                    lineNumber: 144,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                                lineNumber: 124,
+                                lineNumber: 143,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, ch.id, true, {
                         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                        lineNumber: 104,
+                        lineNumber: 123,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-                lineNumber: 102,
+                lineNumber: 121,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/ContactInfoCard.jsx",
-        lineNumber: 83,
+        lineNumber: 92,
         columnNumber: 5
     }, this);
 }
@@ -1626,9 +1695,13 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/data/companyInfo.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+'use client';
+;
 ;
 ;
 function StoreLocationAndHours() {
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5",
         children: [
@@ -1654,7 +1727,7 @@ function StoreLocationAndHours() {
                                             d: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                            lineNumber: 11,
+                                            lineNumber: 16,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1663,32 +1736,32 @@ function StoreLocationAndHours() {
                                             r: "3"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                            lineNumber: 12,
+                                            lineNumber: 17,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                    lineNumber: 10,
+                                    lineNumber: 15,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                lineNumber: 9,
+                                lineNumber: 14,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                 className: "text-[15px] font-bold text-[#111827]",
-                                children: "Showroom Location"
+                                children: isRtl ? 'موقع صالة العرض' : 'Showroom Location'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                lineNumber: 15,
+                                lineNumber: 20,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                        lineNumber: 8,
+                        lineNumber: 13,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1708,7 +1781,7 @@ function StoreLocationAndHours() {
                                         fill: "#f1f5f9"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 30,
+                                        lineNumber: 34,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1717,7 +1790,7 @@ function StoreLocationAndHours() {
                                         fillOpacity: "0.7"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 32,
+                                        lineNumber: 35,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1726,7 +1799,7 @@ function StoreLocationAndHours() {
                                         fillOpacity: "0.6"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 33,
+                                        lineNumber: 36,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1738,7 +1811,7 @@ function StoreLocationAndHours() {
                                         strokeWidth: "14"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 35,
+                                        lineNumber: 37,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1751,7 +1824,7 @@ function StoreLocationAndHours() {
                                         strokeDasharray: "6 4"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 36,
+                                        lineNumber: 38,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1763,7 +1836,7 @@ function StoreLocationAndHours() {
                                         strokeWidth: "12"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 37,
+                                        lineNumber: 39,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1775,7 +1848,7 @@ function StoreLocationAndHours() {
                                         strokeWidth: "1"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 38,
+                                        lineNumber: 40,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1787,7 +1860,7 @@ function StoreLocationAndHours() {
                                         strokeWidth: "8"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 39,
+                                        lineNumber: 41,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1799,7 +1872,7 @@ function StoreLocationAndHours() {
                                         strokeWidth: "8"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 40,
+                                        lineNumber: 42,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -1812,7 +1885,7 @@ function StoreLocationAndHours() {
                                                 fill: "#fee2e2"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 43,
+                                                lineNumber: 44,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1820,7 +1893,7 @@ function StoreLocationAndHours() {
                                                 fill: "#dc1414"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 44,
+                                                lineNumber: 45,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1830,19 +1903,19 @@ function StoreLocationAndHours() {
                                                 fill: "#ffffff"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 45,
+                                                lineNumber: 46,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 42,
+                                        lineNumber: 43,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                lineNumber: 28,
+                                lineNumber: 33,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1855,21 +1928,21 @@ function StoreLocationAndHours() {
                                                 children: "Prestige Computers (PCS Doha)"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 52,
+                                                lineNumber: 53,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "text-[10px] text-[#64748b] mt-0.5 truncate max-w-[220px]",
-                                                children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].location.shortAddress
+                                                children: isRtl ? 'مول المرقاب، شارع النصر، الدوحة، قطر' : __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$companyInfo$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].location.shortAddress
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 55,
+                                                lineNumber: 56,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 51,
+                                        lineNumber: 52,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1877,25 +1950,25 @@ function StoreLocationAndHours() {
                                         children: "↗"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 59,
+                                        lineNumber: 60,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                lineNumber: 50,
+                                lineNumber: 51,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                        lineNumber: 21,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                lineNumber: 7,
+                lineNumber: 12,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1924,39 +1997,39 @@ function StoreLocationAndHours() {
                                                     r: "10"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                    lineNumber: 70,
+                                                    lineNumber: 71,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
                                                     points: "12 6 12 12 16 14"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                    lineNumber: 71,
+                                                    lineNumber: 72,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                            lineNumber: 69,
+                                            lineNumber: 70,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 68,
+                                        lineNumber: 69,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                         className: "text-[15px] font-bold text-[#111827]",
-                                        children: "Showroom Working Hours"
+                                        children: isRtl ? 'ساعات عمل صالة العرض' : 'Showroom Working Hours'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 74,
+                                        lineNumber: 75,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                lineNumber: 67,
+                                lineNumber: 68,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1967,24 +2040,24 @@ function StoreLocationAndHours() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "font-semibold text-[#374151]",
-                                                children: "Saturday – Thursday"
+                                                children: isRtl ? 'السبت – الخميس' : 'Saturday – Thursday'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 81,
+                                                lineNumber: 82,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-[#111827] font-medium",
-                                                children: "10:00 AM – 10:00 PM"
+                                                children: isRtl ? '10:00 ص – 10:00 م' : '10:00 AM – 10:00 PM'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 82,
+                                                lineNumber: 85,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 80,
+                                        lineNumber: 81,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1992,36 +2065,36 @@ function StoreLocationAndHours() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "font-semibold text-[#374151]",
-                                                children: "Friday"
+                                                children: isRtl ? 'الجمعة' : 'Friday'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 85,
+                                                lineNumber: 90,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-[#111827] font-medium",
-                                                children: "2:30 PM – 10:30 PM"
+                                                children: isRtl ? '2:30 م – 10:30 م' : '2:30 PM – 10:30 PM'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                                lineNumber: 86,
+                                                lineNumber: 93,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                        lineNumber: 84,
+                                        lineNumber: 89,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                lineNumber: 79,
+                                lineNumber: 80,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                        lineNumber: 66,
+                        lineNumber: 67,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2033,37 +2106,37 @@ function StoreLocationAndHours() {
                                     className: "w-2 h-2 rounded-full bg-[#10b981] animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                    lineNumber: 94,
+                                    lineNumber: 103,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "Store Open & Ready to Assist"
+                                    children: isRtl ? 'المعرض مفتوح وجاهز لخدمتكم' : 'Store Open & Ready to Assist'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                                    lineNumber: 95,
+                                    lineNumber: 104,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                            lineNumber: 93,
+                            lineNumber: 102,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                        lineNumber: 92,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-                lineNumber: 65,
+                lineNumber: 66,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/contact/StoreLocationAndHours.jsx",
-        lineNumber: 5,
+        lineNumber: 10,
         columnNumber: 5
     }, this);
 }

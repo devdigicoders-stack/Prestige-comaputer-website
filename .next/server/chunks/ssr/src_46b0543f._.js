@@ -4570,7 +4570,7 @@ __turbopack_context__.s([
     "getBlogs",
     ()=>getBlogs
 ]);
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 async function getBlogs(params = {}) {
     try {
         const q = new URLSearchParams();
@@ -5637,7 +5637,7 @@ __turbopack_context__.s([
     "submitReview",
     ()=>submitReview
 ]);
-const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
 function getAuthHeaders() {
     const token = ("TURBOPACK compile-time falsy", 0) ? "TURBOPACK unreachable" : null;
     const headers = {
