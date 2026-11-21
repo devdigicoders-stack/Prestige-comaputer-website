@@ -1,11 +1,20 @@
+'use client'
+
+import companyInfo from '../../data/companyInfo'
+import { useLanguage } from '../../context/LanguageContext'
+
 export default function ContactInfoCard() {
+  const { isRtl } = useLanguage()
+
   const channels = [
     {
       id: 'address',
-      title: 'Our Address',
-      detail: 'Shop No. 12, IT Market, Civil Lines, Kanpur, Uttar Pradesh - 208001',
-      btnText: 'Get Directions',
-      btnHref: 'https://maps.google.com/?q=IT+Market+Civil+Lines+Kanpur+Uttar+Pradesh',
+      title: isRtl ? 'المعرض والمركز الرئيسي' : 'Our Showroom & Office',
+      detail: isRtl
+        ? 'البرج 1، الطابق الثاني، مكتب 201، مول المرقاب، شارع المرقاب الجديد، الدوحة، دولة قطر'
+        : companyInfo.location.fullAddress,
+      btnText: isRtl ? 'الاتجاهات عبر الخريطة' : 'Get Directions',
+      btnHref: companyInfo.location.googleMapsUrl,
       btnExternal: true,
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true">
@@ -21,10 +30,12 @@ export default function ContactInfoCard() {
     },
     {
       id: 'call',
-      title: 'Call Us',
-      detail: '+91 98765 43210, +91 91234 56789',
-      btnText: 'Call Now',
-      btnHref: 'tel:+919876543210',
+      title: isRtl ? 'اتصل بنا مباشرة' : 'Call Us Directly',
+      detail: (
+        <bdi dir="ltr">{companyInfo.phones.primary} (Showroom &amp; B2B)</bdi>
+      ),
+      btnText: isRtl ? 'اتصل الآن' : 'Call Now',
+      btnHref: companyInfo.phones.callUrl,
       btnExternal: false,
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true">
@@ -39,10 +50,10 @@ export default function ContactInfoCard() {
     },
     {
       id: 'email',
-      title: 'Email Us',
-      detail: 'support@prestigecomputers.in',
-      btnText: 'Send Email',
-      btnHref: 'mailto:support@prestigecomputers.in',
+      title: isRtl ? 'راسلنا عبر البريد الإلكتروني' : 'Email Us',
+      detail: `${companyInfo.emails.general} / ${companyInfo.emails.b2b}`,
+      btnText: isRtl ? 'إرسال بريد' : 'Send Email',
+      btnHref: `mailto:${companyInfo.emails.general}`,
       btnExternal: false,
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true">
@@ -59,10 +70,10 @@ export default function ContactInfoCard() {
     },
     {
       id: 'whatsapp',
-      title: 'WhatsApp',
-      detail: '+91 98765 43210',
-      btnText: 'Chat on WhatsApp',
-      btnHref: 'https://wa.me/919876543210?text=Hello%20Prestige%20Computers%2C%20I%20have%20an%20inquiry',
+      title: isRtl ? 'المحادثة الفورية عبر الواتساب' : 'Official WhatsApp',
+      detail: <bdi dir="ltr">{companyInfo.phones.whatsapp}</bdi>,
+      btnText: isRtl ? 'محادثة واتساب' : 'Chat on WhatsApp',
+      btnHref: companyInfo.phones.whatsappUrl,
       btnExternal: true,
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true">
@@ -88,10 +99,20 @@ export default function ContactInfoCard() {
         </div>
         <div>
           <h2 className="text-[20px] sm:text-[22px] font-bold text-[#111827] leading-tight">
-            Contact <span className="text-[#dc1414]">Information</span>
+            {isRtl ? (
+              <>
+                معلومات <span className="text-[#dc1414]">الاتصال</span>
+              </>
+            ) : (
+              <>
+                Contact <span className="text-[#dc1414]">Information</span>
+              </>
+            )}
           </h2>
           <p className="mt-1 text-[12.5px] sm:text-[13px] text-[#6b7280]">
-            Reach out to us through any of the following channels.
+            {isRtl
+              ? 'تواصل معنا مباشرة عبر أي من القنوات الرسمية التالية.'
+              : 'Reach out to us through any of the following channels.'}
           </p>
         </div>
       </div>
@@ -112,14 +133,14 @@ export default function ContactInfoCard() {
                 <h3 className="text-[14px] font-bold text-[#111827] leading-snug">
                   {ch.title}
                 </h3>
-                <p className="mt-0.5 text-[12px] sm:text-[12.5px] text-[#4b5563] leading-relaxed max-w-[280px]">
+                <div className="mt-0.5 text-[12px] sm:text-[12.5px] text-[#4b5563] leading-relaxed max-w-[280px]">
                   {ch.detail}
-                </p>
+                </div>
               </div>
             </div>
 
             {/* Right Action Button */}
-            <div className="shrink-0 self-start sm:self-center pl-13 sm:pl-0">
+            <div className="shrink-0 self-start sm:self-center pl-13 sm:pl-0 rtl:pr-13 rtl:sm:pr-0">
               <a
                 href={ch.btnHref}
                 target={ch.btnExternal ? '_blank' : undefined}

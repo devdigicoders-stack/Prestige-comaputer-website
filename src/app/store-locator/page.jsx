@@ -1,9 +1,9 @@
 import StoreLocatorView from '../../components/store-locator/StoreLocatorView'
 
 export const metadata = {
-  title: 'Store Locator | Find Prestige Computers Outlets & Experience Hubs',
+  title: 'Store Locator | Prestige Computers (PCS Doha) Showroom & Tech Hub',
   description:
-    'Visit our official Prestige Computers flagship experience centers in Kanpur (Kakadeo & Civil Lines), Lucknow, and London UK. Test RTX gaming rigs, custom PCs, and instant laptop rentals.',
+    'Visit our official Prestige Computers flagship showroom at Al-Mirqab Mall, Doha, Qatar. Explore brand-new laptops, certified pre-owned devices, custom gaming rigs, and enterprise rentals.',
   alternates: {
     canonical: '/store-locator',
   },

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 function formatINR(val) {
   return `₹${Number(val).toLocaleString('en-IN')}`
@@ -23,7 +24,15 @@ export default function ProductConfigurator({
   },
 }) {
   const router = useRouter()
-  const { wishlistIds, toggleWishlist, addToCart } = useStore()
+  const { isArabic } = useLanguage()
+  const {
+    wishlistIds,
+    toggleWishlist,
+    addToCart,
+    currentUser,
+    setAuthPromptMessage,
+    openLoginModal,
+  } = useStore()
   const isWishlisted = wishlistIds.includes(product.id)
 
   // Configuration options state
@@ -32,6 +41,16 @@ export default function ProductConfigurator({
   const [selectedStorage, setSelectedStorage] = useState('512GB SSD')
   const [quantity, setQuantity] = useState(1)
   const [addedToast, setAddedToast] = useState(false)
+
+  // Dynamic stock calculations based on database values and admin thresholds
+  const stock = typeof product?.stock === 'number' ? product.stock : 15
+  const lowStockThreshold = typeof product?.lowStockThreshold === 'number' ? product.lowStockThreshold : 5
+  const outOfStockThreshold = typeof product?.outOfStockThreshold === 'number' ? product.outOfStockThreshold : 0
+  const isOutOfStock =
+    stock <= outOfStockThreshold ||
+    product?.inStock === false ||
+    product?.status === 'Out of Stock'
+  const isLowStock = !isOutOfStock && stock <= lowStockThreshold
 
   // Dynamic price adjustment based on configuration
   const getPrice = () => {
@@ -49,13 +68,16 @@ export default function ProductConfigurator({
   const currentOriginalPrice = Math.round(currentPrice * 1.13)
 
   const handleAddToCart = () => {
-    addToCart({
+    if (isOutOfStock) return
+    const success = addToCart({
       id: `${product.id}-${selectedProcessor}-${selectedRam}-${selectedStorage}`,
       name: `${product.name} (${selectedProcessor}, ${selectedRam}, ${selectedStorage})`,
       price: currentPrice,
       originalPrice: currentOriginalPrice,
       discount: product.discount,
       imageVariant: 'dell-inspiron',
+      isFreeDelivery: product.isFreeDelivery !== false && Number(product.deliveryCharge || 0) === 0,
+      deliveryCharge: product.isFreeDelivery === false ? Number(product.deliveryCharge || 0) : 0,
       specs: {
         cpu: selectedProcessor,
         ram: selectedRam,
@@ -65,11 +87,19 @@ export default function ProductConfigurator({
       quantity: quantity,
     })
 
-    setAddedToast(true)
-    setTimeout(() => setAddedToast(false), 2400)
+    if (success) {
+      setAddedToast(true)
+      setTimeout(() => setAddedToast(false), 2400)
+    }
   }
 
   const handleBuyNow = () => {
+    if (isOutOfStock) return
+    if (!currentUser) {
+      setAuthPromptMessage('Please sign in or create an account to proceed with your purchase.')
+      openLoginModal()
+      return
+    }
     handleAddToCart()
     router.push('/cart')
   }
@@ -88,15 +118,27 @@ export default function ProductConfigurator({
 
       {/* Rating & Sold Row */}
       <div className="flex items-center flex-wrap gap-2 text-[12.5px] text-[#4b5563]">
-        <div className="flex items-center gap-0.5 text-[#f59e0b]">
-          {[...Array(5)].map((_, i) => (
-            <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-              <path d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.29 3.96a1 1 0 0 0 .95.69h4.16c.97 0 1.37 1.24.59 1.81l-3.37 2.45a1 1 0 0 0-.36 1.12l1.29 3.96c.3.92-.75 1.69-1.54 1.12l-3.37-2.45a1 1 0 0 0-1.18 0l-3.37 2.45c-.79.57-1.84-.2-1.54-1.12l1.29-3.96a1 1 0 0 0-.36-1.12L2.06 9.39c-.78-.57-.38-1.81.59-1.81h4.16a1 1 0 0 0 .95-.69l1.29-3.96Z" />
-            </svg>
-          ))}
-        </div>
-        <span className="font-bold text-[#111827]">{product.rating}</span>
-        <span className="text-[#6b7280]">({product.reviewCount} Reviews)</span>
+        <a
+          href="#reviews"
+          onClick={(e) => {
+            e.preventDefault()
+            const el = document.getElementById('reviews')
+            if (el) el.scrollIntoView({ behavior: 'smooth' })
+          }}
+          className="flex items-center gap-1.5 hover:opacity-85 transition-opacity cursor-pointer"
+        >
+          <div className="flex items-center gap-0.5 text-[#f59e0b]">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.29 3.96a1 1 0 0 0 .95.69h4.16c.97 0 1.37 1.24.59 1.81l-3.37 2.45a1 1 0 0 0-.36 1.12l1.29 3.96c.3.92-.75 1.69-1.54 1.12l-3.37-2.45a1 1 0 0 0-1.18 0l-3.37 2.45c-.79.57-1.84-.2-1.54-1.12l1.29-3.96a1 1 0 0 0-.36-1.12L2.06 9.39c-.78-.57-.38-1.81.59-1.81h4.16a1 1 0 0 0 .95-.69l1.29-3.96Z" />
+              </svg>
+            ))}
+          </div>
+          <span className="font-bold text-[#111827]">{product.rating}</span>
+          <span className="text-[#dc1414] hover:underline font-medium">
+            ({product.reviewCount} {isArabic ? 'تقييم' : 'Reviews'})
+          </span>
+        </a>
         <span className="text-[#d1d5db]">|</span>
         <span className="font-semibold text-[#374151]">{product.soldCount}</span>
       </div>
@@ -116,13 +158,13 @@ export default function ProductConfigurator({
 
       {/* EMI Notice */}
       <div className="flex items-center gap-1.5 text-[12px] text-[#4b5563]">
-        <span>EMI starts at</span>
+        <span>{isArabic ? 'يبدأ التقسيط من' : 'EMI starts at'}</span>
         <strong className="text-[#111827] font-semibold">{product.emi}</strong>
         <span className="text-[#d1d5db]">|</span>
-        <span>No Cost EMI available</span>
+        <span>{isArabic ? 'متوفر تقسيط بدون فوائد' : 'No Cost EMI available'}</span>
         <button
           type="button"
-          title="EMI Details"
+          title={isArabic ? 'تفاصيل التقسيط' : 'EMI Details'}
           className="w-3.5 h-3.5 rounded-full border border-[#9ca3af] text-[#6b7280] flex items-center justify-center text-[9px] hover:border-[#111827] cursor-pointer"
         >
           i
@@ -136,7 +178,7 @@ export default function ProductConfigurator({
         {/* Processor Selector */}
         <div className="flex items-center gap-3">
           <span className="w-18 shrink-0 text-[13px] font-medium text-[#4b5563]">
-            Processor
+            {isArabic ? 'المعالج' : 'Processor'}
           </span>
           <div className="flex items-center gap-2 flex-wrap">
             {['Core i5', 'Core i7', 'Core i9'].map((proc) => {
@@ -162,7 +204,7 @@ export default function ProductConfigurator({
         {/* RAM Selector */}
         <div className="flex items-center gap-3">
           <span className="w-18 shrink-0 text-[13px] font-medium text-[#4b5563]">
-            RAM
+            {isArabic ? 'الذاكرة' : 'RAM'}
           </span>
           <div className="flex items-center gap-2 flex-wrap">
             {['8GB', '16GB', '32GB'].map((ram) => {
@@ -188,7 +230,7 @@ export default function ProductConfigurator({
         {/* Storage Selector */}
         <div className="flex items-center gap-3">
           <span className="w-18 shrink-0 text-[13px] font-medium text-[#4b5563]">
-            Storage
+            {isArabic ? 'التخزين' : 'Storage'}
           </span>
           <div className="flex items-center gap-2 flex-wrap">
             {['256GB SSD', '512GB SSD', '1TB SSD'].map((st) => {
@@ -217,12 +259,12 @@ export default function ProductConfigurator({
         {/* Quantity Stepper */}
         <div className="flex items-center gap-3">
           <span className="w-18 shrink-0 text-[13px] font-medium text-[#4b5563]">
-            Quantity
+            {isArabic ? 'الكمية' : 'Quantity'}
           </span>
           <div className="inline-flex items-center border border-[#d1d5db] rounded-lg bg-white overflow-hidden shadow-2xs">
             <button
               type="button"
-              disabled={quantity <= 1}
+              disabled={isOutOfStock || quantity <= 1}
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               className="w-8 h-8 flex items-center justify-center text-[#4b5563] hover:bg-[#f3f4f6] active:bg-[#e5e7eb] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
               aria-label="Decrease quantity"
@@ -232,12 +274,13 @@ export default function ProductConfigurator({
               </svg>
             </button>
             <span className="w-8 text-center text-[13px] font-bold text-[#111827]">
-              {quantity}
+              {isOutOfStock ? 0 : quantity}
             </span>
             <button
               type="button"
-              onClick={() => setQuantity((q) => q + 1)}
-              className="w-8 h-8 flex items-center justify-center text-[#4b5563] hover:bg-[#f3f4f6] active:bg-[#e5e7eb] cursor-pointer transition-colors"
+              disabled={isOutOfStock || quantity >= stock}
+              onClick={() => setQuantity((q) => Math.min(stock, q + 1))}
+              className="w-8 h-8 flex items-center justify-center text-[#4b5563] hover:bg-[#f3f4f6] active:bg-[#e5e7eb] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-colors"
               aria-label="Increase quantity"
             >
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
@@ -248,12 +291,44 @@ export default function ProductConfigurator({
         </div>
 
         {/* Stock Status Indicator */}
-        <div className="flex items-center gap-1.5 text-right">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#16a34a] animate-pulse" />
-          <div className="flex flex-col text-left">
-            <span className="text-[12.5px] font-bold text-[#16a34a]">In Stock</span>
-            <span className="text-[11px] text-[#6b7280]">Ships in 1-2 days</span>
-          </div>
+        <div className="flex items-center gap-1.5 text-right rtl:text-left">
+          {isOutOfStock ? (
+            <>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
+              <div className="flex flex-col text-left rtl:text-right">
+                <span className="text-[12.5px] font-bold text-[#dc1414]">
+                  {isArabic ? 'نفدت الكمية' : 'Out of Stock'}
+                </span>
+                <span className="text-[11px] text-[#6b7280]">
+                  {isArabic ? 'غير متوفر حالياً' : 'Currently Unavailable'}
+                </span>
+              </div>
+            </>
+          ) : isLowStock ? (
+            <>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#d97706] animate-pulse" />
+              <div className="flex flex-col text-left rtl:text-right">
+                <span className="text-[12.5px] font-bold text-[#d97706]">
+                  {isArabic ? 'كمية محدودة' : 'Low Stock'}
+                </span>
+                <span className="text-[11px] text-[#b45309] font-medium">
+                  {isArabic ? `متبقي ${stock} وحدات فقط!` : `Only ${stock} units left!`}
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#16a34a] animate-pulse" />
+              <div className="flex flex-col text-left rtl:text-right">
+                <span className="text-[12.5px] font-bold text-[#16a34a]">
+                  {isArabic ? 'متوفر في المخزون' : 'In Stock'}
+                </span>
+                <span className="text-[11px] text-[#6b7280]">
+                  {isArabic ? `جاهز للشحن (${stock} متوفر)` : `Ships in 1-2 days (${stock} available)`}
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 
@@ -262,15 +337,28 @@ export default function ProductConfigurator({
         {/* Add to Cart Button */}
         <button
           type="button"
+          disabled={isOutOfStock}
           onClick={handleAddToCart}
-          className="flex-1 bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white text-[13.5px] font-bold py-3 px-5 rounded-xl shadow-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+          className={`flex-1 text-[13.5px] font-bold py-3 px-5 rounded-xl shadow-xs flex items-center justify-center gap-2 transition-all ${
+            isOutOfStock
+              ? 'bg-gray-200 text-gray-500 cursor-not-allowed border border-gray-300 shadow-none'
+              : 'bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white cursor-pointer'
+          }`}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-4 h-4">
             <path d="M2.5 4h2.5l2.2 10.2a1.5 1.5 0 0 0 1.46 1.2h8.84a1.5 1.5 0 0 0 1.45-1.13L20.5 7.5H6.2" />
             <circle cx="9.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
             <circle cx="17.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
           </svg>
-          <span>Add to Cart</span>
+          <span>
+            {isOutOfStock
+              ? isArabic
+                ? 'نفدت الكمية'
+                : 'Out of Stock'
+              : isArabic
+              ? 'أضف إلى السلة'
+              : 'Add to Cart'}
+          </span>
         </button>
 
         {/* Add to Wishlist Button */}
@@ -293,26 +381,52 @@ export default function ProductConfigurator({
           >
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
-          <span>{isWishlisted ? 'Wishlisted' : 'Add to Wishlist'}</span>
+          <span>
+            {isWishlisted
+              ? isArabic
+                ? 'في المفضلة'
+                : 'Wishlisted'
+              : isArabic
+              ? 'أضف للمفضلة'
+              : 'Add to Wishlist'}
+          </span>
         </button>
       </div>
 
       {/* Action Buttons Row 2: Buy Now Full-Width Outline Red Button */}
       <button
         type="button"
+        disabled={isOutOfStock}
         onClick={handleBuyNow}
-        className="w-full bg-white hover:bg-[#fef2f2] text-[#dc1414] border-2 border-[#dc1414] active:scale-[0.99] text-[14px] font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer"
+        className={`w-full text-[14px] font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all ${
+          isOutOfStock
+            ? 'bg-gray-100 text-gray-400 border border-gray-300 cursor-not-allowed'
+            : 'bg-white hover:bg-[#fef2f2] text-[#dc1414] border-2 border-[#dc1414] active:scale-[0.99] cursor-pointer'
+        }`}
       >
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
           <path d="M13 2 3 14h7v8l10-12h-7l0-8z" />
         </svg>
-        <span>⚡ Buy Now</span>
+        <span>
+          {isOutOfStock
+            ? isArabic
+              ? 'غير متوفر حالياً'
+              : 'Currently Out of Stock'
+            : isArabic
+            ? 'اشتري الآن'
+            : 'Buy Now'}
+        </span>
       </button>
 
       {/* Feedback Toast */}
       {addedToast && (
-        <div className="bg-[#16a34a] text-white text-[12.5px] font-semibold px-4 py-2 rounded-lg text-center shadow-md animate-fade-in">
-          ✓ Added to cart successfully!
+        <div className="bg-[#16a34a] text-white text-[12.5px] font-semibold px-4 py-2 rounded-lg text-center shadow-md animate-fade-in flex items-center justify-center gap-1.5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <span>
+            {isArabic ? 'تمت الإضافة إلى السلة بنجاح!' : 'Added to cart successfully!'}
+          </span>
         </div>
       )}
     </div>

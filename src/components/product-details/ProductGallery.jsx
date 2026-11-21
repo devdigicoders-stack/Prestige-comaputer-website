@@ -1,13 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { getProductImageUrl } from '../../services/productApi'
 import {
   DellLaptopFrontVisual,
   DellLaptopSideAngleVisual,
   DellLaptopDeckVisual,
   DellLaptopLidClosedVisual,
-  DellLaptopVideoVisual,
-  ThumbnailPreview,
+  DellLaptopAngleVisual,
+  DellLaptopKeyboardVisual,
+  DellLaptopSideVisual,
 } from './DellInspironVisuals'
 
 /* Clean Vector Spec Icons */
@@ -75,61 +77,122 @@ function SpecWindowsIcon({ className = 'w-4 h-4' }) {
 }
 
 export default function ProductGallery({
+  product,
   badge = 'Bestseller',
-  specBadges = [
-    { labelTop: 'Intel Core i5', labelBottom: '13th Gen', type: 'cpu' },
-    { labelTop: '16GB', labelBottom: 'DDR4 RAM', type: 'ram' },
-    { labelTop: '512GB', labelBottom: 'SSD', type: 'ssd' },
-    { labelTop: '15.6" FHD', labelBottom: 'Anti-Glare', type: 'display' },
-    { labelTop: 'Windows 11', labelBottom: 'Home', type: 'os' },
-  ],
+  specBadges,
 }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [isZoomed, setIsZoomed] = useState(false)
 
-  const views = [
-    <DellLaptopFrontVisual key="front" className="w-full h-[250px] sm:h-[300px] object-contain" />,
-    <DellLaptopSideAngleVisual key="angle" className="w-full h-[250px] sm:h-[300px] object-contain" />,
-    <DellLaptopDeckVisual key="deck" className="w-full h-[250px] sm:h-[300px] object-contain" />,
-    <DellLaptopLidClosedVisual key="lid" className="w-full h-[250px] sm:h-[300px] object-contain" />,
-    <DellLaptopVideoVisual key="video" className="w-full h-[250px] sm:h-[300px]" />,
-  ]
+  const slugOrId = product?.slug || product?.id || 'dell-inspiron-15'
+  const defaultFallbackImage = `/uploads/${slugOrId}.jpg`
+
+  // Real uploaded dynamic images with smart fallback
+  const rawList = product?.images?.length
+    ? product.images
+    : product?.image
+    ? [product.image]
+    : [defaultFallbackImage]
+
+  const uploadedUrls = rawList
+    .map((img) => (typeof img === 'string' ? img : img?.url || ''))
+    .filter(Boolean)
+    .map(getProductImageUrl)
+
+  const viewsList = uploadedUrls.length > 0 ? uploadedUrls : [defaultFallbackImage]
+  const totalViewsCount = viewsList.length
 
   const handlePrev = () => {
-    setActiveImageIndex((prev) => (prev === 0 ? views.length - 1 : prev - 1))
+    setActiveImageIndex((prev) => (prev === 0 ? totalViewsCount - 1 : prev - 1))
   }
 
   const handleNext = () => {
-    setActiveImageIndex((prev) => (prev === views.length - 1 ? 0 : prev + 1))
+    setActiveImageIndex((prev) => (prev === totalViewsCount - 1 ? 0 : prev + 1))
   }
+
+  // Dynamic spec badges
+  const dynamicSpecBadges = specBadges || [
+    {
+      labelTop: product?.specs?.processor || product?.specs?.cpu?.split('(')[0]?.trim() || 'Intel Core i5',
+      labelBottom: 'Processor',
+      type: 'cpu',
+    },
+    {
+      labelTop: product?.specs?.ram?.split(' ')[0] || '16GB',
+      labelBottom: product?.specs?.ram?.split(' ').slice(1).join(' ') || 'DDR5 RAM',
+      type: 'ram',
+    },
+    {
+      labelTop: product?.specs?.storage?.split(' ')[0] || '512GB',
+      labelBottom: 'NVMe SSD',
+      type: 'ssd',
+    },
+    {
+      labelTop: product?.specs?.display?.split(' ')[0] || '15.6" FHD',
+      labelBottom: 'Anti-Glare',
+      type: 'display',
+    },
+    {
+      labelTop: product?.specs?.os?.split('+')[0]?.trim() || 'Windows 11',
+      labelBottom: 'Home',
+      type: 'os',
+    },
+  ]
+
+  const activeBadge = product?.badge || badge
+  const productName = product?.name || product?.title || 'Product'
 
   return (
     <div className="flex flex-col gap-3">
       {/* Top Main Showcase Row: Thumbnails on Left + Big Box on Right */}
       <div className="flex flex-col-reverse sm:flex-row gap-3 items-stretch">
-        {/* Left Thumbnails Strip (5 vertical thumbnails) */}
-        <div className="flex sm:flex-col gap-2 justify-center sm:justify-start overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 shrink-0">
-          {[0, 1, 2, 3, 4].map((idx) => (
-            <ThumbnailPreview
-              key={idx}
-              index={idx}
-              isActive={activeImageIndex === idx}
-              onClick={() => setActiveImageIndex(idx)}
-            />
-          ))}
-        </div>
+        {/* Left Thumbnails Strip */}
+        {totalViewsCount > 1 && (
+          <div className="flex sm:flex-col gap-2 justify-center sm:justify-start overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 shrink-0">
+            {viewsList.map((url, idx) => {
+              const isActive = activeImageIndex === idx
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`w-14 h-14 rounded-xl border p-1 bg-white overflow-hidden transition-all cursor-pointer relative ${
+                    isActive
+                      ? 'border-[#dc1414] ring-2 ring-[#dc1414]/20 shadow-xs'
+                      : 'border-[#e5e7eb] hover:border-[#9ca3af]'
+                  }`}
+                >
+                  <img
+                    src={url}
+                    alt={`${productName} view ${idx + 1}`}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                      const thumbFallback = e.currentTarget.parentElement?.querySelector('.thumb-vector-fallback')
+                      if (thumbFallback) thumbFallback.style.display = 'flex'
+                    }}
+                  />
+                  <div className="thumb-vector-fallback hidden w-full h-full items-center justify-center">
+                    <DellLaptopFrontVisual className="w-full h-full" />
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        )}
 
         {/* Big Showcase Box */}
         <div className="flex-1 bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-6 relative flex flex-col items-center justify-between min-h-[340px] sm:min-h-[400px] shadow-xs select-none">
-          {/* Top Row: Bestseller Pill & Fullscreen Icon */}
+          {/* Top Row: Badge Pill & Fullscreen Icon */}
           <div className="w-full flex items-center justify-between z-10">
-            {/* Bestseller Badge */}
-            <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#dc1414] to-[#f97316] text-white text-[12px] font-bold px-3 py-1 rounded-full shadow-xs">
-              <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
-                <path d="M8 1a5 5 0 0 0-5 5c0 2.4 1.7 4.4 3.9 4.9C6.4 10.3 6 9.2 6 8a4 4 0 0 1 6-3.4 5 5 0 0 0-4-3.6ZM8 6.5a2.5 2.5 0 0 1 2.5 2.5c0 1.2-.8 2.2-2 2.4-.2-1-.8-1.8-1.6-2.3.6-1.5 1.1-2.6 1.1-2.6Z" />
-              </svg>
-              <span>{badge}</span>
-            </span>
+            {activeBadge ? (
+              <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#dc1414] to-[#f97316] text-white text-[12px] font-bold px-3 py-1 rounded-full shadow-xs">
+                <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
+                  <path d="M8 1a5 5 0 0 0-5 5c0 2.4 1.7 4.4 3.9 4.9C6.4 10.3 6 9.2 6 8a4 4 0 0 1 6-3.4 5 5 0 0 0-4-3.6ZM8 6.5a2.5 2.5 0 0 1 2.5 2.5c0 1.2-.8 2.2-2 2.4-.2-1-.8-1.8-1.6-2.3.6-1.5 1.1-2.6 1.1-2.6Z" />
+                </svg>
+                <span>{activeBadge}</span>
+              </span>
+            ) : <span />}
 
             {/* Expand / Fullscreen Button */}
             <button
@@ -150,59 +213,87 @@ export default function ProductGallery({
           </div>
 
           {/* Center Main Product Graphic */}
-          <div className="w-full flex-1 flex items-center justify-center py-2 relative">
+          <div className="w-full flex-1 flex items-center justify-center py-2 relative min-h-[260px]">
             {/* Left Nav Arrow */}
-            <button
-              type="button"
-              onClick={handlePrev}
-              aria-label="Previous view"
-              className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-[#e5e7eb] hover:border-[#dc1414] hover:text-[#dc1414] text-[#4b5563] shadow-xs flex items-center justify-center transition-all cursor-pointer z-10"
-            >
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
-              </svg>
-            </button>
+            {totalViewsCount > 1 && (
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous view"
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-[#e5e7eb] hover:border-[#dc1414] hover:text-[#dc1414] text-[#4b5563] shadow-xs flex items-center justify-center transition-all cursor-pointer z-10"
+              >
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                  <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+                </svg>
+              </button>
+            )}
 
             {/* Visual View */}
-            <div className="w-full max-w-[420px] mx-auto flex items-center justify-center">
-              {views[activeImageIndex]}
+            <div className="w-full max-w-[420px] mx-auto flex items-center justify-center relative min-h-[260px]">
+              <img
+                src={viewsList[activeImageIndex] || defaultFallbackImage}
+                alt={productName}
+                className={`w-full max-h-[300px] object-contain drop-shadow-[0_12px_24px_rgba(15,23,42,0.12)] transition-transform duration-300 ${
+                  isZoomed ? 'scale-125' : ''
+                }`}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'
+                  const fallbackEl = e.currentTarget.parentElement?.querySelector('.gallery-vector-fallback')
+                  if (fallbackEl) fallbackEl.style.display = 'flex'
+                }}
+              />
+              <div className="gallery-vector-fallback w-full h-[280px] hidden items-center justify-center">
+                {activeImageIndex === 1 ? (
+                  <DellLaptopAngleVisual className="w-full h-full max-h-[280px]" />
+                ) : activeImageIndex === 2 ? (
+                  <DellLaptopKeyboardVisual className="w-full h-full max-h-[280px]" />
+                ) : activeImageIndex === 3 ? (
+                  <DellLaptopSideVisual className="w-full h-full max-h-[280px]" />
+                ) : (
+                  <DellLaptopFrontVisual className="w-full h-full max-h-[280px]" />
+                )}
+              </div>
             </div>
 
             {/* Right Nav Arrow */}
-            <button
-              type="button"
-              onClick={handleNext}
-              aria-label="Next view"
-              className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-[#e5e7eb] hover:border-[#dc1414] hover:text-[#dc1414] text-[#4b5563] shadow-xs flex items-center justify-center transition-all cursor-pointer z-10"
-            >
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-              </svg>
-            </button>
+            {totalViewsCount > 1 && (
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next view"
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 border border-[#e5e7eb] hover:border-[#dc1414] hover:text-[#dc1414] text-[#4b5563] shadow-xs flex items-center justify-center transition-all cursor-pointer z-10"
+              >
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                  <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                </svg>
+              </button>
+            )}
           </div>
 
           {/* Bottom Pagination Dots */}
-          <div className="flex items-center justify-center gap-1.5 pt-2">
-            {[0, 1, 2, 3, 4].map((idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setActiveImageIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`transition-all duration-200 cursor-pointer ${
-                  activeImageIndex === idx
-                    ? 'w-5 h-2 bg-[#dc1414] rounded-full'
-                    : 'w-2 h-2 bg-[#d1d5db] hover:bg-[#9ca3af] rounded-full'
-                }`}
-              />
-            ))}
-          </div>
+          {totalViewsCount > 1 && (
+            <div className="flex items-center justify-center gap-1.5 pt-2">
+              {Array.from({ length: totalViewsCount }).map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveImageIndex(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`transition-all duration-200 cursor-pointer ${
+                    activeImageIndex === idx
+                      ? 'w-5 h-2 bg-[#dc1414] rounded-full'
+                      : 'w-2 h-2 bg-[#d1d5db] hover:bg-[#9ca3af] rounded-full'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Bottom Spec Strip: 5 Spec Badges below gallery matching mockup */}
+      {/* Bottom Spec Strip: 5 Spec Badges below gallery */}
       <div className="grid grid-cols-5 gap-1 sm:gap-1.5 pt-1">
-        {specBadges.map((spec, i) => (
+        {dynamicSpecBadges.map((spec, i) => (
           <div
             key={i}
             className="bg-white rounded-xl border border-[#e5e7eb] px-1.5 py-2 sm:px-2 sm:py-2.5 flex items-center gap-1.5 hover:border-[#dc1414]/30 hover:shadow-2xs transition-all min-w-0"
@@ -216,7 +307,7 @@ export default function ProductGallery({
               {spec.type === 'os' && <SpecWindowsIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
             </div>
 
-            {/* Text description with guaranteed no awkward word breaks */}
+            {/* Text description */}
             <div className="flex flex-col text-left leading-none min-w-0 overflow-hidden">
               <span className="text-[10px] sm:text-[10.5px] lg:text-[11px] font-bold text-[#111827] truncate whitespace-nowrap">
                 {spec.labelTop}

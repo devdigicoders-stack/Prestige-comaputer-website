@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '../../../context/LanguageContext'
 
 function DellLogo() {
   return (
@@ -180,6 +183,8 @@ const TOP_BRANDS = [
 ]
 
 export default function TopBrands() {
+  const { isRtl } = useLanguage()
+
   return (
     <section
       className="w-full bg-white py-5 sm:py-6 border-t border-[#f1f3f6]"
@@ -190,7 +195,7 @@ export default function TopBrands() {
           {/* Left Heading */}
           <div className="flex items-center justify-between lg:justify-start shrink-0">
             <h2 className="text-[19px] sm:text-[21px] font-bold text-[#111827] tracking-[-0.02em] whitespace-nowrap">
-              Shop by Top Brands
+              {isRtl ? 'تسوق حسب الماركة' : 'Shop by Top Brands'}
             </h2>
 
             {/* Mobile View All Link */}
@@ -198,8 +203,8 @@ export default function TopBrands() {
               href="/products"
               className="lg:hidden inline-flex items-center gap-1 text-[12.5px] font-semibold text-[#dc1414] hover:text-[#a80b0b] cursor-pointer"
             >
-              <span>View All Brands</span>
-              <ArrowRightIcon />
+              <span>{isRtl ? 'عرض جميع الماركات' : 'View All Brands'}</span>
+              <ArrowRightIcon className="rtl:rotate-180" />
             </Link>
           </div>
 
@@ -224,8 +229,8 @@ export default function TopBrands() {
             href="/products"
             className="hidden lg:inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#dc1414] hover:text-[#a80b0b] transition-colors whitespace-nowrap shrink-0 group cursor-pointer"
           >
-            <span>View All Brands</span>
-            <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <span>{isRtl ? 'عرض جميع الماركات' : 'View All Brands'}</span>
+            <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 transition-transform" />
           </Link>
         </div>
       </div>

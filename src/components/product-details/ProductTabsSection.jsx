@@ -1,10 +1,83 @@
 'use client'
 
 import { useState } from 'react'
-import { DellLaptopFrontVisual } from './DellInspironVisuals'
+import { getProductImageUrl } from '../../services/productApi'
+import { useLanguage } from '../../context/LanguageContext'
+import ProductReviewSection from './ProductReviewSection'
 
-export default function ProductTabsSection() {
+export default function ProductTabsSection({ product }) {
+  const { isArabic } = useLanguage()
   const [activeTab, setActiveTab] = useState('overview')
+
+  const productName = product?.name || product?.title || 'Dell Inspiron 15 (2025)'
+  const brandName = product?.brand || 'Dell'
+  const reviewTotal = product?.reviewCount || product?.numReviews || 328
+  const productPhoto = getProductImageUrl(
+    product?.image ||
+      (typeof product?.images?.[0] === 'string'
+        ? product.images[0]
+        : product?.images?.[0]?.url) ||
+      ''
+  )
+
+  const descriptionText =
+    product?.description ||
+    (isArabic
+      ? 'كمبيوتر عالي الأداء مصمم للإنتاجية العالية والأعمال المكتبية والدراسة وتعدد المهام الإبداعية. مزود بذاكرة عالية السرعة وتخزين NVMe SSD فائق السرعة لأقصى قدر من الموثوقية.'
+      : 'Versatile and powerful computer engineered for high productivity, office work, study, and demanding creative multitasking. Packed with high-speed memory and fast NVMe SSD storage for peak reliability.')
+
+  const specRows = [
+    {
+      label: isArabic ? 'المعالج' : 'Processor',
+      value: product?.specs?.processor || product?.specs?.cpu || '13th Gen Intel Core i5',
+    },
+    {
+      label: isArabic ? 'نظام التشغيل' : 'Operating System',
+      value: product?.specs?.os || (isArabic ? 'ويندوز 11 أصلي' : 'Windows 11 Pro Genuine'),
+    },
+    {
+      label: isArabic ? 'الذاكرة العشوائية' : 'Memory (RAM)',
+      value: product?.specs?.ram || '16GB DDR5 4800MHz',
+    },
+    {
+      label: isArabic ? 'سعة التخزين' : 'Storage',
+      value: product?.specs?.storage || '512GB M.2 PCIe NVMe SSD',
+    },
+    {
+      label: isArabic ? 'الشاشة' : 'Display',
+      value: product?.specs?.display || '15.6" FHD (1920x1080) Anti-Glare',
+    },
+    {
+      label: isArabic ? 'بطاقة الرسومات' : 'Graphics',
+      value: product?.specs?.graphics || 'Intel Iris Xe Graphics',
+    },
+    {
+      label: isArabic ? 'الضمان' : 'Warranty',
+      value: product?.specs?.warranty || product?.warranty || (isArabic ? 'ضمان رسمي من الوكيل المعتمد' : '1 Year Official Onsite Warranty'),
+    },
+  ]
+
+  // Add custom specs if present
+  if (product?.customSpecs?.length) {
+    product.customSpecs.forEach((cs) => {
+      if (cs.key && cs.value) {
+        specRows.push({ label: cs.key, value: cs.value })
+      }
+    })
+  }
+
+  // Highlights bullets
+  const highlights = [
+    product?.specs?.processor || product?.specs?.cpu || (isArabic ? 'معالج إنتل كور عالي الأداء' : 'Intel Core High Performance Compute'),
+    product?.specs?.display || (isArabic ? 'شاشة عالية الدقة مضادة للتوهج' : 'High-Definition Anti-Glare Display'),
+    isArabic
+      ? `تخزين سريع ${product?.specs?.storage || '512GB NVMe SSD'}`
+      : `Fast ${product?.specs?.storage || '512GB NVMe SSD'} Storage`,
+    isArabic
+      ? `ذاكرة عالية السرعة ${product?.specs?.ram || '16GB RAM'}`
+      : `${product?.specs?.ram || '16GB RAM'} High-Speed Memory`,
+    product?.specs?.os || (isArabic ? 'ويندوز 11 مثبت مسبقاً' : 'Windows 11 Pro Pre-installed'),
+  ]
 
   return (
     <div className="flex flex-col gap-3">
@@ -19,7 +92,7 @@ export default function ProductTabsSection() {
               : 'bg-white text-[#4b5563] hover:text-[#111827] border border-[#e5e7eb]'
           }`}
         >
-          Overview
+          {isArabic ? 'نظرة عامة' : 'Overview'}
         </button>
 
         <button
@@ -31,7 +104,7 @@ export default function ProductTabsSection() {
               : 'bg-white text-[#4b5563] hover:text-[#111827] border border-[#e5e7eb]'
           }`}
         >
-          Specifications
+          {isArabic ? 'المواصفات الفنية' : 'Specifications'}
         </button>
 
         <button
@@ -43,7 +116,7 @@ export default function ProductTabsSection() {
               : 'bg-white text-[#4b5563] hover:text-[#111827] border border-[#e5e7eb]'
           }`}
         >
-          Reviews (328)
+          {isArabic ? `التقييمات (${reviewTotal})` : `Reviews (${reviewTotal})`}
         </button>
 
         <button
@@ -55,7 +128,7 @@ export default function ProductTabsSection() {
               : 'bg-white text-[#4b5563] hover:text-[#111827] border border-[#e5e7eb]'
           }`}
         >
-          Q&A (18)
+          {isArabic ? 'الأسئلة والأجوبة (18)' : 'Q&A (18)'}
         </button>
       </div>
 
@@ -63,28 +136,19 @@ export default function ProductTabsSection() {
       {activeTab === 'overview' && (
         <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            {/* Left: Product Overview Description (md:col-span-4) */}
-            <div className="md:col-span-4 flex flex-col gap-2">
+            {/* Left: Product Overview Description */}
+            <div className="md:col-span-4 flex flex-col gap-2 text-left rtl:text-right">
               <h2 className="text-[17px] sm:text-[18px] font-bold text-[#111827]">
-                Product Overview
+                {isArabic ? 'نظرة عامة على المنتج' : 'Product Overview'}
               </h2>
               <p className="text-[13px] text-[#4b5563] leading-relaxed">
-                The Dell Inspiron 15 (2025) is a versatile and powerful laptop designed for students,
-                professionals and everyday multitasking. With the latest Intel® Core™ processor,
-                high-speed SSD and a vibrant Full HD display, it delivers a smooth and reliable
-                performance for work, study and entertainment.
+                {descriptionText}
               </p>
             </div>
 
-            {/* Middle: 5 Red Bullet Checkmarks (md:col-span-4) */}
-            <div className="md:col-span-4 flex flex-col gap-2.5">
-              {[
-                '13th Gen Intel® Core™ i5 Processor',
-                '15.6" Full HD (1920 × 1080) Anti-Glare Display',
-                'Fast 512GB SSD Storage',
-                '16GB DDR4 Memory (Expandable)',
-                'Windows 11 Home (Pre-installed)',
-              ].map((item, idx) => (
+            {/* Middle: 5 Red Bullet Checkmarks */}
+            <div className="md:col-span-4 flex flex-col gap-2.5 text-left rtl:text-right">
+              {highlights.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2.5">
                   <span className="w-5 h-5 rounded-full bg-[#dc1414] text-white flex items-center justify-center shrink-0 text-[11px] font-bold">
                     ✓
@@ -96,33 +160,42 @@ export default function ProductTabsSection() {
               ))}
             </div>
 
-            {/* Right: Dark Promo Card with Dell Logo & Laptop Visual (md:col-span-4) */}
+            {/* Right: Dark Promo Card with Brand & Visual */}
             <div className="md:col-span-4">
               <div className="bg-gradient-to-br from-[#090a0f] via-[#11131a] to-[#0b0c10] rounded-2xl p-4 sm:p-5 text-white flex flex-col justify-between min-h-[170px] relative overflow-hidden border border-[#27272a] shadow-md">
-                {/* Subtle Glow */}
                 <div className="absolute -right-8 -bottom-8 w-36 h-36 bg-[#dc1414]/20 rounded-full blur-2xl pointer-events-none" />
 
-                {/* Top Info */}
                 <div className="flex items-center justify-between z-10">
                   <div className="flex items-center gap-2">
-                    {/* Dell circular logo */}
-                    <div className="w-6 h-6 rounded-full border border-white/40 flex items-center justify-center text-[8px] font-black tracking-widest text-white">
-                      DELL
+                    <div className="px-2 py-0.5 rounded-full border border-white/40 flex items-center justify-center text-[9px] font-black tracking-widest text-white uppercase">
+                      {brandName}
                     </div>
-                    <span className="text-[13.5px] font-bold tracking-tight">
-                      Inspiron 15 (2025)
+                    <span className="text-[13.5px] font-bold tracking-tight truncate max-w-[170px]">
+                      {productName}
                     </span>
                   </div>
                 </div>
 
                 <p className="text-[11px] text-[#9ca3af] z-10 my-1 font-medium tracking-wide">
-                  Work | Study | Entertainment
+                  {isArabic ? 'للعمل | للدراسة | للألعاب والترفيه' : 'Work | Study | Entertainment'}
                 </p>
 
-                {/* Small Laptop render on bottom right */}
                 <div className="w-full flex justify-end items-center mt-1 z-10">
-                  <div className="w-36 h-20">
-                    <DellLaptopFrontVisual className="w-full h-full object-contain" />
+                  <div className="w-36 h-20 flex items-center justify-end">
+                    {productPhoto ? (
+                      <img
+                        src={productPhoto}
+                        alt={productName}
+                        className="max-w-full max-h-full object-contain drop-shadow-md"
+                      />
+                    ) : (
+                      <div className="w-16 h-12 rounded bg-white/10 flex items-center justify-center text-white/50">
+                        <svg className="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24">
+                          <rect x="3" y="4" width="18" height="12" rx="2" strokeWidth="1.5" />
+                          <path d="M7 20h10M12 16v4" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -133,123 +206,54 @@ export default function ProductTabsSection() {
 
       {/* Specifications Tab */}
       {activeTab === 'specifications' && (
-        <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs">
+        <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs text-left rtl:text-right">
           <h2 className="text-[17px] font-bold text-[#111827] mb-4">
-            Technical Specifications
+            {isArabic ? 'المواصفات الفنية' : 'Technical Specifications'}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-[12.5px]">
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Processor</span>
-              <span className="text-[#111827]">13th Gen Intel® Core™ i5-1335U (10 Cores, up to 4.60 GHz)</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Operating System</span>
-              <span className="text-[#111827]">Windows 11 Home 64-bit Single Language</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Memory (RAM)</span>
-              <span className="text-[#111827]">16GB DDR4 3200MHz (2x 8GB, Expandable up to 32GB)</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Storage</span>
-              <span className="text-[#111827]">512GB M.2 PCIe NVMe Solid State Drive</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Display</span>
-              <span className="text-[#111827]">15.6" FHD (1920x1080) 120Hz Anti-Glare LED Backlight</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Graphics</span>
-              <span className="text-[#111827]">Intel® Iris® Xe Graphics</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Keyboard</span>
-              <span className="text-[#111827]">Full-size Spill-Resistant Keyboard with Numeric Keypad</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Wireless</span>
-              <span className="text-[#111827]">Wi-Fi 6 (802.11ax) + Bluetooth 5.3</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Ports</span>
-              <span className="text-[#111827]">1x USB 3.2 Gen 1 Type-C, 2x USB 3.2 Gen 1 Type-A, 1x HDMI 1.4, SD Card Reader</span>
-            </div>
-            <div className="flex py-2 border-b border-[#f3f4f6]">
-              <span className="w-36 font-semibold text-[#6b7280]">Battery & Weight</span>
-              <span className="text-[#111827]">41 Whr 3-Cell Battery | 1.65 kg (3.64 lbs) Carbon Black Chassis</span>
-            </div>
+            {specRows.map((row, idx) => (
+              <div key={idx} className="flex py-2 border-b border-[#f3f4f6]">
+                <span className="w-36 font-semibold text-[#6b7280] shrink-0">{row.label}</span>
+                <span className="text-[#111827] font-medium">{row.value}</span>
+              </div>
+            ))}
           </div>
         </div>
       )}
 
       {/* Reviews Tab */}
       {activeTab === 'reviews' && (
-        <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs flex flex-col gap-5">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#f3f4f6]">
-            <div>
-              <div className="flex items-center gap-3">
-                <span className="text-[32px] font-black text-[#111827]">4.6</span>
-                <div>
-                  <div className="flex items-center text-[#f59e0b]">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                        <path d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.29 3.96a1 1 0 0 0 .95.69h4.16c.97 0 1.37 1.24.59 1.81l-3.37 2.45a1 1 0 0 0-.36 1.12l1.29 3.96c.3.92-.75 1.69-1.54 1.12l-3.37-2.45a1 1 0 0 0-1.18 0l-3.37 2.45c-.79.57-1.84-.2-1.54-1.12l1.29-3.96a1 1 0 0 0-.36-1.12L2.06 9.39c-.78-.57-.38-1.81.59-1.81h4.16a1 1 0 0 0 .95-.69l1.29-3.96Z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-[12px] text-[#6b7280]">Based on 328 Verified Customer Reviews</span>
-                </div>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="bg-[#dc1414] text-white text-[12.5px] font-bold px-4 py-2 rounded-lg hover:bg-[#b91c1c] transition-colors cursor-pointer"
-            >
-              Write a Review
-            </button>
-          </div>
-
-          {/* Sample Reviews */}
-          <div className="flex flex-col divide-y divide-[#f3f4f6] text-[12.5px]">
-            <div className="py-3 flex flex-col gap-1.5">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-[#111827]">Rahul Sharma <span className="text-[#16a34a] text-[11px] font-medium ml-1">✓ Verified Buyer</span></span>
-                <span className="text-[#9ca3af] text-[11px]">2 days ago</span>
-              </div>
-              <div className="flex text-[#f59e0b] text-[12px]">★★★★★</div>
-              <p className="text-[#4b5563]">
-                Awesome laptop for college coding and daily productivity. The 13th Gen i5 boots Windows in 4 seconds. Battery lasts around 6-7 hours on office mode!
-              </p>
-            </div>
-
-            <div className="py-3 flex flex-col gap-1.5">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-[#111827]">Priya Verma <span className="text-[#16a34a] text-[11px] font-medium ml-1">✓ Verified Buyer</span></span>
-                <span className="text-[#9ca3af] text-[11px]">1 week ago</span>
-              </div>
-              <div className="flex text-[#f59e0b] text-[12px]">★★★★★</div>
-              <p className="text-[#4b5563]">
-                Screen display is crisp with anti-glare coating which is great for long study sessions. Very lightweight to carry in backpack.
-              </p>
-            </div>
-          </div>
+        <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs">
+          <ProductReviewSection product={product} />
         </div>
       )}
 
       {/* Q&A Tab */}
       {activeTab === 'qa' && (
-        <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs flex flex-col gap-4">
+        <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs flex flex-col gap-4 text-left rtl:text-right">
           <h2 className="text-[17px] font-bold text-[#111827]">
-            Questions & Answers (18)
+            {isArabic ? 'الأسئلة الشائعة والأجوبة (18)' : 'Questions & Answers (18)'}
           </h2>
           <div className="flex flex-col divide-y divide-[#f3f4f6] text-[12.5px]">
             <div className="py-3 flex flex-col gap-1">
-              <p className="font-bold text-[#111827]">Q: Can I upgrade the RAM in future?</p>
-              <p className="text-[#4b5563]">A: Yes, it comes with 2 DDR4 SODIMM slots and supports expansion up to 32GB RAM.</p>
+              <p className="font-bold text-[#111827]">
+                {isArabic ? 'س: هل يمكنني ترقية ذاكرة RAM في المستقبل؟' : 'Q: Can I upgrade the RAM in future?'}
+              </p>
+              <p className="text-[#4b5563]">
+                {isArabic
+                  ? 'ج: نعم، يأتي الجهاز بفتحات ترقية قياسية ويدعم ترقية ذاكرة RAM ومحرك أقراص SSD.'
+                  : 'A: Yes, it comes with standard expansion slots and supports RAM and SSD upgrades.'}
+              </p>
             </div>
             <div className="py-3 flex flex-col gap-1">
-              <p className="font-bold text-[#111827]">Q: Does it have pre-installed MS Office?</p>
-              <p className="text-[#4b5563]">A: Yes, it includes Windows 11 Home and Microsoft Office Home & Student 2021 pre-activated for lifetime.</p>
+              <p className="font-bold text-[#111827]">
+                {isArabic ? 'س: هل يشمل الجهاز ضماناً رسمياً؟' : 'Q: Does it have official warranty?'}
+              </p>
+              <p className="text-[#4b5563]">
+                {isArabic
+                  ? 'ج: نعم، تأتي جميع المنتجات من بريستيج كمبيوترز بضمان رسمي من الشركة المصنعة 100% مع دعم فني متكامل.'
+                  : 'A: Yes, all products from Prestige Computers come with 100% genuine manufacturer brand warranty with onsite support.'}
+              </p>
             </div>
           </div>
         </div>

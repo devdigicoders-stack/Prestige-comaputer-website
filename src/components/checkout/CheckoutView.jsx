@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import CheckoutBreadcrumbs from './CheckoutBreadcrumbs'
 import CheckoutStepper from './CheckoutStepper'
 import DeliveryAddressSection from './DeliveryAddressSection'
@@ -9,20 +10,167 @@ import PaymentMethodSection from './PaymentMethodSection'
 import CheckoutOrderSummary from './CheckoutOrderSummary'
 import CheckoutSuccessModal from './CheckoutSuccessModal'
 import { FullscreenLoader } from '../common/BrandLoader'
+import { useStore } from '../../context/StoreContext'
+import { createOrder } from '../../services/orderApi'
 
 export default function CheckoutView() {
-  const [selectedAddressId, setSelectedAddressId] = useState('addr-1')
+  const { cartItems, removeFromCart, clearCart, currentUser, openLoginModal, openRegisterModal } = useStore()
+  const [selectedAddress, setSelectedAddress] = useState(null)
   const [deliveryMethod, setDeliveryMethod] = useState('standard') // 'standard' | 'express'
-  const [selectedPayment, setSelectedPayment] = useState('upi') // 'upi' | 'card' | 'netbanking' | 'emi' | 'wallets'
+  const [selectedPayment, setSelectedPayment] = useState('upi') // 'upi' | 'card' | 'netbanking' | 'emi' | 'wallets' | 'cod'
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
   const [isPlacingOrder, setIsPlacingOrder] = useState(false)
+  const [orderError, setOrderError] = useState('')
+  const [placedOrderDetails, setPlacedOrderDetails] = useState(null)
 
-  const handlePlaceOrder = () => {
+  const selectedItems = Array.isArray(cartItems) ? cartItems.filter((c) => c.selected !== false) : []
+  const selectedCount = selectedItems.reduce((acc, it) => acc + (it.quantity || 1), 0)
+
+  const handlePlaceOrder = async (summaryData) => {
+    // 1. Must be logged in
+    if (!currentUser) {
+      setOrderError('You must be signed in to create and place an order. Please log in.')
+      openLoginModal()
+      return
+    }
+
+    // 2. Cart must contain items
+    const itemsToOrder = summaryData?.items || []
+    if (!itemsToOrder || itemsToOrder.length === 0) {
+      setOrderError('Your shopping cart is empty. Please add products before placing an order.')
+      return
+    }
+
+    // 3. Must have a selected delivery address
+    if (!selectedAddress || (!selectedAddress.street && !selectedAddress.address)) {
+      setOrderError('Please select or add a delivery shipping address.')
+      return
+    }
+
     setIsPlacingOrder(true)
-    setTimeout(() => {
-      setIsPlacingOrder(false)
+    setOrderError('')
+
+    try {
+      const calcTotal = summaryData?.finalTotal || 0
+      const calcSubtotal = summaryData?.subtotal || calcTotal
+      const calcDelivery = summaryData?.deliveryCharge || 0
+      const calcDiscount = summaryData?.totalDiscount || 0
+
+      // Map payment methods cleanly for database
+      const paymentMap = {
+        upi: 'UPI',
+        card: 'Credit / Debit Card',
+        netbanking: 'NetBanking',
+        emi: 'EMI',
+        wallets: 'Wallets',
+        cod: 'Cash on Delivery',
+      }
+
+      const recipientName = selectedAddress?.name || currentUser.name || 'Customer'
+      const recipientPhone = selectedAddress?.phone || currentUser.phone || currentUser.mobile || '+974 6691 9155'
+      const streetAddress = selectedAddress?.street || selectedAddress?.address || 'Showroom Pickup'
+      const city = selectedAddress?.city || currentUser.city || 'Doha'
+      const state = selectedAddress?.state || 'Doha'
+      const postalCode = selectedAddress?.postalCode || ''
+      const addressType = selectedAddress?.type || 'Home'
+
+      const payload = {
+        orderItems: itemsToOrder.map((it) => ({
+          productId: it.id,
+          name: it.name,
+          title: it.name,
+          image: it.image || '',
+          price: it.price,
+          quantity: it.quantity || 1,
+          specs: it.specs || '',
+          type: it.type || 'Buy',
+        })),
+        customer: {
+          name: recipientName,
+          email: currentUser.email,
+          phone: recipientPhone,
+        },
+        shippingAddress: {
+          name: recipientName,
+          phone: recipientPhone,
+          street: streetAddress,
+          city,
+          state,
+          postalCode,
+          country: selectedAddress?.country || 'India',
+          addressType,
+        },
+        deliveryMethod,
+        paymentMethod: paymentMap[selectedPayment] || 'UPI',
+        itemsPrice: calcSubtotal,
+        shippingPrice: calcDelivery,
+        discountPrice: calcDiscount,
+        totalPrice: calcTotal,
+        notes: summaryData?.couponCode ? `Coupon applied: ${summaryData.couponCode}` : '',
+      }
+
+      const created = await createOrder(payload)
+      setPlacedOrderDetails(created)
+      // Remove only the checked-out items from cart, keeping unselected items
+      const orderedIds = itemsToOrder.map((it) => it.id)
+      orderedIds.forEach((id) => removeFromCart(id))
       setIsSuccessModalOpen(true)
-    }, 1000)
+    } catch (err) {
+      console.error('Order creation error:', err)
+      setOrderError(err?.message || 'Could not place order. Please try again.')
+    } finally {
+      setIsPlacingOrder(false)
+    }
+  }
+
+  // If user is not logged in, show Auth Gate
+  if (!currentUser) {
+    return (
+      <div className="bg-[#f8fafc] min-h-[80vh] flex items-center justify-center py-16 px-4 text-[#111827]">
+        <div className="w-full max-w-md bg-white rounded-3xl border border-gray-200 shadow-xl p-8 text-center animate-fade-in">
+          <div className="w-16 h-16 rounded-2xl bg-[#fef2f2] border border-[#fee2e2] text-[#dc1414] mx-auto flex items-center justify-center mb-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+
+          <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
+            Sign In Required
+          </h2>
+          <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+            You must be signed in to Prestige Computers to checkout and place your order.
+          </p>
+
+          <div className="mt-6 flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={openLoginModal}
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#e11414] to-[#b80808] hover:from-[#eb1a1a] hover:to-[#9f0606] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
+            >
+              Sign In to Your Account
+            </button>
+
+            <button
+              type="button"
+              onClick={openRegisterModal}
+              className="w-full py-3 px-4 rounded-xl border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-gray-800 text-sm font-semibold transition-all cursor-pointer"
+            >
+              Create a New Account
+            </button>
+          </div>
+
+          <div className="mt-6 pt-5 border-t border-gray-150">
+            <Link
+              href="/products"
+              className="text-xs font-medium text-gray-500 hover:text-[#dc1414] transition-colors"
+            >
+              &larr; Back to Products Catalog
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -32,7 +180,28 @@ export default function CheckoutView() {
         <CheckoutBreadcrumbs />
 
         {/* 2. Top Header: Title & 4-Step Stepper */}
-        <CheckoutStepper currentStep={2} cartCount={3} />
+        <CheckoutStepper currentStep={2} cartCount={selectedCount} />
+
+        {/* Error notification if placement failed */}
+        {orderError && (
+          <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-4 text-[13px] text-[#b91c1c] font-medium flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-red-600 shrink-0" aria-hidden="true">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span>{orderError}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOrderError('')}
+              className="font-bold underline text-[12px] cursor-pointer"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
 
         {/* 3. Main 2-Column Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mt-5">
@@ -40,8 +209,9 @@ export default function CheckoutView() {
           <div className="lg:col-span-7 flex flex-col gap-5">
             {/* 1. Delivery Address */}
             <DeliveryAddressSection
-              selectedAddressId={selectedAddressId}
-              onSelectAddress={setSelectedAddressId}
+              currentUser={currentUser}
+              selectedAddress={selectedAddress}
+              onSelectAddress={setSelectedAddress}
             />
 
             {/* 2. Delivery Method */}
@@ -71,8 +241,8 @@ export default function CheckoutView() {
       {isPlacingOrder && (
         <FullscreenLoader
           isOpen={true}
-          title="Processing Order..."
-          subtitle="Please wait while we confirm your payment"
+          title="Placing Your Order..."
+          subtitle="Reserving hardware stock and generating order invoice..."
         />
       )}
 
@@ -80,8 +250,15 @@ export default function CheckoutView() {
       <CheckoutSuccessModal
         isOpen={isSuccessModalOpen}
         onClose={() => setIsSuccessModalOpen(false)}
-        paymentMethod={selectedPayment}
-        totalAmount={deliveryMethod === 'express' ? '₹1,71,197' : '₹1,70,998'}
+        orderNumber={placedOrderDetails?.orderNumber || ''}
+        paymentMethod={placedOrderDetails?.paymentMethod || selectedPayment}
+        totalAmount={
+          placedOrderDetails?.totalPrice
+            ? `₹${Number(placedOrderDetails.totalPrice).toLocaleString('en-IN')}`
+            : '₹0'
+        }
+        estimatedDelivery={placedOrderDetails?.estimatedDelivery || 'In 2-4 business days'}
+        shippingAddress={placedOrderDetails?.shippingAddress || selectedAddress}
       />
     </div>
   )

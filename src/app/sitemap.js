@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://prestigecomputers.co.uk'
+  const baseUrl = 'https://pcsdoha.net'
   const now = new Date()
 
   return [

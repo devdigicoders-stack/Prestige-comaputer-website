@@ -1,5 +1,7 @@
 'use client'
 
+import { useLanguage } from '../../context/LanguageContext'
+
 function FastDeliveryIcon({ className = 'w-5 h-5' }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
@@ -41,30 +43,35 @@ function GenuineIcon({ className = 'w-5 h-5' }) {
 }
 
 const BADGES = [
-  { icon: FastDeliveryIcon, label: 'Free & Fast', sub: 'Delivery' },
-  { icon: ShieldCheckIcon, label: 'Secure', sub: 'Payments' },
-  { icon: EasyReturnsIcon, label: 'Easy', sub: 'Returns' },
-  { icon: DedicatedSupportIcon, label: 'Dedicated', sub: 'Support' },
-  { icon: GenuineIcon, label: 'Genuine', sub: 'Products' },
+  { icon: FastDeliveryIcon, label: 'Free & Fast', sub: 'Delivery', labelAr: 'توصيل مجاني', subAr: 'وسريع' },
+  { icon: ShieldCheckIcon, label: 'Secure', sub: 'Payments', labelAr: 'دفع آمن', subAr: 'ومحمي 100%' },
+  { icon: EasyReturnsIcon, label: 'Easy', sub: 'Returns', labelAr: 'إرجاع ميسر', subAr: 'خلال 7 أيام' },
+  { icon: DedicatedSupportIcon, label: 'Dedicated', sub: 'Support', labelAr: 'دعم فني', subAr: 'مخصص 24/7' },
+  { icon: GenuineIcon, label: 'Genuine', sub: 'Products', labelAr: 'منتجات أصلية', subAr: 'بضمان الوكيل' },
 ]
 
 export default function CartTrustBadges() {
+  const { isArabic } = useLanguage()
+
   return (
     <div className="w-full bg-[#fdf2f2]/60 rounded-2xl border border-red-100/70 p-4 sm:p-5 mt-6 sm:mt-8 shadow-xs">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 items-center justify-items-center text-center">
         {BADGES.map((badge, idx) => {
           const Icon = badge.icon
+          const title = isArabic ? badge.labelAr : badge.label
+          const subtitle = isArabic ? badge.subAr : badge.sub
+
           return (
-            <div key={idx} className="flex items-center gap-2.5 sm:gap-3 text-left">
+            <div key={idx} className="flex items-center gap-2.5 sm:gap-3 text-left rtl:text-right">
               <div className="w-10 h-10 rounded-xl bg-white border border-red-100 text-[#dc1414] flex items-center justify-center shrink-0 shadow-xs">
                 <Icon className="w-5 h-5" />
               </div>
               <div className="leading-tight">
                 <span className="block text-[12.5px] sm:text-[13px] font-bold text-gray-900">
-                  {badge.label}
+                  {title}
                 </span>
                 <span className="block text-[11px] sm:text-[11.5px] font-medium text-gray-600">
-                  {badge.sub}
+                  {subtitle}
                 </span>
               </div>
             </div>

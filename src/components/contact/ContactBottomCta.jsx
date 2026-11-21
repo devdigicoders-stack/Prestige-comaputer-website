@@ -45,7 +45,7 @@ export default function ContactBottomCta() {
         {/* Right Action Button */}
         <div className="shrink-0">
           <a
-            href="tel:+919876543210"
+            href="tel:+97441453868"
             className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-white text-[#111827] hover:bg-[#f3f4f6] text-[13.5px] font-bold shadow-lg transition-all active:scale-95 cursor-pointer"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
@@ -54,7 +54,7 @@ export default function ContactBottomCta() {
               <rect x="17.8" y="13" width="3.2" height="5.5" rx="1.4" />
               <path d="M19.4 18.5A3 3 0 0 1 16.5 21H13" />
             </svg>
-            <span>Talk to Our Team</span>
+            <span>Talk to Our Team (+974 4145 3868)</span>
             <span className="text-[#dc1414] font-bold text-base leading-none">→</span>
           </a>
         </div>

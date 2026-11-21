@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ProfileHeroBanner from './ProfileHeroBanner'
 import ProfileSidebar from './ProfileSidebar'
 import ProfilePersonalTab from './ProfilePersonalTab'
@@ -13,6 +13,17 @@ import ProfileNotificationsTab from './ProfileNotificationsTab'
 
 export default function ProfileView() {
   const [activeTab, setActiveTab] = useState('personal')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const tabParam = params.get('tab')
+      const validTabs = ['personal', 'orders', 'rentals', 'addresses', 'payments', 'security', 'notifications']
+      if (tabParam && validTabs.includes(tabParam)) {
+        setActiveTab(tabParam)
+      }
+    }
+  }, [])
 
   return (
     <div className="w-full bg-[#f8fafc] min-h-screen text-[#111827]">

@@ -11,9 +11,9 @@ export const metadata = {
     title: 'Shopping Cart | Prestige Computers',
     description:
       'Review your shopping cart items, calculate delivery and discounts, and checkout securely with Prestige Computers.',
-    url: 'https://prestigecomputers.in/cart',
+    url: 'https://pcsdoha.net/cart',
     siteName: 'Prestige Computers',
-    locale: 'en_IN',
+    locale: 'en_QA',
     type: 'website',
   },
 }

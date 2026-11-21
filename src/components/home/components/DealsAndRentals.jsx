@@ -2,35 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { getRentalPlans } from '../../../services/rentalApi'
+import { useLanguage } from '../../../context/LanguageContext'
 
-const RENTAL_PLANS = [
-  {
-    id: 'daily',
-    name: 'Daily Plan',
-    price: '£12',
-    unit: '/day',
-    iconVariant: 'daily',
-  },
-  {
-    id: 'weekly',
-    name: 'Weekly Plan',
-    price: '£69',
-    unit: '/week',
-    iconVariant: 'weekly',
-  },
-  {
-    id: 'monthly',
-    name: 'Monthly Plan',
-    price: '£199',
-    unit: '/month',
-    iconVariant: 'monthly',
-  },
-]
+function getIconVariant(months) {
+  if (months <= 1) return 'daily'
+  if (months <= 3) return 'weekly'
+  return 'monthly'
+}
 
 const RENTAL_PERKS = [
-  'No Long-Term Commitment',
-  'Upgrade Anytime',
-  'Ideal for Business & Students',
+  { en: 'No Long-Term Commitment', ar: 'بدون التزامات طويلة الأجل' },
+  { en: 'Upgrade Anytime', ar: 'إمكانية الترقية في أي وقت' },
+  { en: 'Ideal for Business & Students', ar: 'مثالي للشركات والطلاب' },
 ]
 
 // Initial countdown matching 02 Days : 14 Hours : 36 Mins : 20 Secs
@@ -175,8 +159,9 @@ function RentalLaptopIllustration() {
 }
 
 export default function DealsAndRentals() {
-  const [selectedPlan, setSelectedPlan] = useState('monthly')
+  const [selectedPlan, setSelectedPlan] = useState(null)
   const [remainingSeconds, setRemainingSeconds] = useState(INITIAL_SECONDS)
+  const [rentalPlans, setRentalPlans] = useState([])
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -185,16 +170,36 @@ export default function DealsAndRentals() {
     return () => window.clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    let cancelled = false
+    getRentalPlans()
+      .then((plans) => {
+        if (cancelled) return
+        const active = plans
+          .filter((p) => p.isActive !== false)
+          .sort((a, b) => (a.sortOrder ?? 99) - (b.sortOrder ?? 99))
+          .slice(0, 3)
+        setRentalPlans(active)
+        // Auto-select popular plan, or first
+        const popular = active.find((p) => p.isPopular)
+        setSelectedPlan((popular || active[0])?._id || null)
+      })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [])
+
+  const { isRtl, t } = useLanguage()
+
   const days = Math.floor(remainingSeconds / 86400)
   const hours = Math.floor((remainingSeconds % 86400) / 3600)
   const mins = Math.floor((remainingSeconds % 3600) / 60)
   const secs = remainingSeconds % 60
 
   const countdownUnits = [
-    { label: 'Days', value: String(days).padStart(2, '0') },
-    { label: 'Hours', value: String(hours).padStart(2, '0') },
-    { label: 'Mins', value: String(mins).padStart(2, '0') },
-    { label: 'Secs', value: String(secs).padStart(2, '0') },
+    { label: t('days'), value: String(days).padStart(2, '0') },
+    { label: t('hours'), value: String(hours).padStart(2, '0') },
+    { label: t('mins'), value: String(mins).padStart(2, '0') },
+    { label: t('secs'), value: String(secs).padStart(2, '0') },
   ]
 
   return (
@@ -217,17 +222,17 @@ export default function DealsAndRentals() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0d0305]/95 via-[#180407]/75 sm:via-[#180407]/55 to-transparent pointer-events-none" />
 
-            <div className="relative z-10 px-6 sm:px-7 py-6 w-full max-w-[310px]">
+            <div className="relative z-10 px-6 sm:px-7 py-6 w-full max-w-[310px] text-left rtl:text-right">
               <h2 className="inline-flex items-center gap-1.5 text-[22px] sm:text-[25px] font-bold text-white leading-tight tracking-[-0.02em]">
                 <BoltIcon className="w-5 h-5 text-[#ef1a1a] shrink-0" />
-                <span>Deals of the Week</span>
+                <span>{t('dealsOfTheWeek')}</span>
               </h2>
               <p className="mt-1 text-[13px] font-medium text-[#e5e7eb]">
-                Exclusive Offers on Top Computers
+                {t('exclusiveOffers')}
               </p>
 
               <p className="mt-3.5 text-[12px] font-medium text-[#d1d5db]">
-                Offer Ends In:
+                {t('offerEndsIn')}
               </p>
 
               {/* Live Countdown Tiles */}
@@ -251,71 +256,86 @@ export default function DealsAndRentals() {
                 href="/products"
                 className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13px] font-semibold shadow-[0_6px_16px_rgba(220,16,16,0.4)] transition-all cursor-pointer"
               >
-                <span>Shop Deals</span>
-                <ArrowRightIcon />
+                <span>{t('shopDeals')}</span>
+                <ArrowRightIcon className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
               </Link>
             </div>
           </div>
 
           {/* RIGHT PANEL: Popular Rental Plans */}
-          <div className="lg:col-span-7 rounded-2xl bg-[#f9fafb] border border-[#eceff4] px-5 sm:px-6 py-5 shadow-[0_2px_12px_rgba(16,24,40,0.03)] flex flex-col md:flex-row md:items-center justify-between gap-5">
+          <div className="lg:col-span-7 rounded-2xl bg-[#f9fafb] border border-[#eceff4] px-5 sm:px-6 py-5 shadow-[0_2px_12px_rgba(16,24,40,0.03)] flex flex-col md:flex-row md:items-center justify-between gap-5 text-left rtl:text-right">
             {/* Heading + 3 Plan Cards */}
             <div className="flex-1 min-w-0">
               <h2 className="text-[19px] sm:text-[21px] font-bold text-[#111827] leading-tight tracking-[-0.02em]">
-                Popular Rental Plans
+                {isRtl ? 'خطط الإيجار الأكثر طلباً' : 'Popular Rental Plans'}
               </h2>
               <p className="mt-0.5 text-[12.5px] text-[#525866]">
-                Choose a plan that fits your needs
+                {isRtl ? 'اختر الخطة المناسبة لاحتياجاتك' : 'Choose a plan that fits your needs'}
               </p>
 
               <div className="mt-4 grid grid-cols-3 gap-2.5 sm:gap-3">
-                {RENTAL_PLANS.map((plan) => {
-                  const isActive = selectedPlan === plan.id
-                  return (
-                    <button
-                      key={plan.id}
-                      type="button"
-                      onClick={() => setSelectedPlan(plan.id)}
-                      className={[
-                        'rounded-xl px-2.5 sm:px-3.5 py-4 text-center flex flex-col items-center justify-center transition-all duration-200 cursor-pointer border',
-                        isActive
-                          ? 'bg-gradient-to-b from-[#e31414] to-[#b50808] text-white border-[#c80c0c] shadow-[0_10px_22px_-4px_rgba(220,16,16,0.48)] -translate-y-0.5'
-                          : 'bg-white text-[#111827] border-[#e5e7eb] hover:border-[#dc1414]/45 shadow-[0_2px_8px_rgba(16,24,40,0.04)]',
-                      ].join(' ')}
+                {rentalPlans.length === 0 ? (
+                  // Skeleton while loading
+                  [0, 1, 2].map((i) => (
+                    <div
+                      key={i}
+                      className="rounded-xl px-2.5 py-4 flex flex-col items-center justify-center border border-[#e5e7eb] bg-[#f3f4f6] animate-pulse"
                     >
-                      <PlanCalendarIcon
-                        variant={plan.iconVariant}
-                        active={isActive}
-                      />
-                      <p
-                        className={`mt-2.5 text-[12.5px] sm:text-[13.5px] font-bold leading-tight ${
-                          isActive ? 'text-white' : 'text-[#111827]'
-                        }`}
+                      <div className="w-8 h-8 bg-[#d1d5db] rounded-full mb-2" />
+                      <div className="h-3 w-16 bg-[#d1d5db] rounded mb-1.5" />
+                      <div className="h-2.5 w-10 bg-[#e5e7eb] rounded" />
+                    </div>
+                  ))
+                ) : (
+                  rentalPlans.map((plan) => {
+                    const isActive = selectedPlan === plan._id
+                    const iconVariant = getIconVariant(plan.months)
+                    const priceLabel = plan.discount > 0
+                      ? `-${plan.discount}% ${isRtl ? 'خصم' : 'OFF'}`
+                      : (isRtl ? 'السعر الأساسي' : plan.tag || 'Base Rate')
+                    const monthsLabel = isRtl
+                      ? (plan.months === 1 ? 'شهر واحد' : `${plan.months} أشهر`)
+                      : (plan.months === 1 ? '1 Month' : `${plan.months} Months`)
+                    return (
+                      <Link
+                        key={plan._id}
+                        href="/rentals"
+                        onClick={() => setSelectedPlan(plan._id)}
+                        className={[
+                          'rounded-xl px-2.5 sm:px-3.5 py-4 text-center flex flex-col items-center justify-center transition-all duration-200 cursor-pointer border no-underline',
+                          isActive
+                            ? 'bg-gradient-to-b from-[#e31414] to-[#b50808] text-white border-[#c80c0c] shadow-[0_10px_22px_-4px_rgba(220,16,16,0.48)] -translate-y-0.5'
+                            : 'bg-white text-[#111827] border-[#e5e7eb] hover:border-[#dc1414]/45 shadow-[0_2px_8px_rgba(16,24,40,0.04)]',
+                        ].join(' ')}
                       >
-                        {plan.name}
-                      </p>
-                      <p
-                        className={`mt-1 text-[11px] font-medium ${
-                          isActive ? 'text-white/90' : 'text-[#6b7280]'
-                        }`}
-                      >
-                        From
-                      </p>
-                      <p
-                        className={`mt-0.5 leading-tight ${
-                          isActive ? 'text-white' : 'text-[#c90b0b]'
-                        }`}
-                      >
-                        <span className="text-[16px] sm:text-[18px] font-bold">
-                          {plan.price}
-                        </span>
-                        <span className="text-[11px] sm:text-[12px] font-medium">
-                          {plan.unit}
-                        </span>
-                      </p>
-                    </button>
-                  )
-                })}
+                        <PlanCalendarIcon variant={iconVariant} active={isActive} />
+                        <p
+                          className={`mt-2.5 text-[12.5px] sm:text-[13.5px] font-bold leading-tight ${
+                            isActive ? 'text-white' : 'text-[#111827]'
+                          }`}
+                        >
+                          {plan.label || monthsLabel}
+                        </p>
+                        <p
+                          className={`mt-1 text-[10.5px] font-medium ${
+                            isActive ? 'text-white/80' : 'text-[#6b7280]'
+                          }`}
+                        >
+                          {priceLabel}
+                        </p>
+                        <p
+                          className={`mt-0.5 leading-tight ${
+                            isActive ? 'text-white' : 'text-[#c90b0b]'
+                          }`}
+                        >
+                          <span className="text-[14px] sm:text-[15px] font-bold">
+                            {monthsLabel}
+                          </span>
+                        </p>
+                      </Link>
+                    )
+                  })
+                )}
               </div>
             </div>
 
@@ -324,12 +344,19 @@ export default function DealsAndRentals() {
               <RentalLaptopIllustration />
               <ul className="mt-3.5 space-y-1.5 text-[12px] font-medium text-[#1f2937]">
                 {RENTAL_PERKS.map((perk) => (
-                  <li key={perk} className="flex items-center gap-2">
+                  <li key={perk.en} className="flex items-center gap-2">
                     <CheckIcon className="w-3.5 h-3.5 text-[#dc1414] shrink-0" />
-                    <span>{perk}</span>
+                    <span>{isRtl ? perk.ar : perk.en}</span>
                   </li>
                 ))}
               </ul>
+              <Link
+                href="/rentals"
+                className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#dc1414] hover:underline"
+              >
+                <span>{isRtl ? 'عرض جميع الخطط' : 'View All Plans'}</span>
+                <ArrowRightIcon className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
+              </Link>
             </div>
           </div>
         </div>

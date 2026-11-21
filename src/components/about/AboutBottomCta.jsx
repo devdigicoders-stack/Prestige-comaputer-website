@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '../../context/LanguageContext'
 
 function ArrowRightIcon({ className = 'w-4 h-4' }) {
   return (
@@ -59,22 +62,37 @@ function SleekLaptopIllustration() {
 }
 
 export default function AboutBottomCta() {
+  const { isRtl } = useLanguage()
+
   return (
     <section aria-label="Build Your Next Tech Setup" className="mb-6 sm:mb-10">
       <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#070103] via-[#1a0307] to-[#5a050b] border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.3)] px-6 sm:px-10 lg:px-14 py-8 sm:py-10 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 text-white">
         {/* Subtle Ambient Red Glow */}
         <div className="absolute right-1/4 -bottom-10 w-96 h-96 rounded-full bg-[#dc1414]/20 blur-3xl pointer-events-none" />
 
-        {/* Left Text */}
-        <div className="relative z-10 max-w-xl text-center lg:text-left">
+        {/* Text */}
+        <div className="relative z-10 max-w-xl text-center lg:text-left rtl:lg:text-right">
           <h2 className="text-[24px] sm:text-[32px] lg:text-[36px] font-bold tracking-[-0.02em] leading-tight">
-            <span>Let's Build Your </span>
-            <span className="block sm:inline text-[#ff3838] drop-shadow-[0_2px_12px_rgba(255,56,56,0.35)]">
-              Next Tech Setup Together!
-            </span>
+            {isRtl ? (
+              <>
+                <span>دعنا نبني </span>
+                <span className="block sm:inline text-[#ff3838] drop-shadow-[0_2px_12px_rgba(255,56,56,0.35)]">
+                  منظومتك التقنية القادمة معاً!
+                </span>
+              </>
+            ) : (
+              <>
+                <span>Let's Build Your </span>
+                <span className="block sm:inline text-[#ff3838] drop-shadow-[0_2px_12px_rgba(255,56,56,0.35)]">
+                  Next Tech Setup Together!
+                </span>
+              </>
+            )}
           </h2>
           <p className="mt-2.5 sm:mt-3 text-[13.5px] sm:text-[14.5px] text-[#d1d5db]">
-            Buy, Rent or Get Expert Advice — We're Here to Help.
+            {isRtl
+              ? 'شراء، استئجار، أو استشارة تقنية متخصصة — نحن هنا لمساعدتك دائماً في قطر.'
+              : "Buy, Rent or Get Expert Advice — We're Here to Help."}
           </p>
         </div>
 
@@ -86,8 +104,8 @@ export default function AboutBottomCta() {
             href="/contact"
             className="px-6 sm:px-7 py-3 rounded-full bg-white hover:bg-[#f3f4f6] active:scale-[0.98] text-[#111827] font-bold text-[13.5px] shadow-[0_6px_20px_rgba(0,0,0,0.35)] transition-all flex items-center gap-2 cursor-pointer shrink-0"
           >
-            <span>Contact Us</span>
-            <ArrowRightIcon className="w-4 h-4 text-[#111827]" />
+            <span>{isRtl ? 'تواصل معنا' : 'Contact Us'}</span>
+            <ArrowRightIcon className="w-4 h-4 text-[#111827] rtl:rotate-180" />
           </Link>
         </div>
       </div>

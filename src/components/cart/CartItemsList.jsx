@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
 import {
   WishlistLaptopVisual,
   WishlistDesktopVisual,
@@ -158,7 +159,108 @@ export const CART_PRODUCTS_DATA = {
   },
 }
 
+/**
+ * Robust Dynamic Normalizer for Any Cart Item (Database, API, or Custom Variant)
+ */
+export function normalizeCartItem(item) {
+  if (!item) return null
+
+  // If item matches static dictionary
+  const rawId = item.id || item._id || item.slug || ''
+  const matchedKey = Object.keys(CART_PRODUCTS_DATA).find(
+    (k) => rawId === k || (typeof rawId === 'string' && rawId.startsWith(k))
+  )
+  const staticInfo = matchedKey ? CART_PRODUCTS_DATA[matchedKey] : {}
+
+  const id = rawId || `item-${Date.now()}`
+  const title = item.name || item.title || staticInfo.title || 'Prestige Hardware System'
+  const price = Number(item.price || staticInfo.price || 0)
+  const originalPrice = Number(
+    item.originalPrice ||
+    item.comparePrice ||
+    staticInfo.originalPrice ||
+    (price > 0 ? Math.round(price * 1.15) : 0)
+  )
+  const discount =
+    item.discount ||
+    staticInfo.discount ||
+    (originalPrice > price
+      ? `${Math.round(((originalPrice - price) / originalPrice) * 100)}% OFF`
+      : '')
+  const tag = item.badge || item.tag || staticInfo.tag || (item.isFeatured ? 'Featured' : 'Hardware')
+  const tagColor = item.tagColor || staticInfo.tagColor || 'bg-[#dc1414] text-white'
+
+  // Image resolution: handles both local /uploads/ and remote URLs
+  let image = item.image || (Array.isArray(item.images) && item.images[0]) || staticInfo.image || ''
+  if (image && !image.startsWith('http') && !image.startsWith('/')) {
+    image = `/${image}`
+  }
+
+  // Specs resolution
+  let specs = []
+  if (Array.isArray(item.specs)) {
+    specs = item.specs.map((s) =>
+      typeof s === 'string'
+        ? { icon: CpuIcon, label: s }
+        : { icon: s.icon || CpuIcon, label: s.label || String(s) }
+    )
+  } else if (item.specs && typeof item.specs === 'object') {
+    if (item.specs.cpu || item.specs.processor) {
+      specs.push({ icon: CpuIcon, label: item.specs.cpu || item.specs.processor })
+    }
+    if (item.specs.ram) {
+      specs.push({ icon: RamIcon, label: item.specs.ram })
+    }
+    if (item.specs.storage) {
+      specs.push({ icon: SsdIcon, label: item.specs.storage })
+    }
+    if (item.specs.display) {
+      specs.push({ icon: DisplayIcon, label: item.specs.display })
+    }
+    if (item.specs.graphics) {
+      specs.push({ icon: GpuIcon, label: item.specs.graphics })
+    }
+  } else if (typeof item.specs === 'string' && item.specs.trim()) {
+    specs = item.specs
+      .split('|')
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((s) => ({ icon: CpuIcon, label: s }))
+  }
+
+  if (specs.length === 0) {
+    specs = staticInfo.specs || [
+      { icon: CpuIcon, label: 'High Performance' },
+      { icon: SsdIcon, label: 'Fast NVMe SSD' },
+    ]
+  }
+
+  const Visual = staticInfo.visual || null
+  const isFreeDelivery = item.isFreeDelivery !== false && Number(item.deliveryCharge || 0) === 0
+  const deliveryCharge = isFreeDelivery ? 0 : Number(item.deliveryCharge || 0)
+
+  return {
+    ...item,
+    id,
+    title,
+    name: title,
+    price,
+    originalPrice,
+    discount,
+    tag,
+    tagColor,
+    image,
+    visual: Visual,
+    specs,
+    quantity: Math.max(1, Number(item.quantity || 1)),
+    selected: item.selected !== false,
+    isFreeDelivery,
+    deliveryCharge,
+  }
+}
+
 export default function CartItemsList() {
+  const { isArabic } = useLanguage()
   const {
     cartItems,
     updateCartItemQuantity,
@@ -167,35 +269,19 @@ export default function CartItemsList() {
     toggleCartItemSelection,
     wishlistIds,
     toggleWishlist,
-    moveAllToWishlist,
-    addToCart,
   } = useStore()
 
-  // Match items with catalog data
-  const items = cartItems
-    .map((item) => {
-      const info = CART_PRODUCTS_DATA[item.id]
-      if (!info) return null
-      return {
-        ...info,
-        quantity: item.quantity || 1,
-        selected: item.selected ?? true,
-      }
-    })
+  // Match items dynamically from cartItems
+  const items = (Array.isArray(cartItems) ? cartItems : [])
+    .map(normalizeCartItem)
     .filter(Boolean)
-
-  const handleRestoreSample = () => {
-    Object.keys(CART_PRODUCTS_DATA).forEach((id) => {
-      addToCart(id)
-    })
-  }
 
   return (
     <section className="flex-1 min-w-0" aria-label="Cart Items">
-      {/* Top Bar: "Cart Items (3)" + "Clear Cart" */}
+      {/* Top Bar: "Cart Items (X)" + "Clear Cart" */}
       <div className="flex items-center justify-between pb-4 border-b border-gray-150 mb-4 sm:mb-6">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
-          Cart Items{' '}
+          {isArabic ? 'عناصر السلة' : 'Cart Items'}{' '}
           <span className="text-[#dc1414] font-semibold text-lg sm:text-xl">
             ({items.length})
           </span>
@@ -208,7 +294,7 @@ export default function CartItemsList() {
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#dc1414] hover:text-[#b91c1c] hover:bg-red-50/80 px-2.5 py-1.5 rounded-lg border border-red-200 transition-colors cursor-pointer"
           >
             <TrashIcon className="w-4 h-4 shrink-0" />
-            <span>Clear Cart</span>
+            <span>{isArabic ? 'مسح السلة' : 'Clear Cart'}</span>
           </button>
         )}
       </div>
@@ -221,24 +307,21 @@ export default function CartItemsList() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.7 2.822-7.1H5.106m2.394 7.1L5.106 5.272M7.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm10.5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-gray-900">Your shopping cart is empty</h3>
+          <h3 className="text-lg font-bold text-gray-900">
+            {isArabic ? 'سلة التسوق فارغة' : 'Your shopping cart is empty'}
+          </h3>
           <p className="text-sm text-gray-500 mt-1 max-w-md mx-auto">
-            Looks like you haven't added anything to your cart yet. Browse our top computing catalog to start shopping!
+            {isArabic
+              ? 'يبدو أنك لم تضف أي منتج إلى سلتك حتى الآن. استعرض أحدث أجهزة الكمبيوتر والمعدات وابدأ التسوق!'
+              : 'Looks like you haven\'t added anything to your cart yet. Browse our top computing catalog to start shopping!'}
           </p>
           <div className="mt-5 flex items-center justify-center gap-3 flex-wrap">
             <Link
               href="/products"
               className="px-5 py-2.5 rounded-xl bg-[#dc1414] hover:bg-[#b91c1c] text-white text-sm font-semibold shadow-xs transition-colors"
             >
-              Explore Products
+              {isArabic ? 'استكشف المنتجات' : 'Explore Products'}
             </Link>
-            <button
-              type="button"
-              onClick={handleRestoreSample}
-              className="px-4 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium transition-colors cursor-pointer"
-            >
-              Restore 3 Sample Items
-            </button>
           </div>
         </div>
       ) : (
@@ -274,10 +357,30 @@ export default function CartItemsList() {
 
                   {/* Thumbnail */}
                   <Link
-                    href={`/products/${item.id}`}
-                    className="w-24 h-20 sm:w-28 sm:h-24 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-center p-2 shrink-0 hover:border-[#dc1414]/40 transition-colors"
+                    href={`/products/${item.slug || item.id}`}
+                    className="w-24 h-20 sm:w-28 sm:h-24 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-center p-2 shrink-0 hover:border-[#dc1414]/40 transition-colors overflow-hidden relative"
                   >
-                    <Visual className="w-full h-full max-h-[80px] object-contain" />
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                          const fallbackNode = e.currentTarget.parentElement?.querySelector('.visual-fallback')
+                          if (fallbackNode) fallbackNode.style.display = 'flex'
+                        }}
+                      />
+                    ) : null}
+                    <div
+                      className={`visual-fallback w-full h-full items-center justify-center ${item.image ? 'hidden' : 'flex'}`}
+                    >
+                      {Visual ? (
+                        <Visual className="w-full h-full max-h-[80px] object-contain" />
+                      ) : (
+                        <WishlistLaptopVisual className="w-full h-full max-h-[80px] object-contain" />
+                      )}
+                    </div>
                   </Link>
 
                   {/* Details */}
@@ -290,7 +393,7 @@ export default function CartItemsList() {
                     </span>
 
                     {/* Title */}
-                    <Link href={`/products/${item.id}`} className="block">
+                    <Link href={`/products/${item.slug || item.id}`} className="block">
                       <h3 className="text-[15px] sm:text-[16px] font-bold text-gray-900 truncate hover:text-[#dc1414] transition-colors">
                         {item.title}
                       </h3>
@@ -299,7 +402,7 @@ export default function CartItemsList() {
                     {/* Specs */}
                     <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11.5px] sm:text-[12px] text-gray-600 font-medium">
                       {item.specs.map((spec, sIdx) => {
-                        const SpecIcon = spec.icon
+                        const SpecIcon = spec.icon || CpuIcon
                         return (
                           <div key={sIdx} className="inline-flex items-center gap-1 shrink-0">
                             <SpecIcon className="w-3.5 h-3.5 text-gray-500" />
@@ -318,14 +421,25 @@ export default function CartItemsList() {
                     <div className="text-lg sm:text-xl font-black text-[#dc1414] leading-tight">
                       ₹{item.price.toLocaleString('en-IN')}
                     </div>
-                    <div className="flex items-center gap-1.5 mt-0.5">
-                      <span className="text-[11.5px] text-gray-400 line-through">
-                        ₹{item.originalPrice.toLocaleString('en-IN')}
-                      </span>
-                      <span className="text-[10px] font-bold text-[#dc1414] bg-red-50 border border-red-100 px-1.5 py-0.2 rounded">
-                        {item.discount}
-                      </span>
-                    </div>
+                    {item.originalPrice > item.price && (
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <span className="text-[11.5px] text-gray-400 line-through">
+                          ₹{item.originalPrice.toLocaleString('en-IN')}
+                        </span>
+                        {item.discount && (
+                          <span className="text-[10px] font-bold text-[#dc1414] bg-red-50 border border-red-100 px-1.5 py-0.2 rounded">
+                            {item.discount}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <span className="text-[11px] font-semibold text-emerald-600 block mt-0.5">
+                      {item.isFreeDelivery
+                        ? (isArabic ? '✓ توصيل مجاني' : '✓ Free Delivery')
+                        : isArabic
+                        ? `+ ${(item.deliveryCharge * (item.quantity || 1)).toLocaleString('en-IN')} ر.ق توصيل`
+                        : `+ ₹${(item.deliveryCharge * (item.quantity || 1)).toLocaleString('en-IN')} Delivery`}
+                    </span>
                   </div>
 
                   {/* Quantity Stepper: [-] Qty [+] */}
@@ -333,7 +447,7 @@ export default function CartItemsList() {
                     <button
                       type="button"
                       onClick={() => updateCartItemQuantity(item.id, item.quantity - 1)}
-                      aria-label="Decrease quantity"
+                      aria-label={isArabic ? 'تقليل الكمية' : 'Decrease quantity'}
                       className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors font-bold text-sm cursor-pointer"
                     >
                       &minus;
@@ -344,7 +458,7 @@ export default function CartItemsList() {
                     <button
                       type="button"
                       onClick={() => updateCartItemQuantity(item.id, item.quantity + 1)}
-                      aria-label="Increase quantity"
+                      aria-label={isArabic ? 'زيادة الكمية' : 'Increase quantity'}
                       className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors font-bold text-sm cursor-pointer"
                     >
                       +
@@ -356,7 +470,7 @@ export default function CartItemsList() {
                     type="button"
                     onClick={() => toggleWishlist(item.id)}
                     aria-label={`Save ${item.title} to wishlist`}
-                    title="Save to wishlist"
+                    title={isArabic ? 'إضافة إلى المفضلة' : 'Save to wishlist'}
                     className="p-2 rounded-xl border border-gray-200 text-gray-400 hover:text-[#dc1414] hover:bg-red-50/50 transition-colors cursor-pointer"
                   >
                     {isWishlisted ? (
@@ -371,7 +485,7 @@ export default function CartItemsList() {
                     type="button"
                     onClick={() => removeFromCart(item.id)}
                     aria-label={`Remove ${item.title} from cart`}
-                    title="Remove from cart"
+                    title={isArabic ? 'حذف من السلة' : 'Remove from cart'}
                     className="p-2 rounded-xl border border-red-200 text-[#dc1414] hover:bg-red-50 transition-colors cursor-pointer"
                   >
                     <TrashIcon className="w-4 h-4" />
@@ -380,26 +494,6 @@ export default function CartItemsList() {
               </article>
             )
           })}
-
-          {/* Bottom Actions Row: Continue Shopping & Move All To Wishlist */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-100 text-gray-800 text-xs sm:text-sm font-semibold transition-colors cursor-pointer w-full sm:w-auto justify-center"
-            >
-              <span>&larr;</span>
-              <span>Continue Shopping</span>
-            </Link>
-
-            <button
-              type="button"
-              onClick={moveAllToWishlist}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#dc1414] hover:text-[#b91c1c] transition-colors cursor-pointer"
-            >
-              <HeartNavIcon className="w-4 h-4" />
-              <span>Move All to Wishlist</span>
-            </button>
-          </div>
         </div>
       )}
     </section>

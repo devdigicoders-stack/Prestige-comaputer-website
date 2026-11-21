@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
 
 function UserAvatarIcon({ className = 'w-6 h-6' }) {
   return (
@@ -81,21 +82,59 @@ function LogoutIcon({ className = 'w-5 h-5' }) {
 export default function AccountSidebar({ wishlistCount = 4 }) {
   const pathname = usePathname()
   const { currentUser, setCurrentUser, openLoginModal } = useStore()
+  const { isArabic } = useLanguage()
 
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', href: '/profile', icon: HomeIcon },
-    { id: 'orders', label: 'My Orders', href: '/profile', icon: OrdersIcon },
+    {
+      id: 'dashboard',
+      label: 'Dashboard',
+      labelAr: 'لوحة التحكم',
+      href: '/profile',
+      icon: HomeIcon,
+    },
+    {
+      id: 'orders',
+      label: 'My Orders',
+      labelAr: 'طلباتي',
+      href: '/profile',
+      icon: OrdersIcon,
+    },
     {
       id: 'wishlist',
       label: `My Wishlist (${wishlistCount})`,
+      labelAr: `قائمة رغباتي (${wishlistCount})`,
       href: '/wishlist',
       icon: HeartNavIcon,
       active: true,
     },
-    { id: 'rentals', label: 'My Rentals', href: '/rentals', icon: RentalsIcon },
-    { id: 'addresses', label: 'Addresses', href: '/profile', icon: MapPinIcon },
-    { id: 'payments', label: 'Payment Methods', href: '/profile', icon: CardIcon },
-    { id: 'settings', label: 'Account Settings', href: '/profile', icon: SettingsIcon },
+    {
+      id: 'rentals',
+      label: 'My Rentals',
+      labelAr: 'تأجيراتي',
+      href: '/rentals',
+      icon: RentalsIcon,
+    },
+    {
+      id: 'addresses',
+      label: 'Addresses',
+      labelAr: 'العناوين المحفوظة',
+      href: '/profile',
+      icon: MapPinIcon,
+    },
+    {
+      id: 'payments',
+      label: 'Payment Methods',
+      labelAr: 'طرق الدفع',
+      href: '/profile',
+      icon: CardIcon,
+    },
+    {
+      id: 'settings',
+      label: 'Account Settings',
+      labelAr: 'إعدادات الحساب',
+      href: '/profile',
+      icon: SettingsIcon,
+    },
   ]
 
   const handleLogout = () => {
@@ -116,10 +155,12 @@ export default function AccountSidebar({ wishlistCount = 4 }) {
           </div>
           <div className="min-w-0">
             <h2 className="text-[17px] font-bold text-gray-900 leading-tight truncate">
-              {currentUser?.name || 'My Account'}
+              {currentUser?.name || (isArabic ? 'حسابي' : 'My Account')}
             </h2>
             <p className="text-[12px] text-gray-500 mt-0.5 leading-snug">
-              Manage your account, orders and preferences.
+              {isArabic
+                ? 'إدارة حسابك وطلباتك وتفضيلاتك.'
+                : 'Manage your account, orders and preferences.'}
             </p>
           </div>
         </div>
@@ -129,6 +170,7 @@ export default function AccountSidebar({ wishlistCount = 4 }) {
           {navItems.map((item) => {
             const Icon = item.icon
             const isWishlist = item.id === 'wishlist'
+            const label = isArabic ? item.labelAr : item.label
 
             if (isWishlist) {
               return (
@@ -138,7 +180,7 @@ export default function AccountSidebar({ wishlistCount = 4 }) {
                   className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-[#dc1414] text-white text-[13.5px] font-semibold shadow-xs transition-all"
                 >
                   <Icon className="w-[18px] h-[18px] text-white shrink-0 fill-current" />
-                  <span>{item.label}</span>
+                  <span>{label}</span>
                 </Link>
               )
             }
@@ -150,7 +192,7 @@ export default function AccountSidebar({ wishlistCount = 4 }) {
                 className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-50 text-[13.5px] font-medium transition-colors"
               >
                 <Icon className="w-[18px] h-[18px] text-gray-500 shrink-0" />
-                <span>{item.label}</span>
+                <span>{label}</span>
               </Link>
             )
           })}
@@ -160,10 +202,18 @@ export default function AccountSidebar({ wishlistCount = 4 }) {
             <button
               type="button"
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[#dc1414] hover:bg-red-50 text-[13.5px] font-medium transition-colors cursor-pointer text-left"
+              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[#dc1414] hover:bg-red-50 text-[13.5px] font-medium transition-colors cursor-pointer text-left rtl:text-right"
             >
               <LogoutIcon className="w-[18px] h-[18px] shrink-0" />
-              <span>{currentUser ? 'Logout' : 'Sign In / Register'}</span>
+              <span>
+                {currentUser
+                  ? isArabic
+                    ? 'تسجيل الخروج'
+                    : 'Logout'
+                  : isArabic
+                  ? 'تسجيل الدخول / إنشاء حساب'
+                  : 'Sign In / Register'}
+              </span>
             </button>
           </div>
         </nav>

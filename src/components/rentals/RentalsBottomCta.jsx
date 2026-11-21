@@ -1,6 +1,11 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function RentalsBottomCta() {
+  const { isRtl } = useLanguage()
+
   return (
     <section
       aria-label="Rental Bottom Call to Action"
@@ -11,17 +16,27 @@ export default function RentalsBottomCta() {
       <div className="absolute -right-10 -top-10 w-60 h-60 bg-[#dc1414]/25 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Left Text */}
-        <div className="max-w-xl text-center md:text-left">
+        {/* Text */}
+        <div className="max-w-xl text-center md:text-left rtl:md:text-right">
           <h2 className="text-[22px] sm:text-[28px] lg:text-[32px] font-bold leading-tight tracking-tight">
-            Ready to <span className="text-[#e11414] italic">Rent</span> Your Next Device?
+            {isRtl ? (
+              <>
+                هل أنت جاهز <span className="text-[#e11414] italic">لاستئجار</span> جهازك القادم؟
+              </>
+            ) : (
+              <>
+                Ready to <span className="text-[#e11414] italic">Rent</span> Your Next Device?
+              </>
+            )}
           </h2>
           <p className="mt-2 text-[13px] sm:text-[14.5px] text-[#e5e7eb] font-normal leading-relaxed">
-            Get high-performance computers on flexible and affordable rental plans today.
+            {isRtl
+              ? 'احصل على أجهزة كمبيوتر ولابتوب عالية الأداء بخطط تأجير مرنة وبأسعار تنافسية في قطر اليوم.'
+              : 'Get high-performance computers on flexible and affordable rental plans today.'}
           </p>
         </div>
 
-        {/* Center / Right Visual */}
+        {/* Visual */}
         <div className="hidden sm:flex items-center justify-center shrink-0 w-[180px] lg:w-[220px]">
           <svg viewBox="0 0 220 110" className="w-full h-auto drop-shadow-[0_6px_16px_rgba(220,16,16,0.3)]" aria-hidden="true">
             <defs>
@@ -51,8 +66,8 @@ export default function RentalsBottomCta() {
             href="#plans"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#111827] hover:bg-[#f3f4f6] text-[13.5px] font-bold shadow-lg transition-all active:scale-95 cursor-pointer"
           >
-            <span>Rent Now</span>
-            <span className="text-[#dc1414] font-bold text-base">→</span>
+            <span>{isRtl ? 'استأجر الآن' : 'Rent Now'}</span>
+            <span className="text-[#dc1414] font-bold text-base rtl:rotate-180">→</span>
           </Link>
         </div>
       </div>

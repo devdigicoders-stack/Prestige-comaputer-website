@@ -1,14 +1,48 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
+import { getMyOrders } from '../../services/orderApi'
+import { getUserAddresses } from '../../services/authApi'
 
-export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
-  const { currentUser, wishlistIds, cartItems } = useStore()
+export default function ProfileHeroBanner({ onSelectTab }) {
+  const { currentUser, wishlistIds } = useStore()
 
-  const userName = currentUser?.name || 'Rahul Sharma'
-  const userEmail = currentUser?.email || 'rahul.sharma@prestigecomputers.in'
-  const userPhone = currentUser?.phone || '+91 98765 43210'
+  const userName = currentUser?.name || 'Customer Profile'
+  const userEmail = currentUser?.email || 'No email added'
+  const userPhone = currentUser?.phone || currentUser?.mobile || 'No mobile added'
+
+  const [orderCount, setOrderCount] = useState(0)
+  const [rentalCount, setRentalCount] = useState(0)
+  const [addressCount, setAddressCount] = useState(0)
+
+  useEffect(() => {
+    let ignore = false
+    getMyOrders()
+      .then((orders) => {
+        if (!ignore && Array.isArray(orders)) {
+          setOrderCount(orders.length)
+          const activeRentals = orders.filter((o) =>
+            o.type === 'Rental' || (o.orderItems || []).some((it) => it.type === 'Rent' || it.type === 'Rental')
+          ).length
+          setRentalCount(activeRentals)
+        }
+      })
+      .catch(() => {})
+
+    getUserAddresses()
+      .then((addrs) => {
+        if (!ignore && Array.isArray(addrs)) {
+          setAddressCount(addrs.length)
+        }
+      })
+      .catch(() => {})
+
+    return () => {
+      ignore = true
+    }
+  }, [currentUser])
 
   return (
     <div className="relative w-full bg-gradient-to-r from-[#0d0d11] via-[#1a080a] to-[#0d0d11] text-white pt-6 pb-8 border-b border-white/10 overflow-hidden">
@@ -39,23 +73,13 @@ export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           {/* Left: Avatar + Details */}
           <div className="flex items-center gap-4 sm:gap-5">
-            {/* Avatar with Camera badge */}
+            {/* Avatar with initial */}
             <div className="relative">
-              <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#e11414] to-[#990a0d] p-0.5 shadow-xl flex items-center justify-center">
-                <div className="w-full h-full bg-[#1e1e24] rounded-2xl flex items-center justify-center text-white text-[28px] font-black tracking-tight">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#e11414] to-[#990a0d] p-0.5 shadow-xl flex items-center justify-center">
+                <div className="w-full h-full bg-[#1e1e24] rounded-2xl flex items-center justify-center text-white text-[26px] sm:text-[30px] font-black tracking-tight">
                   {userName.charAt(0).toUpperCase()}
                 </div>
               </div>
-              <button
-                type="button"
-                title="Change Avatar"
-                className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-[#dc1414] text-white flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer border-2 border-[#141418]"
-                aria-label="Upload new avatar"
-              >
-                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
-                  <path fillRule="evenodd" d="M1 8a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 8.07 3h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 16.07 6H17a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8Zm13.5 3a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM10 14a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" clipRule="evenodd" />
-                </svg>
-              </button>
             </div>
 
             {/* User Info */}
@@ -68,7 +92,7 @@ export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
                   <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
                     <path fillRule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clipRule="evenodd" />
                   </svg>
-                  <span>Prestige VIP Member</span>
+                  <span>Prestige Member</span>
                 </span>
               </div>
 
@@ -80,7 +104,7 @@ export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
             </div>
           </div>
 
-          {/* Right: 4 Quick Stats Badges */}
+          {/* Right: 4 Quick Stats Badges (Fully Dynamic from Live DB) */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
             <button
               type="button"
@@ -91,7 +115,7 @@ export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
                 My Orders
               </span>
               <span className="text-[17px] font-extrabold text-white group-hover:text-[#dc1414] transition-colors">
-                12 Completed
+                {orderCount} {orderCount === 1 ? 'Order' : 'Orders'}
               </span>
             </button>
 
@@ -104,7 +128,7 @@ export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
                 Rentals
               </span>
               <span className="text-[17px] font-extrabold text-[#22c55e] group-hover:text-emerald-400 transition-colors">
-                2 Active
+                {rentalCount} {rentalCount === 1 ? 'Active' : 'Active'}
               </span>
             </button>
 
@@ -129,7 +153,7 @@ export default function ProfileHeroBanner({ activeTab, onSelectTab }) {
                 Addresses
               </span>
               <span className="text-[17px] font-extrabold text-white group-hover:text-[#dc1414] transition-colors">
-                2 Saved
+                {addressCount} Saved
               </span>
             </button>
           </div>

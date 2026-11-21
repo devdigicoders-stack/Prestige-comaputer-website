@@ -2,90 +2,82 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import companyInfo from '../../data/companyInfo'
+import { useLanguage } from '../../context/LanguageContext'
 
 const STORE_LOCATIONS = [
   {
-    id: 'kanpur-flagship',
-    city: 'Kanpur',
-    name: 'Prestige Computers Experience Hub (Kakadeo)',
-    type: 'Flagship Store & Repair Lab',
-    badge: 'Flagship Experience Center',
-    address: 'D-104, Sharda Apartment, Near Kakadeo Coaching Hub, Kanpur - 208025, Uttar Pradesh, India',
-    phone: '+91 98765 43210',
-    email: 'kanpur.store@prestigecomputers.in',
-    hours: 'Mon – Sat: 10:00 AM – 8:30 PM | Sunday: 11:00 AM – 6:00 PM',
-    mapQuery: 'Kakadeo, Kanpur, Uttar Pradesh 208025',
+    id: 'doha-flagship',
+    city: 'Doha',
+    name: 'Prestige Computers Flagship Showroom & Tech Lab',
+    type: 'Flagship Showroom & Service Hub',
+    badge: 'Flagship Showroom',
+    address: companyInfo.location.fullAddress,
+    phone: companyInfo.phones.primary,
+    whatsapp: companyInfo.phones.whatsapp,
+    email: companyInfo.emails.general,
+    hours: companyInfo.workingHours.compact,
+    mapQuery: companyInfo.location.googlePlaceId,
+    googleMapsUrl: companyInfo.location.googleMapsUrl,
     services: [
-      'Retail Laptops & Desktops',
-      'Custom PC Assembly Lab',
-      'Walk-in Laptop Rentals',
-      'Certified Repair Hub',
-      '0% Instant Paperless EMI',
+      'Brand-New Systems & Ultrabooks',
+      'Certified Genuine Pre-Owned Devices',
+      'Custom Gaming PCs & Workstations',
+      'Walk-in Laptop & Desktop Rentals',
+      'Hardware Diagnostics & Thermal Repasting',
     ],
     isFeatured: true,
   },
   {
-    id: 'kanpur-civillines',
-    city: 'Kanpur',
-    name: 'Prestige Computers Tech Store (Civil Lines)',
-    type: 'Retail & Premium Workstations',
-    badge: 'Retail Store',
-    address: 'Shop 14, Ground Floor, Megamart Complex, The Mall, Civil Lines, Kanpur - 208001, Uttar Pradesh',
-    phone: '+91 91234 56789',
-    email: 'civillines@prestigecomputers.in',
-    hours: 'Mon – Sat: 10:30 AM – 8:00 PM | Sunday Closed',
-    mapQuery: 'Civil Lines, Kanpur, Uttar Pradesh 208001',
-    services: [
-      'Premium Ultrabooks & MacBooks',
-      'Accessories & Components',
-      'Same-Day Online Order Pickup',
-      'Corporate Consultations',
-    ],
-  },
-  {
-    id: 'lucknow-hub',
-    city: 'Lucknow',
-    name: 'Prestige Computers Enterprise & Rental Depot',
-    type: 'B2B & Rental Hub',
-    badge: 'Rental & B2B Hub',
-    address: 'Plot 22, Cyber Heights, Vibhuti Khand, Gomti Nagar, Lucknow - 226010, Uttar Pradesh',
-    phone: '+91 98765 43211',
-    email: 'lucknow@prestigecomputers.in',
-    hours: 'Mon – Fri: 09:30 AM – 7:00 PM | Sat: 10:00 AM – 4:00 PM',
-    mapQuery: 'Gomti Nagar, Lucknow, Uttar Pradesh 226010',
+    id: 'doha-b2b',
+    city: 'Doha',
+    name: 'Prestige Computers B2B & Enterprise Solutions',
+    type: 'Corporate IT & Leasing Depot',
+    badge: 'B2B & Leasing Hub',
+    address: 'Tower I, 2nd Floor, Office No 201, Al-Mirqab Mall, Al Mirqab Al Jadeed St, Doha, Qatar',
+    phone: companyInfo.phones.primary,
+    whatsapp: companyInfo.phones.whatsapp,
+    email: companyInfo.emails.b2b,
+    hours: 'Saturday – Thursday: 10:00 AM – 8:00 PM',
+    mapQuery: companyInfo.location.googlePlaceId,
+    googleMapsUrl: companyInfo.location.googleMapsUrl,
     services: [
       'Bulk Corporate Laptop Rentals',
-      'Event & Gaming Rig Leasing',
-      'Onsite IT Deployment Support',
-      'GST Business Invoicing',
+      'Enterprise Workstation Leasing',
+      'Annual Maintenance Contracts (AMC)',
+      'Customized IT Infrastructure Procurement',
+      'Official Tax & Commercial Invoicing',
     ],
   },
   {
-    id: 'london-studio',
-    city: 'London UK',
-    name: 'Prestige Computers UK Technology Studio',
-    type: 'European HQ & Distribution',
-    badge: 'International Studio',
-    address: '124 Tech City Road, Shoreditch, London EC1V 2NX, United Kingdom',
-    phone: '+44 20 7946 0958',
-    email: 'uk@prestigecomputers.co.uk',
-    hours: 'Mon – Sat: 09:00 AM – 7:00 PM | Sunday: 10:00 AM – 4:00 PM',
-    mapQuery: 'Shoreditch, London EC1V 2NX, UK',
+    id: 'qatar-express',
+    city: 'Qatar Nationwide',
+    name: 'Prestige Computers Express Delivery & Onsite Support',
+    type: 'Nationwide Delivery & Pickup Network',
+    badge: 'Nationwide Network',
+    address: 'Serving Doha, Lusail, Al Rayyan, Al Wakrah and all Qatar regions',
+    phone: companyInfo.phones.whatsapp,
+    whatsapp: companyInfo.phones.whatsapp,
+    email: companyInfo.emails.general,
+    hours: 'Saturday – Thursday: 10:00 AM – 10:00 PM',
+    mapQuery: companyInfo.location.googlePlaceId,
+    googleMapsUrl: companyInfo.location.googleMapsUrl,
     services: [
-      'High-Performance Workstations',
-      'Custom RTX Liquid-Cooled Rigs',
-      'UK On-site Warranty Support',
-      'Enterprise Server Leasing',
+      'Same-Day Showroom Pickup at Al-Mirqab Mall',
+      'Express Insured Delivery Across Qatar',
+      'Onsite Device Handover & Testing',
+      'Direct WhatsApp Order Support',
     ],
   },
 ]
 
 export default function StoreLocatorView() {
+  const { isRtl } = useLanguage()
   const [selectedCity, setSelectedCity] = useState('All')
-  const [selectedStoreId, setSelectedStoreId] = useState('kanpur-flagship')
+  const [selectedStoreId, setSelectedStoreId] = useState('doha-flagship')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const cities = ['All', 'Kanpur', 'Lucknow', 'London UK']
+  const cities = ['All', 'Doha', 'Qatar Nationwide']
 
   const filteredStores = STORE_LOCATIONS.filter((s) => {
     const matchCity = selectedCity === 'All' || s.city === selectedCity
@@ -108,25 +100,34 @@ export default function StoreLocatorView() {
           <ol className="flex items-center gap-2">
             <li>
               <Link href="/" className="hover:text-[#dc1414] transition-colors">
-                Home
+                {isRtl ? 'الرئيسية' : 'Home'}
               </Link>
             </li>
             <li>/</li>
-            <li className="font-semibold text-[#111827]">Store Locator</li>
+            <li className="font-semibold text-[#111827]">{isRtl ? 'فروعنا ومعارضنا' : 'Store Locator'}</li>
           </ol>
         </nav>
 
         {/* Hero Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-bold bg-[#fee2e2] text-[#dc1414] mb-3">
-            <span className="text-base">📍</span>
-            Experience Centers & Outlets
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            {isRtl ? 'صالة العرض والمراكز المعتمدة' : 'Experience Centers & Outlets'}
           </span>
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
-            Find a <span className="text-[#dc1414]">Prestige Computers</span> Store
+            {isRtl ? (
+              <>فروع <span className="text-[#dc1414]">بريستيج للكمبيوتر</span> في قطر</>
+            ) : (
+              <>Find a <span className="text-[#dc1414]">Prestige Computers</span> Store</>
+            )}
           </h1>
           <p className="mt-2 text-sm sm:text-base text-[#6b7280]">
-            Experience cutting-edge gaming laptops, hands-on custom PC builds, instant walk-in rentals, and certified repair diagnostics near you.
+            {isRtl
+              ? 'تفضل بزيارة صالة العرض ومركز الفحص الفني المعتمد في مول المرقاب بالدوحة للاطلاع على أحدث أجهزة اللابتوب والكمبيوتر والتأجير الفوري.'
+              : 'Experience cutting-edge gaming laptops, hands-on custom PC builds, instant walk-in rentals, and certified repair diagnostics near you.'}
           </p>
         </div>
 
@@ -145,7 +146,7 @@ export default function StoreLocatorView() {
                     : 'bg-[#f1f5f9] text-[#4b5563] hover:bg-[#e2e8f0]'
                 }`}
               >
-                {c === 'All' ? 'All Locations (4)' : c}
+                {c === 'All' ? 'All Locations (3)' : c}
               </button>
             ))}
           </div>
@@ -219,11 +220,16 @@ export default function StoreLocatorView() {
 
                   <div className="mt-3 pt-3 border-t border-[#f3f4f6] text-xs text-[#4b5563] space-y-1">
                     <p className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a]">🕒</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#16a34a] shrink-0" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
                       <span className="truncate">{store.hours}</span>
                     </p>
                     <p className="flex items-center gap-1.5 font-semibold text-[#111827]">
-                      <span className="text-[#dc1414]">📞</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#dc1414] shrink-0" aria-hidden="true">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
                       <span>{store.phone}</span>
                     </p>
                   </div>
@@ -271,7 +277,11 @@ export default function StoreLocatorView() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-6 border-b border-[#f3f4f6] text-xs">
               <div className="bg-[#f8fafc] p-4 rounded-xl border border-[#f1f5f9]">
                 <h4 className="font-bold text-[#111827] mb-1.5 flex items-center gap-1.5">
-                  <span>🕒 Store Hours</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-[#16a34a] shrink-0" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  <span>Store Hours</span>
                 </h4>
                 <p className="text-[#4b5563] leading-relaxed">{activeStore.hours}</p>
                 <p className="text-[#16a34a] font-semibold mt-1.5">● Open Today for Walk-ins</p>
@@ -279,7 +289,10 @@ export default function StoreLocatorView() {
 
               <div className="bg-[#f8fafc] p-4 rounded-xl border border-[#f1f5f9]">
                 <h4 className="font-bold text-[#111827] mb-1.5 flex items-center gap-1.5">
-                  <span>📞 Direct Contact</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-[#dc1414] shrink-0" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Direct Contact</span>
                 </h4>
                 <p className="text-[#4b5563]">Phone: <strong className="text-[#111827]">{activeStore.phone}</strong></p>
                 <p className="text-[#4b5563]">Email: <strong className="text-[#111827]">{activeStore.email}</strong></p>
@@ -297,7 +310,9 @@ export default function StoreLocatorView() {
                     key={idx}
                     className="px-3 py-1.5 rounded-lg bg-[#f8fafc] border border-[#e2e8f0] text-xs font-medium text-[#374151] flex items-center gap-1.5"
                   >
-                    <span className="text-[#16a34a] font-bold">✓</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#16a34a] shrink-0" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
                     <span>{srv}</span>
                   </span>
                 ))}
@@ -311,8 +326,11 @@ export default function StoreLocatorView() {
                 <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-70" />
                 
                 <div className="relative z-10 flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full bg-[#dc1414] text-white flex items-center justify-center text-xl shadow-lg animate-bounce">
-                    📍
+                  <div className="w-12 h-12 rounded-full bg-[#dc1414] text-white flex items-center justify-center shadow-lg animate-bounce">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-white" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
                   </div>
                   <h4 className="font-bold text-[#111827] text-base mt-2">
                     {activeStore.name}

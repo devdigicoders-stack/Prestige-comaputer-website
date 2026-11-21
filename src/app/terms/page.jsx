@@ -13,13 +13,16 @@ export default function TermsPage() {
   return (
     <LegalPageLayout
       title="Terms & Conditions"
+      titleAr="الشروط والأحكام العامة"
       subtitle="Please read these terms and conditions carefully before purchasing, renting, or configuring hardware on Prestige Computers."
+      subtitleAr="يرجى قراءة هذه الشروط والأحكام بعناية قبل شراء أو استئجار أو تخصيص الأجهزة عبر بريستيج للكمبيوتر."
       lastUpdated="18 November 2026"
       badge="Legal Contract"
+      badgeAr="عقد وشروط قانونية"
     >
       <h2>1. Introduction & Acceptance of Terms</h2>
       <p>
-        These Terms and Conditions (&ldquo;Terms&rdquo;) govern your access to and use of the website, retail storefronts, and online services provided by <strong>Prestige Computers Pvt. Ltd.</strong> (&ldquo;Prestige Computers&rdquo;, &ldquo;PCS&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;), registered in Kanpur, Uttar Pradesh, India.
+        These Terms and Conditions (&ldquo;Terms&rdquo;) govern your access to and use of the website, retail showroom, and online services provided by <strong>Prestige Computers</strong> (also operating publicly as <strong>Prestige Computer Services / PCS Doha</strong>, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;), established in 2020 at Al-Mirqab Mall, Doha, Qatar.
       </p>
       <p>
         By accessing our website, creating an account, purchasing hardware, or booking computer rental equipment, you agree to be bound by these Terms and our Privacy Policy. If you do not agree with any part of these Terms, you must not use our services.
@@ -31,7 +34,7 @@ export default function TermsPage() {
       </p>
       <ul>
         <li>You are solely responsible for maintaining the confidentiality of your account credentials and password.</li>
-        <li>You must notify us immediately at <code>support@prestigecomputers.in</code> if you suspect unauthorized access to your account.</li>
+        <li>You must notify us immediately at <code>info@pcsdoha.net</code> if you suspect unauthorized access to your account.</li>
         <li>We reserve the right to suspend or terminate accounts that provide fraudulent information or engage in suspicious payment activities.</li>
       </ul>
 
@@ -40,7 +43,7 @@ export default function TermsPage() {
         We make every effort to display accurate pricing, technical specifications, and inventory availability for laptops, desktops, and components.
       </p>
       <ul>
-        <li>All prices displayed are in Indian Rupees (₹) and include applicable Goods and Services Tax (GST) unless specified otherwise.</li>
+        <li>All prices displayed are in Qatari Riyal (QAR) unless explicitly stated otherwise.</li>
         <li>In the event of an inadvertent typographical error or technical glitch where a product is listed at an incorrect price, Prestige Computers reserves the right to cancel or refuse the order and issue a full refund.</li>
         <li>Images are for illustrative representation; actual chassis color, thermal finish, and packaging may vary slightly depending on OEM batches.</li>
       </ul>
@@ -49,9 +52,9 @@ export default function TermsPage() {
       <p>
         Customers utilizing our rental services enter into a binding equipment rental agreement subject to the following mandatory conditions:
       </p>
-      <h3>4.1 Security Deposit & KYC Verification</h3>
+      <h3>4.1 Security Deposit & QID Verification</h3>
       <p>
-        Every rental equipment booking requires a refundable security deposit and valid government-issued photo identification (Aadhaar Card, Driving License, or Company GSTIN certificate for corporate leases). Security deposits are refunded within 24 to 48 hours following the safe return and technical inspection of the hardware.
+        Every rental equipment booking requires a refundable security deposit and valid government-issued photo identification (Qatar ID - QID, Passport, or Company Commercial Registration / CR for corporate leases). Security deposits are refunded within 24 to 48 hours following the safe return and technical inspection of the hardware.
       </p>
       <h3>4.2 Equipment Use & Care</h3>
       <p>
@@ -63,7 +66,7 @@ export default function TermsPage() {
       </p>
       <h3>4.4 Late Returns & Extensions</h3>
       <p>
-        Rental equipment must be returned on or before the agreed end date. Late returns without prior extension approval will incur a standard daily late fee of ₹500/day for laptops and ₹1,000/day for high-end workstation rigs.
+        Rental equipment must be returned on or before the agreed end date. Late returns without prior extension approval will incur a standard daily late fee of QAR 25/day for laptops and QAR 50/day for high-end workstation rigs.
       </p>
 
       <h2>5. Custom PC Assembly & Hardware Orders</h2>
@@ -75,13 +78,13 @@ export default function TermsPage() {
         <li>Once assembly and hardware testing commence, custom rig orders cannot be cancelled without a 10% restocking and labor fee.</li>
       </ul>
 
-      <h2>6. Payments, Invoicing & GST Credit</h2>
+      <h2>6. Payments, Invoicing & Corporate Orders</h2>
       <p>
-        We support secure payments via UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, Net Banking, and verified EMI financing partners.
+        We support secure payments via Credit/Debit Cards (Visa, Mastercard), QNB / Local Bank Transfer, Cash on Delivery/Pickup at our Al-Mirqab Mall showroom, and POS card terminal.
       </p>
       <ul>
-        <li>Registered businesses can provide their GSTIN number during checkout to receive an official B2B Tax Invoice eligible for Input Tax Credit (ITC).</li>
-        <li>No Cost EMI is facilitated through third-party banking partners; approval and interest subvention are subject to the issuing bank&rsquo;s criteria.</li>
+        <li>In accordance with store policy, approved refunds on POS/Credit card transactions are subject to a 2% processing fee deduction.</li>
+        <li>Corporate clients can provide their Company CR and Tax card for official corporate invoicing.</li>
       </ul>
 
       <h2>7. Limitation of Liability & Governing Law</h2>
@@ -89,7 +92,7 @@ export default function TermsPage() {
         Prestige Computers shall not be liable for any indirect, incidental, punitive, or consequential damages resulting from data loss, business interruption, or software incompatibilities arising from the use of our hardware or services.
       </p>
       <p>
-        These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or related to these Terms shall be subject to the exclusive jurisdiction of the competent courts in <strong>Kanpur, Uttar Pradesh, India</strong>.
+        These Terms shall be governed by and construed in accordance with the laws of the State of Qatar. Any disputes arising out of or related to these Terms shall be subject to the exclusive jurisdiction of the competent courts in <strong>Doha, Qatar</strong>.
       </p>
 
       <h2>8. Contact Information</h2>
@@ -97,9 +100,9 @@ export default function TermsPage() {
         For inquiries regarding these Terms and Conditions, please contact:
       </p>
       <p>
-        <strong>Legal Desk — Prestige Computers Pvt. Ltd.</strong><br />
-        D-104, Sharda Apartment, Kakadeo, Kanpur - 208025, Uttar Pradesh, India<br />
-        Email: <a href="mailto:legal@prestigecomputers.in" className="text-[#dc1414] font-semibold hover:underline">legal@prestigecomputers.in</a> | Phone: +91 98765 43210
+        <strong>Legal Desk — Prestige Computers (PCS Doha)</strong><br />
+        Tower I, 2nd Floor, Office No 201, Al-Mirqab Mall, Al Mirqab Al Jadeed St, Doha, Qatar<br />
+        Email: <a href="mailto:info@pcsdoha.net" className="text-[#dc1414] font-semibold hover:underline">info@pcsdoha.net</a> | Phone: +974 4145 3868 | WhatsApp: +974 6691 9155
       </p>
     </LegalPageLayout>
   )

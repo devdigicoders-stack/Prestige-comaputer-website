@@ -1,172 +1,135 @@
 'use client'
 
-import { useEffect, useState, useRef, Suspense } from 'react'
+import { useEffect, useRef, useState, Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { FullscreenLoader } from './BrandLoader'
 
 /**
- * RouteTransitionLoader
- * Automatically triggers Prestige Computers branded loader on:
- * 1. Internal link clicks across the whole website
- * 2. Browser back / forward buttons (popstate)
- * 3. Custom events ('pcs:start-loading', 'pcs:stop-loading')
- * 4. Page change detection via pathname & searchParams
+ * Slim top progress bar — starts instantly on link click,
+ * completes when Next.js finishes the route change.
+ * URL changes immediately, no fullscreen blocking overlay.
  */
-function TransitionLoaderInternal() {
+function ProgressBar() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [isFading, setIsFading] = useState(false)
-  const [loaderText, setLoaderText] = useState({
-    title: 'Loading...',
-    subtitle: 'Please wait a moment',
-  })
+  const [progress, setProgress] = useState(0)
+  const [visible, setVisible] = useState(false)
 
-  // Keep track of current URL to detect actual route changes
+  const rafRef = useRef(null)
+  const timerRef = useRef(null)
   const currentUrlRef = useRef('')
-  const showTimeRef = useRef(0)
-  const safetyTimerRef = useRef(null)
-  const fadeTimerRef = useRef(null)
+  const activeRef = useRef(false)
 
-  useEffect(() => {
-    currentUrlRef.current = window.location.pathname + window.location.search
-  }, [])
-
-  // Start smooth loader
-  const startLoading = (title = 'Loading...', subtitle = 'Please wait a moment') => {
-    if (fadeTimerRef.current) clearTimeout(fadeTimerRef.current)
-    if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current)
-
-    setLoaderText({ title, subtitle })
-    showTimeRef.current = Date.now()
-    setIsFading(false)
-    setIsLoading(true)
-
-    // Safety timeout: automatically hide after 5 seconds to prevent getting stuck
-    safetyTimerRef.current = setTimeout(() => {
-      stopLoading()
-    }, 5000)
+  const clearTimers = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    if (timerRef.current) clearTimeout(timerRef.current)
   }
 
-  // Stop smooth loader with fade out
-  const stopLoading = () => {
-    const elapsed = Date.now() - showTimeRef.current
-    const minDisplayTime = 120 // snappy and responsive transition without artificial lag
-    const remainingTime = Math.max(0, minDisplayTime - elapsed)
+  const start = () => {
+    clearTimers()
+    activeRef.current = true
+    setVisible(true)
+    setProgress(0)
 
-    setTimeout(() => {
-      setIsFading(true)
-      fadeTimerRef.current = setTimeout(() => {
-        setIsLoading(false)
-        setIsFading(false)
-      }, 160) // ultra-smooth quick fade transition
-    }, remainingTime)
-  }
-
-  // Detect route change completion
-  useEffect(() => {
-    const newUrl = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
-    if (currentUrlRef.current !== newUrl) {
-      currentUrlRef.current = newUrl
-      if (isLoading) {
-        stopLoading()
+    // Animate progress from 0 → ~85% quickly, then slow down (never reaches 100 until done)
+    let current = 0
+    const tick = () => {
+      if (!activeRef.current) return
+      // Fast at start, slows down as it approaches 85
+      const increment = current < 30 ? 8 : current < 60 ? 4 : current < 80 ? 1.5 : 0.3
+      current = Math.min(current + increment, 85)
+      setProgress(current)
+      if (current < 85) {
+        rafRef.current = requestAnimationFrame(tick)
       }
     }
+    rafRef.current = requestAnimationFrame(tick)
+  }
+
+  const finish = () => {
+    clearTimers()
+    activeRef.current = false
+    setProgress(100)
+    timerRef.current = setTimeout(() => {
+      setVisible(false)
+      setProgress(0)
+    }, 300)
+  }
+
+  // Complete bar when route actually changes
+  useEffect(() => {
+    const newUrl = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
+    if (currentUrlRef.current && currentUrlRef.current !== newUrl) {
+      finish()
+    }
+    currentUrlRef.current = newUrl
   }, [pathname, searchParams])
 
-  // Listen to link clicks and browser popstate
+  // Start on link click
   useEffect(() => {
-    const handleLinkClick = (e) => {
-      // Ignore modified clicks (cmd, ctrl, shift, alt)
+    const handleClick = (e) => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
-
-      // Find closest anchor tag
       const anchor = e.target.closest('a')
       if (!anchor) return
-
-      // Ignore if marked to skip
       if (anchor.getAttribute('data-no-loader') !== null) return
-
-      // Ignore download, external target
       if (anchor.hasAttribute('download') || anchor.target === '_blank') return
-
       const href = anchor.getAttribute('href')
       if (!href) return
-
-      // Ignore hash anchors, mailto, tel, javascript
       if (
         href.startsWith('#') ||
         href.startsWith('mailto:') ||
         href.startsWith('tel:') ||
         href.startsWith('javascript:')
-      ) {
-        return
-      }
+      ) return
 
-      // Check origin
       try {
         const url = new URL(href, window.location.href)
         if (url.origin !== window.location.origin) return
-
-        // If navigating to the exact same URL, ignore
-        const currentPathAndSearch = window.location.pathname + window.location.search
-        const targetPathAndSearch = url.pathname + url.search
-        if (currentPathAndSearch === targetPathAndSearch && !url.hash) {
-          return
-        }
-
-        // Trigger loader!
-        startLoading()
+        const current = window.location.pathname + window.location.search
+        const target = url.pathname + url.search
+        if (current === target && !url.hash) return
+        start()
       } catch {
-        // invalid URL format, ignore
+        // invalid URL
       }
     }
 
-    const handlePopState = () => {
-      startLoading()
-    }
+    const handlePopState = () => start()
 
-    const handleCustomStart = (e) => {
-      const { title, subtitle } = e?.detail || {}
-      startLoading(title, subtitle)
-    }
-
-    const handleCustomStop = () => {
-      stopLoading()
-    }
-
-    document.addEventListener('click', handleLinkClick, { capture: true })
+    document.addEventListener('click', handleClick, { capture: true })
     window.addEventListener('popstate', handlePopState)
-    window.addEventListener('pcs:start-loading', handleCustomStart)
-    window.addEventListener('pcs:stop-loading', handleCustomStop)
-
     return () => {
-      document.removeEventListener('click', handleLinkClick, { capture: true })
+      document.removeEventListener('click', handleClick, { capture: true })
       window.removeEventListener('popstate', handlePopState)
-      window.removeEventListener('pcs:start-loading', handleCustomStart)
-      window.removeEventListener('pcs:stop-loading', handleCustomStop)
-      if (fadeTimerRef.current) clearTimeout(fadeTimerRef.current)
-      if (safetyTimerRef.current) clearTimeout(safetyTimerRef.current)
+      clearTimers()
     }
   }, [])
 
-  if (!isLoading) return null
+  if (!visible) return null
 
   return (
-    <FullscreenLoader
-      isOpen={isLoading}
-      isFading={isFading}
-      title={loaderText.title}
-      subtitle={loaderText.subtitle}
-    />
+    <div
+      className="fixed top-0 left-0 right-0 z-[9999] h-[3px] pointer-events-none"
+      style={{ background: 'transparent' }}
+    >
+      <div
+        style={{
+          width: `${progress}%`,
+          transition: progress === 100 ? 'width 0.15s ease-out' : 'width 0.08s linear',
+          height: '100%',
+          background: 'linear-gradient(90deg, #dc1414, #ef4444)',
+          boxShadow: '0 0 8px rgba(220,20,20,0.6)',
+          borderRadius: '0 2px 2px 0',
+        }}
+      />
+    </div>
   )
 }
 
 export default function RouteTransitionLoader() {
   return (
     <Suspense fallback={null}>
-      <TransitionLoaderInternal />
+      <ProgressBar />
     </Suspense>
   )
 }

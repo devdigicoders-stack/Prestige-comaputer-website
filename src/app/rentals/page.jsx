@@ -3,15 +3,15 @@ import RentalsView from '../../components/rentals/RentalsView'
 export const metadata = {
   title: 'Rent On — High-Performance Computers & Laptops on Rent | Prestige Computers',
   description:
-    'Rent high-performance laptops, desktops, workstations, and accessories on flexible rental plans. Best rental rates starting from ₹1,299/month with quick delivery and expert support.',
+    'Rent high-performance laptops, desktops, workstations, and accessories on flexible rental plans in Doha, Qatar. Best rental rates with quick delivery and expert support.',
   alternates: {
     canonical: '/rentals',
   },
   openGraph: {
     title: 'Rent On — Computer & Laptop Rentals | Prestige Computers',
     description:
-      'High-performance laptops, desktops & workstations on flexible rental plans. Daily, weekly & monthly subscriptions with zero hassle.',
-    url: 'https://prestigecomputers.co.uk/rentals',
+      'High-performance laptops, desktops & workstations on flexible rental plans in Doha, Qatar.',
+    url: 'https://pcsdoha.net/rentals',
     images: ['/banner/rent.png'],
   },
 }
@@ -23,10 +23,10 @@ export default function RentalsPage() {
     name: 'Computer & Laptop Rental Service',
     provider: {
       '@type': 'ComputerStore',
-      name: 'Prestige Computers',
-      url: 'https://prestigecomputers.co.uk',
+      name: 'Prestige Computers (PCS Doha)',
+      url: 'https://pcsdoha.net',
     },
-    areaServed: 'IN',
+    areaServed: 'QA',
     serviceType: 'Computer Rental',
     offers: [
       {

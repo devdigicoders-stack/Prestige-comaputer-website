@@ -1,9 +1,9 @@
 import Home from '../components/home/Home'
 
 export const metadata = {
-  title: 'Prestige Computers | Buy & Rent Laptops, Desktops, Gaming PCs London',
+  title: 'Prestige Computers | Buy & Rent Laptops, Desktops, Gaming PCs Doha Qatar',
   description:
-    'A Tiny City Full of Amazing Computers. Explore top brand laptops, custom RTX gaming rigs, and flexible computer rentals in London & UK.',
+    'Prestige Computers (PCS Doha) at Al-Mirqab Mall. Brand-new systems, certified pre-owned devices, custom gaming rigs, workstations, and computer rentals in Qatar.',
   alternates: {
     canonical: '/',
   },
@@ -14,10 +14,11 @@ export default function Page() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Prestige Computers',
-    url: 'https://prestigecomputers.co.uk',
+    alternateName: 'PCS Doha',
+    url: 'https://pcsdoha.net',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://prestigecomputers.co.uk/products?search={search_term_string}',
+      target: 'https://pcsdoha.net/products?search={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   }

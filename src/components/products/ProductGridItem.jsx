@@ -1,10 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import ProductVisual from './ProductVisual'
 import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
+import { getProductImageUrl } from '../../services/productApi'
 
 function formatINR(val) {
+  if (val === null || val === undefined || isNaN(val)) return '₹0'
   return `₹${Number(val).toLocaleString('en-IN')}`
 }
 
@@ -17,6 +20,8 @@ function StarIcon() {
 }
 
 function BadgePill({ badge, badgeType }) {
+  if (!badge) return null
+
   if (badgeType === 'new-arrival') {
     return (
       <span className="inline-flex items-center gap-1 bg-gradient-to-r from-[#7c3aed] to-[#9333ea] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md shadow-xs">
@@ -63,17 +68,64 @@ function BadgePill({ badge, badgeType }) {
 
 export default function ProductGridItem({ product }) {
   const { wishlistIds, toggleWishlist, addToCart } = useStore()
-  const isWishlisted = wishlistIds.includes(product.id)
+  const { t, isRtl } = useLanguage()
+  const productId = product.slug || product.id || product._id
+  const isWishlisted = wishlistIds.includes(productId)
+
+  const rawImage =
+    product.image ||
+    (typeof product.images?.[0] === 'string'
+      ? product.images[0]
+      : product.images?.[0]?.url) ||
+    ''
+  const resolvedImageUrl = getProductImageUrl(rawImage)
+  const productName = product.name || product.title || 'Computer Product'
+
+  const stock = typeof product.stock === 'number' ? product.stock : 15
+  const lowStockThreshold = typeof product.lowStockThreshold === 'number' ? product.lowStockThreshold : 5
+  const outOfStockThreshold = typeof product.outOfStockThreshold === 'number' ? product.outOfStockThreshold : 0
+  const isOutOfStock =
+    stock <= outOfStockThreshold ||
+    product.inStock === false ||
+    product.status === 'Out of Stock'
+  const isLowStock = !isOutOfStock && stock <= lowStockThreshold
+
+  const [isAdded, setIsAdded] = useState(false)
+
+  const handleBuyNow = () => {
+    if (isOutOfStock) return
+    const success = addToCart(product)
+    if (success) {
+      setIsAdded(true)
+      setTimeout(() => setIsAdded(false), 2400)
+    }
+  }
+
+  const cpuSpec = product.specs?.cpu || product.specs?.processor || 'Multi-Core CPU'
+  const ramSpec = product.specs?.ram || '16GB RAM'
+  const storageSpec = product.specs?.storage || '512GB SSD'
+  const displaySpec = product.specs?.display || 'FHD Display'
 
   return (
     <article className="group bg-white rounded-2xl border border-[#e5e7eb] p-3.5 sm:p-4 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_10px_28px_rgba(0,0,0,0.08)] hover:border-[#dc1414]/30 relative">
       {/* Top Row: Badge + Wishlist */}
       <div className="flex items-center justify-between gap-2 z-10">
-        <BadgePill badge={product.badge} badgeType={product.badgeType} />
+        <div className="flex items-center gap-1.5 flex-wrap">
+          {isOutOfStock ? (
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#1f2937] text-white text-[10.5px] font-bold shadow-xs">
+              {t('outOfStock')}
+            </span>
+          ) : isLowStock ? (
+            <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#fef3c7] text-[#b45309] border border-[#fde68a] text-[10.5px] font-bold shadow-xs animate-pulse">
+              {isRtl ? `${t('leftInStock')} ${stock}` : `${stock} ${t('leftInStock')}`}
+            </span>
+          ) : null}
+          <BadgePill badge={product.badge} badgeType={product.badgeType} />
+        </div>
 
         <button
           type="button"
-          onClick={() => toggleWishlist(product.id)}
+          onClick={() => toggleWishlist(productId)}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           className={`w-7 h-7 rounded-full flex items-center justify-center transition-all cursor-pointer ${
             isWishlisted
@@ -94,12 +146,27 @@ export default function ProductGridItem({ product }) {
         </button>
       </div>
 
-      {/* Product Image Area */}
+      {/* Product Image Area - Real Dynamic Image */}
       <Link
-        href={`/products/${product.id}`}
-        className="my-2.5 py-1 flex items-center justify-center min-h-[130px] transition-transform duration-300 group-hover:scale-102 cursor-pointer"
+        href={`/products/${productId}`}
+        className="my-2.5 py-1 flex items-center justify-center min-h-[130px] max-h-[130px] transition-transform duration-300 group-hover:scale-102 cursor-pointer overflow-hidden"
       >
-        <ProductVisual variant={product.imageVariant} />
+        {resolvedImageUrl ? (
+          <img
+            src={resolvedImageUrl}
+            alt={productName}
+            className="max-h-[130px] max-w-full object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
+          />
+        ) : (
+          <div className="w-full h-[120px] rounded-lg bg-[#f8fafc] border border-[#eef0f4] flex flex-col items-center justify-center text-[#9ca3af]">
+            <svg viewBox="0 0 24 24" className="w-8 h-8 text-[#cbd5e1]" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            <span className="text-[11px] mt-1 font-medium text-[#9ca3af]">Product Photo</span>
+          </div>
+        )}
       </Link>
 
       {/* Brand & Title */}
@@ -108,34 +175,41 @@ export default function ProductGridItem({ product }) {
           {product.brand}
         </p>
 
-        <Link href={`/products/${product.id}`} className="block">
+        <Link href={`/products/${productId}`} className="block">
           <h3 className="mt-0.5 text-[13.5px] font-bold text-[#111827] line-clamp-2 leading-[1.3] group-hover:text-[#dc1414] transition-colors min-h-[36px]">
-            {product.name}
+            {productName}
           </h3>
         </Link>
 
         {/* Rating */}
         <div className="mt-1.5 flex items-center gap-1.5 text-[12px] font-medium text-[#4b5563]">
           <StarIcon />
-          <span className="font-semibold text-[#111827]">{product.rating}</span>
-          <span className="text-[#6b7280]">({product.reviewCount} Reviews)</span>
+          <span className="font-semibold text-[#111827]">{product.rating || 4.8}</span>
+          <span className="text-[#6b7280]">
+            ({product.reviewCount || product.numReviews || 120} Reviews)
+          </span>
         </div>
 
-        {/* Pricing Row */}
-        <div className="mt-2.5 flex items-baseline gap-2">
-          <span className="text-[17px] font-extrabold text-[#dc1414]">
-            {formatINR(product.price)}
+        {/* Pricing & Delivery Row */}
+        <div className="mt-2.5 flex items-baseline justify-between gap-1 flex-wrap">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[17px] font-extrabold text-[#dc1414]">
+              {formatINR(product.price)}
+            </span>
+            {product.originalPrice && (
+              <span className="text-[12px] text-[#9ca3af] line-through font-normal">
+                {formatINR(product.originalPrice)}
+              </span>
+            )}
+            {product.discount && (
+              <span className="text-[11px] font-semibold text-[#dc1414] bg-[#fee2e2]/60 px-1.5 py-0.5 rounded-sm">
+                {product.discount}
+              </span>
+            )}
+          </div>
+          <span className="text-[11px] font-semibold text-emerald-600">
+            {product.isFreeDelivery !== false && Number(product.deliveryCharge || 0) === 0 ? '✓ Free Delivery' : `+₹${product.deliveryCharge} Del.`}
           </span>
-          {product.originalPrice && (
-            <span className="text-[12px] text-[#9ca3af] line-through font-normal">
-              {formatINR(product.originalPrice)}
-            </span>
-          )}
-          {product.discount && (
-            <span className="text-[11px] font-semibold text-[#dc1414] bg-[#fee2e2]/60 px-1.5 py-0.5 rounded-sm">
-              {product.discount}
-            </span>
-          )}
         </div>
       </div>
 
@@ -144,22 +218,45 @@ export default function ProductGridItem({ product }) {
         {/* Buy Now Button */}
         <button
           type="button"
-          onClick={() => addToCart(product)}
-          className="flex-1 bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.98] text-white text-[12.5px] font-semibold py-2 px-2.5 rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+          disabled={isOutOfStock}
+          onClick={handleBuyNow}
+          className={`flex-1 text-[12.5px] font-semibold py-2 px-2.5 rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition-all ${
+            isOutOfStock
+              ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed shadow-none'
+              : isAdded
+              ? 'bg-emerald-600 text-white shadow-xs'
+              : 'bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.98] text-white cursor-pointer'
+          }`}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-3.5 h-3.5" aria-hidden="true">
-            <path d="M2.5 4h2.5l2.2 10.2a1.5 1.5 0 0 0 1.46 1.2h8.84a1.5 1.5 0 0 0 1.45-1.13L20.5 7.5H6.2" />
-            <circle cx="9.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
-            <circle cx="17.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
-          </svg>
-          <span>Buy Now</span>
+          {isAdded ? (
+            <>
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span>{t('added')}</span>
+            </>
+          ) : (
+            <>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-3.5 h-3.5" aria-hidden="true">
+                <path d="M2.5 4h2.5l2.2 10.2a1.5 1.5 0 0 0 1.46 1.2h8.84a1.5 1.5 0 0 0 1.45-1.13L20.5 7.5H6.2" />
+                <circle cx="9.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
+                <circle cx="17.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
+              </svg>
+              <span>{isOutOfStock ? t('outOfStock') : t('buyNow')}</span>
+            </>
+          )}
         </button>
 
         {/* Rent Now Button */}
         <button
           type="button"
-          onClick={() => addToCart(product)}
-          className="flex-1 bg-white hover:bg-[#fef2f2] text-[#dc1414] border border-[#dc1414] active:scale-[0.98] text-[12.5px] font-semibold py-2 px-2 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
+          disabled={isOutOfStock}
+          onClick={() => !isOutOfStock && addToCart(product)}
+          className={`flex-1 text-[12.5px] font-semibold py-2 px-2 rounded-lg flex items-center justify-center gap-1.5 transition-all whitespace-nowrap ${
+            isOutOfStock
+              ? 'bg-gray-50 text-gray-300 border border-gray-200 cursor-not-allowed opacity-60'
+              : 'bg-white hover:bg-[#fef2f2] text-[#dc1414] border border-[#dc1414] active:scale-[0.98] cursor-pointer'
+          }`}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5" aria-hidden="true">
             <rect x="3" y="4" width="18" height="17" rx="2" />
@@ -167,7 +264,7 @@ export default function ProductGridItem({ product }) {
             <line x1="8" y1="2" x2="8" y2="6" />
             <line x1="3" y1="9" x2="21" y2="9" />
           </svg>
-          <span>Rent Now</span>
+          <span>{t('rentNow')}</span>
         </button>
       </div>
 
@@ -181,7 +278,7 @@ export default function ProductGridItem({ product }) {
             <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
           </svg>
           <span className="mt-0.5 text-[10.5px] font-medium text-[#4b5563] truncate max-w-full">
-            {product.specs.cpu}
+            {cpuSpec}
           </span>
         </div>
 
@@ -192,7 +289,7 @@ export default function ProductGridItem({ product }) {
             <path d="M6 10v4M10 10v4M14 10v4M18 10v4" />
           </svg>
           <span className="mt-0.5 text-[10.5px] font-medium text-[#4b5563] truncate max-w-full">
-            {product.specs.ram}
+            {ramSpec}
           </span>
         </div>
 
@@ -204,7 +301,7 @@ export default function ProductGridItem({ product }) {
             <path d="M12 12h6" />
           </svg>
           <span className="mt-0.5 text-[10.5px] font-medium text-[#4b5563] truncate max-w-full">
-            {product.specs.storage}
+            {storageSpec}
           </span>
         </div>
 
@@ -215,7 +312,7 @@ export default function ProductGridItem({ product }) {
             <path d="M8 21h8M12 17v4" />
           </svg>
           <span className="mt-0.5 text-[10.5px] font-medium text-[#4b5563] truncate max-w-full">
-            {product.specs.display}
+            {displaySpec}
           </span>
         </div>
       </div>

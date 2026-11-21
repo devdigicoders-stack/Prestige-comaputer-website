@@ -1,25 +1,28 @@
 import AboutView from '../../components/about/AboutView'
+import companyInfo from '../../data/companyInfo'
 
 export const metadata = {
-  title: 'About Us | Prestige Computers (PCS) — A Tiny City Full of Amazing Computers',
+  title: 'About Us | Prestige Computers (PCS Doha) — Established 2020',
   description:
-    'Learn about Prestige Computers (PCS), your trusted partner for high-performance laptops, custom gaming PCs, workstations, accessories, and flexible computer rentals.',
+    'Learn about Prestige Computers (Prestige Computer Services / PCS Doha), Qatar-based computer and IT equipment supplier established in 2020 at Al-Mirqab Mall, Doha.',
   keywords: [
     'about prestige computers',
-    'prestige computers pcs',
-    'computer store london',
-    'pc rental company',
-    'custom gaming pcs uk',
-    'laptop supplier',
+    'prestige computer services',
+    'pcs doha',
+    'computer store doha qatar',
+    'al mirqab mall computer shop',
+    'gaming laptops doha',
+    'computer rental qatar',
+    'it equipment supplier qatar',
   ],
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Us | Prestige Computers (PCS)',
+    title: 'About Us | Prestige Computers (PCS Doha)',
     description:
-      'Learn about our journey, 10+ years of excellence, 50,000+ happy customers, and commitment to delivering the best computers.',
-    url: 'https://prestigecomputers.co.uk/about',
+      'Qatar-based computer and IT equipment supplier established in 2020 at Al-Mirqab Mall, Doha. Serving individual, gaming, and enterprise IT requirements.',
+    url: 'https://pcsdoha.net/about',
     siteName: 'Prestige Computers',
     images: ['/banner/about.png'],
     type: 'website',
@@ -30,23 +33,49 @@ export default function AboutPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    name: 'About Prestige Computers (PCS)',
-    description:
-      'Prestige Computers (PCS) is a complete IT solutions provider offering a wide range of laptops, desktops, workstations, accessories, components and rental solutions.',
-    url: 'https://prestigecomputers.co.uk/about',
+    name: 'About Prestige Computers (PCS Doha)',
+    description: companyInfo.about.paragraph1,
+    url: 'https://pcsdoha.net/about',
     mainEntity: {
-      '@type': 'Organization',
-      name: 'Prestige Computers',
-      alternateName: 'PCS',
-      url: 'https://prestigecomputers.co.uk',
-      logo: 'https://prestigecomputers.co.uk/logo.png',
-      telephone: '+44 20 7946 0958',
-      email: 'support@prestigecomputers.co.uk',
+      '@type': 'LocalBusiness',
+      name: companyInfo.businessName,
+      alternateName: companyInfo.publicName,
+      foundingDate: '2020',
+      url: 'https://pcsdoha.net',
+      logo: 'https://pcsdoha.net/logo.png',
+      telephone: companyInfo.phones.primary,
+      email: companyInfo.emails.general,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'London',
-        addressCountry: 'GB',
+        streetAddress: companyInfo.location.building + ', ' + companyInfo.location.street,
+        addressLocality: companyInfo.location.city,
+        addressCountry: 'QA',
       },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: companyInfo.location.latitude,
+        longitude: companyInfo.location.longitude,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          opens: '10:00',
+          closes: '22:00',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Friday'],
+          opens: '14:30',
+          closes: '22:30',
+        },
+      ],
+      sameAs: [
+        companyInfo.socialLinks.instagram,
+        companyInfo.socialLinks.facebook,
+        companyInfo.socialLinks.tiktok,
+        companyInfo.socialLinks.googleMaps,
+      ],
     },
   }
 

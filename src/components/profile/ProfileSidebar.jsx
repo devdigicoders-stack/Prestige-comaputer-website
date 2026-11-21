@@ -6,7 +6,7 @@ import { useStore } from '../../context/StoreContext'
 
 export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) {
   const router = useRouter()
-  const { setCurrentUser, wishlistIds } = useStore()
+  const { logout, wishlistIds } = useStore()
 
   const navItems = [
     {
@@ -21,8 +21,6 @@ export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) 
     {
       id: 'orders',
       label: 'My Orders',
-      badge: '3',
-      badgeColor: 'bg-[#fee2e2] text-[#dc1414]',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5">
           <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
@@ -32,8 +30,6 @@ export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) 
     {
       id: 'rentals',
       label: 'My Rentals',
-      badge: '2 Active',
-      badgeColor: 'bg-[#dcfce7] text-[#16a34a]',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5">
           <rect x="2" y="3" width="20" height="14" rx="2" />
@@ -47,7 +43,7 @@ export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) 
       label: 'My Wishlist',
       isLink: true,
       href: '/wishlist',
-      badge: wishlistIds.length,
+      badge: wishlistIds.length > 0 ? wishlistIds.length : null,
       badgeColor: 'bg-[#fee2e2] text-[#dc1414]',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5">
@@ -98,7 +94,7 @@ export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) 
 
   const handleLogout = () => {
     if (confirm('Are you sure you want to log out of your account?')) {
-      setCurrentUser(null)
+      logout()
       router.push('/')
     }
   }
@@ -134,24 +130,18 @@ export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) 
               key={item.id}
               type="button"
               onClick={() => onSelectTab(item.id)}
-              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition-all cursor-pointer text-left ${
+              className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[13px] font-semibold transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-[#dc1414] text-white shadow-xs'
+                  ? 'bg-[#fef2f2] text-[#dc1414] font-bold shadow-2xs'
                   : 'text-[#4b5563] hover:text-[#111827] hover:bg-[#f8fafc]'
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className={isActive ? 'text-white' : 'text-[#6b7280]'}>
-                  {item.icon}
-                </span>
+                <span className={isActive ? 'text-[#dc1414]' : 'text-[#6b7280]'}>{item.icon}</span>
                 <span>{item.label}</span>
               </div>
               {item.badge && (
-                <span
-                  className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
-                    isActive ? 'bg-white text-[#dc1414]' : item.badgeColor
-                  }`}
-                >
+                <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${item.badgeColor}`}>
                   {item.badge}
                 </span>
               )}
@@ -159,18 +149,19 @@ export default function ProfileSidebar({ activeTab = 'personal', onSelectTab }) 
           )
         })}
 
-        <div className="h-[1px] bg-[#f3f4f6] my-2" />
+        {/* Divider */}
+        <div className="my-2 border-t border-[#f3f4f6]" />
 
-        {/* Logout */}
+        {/* Logout Button */}
         <button
           type="button"
           onClick={handleLogout}
-          className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[13px] font-semibold text-[#dc1414] hover:bg-[#fef2f2] transition-colors cursor-pointer text-left"
+          className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[13px] font-semibold text-[#dc2626] hover:bg-[#fef2f2] transition-colors cursor-pointer w-full text-left"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
           </svg>
-          <span>Log Out</span>
+          <span>Sign Out</span>
         </button>
       </div>
     </aside>

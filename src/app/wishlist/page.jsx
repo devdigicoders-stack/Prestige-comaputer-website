@@ -11,9 +11,9 @@ export const metadata = {
     title: 'My Wishlist | Prestige Computers',
     description:
       'Manage your saved laptops, gaming desktops, monitors, and IT accessories with Prestige Computers.',
-    url: 'https://prestigecomputers.in/wishlist',
+    url: 'https://pcsdoha.net/wishlist',
     siteName: 'Prestige Computers',
-    locale: 'en_IN',
+    locale: 'en_QA',
     type: 'website',
   },
 }

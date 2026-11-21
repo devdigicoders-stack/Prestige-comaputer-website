@@ -386,3 +386,8 @@ export function ThumbnailPreview({ index, isActive, onClick }) {
     </button>
   )
 }
+
+// Aliases for compatibility
+export const DellLaptopAngleVisual = DellLaptopSideAngleVisual
+export const DellLaptopKeyboardVisual = DellLaptopDeckVisual
+export const DellLaptopSideVisual = DellLaptopLidClosedVisual

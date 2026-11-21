@@ -1,13 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+import { submitEnquiry } from '../../services/enquiryApi'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function ContactFormCard() {
+  const { isRtl } = useLanguage()
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
-    inquiryType: '',
+    inquiryType: 'General Inquiry',
     subject: '',
     message: '',
   })
@@ -21,38 +25,47 @@ export default function ContactFormCard() {
     if (errorMessage) setErrorMessage('')
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!formData.fullName.trim()) {
-      setErrorMessage('Please enter your full name.')
+      setErrorMessage(isRtl ? 'يرجى إدخال اسمك بالكامل.' : 'Please enter your full name.')
       return
     }
     if (!formData.email.trim() || !formData.email.includes('@')) {
-      setErrorMessage('Please enter a valid email address.')
+      setErrorMessage(isRtl ? 'يرجى إدخال بريد إلكتروني صالح.' : 'Please enter a valid email address.')
       return
     }
     if (!formData.phone.trim()) {
-      setErrorMessage('Please enter your contact phone number.')
+      setErrorMessage(isRtl ? 'يرجى إدخال رقم الهاتف للتواصل.' : 'Please enter your contact phone number.')
+      return
+    }
+    if (!formData.subject.trim()) {
+      setErrorMessage(isRtl ? 'يرجى كتابة موضوع الرسالة.' : 'Please enter the subject of your message.')
       return
     }
     if (!formData.message.trim()) {
-      setErrorMessage('Please write your message.')
+      setErrorMessage(isRtl ? 'يرجى كتابة نص رسالتك.' : 'Please write your message.')
       return
     }
 
-    setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      setIsSubmitting(true)
+      setErrorMessage('')
+      await submitEnquiry(formData)
       setSubmitted(true)
       setFormData({
         fullName: '',
         email: '',
         phone: '',
-        inquiryType: '',
+        inquiryType: 'General Inquiry',
         subject: '',
         message: '',
       })
-    }, 800)
+    } catch (err) {
+      setErrorMessage(err.message || (isRtl ? 'تعذر إرسال الرسالة. يرجى المحاولة مرة أخرى أو الاتصال بنا.' : 'Failed to submit your message. Please try again or call us directly.'))
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -72,26 +85,42 @@ export default function ContactFormCard() {
           </div>
           <div>
             <h2 className="text-[20px] sm:text-[22px] font-bold text-[#111827] leading-tight">
-              Send Us a Message
+              {isRtl ? (
+                <>أرسل لنا <span className="text-[#dc1414]">رسالة</span></>
+              ) : (
+                <>Send Us a <span className="text-[#dc1414]">Message</span></>
+              )}
             </h2>
             <p className="mt-1 text-[12.5px] sm:text-[13px] text-[#6b7280]">
-              Fill out the form below and our team will get back to you shortly.
+              {isRtl
+                ? 'املأ النموذج وسيقوم فريقنا بالرد والتواصل معك خلال وقت قصير.'
+                : 'Fill out the form below and our team will get back to you shortly.'}
             </p>
           </div>
         </div>
 
         {submitted && (
           <div className="mb-6 p-4 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] flex items-start gap-3 animate-fade-in">
-            <span className="text-lg">✓</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
             <div className="text-[13px]">
-              <strong className="font-bold">Thank you!</strong> Your message has been sent successfully. One of our specialists will get back to you within 2 hours.
+              <strong className="font-bold">{isRtl ? 'شكراً لك!' : 'Thank you!'}</strong>{' '}
+              {isRtl
+                ? 'تم إرسال رسالتك بنجاح. سيتواصل معك أحد المتخصصين لدينا في غضون ساعتين.'
+                : 'Your message has been sent successfully. One of our specialists will get back to you within 2 hours.'}
             </div>
           </div>
         )}
 
         {errorMessage && (
-          <div className="mb-4 p-3 rounded-lg bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-[12.5px] font-medium">
-            ⚠️ {errorMessage}
+          <div className="mb-4 p-3 rounded-lg bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-[12.5px] font-medium flex items-center gap-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-red-600 shrink-0" aria-hidden="true">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <span>{errorMessage}</span>
           </div>
         )}
 
@@ -104,10 +133,10 @@ export default function ContactFormCard() {
                 htmlFor="fullName"
                 className="block text-[12.5px] font-semibold text-[#374151] mb-1.5"
               >
-                Full Name <span className="text-[#dc1414]">*</span>
+                {isRtl ? 'الاسم الكامل' : 'Full Name'} <span className="text-[#dc1414]">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]">
+                <div className="absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
@@ -120,8 +149,8 @@ export default function ContactFormCard() {
                   required
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="Enter your name"
-                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                  placeholder={isRtl ? 'أدخل اسمك بالكامل' : 'Enter your name'}
+                  className="w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                 />
               </div>
             </div>
@@ -131,10 +160,10 @@ export default function ContactFormCard() {
                 htmlFor="email"
                 className="block text-[12.5px] font-semibold text-[#374151] mb-1.5"
               >
-                Email Address <span className="text-[#dc1414]">*</span>
+                {isRtl ? 'البريد الإلكتروني' : 'Email Address'} <span className="text-[#dc1414]">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]">
+                <div className="absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -147,8 +176,8 @@ export default function ContactFormCard() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your email"
-                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                  placeholder={isRtl ? 'أدخل بريدك الإلكتروني' : 'Enter your email'}
+                  className="w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                 />
               </div>
             </div>
@@ -161,10 +190,10 @@ export default function ContactFormCard() {
                 htmlFor="phone"
                 className="block text-[12.5px] font-semibold text-[#374151] mb-1.5"
               >
-                Phone Number <span className="text-[#dc1414]">*</span>
+                {isRtl ? 'رقم الهاتف' : 'Phone Number'} <span className="text-[#dc1414]">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]">
+                <div className="absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
@@ -176,8 +205,8 @@ export default function ContactFormCard() {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Enter your phone number"
-                  className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                  placeholder={isRtl ? '+974 ...' : 'Enter your phone number'}
+                  className="w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
                 />
               </div>
             </div>
@@ -187,10 +216,10 @@ export default function ContactFormCard() {
                 htmlFor="inquiryType"
                 className="block text-[12.5px] font-semibold text-[#374151] mb-1.5"
               >
-                Inquiry Type <span className="text-[#dc1414]">*</span>
+                {isRtl ? 'نوع الاستفسار' : 'Inquiry Type'} <span className="text-[#dc1414]">*</span>
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]">
+                <div className="absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                     <line x1="8" y1="6" x2="21" y2="6" />
                     <line x1="8" y1="12" x2="21" y2="12" />
@@ -205,17 +234,16 @@ export default function ContactFormCard() {
                   name="inquiryType"
                   value={formData.inquiryType}
                   onChange={handleChange}
-                  className="w-full pl-9 pr-8 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] outline-none transition-all bg-white cursor-pointer appearance-none"
+                  className="w-full pl-9 pr-8 rtl:pr-9 rtl:pl-8 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] outline-none transition-all bg-white cursor-pointer appearance-none"
                 >
-                  <option value="">Select inquiry type</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                  <option value="Product Purchase">Product Purchase</option>
-                  <option value="Computer & Laptop Rental">Computer &amp; Laptop Rental</option>
-                  <option value="Bulk & Corporate Orders">Bulk &amp; Corporate Orders</option>
-                  <option value="Technical Support">Technical Support</option>
-                  <option value="Warranty & Repair">Warranty &amp; Repair</option>
+                  <option value="General Inquiry">{isRtl ? 'استفسار عام' : 'General Inquiry'}</option>
+                  <option value="Product Purchase">{isRtl ? 'شراء منتج' : 'Product Purchase'}</option>
+                  <option value="Computer & Laptop Rental">{isRtl ? 'تأجير لابتوب وكمبيوتر' : 'Computer & Laptop Rental'}</option>
+                  <option value="Bulk & Corporate Orders">{isRtl ? 'طلبات الشركات والجملة' : 'Bulk & Corporate Orders'}</option>
+                  <option value="Technical Support">{isRtl ? 'دعم فني وصيانة' : 'Technical Support'}</option>
+                  <option value="Warranty & Repair">{isRtl ? 'الضمان والإصلاح' : 'Warranty & Repair'}</option>
                 </select>
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#9ca3af]">
+                <div className="absolute inset-y-0 right-0 pr-3 rtl:right-auto rtl:left-0 rtl:pl-3 flex items-center pointer-events-none text-[#9ca3af]">
                   <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                     <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                   </svg>
@@ -230,10 +258,10 @@ export default function ContactFormCard() {
               htmlFor="subject"
               className="block text-[12.5px] font-semibold text-[#374151] mb-1.5"
             >
-              Subject <span className="text-[#dc1414]">*</span>
+              {isRtl ? 'الموضوع' : 'Subject'} <span className="text-[#dc1414]">*</span>
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#9ca3af]">
+              <div className="absolute inset-y-0 left-0 pl-3 rtl:left-auto rtl:right-0 rtl:pr-3 flex items-center pointer-events-none text-[#9ca3af]">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                   <polygon points="12 2 2 7 12 12 22 7 12 2" />
                   <polyline points="2 17 12 22 22 17" />
@@ -247,8 +275,8 @@ export default function ContactFormCard() {
                 required
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="Enter subject"
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
+                placeholder={isRtl ? 'أدخل موضوع الرسالة' : 'Enter subject'}
+                className="w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all"
               />
             </div>
           </div>
@@ -259,10 +287,10 @@ export default function ContactFormCard() {
               htmlFor="message"
               className="block text-[12.5px] font-semibold text-[#374151] mb-1.5"
             >
-              Your Message <span className="text-[#dc1414]">*</span>
+              {isRtl ? 'نص الرسالة' : 'Your Message'} <span className="text-[#dc1414]">*</span>
             </label>
             <div className="relative">
-              <div className="absolute top-3 left-3 pointer-events-none text-[#9ca3af]">
+              <div className="absolute top-3 left-3 rtl:left-auto rtl:right-3 pointer-events-none text-[#9ca3af]">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
@@ -274,8 +302,8 @@ export default function ContactFormCard() {
                 required
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Write your message here..."
-                className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all resize-y"
+                placeholder={isRtl ? 'اكتب تفاصيل رسالتك أو استفسارك هنا...' : 'Write your message here...'}
+                className="w-full pl-9 pr-3.5 rtl:pr-9 rtl:pl-3.5 py-2.5 rounded-xl border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[13px] text-[#111827] placeholder-[#9ca3af] outline-none transition-all resize-y"
               />
             </div>
           </div>
@@ -290,12 +318,16 @@ export default function ContactFormCard() {
               <svg
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-4 h-4 -rotate-45"
+                className="w-4 h-4 -rotate-45 rtl:rotate-135"
                 aria-hidden="true"
               >
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
               </svg>
-              <span>{isSubmitting ? 'Sending Message...' : 'Send Message'}</span>
+              <span>
+                {isSubmitting
+                  ? (isRtl ? 'جاري إرسال الرسالة...' : 'Sending Message...')
+                  : (isRtl ? 'إرسال الرسالة' : 'Send Message')}
+              </span>
             </button>
           </div>
         </form>

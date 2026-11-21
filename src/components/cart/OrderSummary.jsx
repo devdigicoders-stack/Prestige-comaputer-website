@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStore } from '../../context/StoreContext'
-import { CART_PRODUCTS_DATA } from './CartItemsList'
+import { useLanguage } from '../../context/LanguageContext'
+import { normalizeCartItem } from './CartItemsList'
 
 function LockIcon({ className = 'w-4 h-4' }) {
   return (
@@ -32,32 +33,35 @@ function TruckIcon({ className = 'w-4 h-4' }) {
 
 export default function OrderSummary() {
   const router = useRouter()
+  const { isRtl } = useLanguage()
   const { cartItems, openLoginModal, currentUser } = useStore()
   const [coupon, setCoupon] = useState('')
   const [couponApplied, setCouponApplied] = useState(false)
   const [couponError, setCouponError] = useState('')
 
-  // Calculate Subtotal from cart items
-  const selectedItems = cartItems
+  // Calculate Subtotal from cart items dynamically
+  const selectedItems = (Array.isArray(cartItems) ? cartItems : [])
+    .map(normalizeCartItem)
+    .filter(Boolean)
     .filter((it) => it.selected !== false)
-    .map((it) => {
-      const info = CART_PRODUCTS_DATA[it.id]
-      return {
-        ...info,
-        quantity: it.quantity || 1,
-      }
-    })
-    .filter((it) => it.price)
 
-  const totalCount = selectedItems.reduce((acc, it) => acc + it.quantity, 0)
-  const subtotal = selectedItems.reduce((acc, it) => acc + it.price * it.quantity, 0)
+  const totalCount = selectedItems.reduce((acc, it) => acc + (it.quantity || 1), 0)
+  const subtotal = selectedItems.reduce((acc, it) => acc + it.price * (it.quantity || 1), 0)
 
-  // In mockup: Subtotal: ₹1,90,997, Discount: -₹19,999, Total: ₹1,70,998
-  // If exact default 3 items present: subtotal is 190,997, discount is 19,999
-  const baseDiscount = subtotal > 0 ? (subtotal >= 190000 ? 19999 : Math.round(subtotal * 0.1)) : 0
-  const extraCouponDiscount = couponApplied ? Math.round(subtotal * 0.05) : 0
-  const totalDiscount = baseDiscount + extraCouponDiscount
-  const finalTotal = Math.max(0, subtotal - totalDiscount)
+  // Dynamic delivery charge calculated from cart items
+  const deliveryCharges = selectedItems.reduce((acc, it) => {
+    const isFree = it.isFreeDelivery !== false && Number(it.deliveryCharge || 0) === 0
+    return acc + (isFree ? 0 : Number(it.deliveryCharge || 0) * (it.quantity || 1))
+  }, 0)
+
+  // STRICT RULE: No discount applied automatically! Discount is ₹0 until a coupon is applied.
+  const couponDiscount = couponApplied
+    ? (coupon.trim().toUpperCase() === 'SAVE5'
+        ? Math.round(subtotal * 0.05)
+        : Math.round(subtotal * 0.1))
+    : 0
+  const totalDiscount = couponDiscount
+  const finalTotal = Math.max(0, subtotal - totalDiscount + deliveryCharges)
 
   const handleApplyCoupon = (e) => {
     e.preventDefault()
@@ -66,16 +70,15 @@ export default function OrderSummary() {
       setCouponError('Please enter a coupon code')
       return
     }
-    if (code === 'PCS10' || code === 'SAVE5' || code === 'WELCOME' || code === 'SPECIAL') {
-      setCouponApplied(true)
-      setCouponError('')
-    } else {
-      setCouponApplied(true)
-      setCouponError('')
-    }
+    setCouponApplied(true)
+    setCouponError('')
   }
 
   const handleCheckout = () => {
+    if (!currentUser) {
+      openLoginModal()
+      return
+    }
     router.push('/checkout')
   }
 
@@ -84,26 +87,40 @@ export default function OrderSummary() {
       <div className="bg-white rounded-2xl border border-gray-150 p-5 sm:p-6 shadow-xs sticky top-24">
         {/* Title */}
         <h2 className="text-xl font-bold text-gray-900 pb-4 border-b border-gray-100 tracking-tight">
-          Order Summary
+          {isRtl ? 'ملخص الطلب' : 'Order Summary'}
         </h2>
 
         {/* Pricing Rows */}
         <div className="py-4 space-y-3 text-[13.5px]">
           <div className="flex items-center justify-between text-gray-700">
-            <span>Subtotal ({totalCount} {totalCount === 1 ? 'Item' : 'Items'})</span>
+            <span>
+              {isRtl
+                ? `المجموع الفرعي (${totalCount} ${totalCount === 1 ? 'منتج' : 'منتجات'})`
+                : `Subtotal (${totalCount} ${totalCount === 1 ? 'Item' : 'Items'})`}
+            </span>
             <span className="font-bold text-gray-900">
               ₹{subtotal.toLocaleString('en-IN')}
             </span>
           </div>
 
           <div className="flex items-center justify-between text-emerald-600 font-semibold">
-            <span>Discount</span>
-            <span>- ₹{totalDiscount.toLocaleString('en-IN')}</span>
+            <span>
+              {isRtl ? 'الخصم' : 'Discount'}{' '}
+              {couponApplied && coupon ? `(${coupon.trim().toUpperCase()})` : ''}
+            </span>
+            <span>{totalDiscount > 0 ? `- ₹${totalDiscount.toLocaleString('en-IN')}` : '₹0'}</span>
           </div>
 
           <div className="flex items-center justify-between text-gray-700">
-            <span>Delivery Charges</span>
-            <span className="font-semibold text-gray-900">₹0</span>
+            <span className="inline-flex items-center gap-1.5">
+              <TruckIcon className="w-4 h-4 text-gray-500" />
+              <span>{isRtl ? 'رسوم التوصيل' : 'Delivery Charges'}</span>
+            </span>
+            <span className={`font-semibold ${deliveryCharges === 0 ? 'text-emerald-600' : 'text-gray-900'}`}>
+              {deliveryCharges === 0
+                ? (isRtl ? 'مجاني' : 'Free')
+                : `₹${deliveryCharges.toLocaleString('en-IN')}`}
+            </span>
           </div>
         </div>
 
@@ -112,10 +129,10 @@ export default function OrderSummary() {
           <div className="flex items-baseline justify-between mb-5">
             <div>
               <span className="text-base font-bold text-gray-900 block leading-tight">
-                Total Amount
+                {isRtl ? 'المبلغ الإجمالي' : 'Total Amount'}
               </span>
               <span className="text-[11.5px] text-gray-500 font-normal">
-                (Inclusive of all taxes)
+                {isRtl ? '(شامل لجميع الرسوم والضرائب)' : '(Inclusive of all taxes)'}
               </span>
             </div>
             <span className="text-2xl font-black text-[#dc1414] tracking-tight">
@@ -130,8 +147,8 @@ export default function OrderSummary() {
             className="w-full py-3.5 px-4 rounded-xl bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white font-bold text-[14.5px] flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
           >
             <LockIcon className="w-4 h-4 shrink-0" />
-            <span>Proceed to Checkout</span>
-            <span aria-hidden="true">&rarr;</span>
+            <span>{isRtl ? 'المتابعة لإتمام الطلب' : 'Proceed to Checkout'}</span>
+            <span aria-hidden="true" className="rtl:rotate-180">&rarr;</span>
           </button>
         </div>
 
@@ -142,7 +159,7 @@ export default function OrderSummary() {
             className="flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-gray-800 mb-2.5"
           >
             <TicketIcon className="w-4 h-4 text-[#dc1414]" />
-            <span>Have a Coupon Code?</span>
+            <span>{isRtl ? 'هل لديك كود خصم؟' : 'Have a Coupon Code?'}</span>
           </label>
 
           <form onSubmit={handleApplyCoupon} className="flex gap-2">
@@ -154,14 +171,14 @@ export default function OrderSummary() {
                 setCoupon(e.target.value)
                 setCouponError('')
               }}
-              placeholder="Enter coupon code"
+              placeholder={isRtl ? 'أدخل كود الخصم' : 'Enter coupon code'}
               className="flex-1 min-w-0 px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-gray-250 bg-gray-50/50 focus:outline-none focus:ring-1.5 focus:ring-[#dc1414] transition-all"
             />
             <button
               type="submit"
               className="px-4 py-2 rounded-xl border border-[#dc1414] text-[#dc1414] hover:bg-red-50 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
             >
-              Apply
+              {isRtl ? 'تطبيق' : 'Apply'}
             </button>
           </form>
 
@@ -180,7 +197,14 @@ export default function OrderSummary() {
         {/* Free Delivery Banner */}
         <div className="mt-5 p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center justify-center gap-2 text-center">
           <TruckIcon className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>You are eligible for Free Delivery! 🎉</span>
+          <span>You are eligible for Free Delivery!</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true">
+            <polyline points="20 12 20 22 4 22 4 12" />
+            <rect width="20" height="5" x="2" y="7" />
+            <line x1="12" y1="22" x2="12" y2="7" />
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+          </svg>
         </div>
       </div>
     </aside>

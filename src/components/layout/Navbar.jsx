@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
-  ALL_CATEGORIES_MENU,
   DELIVERY_COUNTRIES,
   MAIN_NAV_LINKS,
 } from '../../constants/navigation'
 import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
+import { getActiveCategories } from '../../services/categoryApi'
+import HeaderSearchBar from './HeaderSearchBar'
 
 function GlobeIcon({ className = 'w-4 h-4' }) {
   return (
@@ -189,6 +191,7 @@ export default function Navbar({
   onSearch,
 }) {
   const store = useStore()
+  const { language, setLanguage, isRtl, t } = useLanguage()
   const pathname = usePathname()
   const router = useRouter()
 
@@ -202,8 +205,21 @@ export default function Navbar({
   const [openDropdownId, setOpenDropdownId] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
+  const [liveCategories, setLiveCategories] = useState(null)
 
   const headerRef = useRef(null)
+
+  useEffect(() => {
+    let isMounted = true
+    getActiveCategories().then((data) => {
+      if (isMounted && Array.isArray(data) && data.length > 0) {
+        setLiveCategories(data)
+      }
+    })
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   useEffect(() => {
     const handleOutside = (e) => {
@@ -234,22 +250,39 @@ export default function Navbar({
       {/* TIER 1: TOP UTILITY BAR */}
       <div className="bg-[#060608] border-b border-white/[0.08]">
         <div className="max-w-[1380px] mx-auto px-4 lg:px-6 h-9 flex items-center justify-between gap-3 text-[11.5px] sm:text-[12px] text-[#e5e7eb]">
-          {/* Left Contact Info (Phone & Email) */}
-          <div className="flex items-center gap-3 sm:gap-5">
+          {/* Left Contact Info (Phone, WhatsApp & Email) */}
+          <div className="flex items-center gap-3 sm:gap-4">
             <a
-              href="tel:+919876543210"
+              href="tel:+97441453868"
               className="inline-flex items-center gap-1.5 text-[#e5e7eb] hover:text-[#ff4d4d] transition-colors"
             >
-              <span className="text-[#dc1414] font-bold">📞</span>
-              <span className="font-medium">+91 98765 43210</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#dc1414]" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span className="font-medium"><bdi dir="ltr">+974 4145 3868</bdi></span>
             </a>
             <span className="h-3 w-px bg-white/20 hidden sm:inline" aria-hidden="true" />
             <a
-              href="mailto:support@prestigecomputers.in"
-              className="hidden sm:inline-flex items-center gap-1.5 text-[#e5e7eb] hover:text-[#ff4d4d] transition-colors"
+              href="https://wa.me/97466919155"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[#e5e7eb] hover:text-[#25D366] transition-colors"
             >
-              <span className="text-[#dc1414] font-bold">✉️</span>
-              <span>support@prestigecomputers.in</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#25D366]" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+              </svg>
+              <span>{t('whatsapp')} <bdi dir="ltr">+974 6691 9155</bdi></span>
+            </a>
+            <span className="h-3 w-px bg-white/20 hidden md:inline" aria-hidden="true" />
+            <a
+              href="mailto:info@pcsdoha.net"
+              className="hidden md:inline-flex items-center gap-1.5 text-[#e5e7eb] hover:text-[#ff4d4d] transition-colors"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#dc1414]" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              <span>info@pcsdoha.net</span>
             </a>
           </div>
 
@@ -260,7 +293,7 @@ export default function Navbar({
               className="hover:text-white transition-colors hidden md:inline-flex items-center gap-1"
             >
               <TruckIcon className="w-3.5 h-3.5 text-[#9ca3af]" />
-              <span>Track Order</span>
+              <span>{t('trackOrder')}</span>
             </Link>
             <span className="h-3 w-px bg-white/20 hidden md:inline" aria-hidden="true" />
             <Link
@@ -268,16 +301,49 @@ export default function Navbar({
               className="hover:text-white transition-colors inline-flex items-center gap-1"
             >
               <HeadsetIcon className="w-3.5 h-3.5 text-[#9ca3af]" />
-              <span>Need Help?</span>
+              <span>{t('needHelp')}</span>
             </Link>
             <span className="h-3 w-px bg-white/20" aria-hidden="true" />
             <Link
               href="/store-locator"
               className="hover:text-white transition-colors inline-flex items-center gap-1"
             >
-              <span className="text-[#dc1414]">📍</span>
-              <span>Store Locator</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-[#dc1414]" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>{t('storeLocator')}</span>
             </Link>
+
+            <span className="h-3 w-px bg-white/20" aria-hidden="true" />
+
+            {/* Language Switcher Pill */}
+            <div className="inline-flex items-center rounded-md bg-white/10 p-0.5 text-[11px] font-bold">
+              <button
+                type="button"
+                onClick={() => setLanguage('en')}
+                className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                  language === 'en'
+                    ? 'bg-[#dc1414] text-white shadow-xs'
+                    : 'text-[#d1d5db] hover:text-white'
+                }`}
+                title="English"
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage('ar')}
+                className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                  language === 'ar'
+                    ? 'bg-[#dc1414] text-white shadow-xs'
+                    : 'text-[#d1d5db] hover:text-white'
+                }`}
+                title="العربية"
+              >
+                العربية
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -313,27 +379,9 @@ export default function Navbar({
           </div>
 
           {/* Center: Pill Search Bar */}
-          <form
-            onSubmit={handleSearchSubmit}
-            className="order-3 lg:order-2 w-full lg:flex-1 lg:max-w-[590px]"
-          >
-            <div className="flex items-center bg-white rounded-full p-1 pl-4 sm:pl-5 shadow-[0_2px_10px_rgba(0,0,0,0.25)] focus-within:ring-2 focus-within:ring-[#dc1414]/60 transition-all">
-              <input
-                type="text"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Search for laptops, desktops, gaming PCs, accessories..."
-                className="w-full bg-transparent text-[13px] text-[#111827] placeholder:text-[#6b7280] focus:outline-none"
-              />
-              <button
-                type="submit"
-                aria-label="Search catalog"
-                className="h-[36px] sm:h-[38px] w-[50px] sm:w-[56px] rounded-full bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#eb1818] hover:to-[#a50707] active:scale-[0.98] text-white flex items-center justify-center shrink-0 transition-all cursor-pointer"
-              >
-                <SearchIcon className="w-[18px] h-[18px]" />
-              </button>
-            </div>
-          </form>
+          <div className="order-3 lg:order-2 w-full lg:flex-1 lg:max-w-[590px]">
+            <HeaderSearchBar onSearchSubmit={onSearch} />
+          </div>
 
           {/* Right: Login/Account, Wishlist, Cart */}
           <div className="order-2 lg:order-3 flex items-center gap-3.5 sm:gap-5 shrink-0">
@@ -345,60 +393,60 @@ export default function Navbar({
                   if (store.currentUser) {
                     setAccountOpen((prev) => !prev)
                   } else {
-                    store.openRegisterModal()
+                    store.openLoginModal()
                   }
                   setCountryOpen(false)
                   setCategoriesOpen(false)
                 }}
-                className="flex items-center gap-2.5 text-left group cursor-pointer"
+                className="flex items-center gap-2.5 text-left rtl:text-right group cursor-pointer"
               >
                 <UserIcon className="w-[26px] h-[26px] text-[#e5e7eb] group-hover:text-white transition-colors shrink-0" />
                 <div className="leading-tight">
                   <div className="text-[12px] font-medium text-white group-hover:text-[#ff4d4d] transition-colors">
-                    {store.currentUser ? store.currentUser.name : 'Login / Register'}
+                    {store.currentUser ? store.currentUser.name : t('loginRegister')}
                   </div>
                   <div className="text-[12px] text-[#d1d5db] inline-flex items-center gap-1 mt-0.5">
-                    <span>{store.currentUser ? 'My Account' : 'Sign Up Free'}</span>
+                    <span>{store.currentUser ? t('myAccount') : t('signUpFree')}</span>
                     <ChevronDownIcon className="w-3 h-3 text-[#9ca3af]" />
                   </div>
                 </div>
               </button>
 
               {accountOpen && store.currentUser && (
-                <div className="absolute right-0 mt-3 w-48 rounded-xl bg-[#141418] border border-white/10 shadow-2xl py-1.5 z-50">
+                <div className="absolute right-0 rtl:right-auto rtl:left-0 mt-3 w-48 rounded-xl bg-[#141418] border border-white/10 shadow-2xl py-1.5 z-50">
                   <div className="px-4 py-2 border-b border-white/10 text-[11px] text-[#9ca3af]">
-                    Signed in as <strong className="text-white block truncate">{store.currentUser.email || store.currentUser.name}</strong>
+                    {t('signedInAs')} <strong className="text-white block truncate">{store.currentUser.email || store.currentUser.name}</strong>
                   </div>
                   <Link
                     href="/profile"
                     onClick={() => setAccountOpen(false)}
-                    className="block w-full px-4 py-2 text-left text-[12.5px] text-[#e5e7eb] hover:bg-white/[0.06] hover:text-white transition-colors"
+                    className="block w-full px-4 py-2 text-left rtl:text-right text-[12.5px] text-[#e5e7eb] hover:bg-white/[0.06] hover:text-white transition-colors"
                   >
-                    My Profile
+                    {t('myProfile')}
                   </Link>
                   <Link
                     href="/rentals"
                     onClick={() => setAccountOpen(false)}
-                    className="block w-full px-4 py-2 text-left text-[12.5px] text-[#e5e7eb] hover:bg-white/[0.06] hover:text-white transition-colors"
+                    className="block w-full px-4 py-2 text-left rtl:text-right text-[12.5px] text-[#e5e7eb] hover:bg-white/[0.06] hover:text-white transition-colors"
                   >
-                    My Rentals
+                    {t('myRentals')}
                   </Link>
                   <Link
                     href="/profile"
                     onClick={() => setAccountOpen(false)}
-                    className="block w-full px-4 py-2 text-left text-[12.5px] text-[#e5e7eb] hover:bg-white/[0.06] hover:text-white transition-colors"
+                    className="block w-full px-4 py-2 text-left rtl:text-right text-[12.5px] text-[#e5e7eb] hover:bg-white/[0.06] hover:text-white transition-colors"
                   >
-                    My Orders
+                    {t('myOrders')}
                   </Link>
                   <button
                     type="button"
                     onClick={() => {
-                      store.setCurrentUser(null)
+                      store.logout()
                       setAccountOpen(false)
                     }}
-                    className="w-full px-4 py-2 text-left text-[12.5px] text-[#ff4d4d] hover:bg-white/[0.06] transition-colors cursor-pointer border-t border-white/10 mt-1"
+                    className="w-full px-4 py-2 text-left rtl:text-right text-[12.5px] text-[#ff4d4d] hover:bg-white/[0.06] transition-colors cursor-pointer border-t border-white/10 mt-1"
                   >
-                    Sign Out
+                    {t('signOut')}
                   </button>
                 </div>
               )}
@@ -412,17 +460,17 @@ export default function Navbar({
             {/* Wishlist */}
             <Link
               href="/wishlist"
-              aria-label="Wishlist"
+              aria-label={t('wishlist')}
               className="relative flex items-center gap-2 text-white hover:text-[#ff4d4d] transition-colors cursor-pointer pt-1"
             >
               <span className="relative inline-flex items-center">
                 <HeartIcon className="w-[22px] h-[22px]" />
-                <span className="absolute -top-2.5 -right-2.5 lg:-top-3 lg:left-[54px] min-w-[18px] h-[18px] px-1 rounded-full bg-[#e11212] text-white text-[10.5px] font-semibold flex items-center justify-center leading-none shadow-xs">
+                <span className="absolute -top-2 -right-2.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[#e11212] text-white text-[10.5px] font-semibold flex items-center justify-center leading-none shadow-xs">
                   {displayWishlist}
                 </span>
               </span>
               <span className="hidden lg:inline text-[12.5px] font-medium">
-                Wishlist
+                {t('wishlist')}
               </span>
             </Link>
 
@@ -434,17 +482,17 @@ export default function Navbar({
             {/* Cart */}
             <Link
               href="/cart"
-              aria-label="Shopping Cart"
+              aria-label={t('cart')}
               className="relative flex items-center gap-2 text-white hover:text-[#ff4d4d] transition-colors cursor-pointer pt-1 pr-1"
             >
               <span className="relative inline-flex items-center">
                 <CartIcon className="w-[23px] h-[23px]" />
-                <span className="absolute -top-2.5 -right-2.5 lg:-top-3 lg:left-[38px] min-w-[18px] h-[18px] px-1 rounded-full bg-[#e11212] text-white text-[10.5px] font-semibold flex items-center justify-center leading-none shadow-xs">
+                <span className="absolute -top-2 -right-2.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[#e11212] text-white text-[10.5px] font-semibold flex items-center justify-center leading-none shadow-xs">
                   {displayCart}
                 </span>
               </span>
               <span className="hidden lg:inline text-[12.5px] font-medium">
-                Cart
+                {t('cart')}
               </span>
             </Link>
           </div>
@@ -470,7 +518,7 @@ export default function Navbar({
               className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg bg-gradient-to-b from-[#e11414] to-[#bd0909] hover:from-[#eb1818] hover:to-[#a80707] text-white text-[13px] font-medium shadow-[0_4px_14px_rgba(220,16,16,0.35)] transition-all cursor-pointer"
             >
               <MenuIcon className="w-4 h-4" />
-              <span>All Categories</span>
+              <span>{t('allCategories')}</span>
               <ChevronDownIcon
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
                   categoriesOpen ? 'rotate-180' : ''
@@ -479,28 +527,41 @@ export default function Navbar({
             </button>
 
             {categoriesOpen && (
-              <div className="absolute left-0 top-full pt-1 w-64 z-50">
-                <div className="rounded-xl bg-[#141418] border border-white/10 shadow-2xl py-2">
-                  {ALL_CATEGORIES_MENU.map((cat) => (
-                    <Link
-                      key={cat.label}
-                      href={cat.href}
-                      onClick={() => setCategoriesOpen(false)}
-                      className="w-full px-4 py-2.5 flex items-center justify-between text-left hover:bg-white/[0.06] transition-colors cursor-pointer group"
-                    >
-                      <span className="inline-flex items-center gap-2 text-[13px] text-[#f3f4f6] group-hover:text-white">
-                        <span>{cat.label}</span>
-                        {cat.isNew && (
-                          <span className="px-1.5 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none">
-                            New
-                          </span>
-                        )}
-                      </span>
-                      <span className="text-[11px] text-[#9ca3af]">
-                        {cat.count}
-                      </span>
-                    </Link>
-                  ))}
+              <div className="absolute left-0 rtl:left-auto rtl:right-0 top-full pt-1 w-64 z-50">
+                <div className="rounded-xl bg-[#141418] border border-white/10 shadow-2xl py-2 max-h-[380px] overflow-y-auto no-scrollbar">
+                  {!liveCategories ? (
+                    <div className="px-4 py-3 text-[12px] text-[#9ca3af] flex items-center gap-2">
+                      <span className="w-3.5 h-3.5 rounded-full border-2 border-white/20 border-t-[#dc1414] animate-spin" />
+                      <span>{t('loadingCategories')}</span>
+                    </div>
+                  ) : liveCategories.length > 0 ? (
+                    liveCategories.map((cat) => (
+                      <Link
+                        key={cat.slug || cat._id}
+                        href={`/products?category=${cat.slug}`}
+                        onClick={() => setCategoriesOpen(false)}
+                        className="w-full px-4 py-2.5 flex items-center justify-between text-left rtl:text-right hover:bg-white/[0.06] transition-colors cursor-pointer group"
+                      >
+                        <span className="inline-flex items-center gap-2 text-[13px] text-[#f3f4f6] group-hover:text-white">
+                          <span>{cat.name}</span>
+                          {cat.badge && (
+                            <span className="px-1.5 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none">
+                              {cat.badge}
+                            </span>
+                          )}
+                        </span>
+                        <span className="text-[11px] text-[#9ca3af]">
+                          {typeof cat.productCount === 'number'
+                            ? `${cat.productCount} ${isRtl ? 'منتج' : cat.productCount === 1 ? 'Product' : 'Products'}`
+                            : `${cat.count || 0} ${isRtl ? 'منتج' : 'Products'}`}
+                        </span>
+                      </Link>
+                    ))
+                  ) : (
+                    <p className="px-4 py-3 text-[12px] text-[#9ca3af]">
+                      {t('noCategoriesFound')}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -514,6 +575,8 @@ export default function Navbar({
                 link.href === '/'
                   ? pathname === '/'
                   : pathname.startsWith(link.href)
+              const displayLabel = isRtl && link.labelAr ? link.labelAr : link.label
+              const displayBadge = isRtl && link.badgeAr ? link.badgeAr : link.badge
 
               if (link.hasDropdown) {
                 return (
@@ -532,20 +595,20 @@ export default function Navbar({
                             : 'text-[#f3f4f6] hover:text-[#ff4d4d]'
                         }`}
                       >
-                        <span>{link.label}</span>
+                        <span>{displayLabel}</span>
                         <ChevronDownIcon className="w-3 h-3 text-[#9ca3af]" />
                       </Link>
                     </div>
 
                     {isOpen && (
-                      <div className="absolute top-full left-0 pt-1 z-50">
+                      <div className="absolute top-full left-0 rtl:left-auto rtl:right-0 pt-1 z-50">
                         <div className="w-56 rounded-xl bg-[#141418] border border-white/10 shadow-2xl py-1.5">
                           {link.items.map((subItem) => (
                             <Link
                               key={subItem.label}
                               href={subItem.href}
                               onClick={() => setOpenDropdownId(null)}
-                              className="block w-full px-4 py-2 text-left text-[12.5px] text-[#d1d5db] hover:bg-white/[0.06] hover:text-white transition-colors"
+                              className="block w-full px-4 py-2 text-left rtl:text-right text-[12.5px] text-[#d1d5db] hover:bg-white/[0.06] hover:text-white transition-colors"
                             >
                               {subItem.label}
                             </Link>
@@ -567,10 +630,10 @@ export default function Navbar({
                         : 'text-[#f3f4f6] hover:text-[#ff4d4d]'
                     }`}
                   >
-                    <span>{link.label}</span>
+                    <span>{displayLabel}</span>
                     {link.badge && (
-                      <span className="ml-1 px-2 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none shadow-xs">
-                        {link.badge}
+                      <span className="ml-1 rtl:ml-0 rtl:mr-1 px-2 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none shadow-xs">
+                        {displayBadge}
                       </span>
                     )}
                   </Link>
@@ -616,9 +679,9 @@ export default function Navbar({
               onClick={() => {
                 setMobileMenuOpen(false)
                 if (store.currentUser) {
-                  router.push('/rentals')
+                  router.push('/profile')
                 } else {
-                  store.openRegisterModal()
+                  store.openLoginModal()
                 }
               }}
               className="px-4 py-3 border-b border-white/10 flex items-center gap-3 bg-white/[0.03] cursor-pointer hover:bg-white/[0.06] transition-colors"
@@ -628,10 +691,10 @@ export default function Navbar({
               </div>
               <div className="leading-tight">
                 <p className="text-[13px] font-medium text-white">
-                  {store.currentUser ? store.currentUser.name : 'Login / Register'}
+                  {store.currentUser ? store.currentUser.name : t('loginRegister')}
                 </p>
                 <p className="text-[11.5px] text-[#9ca3af]">
-                  {store.currentUser ? store.currentUser.email : 'Create an account / Sign In'}
+                  {store.currentUser ? store.currentUser.email : t('signUpFree')}
                 </p>
               </div>
             </div>
@@ -639,30 +702,34 @@ export default function Navbar({
             {/* Mobile Navigation Links */}
             <div className="flex-1 overflow-y-auto no-scrollbar px-3 py-3 space-y-1">
               <div className="px-2.5 pb-1.5 text-[11px] font-medium uppercase tracking-wider text-[#9ca3af]">
-                Main Navigation
+                {isRtl ? 'القائمة الرئيسية' : 'Main Navigation'}
               </div>
-              {MAIN_NAV_LINKS.map((link) => (
-                <Link
-                  key={link.id}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`w-full px-3 py-2.5 rounded-lg flex items-center justify-between text-[13.5px] font-medium transition-colors ${
-                    pathname === link.href
-                      ? 'bg-[#e11212]/20 text-[#ff4d4d]'
-                      : 'text-[#e5e7eb] hover:bg-white/[0.07] hover:text-white'
-                  }`}
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <span>{link.label}</span>
-                    {link.badge && (
-                      <span className="px-2 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none">
-                        {link.badge}
-                      </span>
-                    )}
-                  </span>
-                  <ChevronDownIcon className="w-3.5 h-3.5 -rotate-90 text-[#9ca3af]" />
-                </Link>
-              ))}
+              {MAIN_NAV_LINKS.map((link) => {
+                const displayLabel = isRtl && link.labelAr ? link.labelAr : link.label
+                const displayBadge = isRtl && link.badgeAr ? link.badgeAr : link.badge
+                return (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`w-full px-3 py-2.5 rounded-lg flex items-center justify-between text-[13.5px] font-medium transition-colors ${
+                      pathname === link.href
+                        ? 'bg-[#e11212]/20 text-[#ff4d4d]'
+                        : 'text-[#e5e7eb] hover:bg-white/[0.07] hover:text-white'
+                    }`}
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <span>{displayLabel}</span>
+                      {displayBadge && (
+                        <span className="px-2 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none">
+                          {displayBadge}
+                        </span>
+                      )}
+                    </span>
+                    <ChevronDownIcon className={`w-3.5 h-3.5 ${isRtl ? 'rotate-90' : '-rotate-90'} text-[#9ca3af]`} />
+                  </Link>
+                )
+              })}
               <Link
                 href="/wishlist"
                 onClick={() => setMobileMenuOpen(false)}
@@ -673,12 +740,12 @@ export default function Navbar({
                 }`}
               >
                 <span className="inline-flex items-center gap-2">
-                  <span>My Wishlist</span>
+                  <span>{t('wishlist')}</span>
                   <span className="px-2 py-0.5 rounded-full bg-[#e11212] text-white text-[10px] font-semibold leading-none">
                     {displayWishlist}
                   </span>
                 </span>
-                <ChevronDownIcon className="w-3.5 h-3.5 -rotate-90 text-[#9ca3af]" />
+                <ChevronDownIcon className={`w-3.5 h-3.5 ${isRtl ? 'rotate-90' : '-rotate-90'} text-[#9ca3af]`} />
               </Link>
               <Link
                 href="/cart"
@@ -697,6 +764,38 @@ export default function Navbar({
                 </span>
                 <ChevronDownIcon className="w-3.5 h-3.5 -rotate-90 text-[#9ca3af]" />
               </Link>
+
+              {/* Mobile Quick Categories Section */}
+              <div className="pt-3 border-t border-white/10">
+                <div className="px-2.5 pb-1.5 text-[11px] font-medium uppercase tracking-wider text-[#9ca3af]">
+                  Explore Categories
+                </div>
+                {liveCategories && liveCategories.length > 0 ? (
+                  liveCategories.slice(0, 6).map((c) => (
+                    <Link
+                      key={c.slug || c._id}
+                      href={`/products?category=${c.slug}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="w-full px-3 py-2 rounded-lg flex items-center justify-between text-[12.5px] text-[#cbd5e1] hover:text-white hover:bg-white/[0.05] transition-colors"
+                    >
+                      <span>{c.name}</span>
+                      {c.productCount ? (
+                        <span className="text-[10.5px] text-[#6b7280]">
+                          {c.productCount} Items
+                        </span>
+                      ) : null}
+                    </Link>
+                  ))
+                ) : null}
+                <Link
+                  href="/categories"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full px-3 py-2 rounded-lg flex items-center justify-between text-[12.5px] font-semibold text-[#ff4d4d] hover:bg-white/[0.05] transition-colors"
+                >
+                  <span>View All Categories</span>
+                  <span>→</span>
+                </Link>
+              </div>
             </div>
 
             {/* Mobile Trust Footer */}

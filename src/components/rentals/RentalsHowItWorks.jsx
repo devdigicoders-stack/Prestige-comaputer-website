@@ -1,9 +1,17 @@
+'use client'
+
+import { useLanguage } from '../../context/LanguageContext'
+
 export default function RentalsHowItWorks() {
+  const { isRtl } = useLanguage()
+
   const steps = [
     {
       id: 'step-1',
-      title: 'Choose a Device',
-      desc: 'Select the right laptop, desktop or workstation.',
+      title: isRtl ? 'اختر الجهاز المناسب' : 'Choose a Device',
+      desc: isRtl
+        ? 'اختر اللابتوب أو الكمبيوتر أو محطة العمل المناسبة لاحتياجاتك.'
+        : 'Select the right laptop, desktop or workstation.',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
           <circle cx="11" cy="11" r="8" />
@@ -13,8 +21,10 @@ export default function RentalsHowItWorks() {
     },
     {
       id: 'step-2',
-      title: 'Select Rental Plan',
-      desc: 'Pick a flexible duration (daily, weekly or monthly).',
+      title: isRtl ? 'حدد خطة الإيجار' : 'Select Rental Plan',
+      desc: isRtl
+        ? 'اختر مدة مرنة مناسبة (أسبوعي، شهري أو سنوي).'
+        : 'Pick a flexible duration (daily, weekly or monthly).',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
           <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -26,8 +36,10 @@ export default function RentalsHowItWorks() {
     },
     {
       id: 'step-3',
-      title: 'Get it Delivered',
-      desc: 'We deliver and set it up at your location.',
+      title: isRtl ? 'التوصيل والإعداد' : 'Get it Delivered',
+      desc: isRtl
+        ? 'نقوم بالتوصيل والإعداد الفوري في موقعك داخل دولة قطر.'
+        : 'We deliver and set it up at your location.',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
           <rect x="1" y="3" width="15" height="13" rx="1" />
@@ -39,8 +51,10 @@ export default function RentalsHowItWorks() {
     },
     {
       id: 'step-4',
-      title: 'Use & Return',
-      desc: 'Use without worry and return or extend easily.',
+      title: isRtl ? 'استخدم أو مدد براحة' : 'Use & Return',
+      desc: isRtl
+        ? 'استخدم الجهاز بأمان تام مع إمكانية التمديد أو الترقية بسهولة.'
+        : 'Use without worry and return or extend easily.',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="#dc1414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
           <rect x="3" y="4" width="18" height="12" rx="2" />
@@ -57,7 +71,15 @@ export default function RentalsHowItWorks() {
         <h2 className="text-[20px] sm:text-[24px] font-bold text-[#111827] flex items-center justify-center gap-3">
           <span className="w-8 sm:w-12 h-[2px] bg-[#dc1414]/70 inline-block" />
           <span>
-            How <span className="text-[#dc1414]">Rent On</span> Works?
+            {isRtl ? (
+              <>
+                كيف تعمل خدمة <span className="text-[#dc1414]">التأجير؟</span>
+              </>
+            ) : (
+              <>
+                How <span className="text-[#dc1414]">Rent On</span> Works?
+              </>
+            )}
           </span>
           <span className="w-8 sm:w-12 h-[2px] bg-[#dc1414]/70 inline-block" />
         </h2>
@@ -86,7 +108,7 @@ export default function RentalsHowItWorks() {
             {idx < steps.length - 1 && (
               <div
                 aria-hidden="true"
-                className="hidden lg:flex absolute top-7 -right-3 text-[#dc1414] font-bold z-10"
+                className="hidden lg:flex absolute top-7 -right-3 rtl:-left-3 rtl:right-auto text-[#dc1414] font-bold z-10"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -95,7 +117,7 @@ export default function RentalsHowItWorks() {
                   strokeWidth="2.2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="w-5 h-5"
+                  className="w-5 h-5 rtl:rotate-180"
                 >
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>

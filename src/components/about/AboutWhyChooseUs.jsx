@@ -1,3 +1,7 @@
+'use client'
+
+import { useLanguage } from '../../context/LanguageContext'
+
 function ShieldCheckIcon({ className = 'w-6 h-6' }) {
   return (
     <svg
@@ -112,50 +116,66 @@ const REASONS = [
   {
     id: 'genuine',
     title: '100% Genuine Products',
+    titleAr: 'منتجات أصلية 100%',
     Icon: ShieldCheckIcon,
   },
   {
     id: 'delivery',
     title: 'Fast & Safe Delivery',
+    titleAr: 'توصيل سريع وآمن في قطر',
     Icon: DeliveryTruckIcon,
   },
   {
     id: 'support',
     title: 'Expert Technical Support',
+    titleAr: 'دعم فني واستشارات متخصصة',
     Icon: HeadsetSupportIcon,
   },
   {
     id: 'solutions',
     title: 'Customized IT Solutions',
+    titleAr: 'حلول تكنولوجية مخصصة',
     Icon: CogSettingsIcon,
   },
   {
     id: 'rental',
     title: 'Flexible Rental Plans',
+    titleAr: 'خطط تأجير مرنة للأفراد والشركات',
     Icon: LaptopRentalIcon,
   },
   {
     id: 'price',
     title: 'Best Price & Offers',
+    titleAr: 'أفضل الأسعار والعروض التنافسية',
     Icon: CurrencyPriceIcon,
   },
 ]
 
 export default function AboutWhyChooseUs() {
+  const { isRtl } = useLanguage()
+
   return (
     <section aria-label="Why Choose Prestige Computers" className="mb-14 sm:mb-18">
       {/* Centered Heading with Red Lines */}
       <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 text-center">
         <span className="w-8 sm:w-12 h-[2px] bg-[#dc1414]" />
         <h2 className="text-[22px] sm:text-[28px] lg:text-[32px] font-bold text-[#111827] tracking-[-0.02em]">
-          Why Choose <span className="text-[#dc1414]">PCS?</span>
+          {isRtl ? (
+            <>
+              لماذا تختار <span className="text-[#dc1414]">بريستيج للكمبيوتر؟</span>
+            </>
+          ) : (
+            <>
+              Why Choose <span className="text-[#dc1414]">PCS?</span>
+            </>
+          )}
         </h2>
         <span className="w-8 sm:w-12 h-[2px] bg-[#dc1414]" />
       </div>
 
       {/* 6 Grid Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
-        {REASONS.map(({ id, title, Icon }) => (
+        {REASONS.map(({ id, title, titleAr, Icon }) => (
           <div
             key={id}
             className="bg-[#fef7f7] rounded-2xl border border-[#fae2e2] p-5 sm:p-6 text-center flex flex-col items-center justify-center shadow-[0_2px_10px_rgba(220,16,16,0.03)] hover:shadow-[0_8px_20px_rgba(220,16,16,0.08)] hover:border-[#dc1414]/30 hover:-translate-y-0.5 transition-all duration-200 group"
@@ -165,7 +185,7 @@ export default function AboutWhyChooseUs() {
             </div>
 
             <h3 className="text-[13px] sm:text-[13.5px] font-bold text-[#111827] leading-snug">
-              {title}
+              {isRtl && titleAr ? titleAr : title}
             </h3>
           </div>
         ))}

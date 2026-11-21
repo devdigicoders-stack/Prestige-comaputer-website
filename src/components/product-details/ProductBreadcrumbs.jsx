@@ -1,10 +1,18 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage, CATEGORY_TRANSLATIONS } from '../../context/LanguageContext'
 
 export default function ProductBreadcrumbs({
   category = 'Laptops',
   brand = 'Dell Laptops',
   productName = 'Dell Inspiron 15 (2025)',
 }) {
+  const { isArabic } = useLanguage()
+
+  const catLower = (category || '').toLowerCase().trim()
+  const categoryAr = (CATEGORY_TRANSLATIONS && CATEGORY_TRANSLATIONS[catLower]) || category
+
   return (
     <nav aria-label="Breadcrumb" className="py-2.5 text-[12.5px] text-[#6b7280]">
       <ol className="flex items-center flex-wrap gap-1.5 sm:gap-2">
@@ -25,30 +33,32 @@ export default function ProductBreadcrumbs({
                 clipRule="evenodd"
               />
             </svg>
-            <span>Home</span>
+            <span>{isArabic ? 'الرئيسية' : 'Home'}</span>
           </Link>
-          <span className="text-[#9ca3af]">&gt;</span>
+          <span className="text-[#9ca3af] rtl:rotate-180 inline-block">&gt;</span>
         </li>
 
         <li className="flex items-center gap-1.5">
           <Link
-            href="/products?cat=laptops"
+            href={`/products?category=${encodeURIComponent(category.toLowerCase())}`}
             className="hover:text-[#dc1414] transition-colors"
           >
-            {category}
+            {isArabic ? categoryAr : category}
           </Link>
-          <span className="text-[#9ca3af]">&gt;</span>
+          <span className="text-[#9ca3af] rtl:rotate-180 inline-block">&gt;</span>
         </li>
 
-        <li className="flex items-center gap-1.5">
-          <Link
-            href="/products?cat=laptops&brand=Dell"
-            className="hover:text-[#dc1414] transition-colors"
-          >
-            {brand}
-          </Link>
-          <span className="text-[#9ca3af]">&gt;</span>
-        </li>
+        {brand && (
+          <li className="flex items-center gap-1.5">
+            <Link
+              href={`/products?brand=${encodeURIComponent(brand)}`}
+              className="hover:text-[#dc1414] transition-colors"
+            >
+              {brand}
+            </Link>
+            <span className="text-[#9ca3af] rtl:rotate-180 inline-block">&gt;</span>
+          </li>
+        )}
 
         <li className="font-semibold text-[#111827] truncate max-w-[240px] sm:max-w-none" aria-current="page">
           {productName}

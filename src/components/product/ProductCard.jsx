@@ -1,257 +1,25 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
+import { getProductImageUrl } from '../../services/productApi'
+import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
 
-function formatGBP(amount) {
-  return `£${Number(amount).toLocaleString('en-GB', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`
+function formatPrice(amount) {
+  if (amount === null || amount === undefined || isNaN(amount)) return '₹0'
+  return `₹${Number(amount).toLocaleString('en-IN')}`
 }
 
-function LaptopProductImage({ variant = 'dell' }) {
-  const id = `prod-lap-${variant}`
-
+function ProductPlaceholder() {
   return (
-    <svg
-      viewBox="0 0 210 128"
-      className="w-full max-w-[186px] h-[112px] mx-auto drop-shadow-[0_6px_10px_rgba(15,23,42,0.12)]"
-      aria-hidden="true"
-    >
-      <defs>
-        {/* Dell Red Silk */}
-        <linearGradient id={`${id}-dell-bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#1b0305" />
-          <stop offset="55%" stopColor="#7a070b" />
-          <stop offset="100%" stopColor="#260306" />
-        </linearGradient>
-        <linearGradient id={`${id}-dell-wave`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#ef1919" />
-          <stop offset="55%" stopColor="#ff453a" />
-          <stop offset="100%" stopColor="#990a0d" />
-        </linearGradient>
-
-        {/* HP Electric Blue */}
-        <linearGradient id={`${id}-hp-bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#051332" />
-          <stop offset="55%" stopColor="#0b3b91" />
-          <stop offset="100%" stopColor="#041536" />
-        </linearGradient>
-        <linearGradient id={`${id}-hp-wave`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#06b6d4" />
-          <stop offset="50%" stopColor="#3b82f6" />
-          <stop offset="100%" stopColor="#1d4ed8" />
-        </linearGradient>
-
-        {/* Lenovo ThinkPad Red/Black */}
-        <linearGradient id={`${id}-lenovo-bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#0f0f12" />
-          <stop offset="60%" stopColor="#3f0608" />
-          <stop offset="100%" stopColor="#120405" />
-        </linearGradient>
-        <linearGradient id={`${id}-lenovo-wave`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#dc1414" />
-          <stop offset="55%" stopColor="#ff3b2f" />
-          <stop offset="100%" stopColor="#7f070a" />
-        </linearGradient>
-
-        {/* MacBook Purple/Violet */}
-        <linearGradient id={`${id}-mac-bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#3b0764" />
-          <stop offset="50%" stopColor="#7e22ce" />
-          <stop offset="100%" stopColor="#4c1d95" />
-        </linearGradient>
-        <linearGradient id={`${id}-mac-wave`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#6366f1" />
-          <stop offset="50%" stopColor="#d946ef" />
-          <stop offset="100%" stopColor="#f472b6" />
-        </linearGradient>
-
-        {/* ASUS ROG Dark Indigo + Neon Logo */}
-        <linearGradient id={`${id}-asus-bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#1e1b4b" />
-          <stop offset="55%" stopColor="#17123a" />
-          <stop offset="100%" stopColor="#090915" />
-        </linearGradient>
-        <linearGradient id={`${id}-asus-crest`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#38bdf8" />
-          <stop offset="50%" stopColor="#ec4899" />
-          <stop offset="100%" stopColor="#f97316" />
-        </linearGradient>
-        <linearGradient id={`${id}-asus-rgb`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#06b6d4" />
-          <stop offset="50%" stopColor="#ec4899" />
-          <stop offset="100%" stopColor="#6366f1" />
-        </linearGradient>
-
-        {/* Metallic Chassis */}
-        <linearGradient id={`${id}-silver`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#9ca3af" />
-          <stop offset="22%" stopColor="#e5e7eb" />
-          <stop offset="50%" stopColor="#f3f4f6" />
-          <stop offset="78%" stopColor="#d1d5db" />
-          <stop offset="100%" stopColor="#9ca3af" />
-        </linearGradient>
-        <linearGradient id={`${id}-darkbase`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#18181b" />
-          <stop offset="50%" stopColor="#3f3f46" />
-          <stop offset="100%" stopColor="#18181b" />
-        </linearGradient>
-      </defs>
-
-      {/* Subtle Ground Shadow */}
-      <ellipse cx="105" cy="118" rx="84" ry="5.5" fill="#0f172a" fillOpacity="0.14" />
-
-      {/* Outer Display Lid */}
-      <rect
-        x="34"
-        y="10"
-        width="142"
-        height="90"
-        rx="5"
-        fill={variant === 'lenovo' || variant === 'asus' ? '#111216' : '#18181b'}
-        stroke={variant === 'lenovo' || variant === 'asus' ? '#27272a' : '#52525b'}
-        strokeWidth="1.2"
-      />
-
-      {/* Screen Content by Variant */}
-      <clipPath id={`${id}-clip`}>
-        <rect x="38.5" y="14.5" width="133" height="80" rx="1.8" />
-      </clipPath>
-
-      <g clipPath={`url(#${id}-clip)`}>
-        {variant === 'dell' && (
-          <>
-            <rect x="38.5" y="14.5" width="133" height="80" fill={`url(#${id}-dell-bg)`} />
-            <path
-              d="M36 94 C66 56, 102 68, 174 16 L174 52 C126 70, 92 78, 52 96 Z"
-              fill={`url(#${id}-dell-wave)`}
-              fillOpacity="0.88"
-            />
-            <path
-              d="M44 96 C82 70, 128 74, 174 44 L174 96 Z"
-              fill="#5e0508"
-              fillOpacity="0.72"
-            />
-          </>
-        )}
-
-        {variant === 'hp' && (
-          <>
-            <rect x="38.5" y="14.5" width="133" height="80" fill={`url(#${id}-hp-bg)`} />
-            <path
-              d="M38 78 C64 40, 106 24, 172 50 L172 95 L38 95 Z"
-              fill={`url(#${id}-hp-wave)`}
-              fillOpacity="0.68"
-            />
-            <path
-              d="M42 95 C78 52, 118 58, 168 18 L174 36 C132 66, 98 80, 62 96 Z"
-              fill="#38bdf8"
-              fillOpacity="0.55"
-            />
-          </>
-        )}
-
-        {variant === 'lenovo' && (
-          <>
-            <rect x="38.5" y="14.5" width="133" height="80" fill={`url(#${id}-lenovo-bg)`} />
-            <path
-              d="M44 96 C78 58, 112 52, 174 16 L174 44 C132 68, 102 76, 70 96 Z"
-              fill={`url(#${id}-lenovo-wave)`}
-              fillOpacity="0.92"
-            />
-            <path
-              d="M84 96 C116 74, 144 68, 174 52 L174 96 Z"
-              fill="#7f070a"
-              fillOpacity="0.8"
-            />
-          </>
-        )}
-
-        {variant === 'macbook' && (
-          <>
-            <rect x="38.5" y="14.5" width="133" height="80" fill={`url(#${id}-mac-bg)`} />
-            <path
-              d="M38 92 C68 48, 106 36, 172 22 L172 62 C122 66, 90 82, 58 96 Z"
-              fill={`url(#${id}-mac-wave)`}
-              fillOpacity="0.85"
-            />
-            <path
-              d="M38 64 C78 82, 118 46, 172 78 L172 96 L38 96 Z"
-              fill="#c084fc"
-              fillOpacity="0.5"
-            />
-            {/* MacBook Notch */}
-            <rect x="96" y="14.5" width="18" height="4.2" rx="1.4" fill="#111215" />
-          </>
-        )}
-
-        {variant === 'asus' && (
-          <>
-            <rect x="38.5" y="14.5" width="133" height="80" fill={`url(#${id}-asus-bg)`} />
-            {/* Ambient purple/blue glow */}
-            <circle cx="105" cy="54" r="36" fill="#6366f1" fillOpacity="0.24" />
-            {/* Stylized ROG Eye Emblem */}
-            <path
-              d="M66 56 C84 36, 118 32, 148 36 C132 54, 122 68, 96 74 C106 64, 116 56, 130 46 C106 46, 88 54, 72 68 Z"
-              fill="none"
-              stroke={`url(#${id}-asus-crest)`}
-              strokeWidth="3.2"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M84 62 C98 54, 112 52, 122 52 C114 60, 104 65, 92 67 Z"
-              fill={`url(#${id}-asus-crest)`}
-              fillOpacity="0.85"
-            />
-          </>
-        )}
-
-        {/* Subtle Top-Left Glass Reflection */}
-        <path d="M38.5 14.5 L98 14.5 L62 94.5 L38.5 94.5 Z" fill="#ffffff" fillOpacity="0.06" />
-      </g>
-
-      {/* Webcam Dot */}
-      {variant !== 'macbook' && (
-        <circle cx="105" cy="12.2" r="1.1" fill="#52525b" />
-      )}
-
-      {/* Lower Base Deck */}
-      <path
-        d="M34 100 L176 100 L194 111.5 L16 111.5 Z"
-        fill={
-          variant === 'lenovo' || variant === 'asus'
-            ? `url(#${id}-darkbase)`
-            : `url(#${id}-silver)`
-        }
-      />
-
-      {/* Keyboard Recess */}
-      <path d="M40 101.5 L170 101.5 L178 107 L32 107 Z" fill="#18181b" fillOpacity="0.85" />
-
-      {/* ThinkPad Red TrackPoint */}
-      {variant === 'lenovo' && <circle cx="105" cy="104.2" r="1.5" fill="#dc1414" />}
-
-      {/* Front Base Lip */}
-      <path
-        d="M16 111.5 L194 111.5 C193 114.2 190 115.5 186 115.5 L24 115.5 C20 115.5 17 114.2 16 111.5 Z"
-        fill={variant === 'lenovo' || variant === 'asus' ? '#111216' : '#9ca3af'}
-      />
-
-      {/* Center Thumb Notch / ROG RGB Bar */}
-      {variant === 'asus' ? (
-        <rect x="46" y="112.5" width="118" height="2" rx="1" fill={`url(#${id}-asus-rgb)`} />
-      ) : (
-        <rect
-          x="93"
-          y="111.5"
-          width="24"
-          height="2"
-          rx="1"
-          fill={variant === 'lenovo' ? '#3f3f46' : '#6b7280'}
-        />
-      )}
-    </svg>
+    <div className="w-full max-w-[186px] h-[112px] mx-auto rounded-lg bg-[#f8f9fb] border border-[#e5e7eb] flex flex-col items-center justify-center text-[#9ca3af] gap-1 select-none">
+      <svg className="w-8 h-8 stroke-current" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="12" rx="2" strokeWidth="1.5" />
+        <path d="M7 20h10M12 16v4" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+      <span className="text-[10px] font-medium text-[#9ca3af]">No image available</span>
+    </div>
   )
 }
 
@@ -307,26 +75,86 @@ export default function ProductCard({
   onToggleWishlist,
   onAddToCart,
 }) {
+  const { t, isRtl } = useLanguage()
+  const prodId = product.slug || product.id || product._id
+  const prodName = product.name || product.title || 'Product'
+  const rawImage =
+    product.image ||
+    (typeof product.images?.[0] === 'string'
+      ? product.images[0]
+      : product.images?.[0]?.url) ||
+    ''
+  const resolvedImageUrl = getProductImageUrl(rawImage)
+
+  const specsText =
+    typeof product.specs === 'string'
+      ? product.specs
+      : [product.specs?.cpu || product.specs?.processor, product.specs?.ram]
+          .filter(Boolean)
+          .join(' • ') || product.subtitle || ''
+
+  const store = useStore()
+
+  // Dynamic Rental Rate configured in Admin or database
+  const rentAmount =
+    product.rentPerMonth ||
+    (product.rentPrice ? String(product.rentPrice).replace(/[^\d.]/g, '') : 0)
+  const isRentalAvailable = product.type !== 'Buy Only' && Number(rentAmount) > 0
+  const isBuyAvailable = product.type !== 'Rent Only'
+
+  const stock = typeof product.stock === 'number' ? product.stock : 15
+  const lowStockThreshold = typeof product.lowStockThreshold === 'number' ? product.lowStockThreshold : 5
+  const outOfStockThreshold = typeof product.outOfStockThreshold === 'number' ? product.outOfStockThreshold : 0
+  const isOutOfStock =
+    stock <= outOfStockThreshold ||
+    product.inStock === false ||
+    product.status === 'Out of Stock'
+  const isLowStock = !isOutOfStock && stock <= lowStockThreshold
+
+  const [isAdded, setIsAdded] = useState(false)
+
+  const handleBuyNow = () => {
+    if (isOutOfStock) return
+    const res = onAddToCart?.(product)
+    if (res !== false) {
+      setIsAdded(true)
+      setTimeout(() => setIsAdded(false), 2400)
+    }
+  }
+
+  const handleOpenRental = () => {
+    if (isOutOfStock) return
+    store?.openRentalModal?.(product)
+  }
+
   return (
     <article className="bg-white rounded-xl border border-[#e7eaf0] shadow-[0_2px_10px_rgba(16,24,40,0.04)] hover:shadow-[0_10px_24px_rgba(16,24,40,0.09)] hover:border-[#dc1414]/30 transition-all duration-200 p-3.5 flex flex-col justify-between group">
       <div>
         {/* Top Row: Discount Pill & Wishlist Heart */}
         <div className="flex items-center justify-between min-h-[24px]">
-          {product.discount ? (
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#dc1414] text-white text-[11px] font-semibold leading-snug">
-              {product.discount}
-            </span>
-          ) : (
-            <span />
-          )}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {isOutOfStock ? (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#1f2937] text-white text-[10px] font-bold shadow-xs">
+                {t('outOfStock')}
+              </span>
+            ) : isLowStock ? (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#fef3c7] text-[#b45309] border border-[#fde68a] text-[10px] font-bold shadow-xs">
+                {isRtl ? `${t('leftInStock')} ${stock}` : `${stock} ${t('leftInStock')}`}
+              </span>
+            ) : product.discount ? (
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#dc1414] text-white text-[11px] font-semibold leading-snug">
+                {product.discount}
+              </span>
+            ) : null}
+          </div>
 
           <button
             type="button"
-            onClick={() => onToggleWishlist?.(product.id)}
+            onClick={() => onToggleWishlist?.(prodId)}
             aria-label={
               isWishlisted
-                ? `Remove ${product.name} from wishlist`
-                : `Add ${product.name} to wishlist`
+                ? `Remove ${prodName} from wishlist`
+                : `Add ${prodName} to wishlist`
             }
             className={[
               'p-1 rounded-full transition-colors cursor-pointer',
@@ -339,70 +167,117 @@ export default function ProductCard({
           </button>
         </div>
 
-        {/* Laptop Artwork */}
+        {/* Dynamic Studio Photo */}
         <Link
-          href={`/products/${product.id === 'dell-xps-15-2024' ? 'dell-inspiron-15' : product.id}`}
-          className="block py-1.5 group-hover:scale-[1.03] transition-transform duration-300 cursor-pointer"
+          href={`/products/${prodId}`}
+          className="block py-1.5 group-hover:scale-[1.03] transition-transform duration-300 cursor-pointer min-h-[112px] flex items-center justify-center"
         >
-          <LaptopProductImage variant={product.artwork} />
+          {resolvedImageUrl ? (
+            <img
+              src={resolvedImageUrl}
+              alt={prodName}
+              className="max-h-[112px] max-w-[186px] object-contain drop-shadow-[0_6px_10px_rgba(15,23,42,0.12)]"
+            />
+          ) : (
+            <ProductPlaceholder />
+          )}
         </Link>
 
         {/* Product Info */}
         <div className="mt-2">
           <Link
-            href={`/products/${product.id === 'dell-xps-15-2024' ? 'dell-inspiron-15' : product.id}`}
+            href={`/products/${prodId}`}
             className="block"
           >
             <h3 className="text-[13.5px] font-bold text-[#111827] leading-snug truncate group-hover:text-[#dc1414] transition-colors">
-              {product.name}
+              {prodName}
             </h3>
           </Link>
           <p className="mt-0.5 text-[11.5px] text-[#6b7280] truncate">
-            {product.specs}
+            {specsText}
           </p>
 
           {/* Rating */}
           <div className="mt-1.5 flex items-center gap-1 text-[12px]">
             <StarIcon />
             <span className="font-semibold text-[#d97706]">
-              {product.rating}
+              {product.rating || 4.8}
             </span>
-            <span className="text-[#6b7280]">({product.reviews})</span>
+            <span className="text-[#6b7280]">({product.reviews || product.reviewCount || 120})</span>
           </div>
 
-          {/* Price */}
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-[16px] font-bold text-[#111827] tracking-[-0.01em]">
-              {formatGBP(product.price)}
-            </span>
-            {product.oldPrice && (
-              <span className="text-[11.5px] text-[#9ca3af] line-through">
-                {formatGBP(product.oldPrice)}
+          {/* Price & Delivery */}
+          <div className="mt-2 flex items-baseline justify-between gap-1 flex-wrap">
+            <div className="flex items-baseline gap-2">
+              <span className="text-[16px] font-bold text-[#111827] tracking-[-0.01em]">
+                {formatPrice(product.price)}
               </span>
-            )}
+              {(product.oldPrice || product.originalPrice) && (
+                <span className="text-[11.5px] text-[#9ca3af] line-through">
+                  {formatPrice(product.oldPrice || product.originalPrice)}
+                </span>
+              )}
+            </div>
+            <span className="text-[10.5px] font-semibold text-emerald-600">
+              {product.isFreeDelivery !== false && Number(product.deliveryCharge || 0) === 0 ? t('freeDelivery') : (isRtl ? `+₹${product.deliveryCharge} توصيل` : `+₹${product.deliveryCharge} Del.`)}
+            </span>
           </div>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="mt-3 flex items-center gap-1.5">
-        <button
-          type="button"
-          onClick={() => onAddToCart?.(product)}
-          className="shrink-0 rounded-lg bg-gradient-to-b from-[#e11414] to-[#bd0909] hover:from-[#ed1a1a] hover:to-[#a50707] active:scale-[0.98] text-white py-2 px-2.5 text-[11px] font-semibold inline-flex items-center justify-center gap-1 shadow-xs transition-all cursor-pointer whitespace-nowrap"
-        >
-          <MiniCartIcon />
-          <span>Buy Now</span>
-        </button>
+        {isBuyAvailable && (
+          <button
+            type="button"
+            disabled={isOutOfStock}
+            onClick={handleBuyNow}
+            className={`${
+              isRentalAvailable ? 'shrink-0' : 'w-full'
+            } rounded-lg py-2 px-2.5 text-[11px] font-semibold inline-flex items-center justify-center gap-1 transition-all whitespace-nowrap ${
+              isOutOfStock
+                ? 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed shadow-none'
+                : isAdded
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'bg-gradient-to-b from-[#e11414] to-[#bd0909] hover:from-[#ed1a1a] hover:to-[#a50707] active:scale-[0.98] text-white shadow-xs cursor-pointer'
+            }`}
+          >
+            {isAdded ? (
+              <>
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span>{t('added')}</span>
+              </>
+            ) : (
+              <>
+                <MiniCartIcon />
+                <span>{isOutOfStock ? t('outOfStock') : t('buyNow')}</span>
+              </>
+            )}
+          </button>
+        )}
 
-        <button
-          type="button"
-          onClick={() => onAddToCart?.(product)}
-          className="flex-1 min-w-0 rounded-lg border border-[#dc1414]/65 bg-white hover:bg-[#fef2f2] active:scale-[0.98] text-[#c81010] py-2 px-1.5 text-[10.5px] font-semibold tracking-[-0.01em] inline-flex items-center justify-center gap-1 transition-all cursor-pointer whitespace-nowrap"
-        >
-          <MiniCalendarIcon />
-          <span className="truncate">Rent from £{product.rentPerMonth}/mo</span>
-        </button>
+        {isRentalAvailable && (
+          <button
+            type="button"
+            disabled={isOutOfStock}
+            onClick={handleOpenRental}
+            title={isRtl ? `استئجار هذا المنتج بسعر ₹${Number(rentAmount).toLocaleString('en-IN')}/شهرياً` : `Rent this product at ₹${Number(rentAmount).toLocaleString('en-IN')}/month`}
+            className={`${
+              isBuyAvailable ? 'flex-1 min-w-0' : 'w-full'
+            } rounded-lg py-2 px-1.5 text-[10.5px] font-semibold tracking-[-0.01em] inline-flex items-center justify-center gap-1 transition-all whitespace-nowrap ${
+              isOutOfStock
+                ? 'bg-gray-50 text-gray-300 border border-gray-200 cursor-not-allowed opacity-60'
+                : 'border border-[#dc1414]/65 bg-white hover:bg-[#fef2f2] active:scale-[0.98] text-[#c81010] cursor-pointer'
+            }`}
+          >
+            <MiniCalendarIcon />
+            <span className="truncate">
+              {isRtl ? `${t('rentFrom')} ₹${Number(rentAmount).toLocaleString('en-IN')}${t('perMonth')}` : `Rent from ₹${Number(rentAmount).toLocaleString('en-IN')}/mo`}
+            </span>
+          </button>
+        )}
       </div>
     </article>
   )

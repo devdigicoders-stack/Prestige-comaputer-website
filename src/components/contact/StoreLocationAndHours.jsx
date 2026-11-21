@@ -1,4 +1,11 @@
+'use client'
+
+import companyInfo from '../../data/companyInfo'
+import { useLanguage } from '../../context/LanguageContext'
+
 export default function StoreLocationAndHours() {
+  const { isRtl } = useLanguage()
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
       {/* 1. Store Location Card */}
@@ -11,32 +18,28 @@ export default function StoreLocationAndHours() {
             </svg>
           </div>
           <h3 className="text-[15px] font-bold text-[#111827]">
-            Store Location
+            {isRtl ? 'موقع صالة العرض' : 'Showroom Location'}
           </h3>
         </div>
 
         {/* Vector Stylized Map Card */}
         <a
-          href="https://maps.google.com/?q=Prestige+Computers+IT+Market+Civil+Lines"
+          href={companyInfo.location.googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="group relative block overflow-hidden rounded-xl border border-[#e2e8f0] bg-[#f1f5f9] h-[130px] transition-all hover:border-[#dc1414]/50 hover:shadow-xs"
         >
           {/* Map Graphic Background */}
           <svg viewBox="0 0 300 130" className="w-full h-full object-cover" aria-hidden="true">
-            {/* Ground */}
             <rect width="300" height="130" fill="#f1f5f9" />
-            {/* Green Parks */}
             <path d="M10 20 Q50 5 80 35 L80 90 Q30 80 10 90 Z" fill="#bbf7d0" fillOpacity="0.7" />
             <path d="M220 80 Q250 65 290 85 L290 120 L220 120 Z" fill="#bbf7d0" fillOpacity="0.6" />
-            {/* Roads */}
             <line x1="0" y1="65" x2="300" y2="65" stroke="#ffffff" strokeWidth="14" />
             <line x1="0" y1="65" x2="300" y2="65" stroke="#eab308" strokeWidth="2" strokeDasharray="6 4" />
             <line x1="140" y1="0" x2="140" y2="130" stroke="#ffffff" strokeWidth="12" />
             <line x1="140" y1="0" x2="140" y2="130" stroke="#cbd5e1" strokeWidth="1" />
             <line x1="40" y1="0" x2="40" y2="130" stroke="#ffffff" strokeWidth="8" />
             <line x1="240" y1="0" x2="240" y2="130" stroke="#ffffff" strokeWidth="8" />
-            {/* Pin Marker */}
             <g transform="translate(140, 52)">
               <circle cx="0" cy="0" r="10" fill="#fee2e2" />
               <path d="M0 -12 C-6 -12 -10 -8 -10 -2 C-10 6 0 16 0 16 C0 16 10 6 10 -2 C10 -8 6 -12 0 -12 Z" fill="#dc1414" />
@@ -48,10 +51,10 @@ export default function StoreLocationAndHours() {
           <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-xs rounded-lg px-2.5 py-1.5 border border-[#e2e8f0] flex items-center justify-between shadow-xs">
             <div>
               <div className="text-[11.5px] font-bold text-[#111827] leading-none group-hover:text-[#dc1414] transition-colors">
-                Prestige Computers (PCS)
+                Prestige Computers (PCS Doha)
               </div>
-              <div className="text-[10px] text-[#64748b] mt-0.5">
-                IT Market, Civil Lines
+              <div className="text-[10px] text-[#64748b] mt-0.5 truncate max-w-[220px]">
+                {isRtl ? 'مول المرقاب، شارع النصر، الدوحة، قطر' : companyInfo.location.shortAddress}
               </div>
             </div>
             <span className="text-[#dc1414] text-xs font-bold">↗</span>
@@ -70,18 +73,26 @@ export default function StoreLocationAndHours() {
               </svg>
             </div>
             <h3 className="text-[15px] font-bold text-[#111827]">
-              Business Hours
+              {isRtl ? 'ساعات عمل صالة العرض' : 'Showroom Working Hours'}
             </h3>
           </div>
 
           <div className="space-y-2 mt-4 text-[12.5px]">
             <div className="flex items-center justify-between">
-              <span className="font-semibold text-[#374151]">Monday – Saturday</span>
-              <span className="text-[#111827] font-medium">10:00 AM – 8:00 PM</span>
+              <span className="font-semibold text-[#374151]">
+                {isRtl ? 'السبت – الخميس' : 'Saturday – Thursday'}
+              </span>
+              <span className="text-[#111827] font-medium">
+                {isRtl ? '10:00 ص – 10:00 م' : '10:00 AM – 10:00 PM'}
+              </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="font-semibold text-[#374151]">Sunday</span>
-              <span className="text-[#111827] font-medium">11:00 AM – 6:00 PM</span>
+              <span className="font-semibold text-[#374151]">
+                {isRtl ? 'الجمعة' : 'Friday'}
+              </span>
+              <span className="text-[#111827] font-medium">
+                {isRtl ? '2:30 م – 10:30 م' : '2:30 PM – 10:30 PM'}
+              </span>
             </div>
           </div>
         </div>
@@ -90,7 +101,7 @@ export default function StoreLocationAndHours() {
         <div className="mt-5 pt-3 border-t border-[#f1f3f7]">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-[11.5px] font-bold">
             <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
-            <span>Store Open Now</span>
+            <span>{isRtl ? 'المعرض مفتوح وجاهز لخدمتكم' : 'Store Open & Ready to Assist'}</span>
           </div>
         </div>
       </div>

@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '../../context/LanguageContext'
 
 function CalendarSmallIcon({ className = 'w-4 h-4' }) {
   return (
@@ -74,6 +77,8 @@ function ArrowRightIcon({ className = 'w-4 h-4' }) {
 }
 
 export default function RentalsHeroBanner() {
+  const { isRtl } = useLanguage()
+
   return (
     <section
       aria-label="Rent On Hero Banner"
@@ -87,7 +92,7 @@ export default function RentalsHeroBanner() {
       />
 
       {/* Dark Gradient Overlay for Crisp Text Readability on Left */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#070103]/95 via-[#070103]/80 sm:via-[#070103]/50 to-transparent pointer-events-none" />
+      <div className={`absolute inset-0 ${isRtl ? 'bg-gradient-to-l' : 'bg-gradient-to-r'} from-[#070103]/95 via-[#070103]/80 sm:via-[#070103]/50 to-transparent pointer-events-none`} />
 
       {/* Left Content */}
       <div className="relative z-10 w-full sm:w-[62%] lg:w-[50%] flex flex-col justify-center px-6 sm:px-10 lg:px-12 py-8 sm:py-10">
@@ -95,35 +100,45 @@ export default function RentalsHeroBanner() {
         <div className="flex items-center gap-2 mb-2 sm:mb-3">
           <span className="w-5 sm:w-6 h-[2px] bg-[#dc1414]" />
           <span className="text-[11px] sm:text-[12px] font-bold text-[#e5e7eb] uppercase tracking-[0.14em]">
-            Computer &amp; Laptop Rental
+            {isRtl ? 'تأجير أجهزة الكمبيوتر واللابتوب' : 'Computer & Laptop Rental'}
           </span>
         </div>
 
         {/* Heading */}
         <h1 className="text-[34px] sm:text-[46px] lg:text-[54px] font-bold italic tracking-[-0.03em] leading-[1.08] text-white">
-          Rent <span className="text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]">On</span>
+          {isRtl ? (
+            <>
+              استأجر <span className="text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]">الآن</span>
+            </>
+          ) : (
+            <>
+              Rent <span className="text-[#e11414] drop-shadow-[0_2px_14px_rgba(225,20,20,0.45)]">On</span>
+            </>
+          )}
         </h1>
 
         {/* Subtitle */}
         <p className="mt-3 sm:mt-3.5 text-[13.5px] sm:text-[15px] lg:text-[16px] text-[#e5e7eb] font-normal leading-relaxed max-w-[430px]">
-          High-Performance Laptops, Desktops &amp; Workstations on Flexible Rental Plans.
+          {isRtl
+            ? 'أجهزة لابتوب وكمبيوتر ومحطات عمل عالية الأداء بخطط إيجار مرنة للأفراد والشركات في قطر.'
+            : 'High-Performance Laptops, Desktops & Workstations on Flexible Rental Plans.'}
         </p>
 
         {/* 3 Pills Row */}
         <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-2 sm:gap-3 text-[11.5px] sm:text-[12px] text-white">
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15">
             <CalendarSmallIcon />
-            <span className="font-medium">Flexible Tenure</span>
+            <span className="font-medium">{isRtl ? 'مدة مرنة' : 'Flexible Tenure'}</span>
           </div>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15">
             <RupeeSmallIcon />
-            <span className="font-medium">Cost Effective</span>
+            <span className="font-medium">{isRtl ? 'أفضل تكلفة' : 'Cost Effective'}</span>
           </div>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15">
             <LoopSmallIcon />
-            <span className="font-medium">Hassle-Free</span>
+            <span className="font-medium">{isRtl ? 'بدون متاعب' : 'Hassle-Free'}</span>
           </div>
         </div>
 
@@ -133,8 +148,8 @@ export default function RentalsHeroBanner() {
             href="#plans"
             className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13.5px] font-semibold shadow-[0_6px_20px_rgba(220,16,16,0.45)] transition-all cursor-pointer"
           >
-            <span>Explore Rental Plans</span>
-            <ArrowRightIcon />
+            <span>{isRtl ? 'استكشف خطط الإيجار' : 'Explore Rental Plans'}</span>
+            <ArrowRightIcon className="rtl:rotate-180" />
           </a>
         </div>
       </div>

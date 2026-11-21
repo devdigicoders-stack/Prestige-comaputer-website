@@ -1,3 +1,7 @@
+'use client'
+
+import { useLanguage } from '../../context/LanguageContext'
+
 function CalendarIcon({ className = 'w-9 h-9' }) {
   return (
     <svg
@@ -78,33 +82,39 @@ const STATS = [
     id: 'years',
     value: '10+',
     label: 'Years of Excellence',
+    labelAr: 'سنوات من التميز والريادة',
     Icon: CalendarIcon,
   },
   {
     id: 'customers',
     value: '50,000+',
     label: 'Happy Customers',
+    labelAr: 'عميل راضٍ وموثوق',
     Icon: UsersIcon,
   },
   {
     id: 'products',
     value: '5,000+',
     label: 'Products & Variants',
+    labelAr: 'منتج وخيار متنوع',
     Icon: BoxIcon,
   },
   {
     id: 'brands',
     value: '50+',
     label: 'Trusted Brands',
+    labelAr: 'علامة تجارية رائدة',
     Icon: BadgeIcon,
   },
 ]
 
 export default function AboutStatsStrip() {
+  const { isRtl } = useLanguage()
+
   return (
     <section aria-label="Key Statistics" className="mb-14 sm:mb-18">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-        {STATS.map(({ id, value, label, Icon }) => (
+        {STATS.map(({ id, value, label, labelAr, Icon }) => (
           <div
             key={id}
             className="bg-white rounded-2xl border border-[#eceff4] p-5 sm:p-6 shadow-[0_2px_12px_rgba(16,24,40,0.04)] hover:shadow-[0_8px_20px_rgba(16,24,40,0.08)] hover:border-[#dc1414]/25 transition-all duration-200 flex items-center gap-4 group"
@@ -117,7 +127,7 @@ export default function AboutStatsStrip() {
                 {value}
               </p>
               <p className="mt-1 text-[13px] text-[#4b5563] font-medium leading-tight">
-                {label}
+                {isRtl && labelAr ? labelAr : label}
               </p>
             </div>
           </div>

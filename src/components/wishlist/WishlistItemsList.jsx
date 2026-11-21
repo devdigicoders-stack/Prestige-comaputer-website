@@ -1,125 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
-import {
-  WishlistLaptopVisual,
-  WishlistDesktopVisual,
-  WishlistMonitorVisual,
-  WishlistHeadsetVisual,
-} from './WishlistVisuals'
+import { useLanguage } from '../../context/LanguageContext'
+import { getProducts, getProductImageUrl } from '../../services/productApi'
 
-/* Spec Micro Icons */
-function CpuIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <rect x="4" y="4" width="16" height="16" rx="2" />
-      <rect x="9" y="9" width="6" height="6" />
-      <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
-    </svg>
-  )
-}
-
-function RamIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <rect x="2" y="6" width="20" height="12" rx="2" />
-      <path d="M6 10v4M10 10v4M14 10v4M18 10v4M6 18v2M10 18v2M14 18v2M18 18v2" />
-    </svg>
-  )
-}
-
-function SsdIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <rect x="3" y="4" width="18" height="16" rx="2" />
-      <circle cx="7" cy="8" r="1" fill="currentColor" />
-      <circle cx="7" cy="12" r="1" fill="currentColor" />
-      <path d="M12 8h5M12 12h5M7 16h10" />
-    </svg>
-  )
-}
-
-function DisplayIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <rect x="2" y="3" width="20" height="14" rx="2" />
-      <path d="M8 21h8M12 17v4" />
-    </svg>
-  )
-}
-
-function GpuIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <rect x="2" y="5" width="20" height="14" rx="2" />
-      <circle cx="8" cy="12" r="2.5" />
-      <circle cx="16" cy="12" r="2.5" />
-    </svg>
-  )
-}
-
-function RefreshIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-    </svg>
-  )
-}
-
-function SpeedIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-    </svg>
-  )
-}
-
-function PanelIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <polygon points="12 2 2 7 12 12 22 7 12 2" />
-      <polyline points="2 17 12 22 22 17" />
-      <polyline points="2 12 12 17 22 12" />
-    </svg>
-  )
-}
-
-function SoundIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.757 3.63 8.25 4.51 8.25H6.75z" />
-    </svg>
-  )
-}
-
-function MicIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" />
-    </svg>
-  )
-}
-
-function CableIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16" />
-      <circle cx="5" cy="19" r="1" fill="currentColor" />
-    </svg>
-  )
-}
-
-function FoamIcon({ className = 'w-3.5 h-3.5' }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  )
-}
-
+/* ── Icons ── */
 function TrashIcon({ className = 'w-4 h-4' }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className}>
@@ -136,6 +23,14 @@ function CartIcon({ className = 'w-4 h-4' }) {
   )
 }
 
+function HeartSolidIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="#e11414" stroke="#e11414" strokeWidth="1" className={className}>
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+  )
+}
+
 function MoreDotsIcon({ className = 'w-4 h-4' }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -146,239 +41,287 @@ function MoreDotsIcon({ className = 'w-4 h-4' }) {
   )
 }
 
-function HeartSolidIcon({ className = 'w-5 h-5' }) {
+function formatINR(val) {
+  if (!val && val !== 0) return ''
+  return `₹${Number(val).toLocaleString('en-IN')}`
+}
+
+/* Build spec chips from product.specs */
+function buildSpecChips(specs = {}) {
+  const chips = []
+  if (specs.cpu || specs.processor) chips.push(specs.cpu || specs.processor)
+  if (specs.ram) chips.push(specs.ram)
+  if (specs.storage) chips.push(specs.storage)
+  if (specs.display) chips.push(specs.display)
+  if (specs.graphics) chips.push(specs.graphics)
+  return chips.filter(Boolean).slice(0, 4)
+}
+
+/* Skeleton card */
+function SkeletonCard() {
   return (
-    <svg viewBox="0 0 24 24" fill="#e11414" stroke="#e11414" strokeWidth="1" className={className}>
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-    </svg>
+    <div className="bg-white rounded-2xl border border-gray-150 p-4 sm:p-5 shadow-xs animate-pulse flex flex-col md:flex-row md:items-center gap-4">
+      <div className="flex items-center gap-3.5 flex-1">
+        <div className="w-5 h-5 rounded-full bg-gray-200 shrink-0" />
+        <div className="w-24 h-20 sm:w-28 sm:h-24 bg-gray-100 rounded-xl shrink-0" />
+        <div className="flex-1 space-y-2">
+          <div className="h-3 bg-gray-100 rounded w-16" />
+          <div className="h-4 bg-gray-100 rounded w-3/4" />
+          <div className="h-3 bg-gray-100 rounded w-1/2" />
+        </div>
+      </div>
+      <div className="flex items-center gap-3 shrink-0">
+        <div className="w-20 h-8 bg-gray-100 rounded-lg" />
+        <div className="w-24 h-9 bg-gray-100 rounded-xl" />
+      </div>
+    </div>
   )
 }
 
-export const WISHLIST_CATALOG = [
-  {
-    id: 'dell-inspiron-15',
-    title: 'Dell Inspiron 15 (2025)',
-    tag: 'Bestseller',
-    tagColor: 'bg-[#ff7a00] text-white',
-    price: '₹52,999',
-    originalPrice: '₹59,999',
-    discount: '12% OFF',
-    visual: WishlistLaptopVisual,
-    specs: [
-      { icon: CpuIcon, label: 'Intel Core i5' },
-      { icon: RamIcon, label: '16GB RAM' },
-      { icon: SsdIcon, label: '512GB SSD' },
-      { icon: DisplayIcon, label: '15.6" FHD' },
-    ],
-  },
-  {
-    id: 'pcs-gaming-desktop-pro',
-    title: 'PCS Gaming Desktop Pro',
-    tag: 'Gaming',
-    tagColor: 'bg-[#7c3aed] text-white',
-    price: '₹1,29,999',
-    originalPrice: '₹1,49,999',
-    discount: '13% OFF',
-    visual: WishlistDesktopVisual,
-    specs: [
-      { icon: CpuIcon, label: 'Intel Core i7' },
-      { icon: RamIcon, label: '32GB RAM' },
-      { icon: SsdIcon, label: '1TB SSD' },
-      { icon: GpuIcon, label: 'RTX 4060' },
-    ],
-  },
-  {
-    id: 'lg-ultragear-27',
-    title: 'LG UltraGear 27" Gaming Monitor',
-    tag: 'Popular',
-    tagColor: 'bg-[#ea580c] text-white',
-    price: '₹28,999',
-    originalPrice: '₹34,999',
-    discount: '17% OFF',
-    visual: WishlistMonitorVisual,
-    specs: [
-      { icon: DisplayIcon, label: '27" QHD' },
-      { icon: RefreshIcon, label: '165Hz' },
-      { icon: SpeedIcon, label: '1ms' },
-      { icon: PanelIcon, label: 'IPS Panel' },
-    ],
-  },
-  {
-    id: 'hyperx-cloud-iii',
-    title: 'HyperX Cloud III Gaming Headset',
-    tag: 'New Arrival',
-    tagColor: 'bg-[#16a34a] text-white',
-    price: '₹7,999',
-    originalPrice: '₹9,499',
-    discount: '16% OFF',
-    visual: WishlistHeadsetVisual,
-    specs: [
-      { icon: SoundIcon, label: '7.1 Surround' },
-      { icon: MicIcon, label: 'Noise Cancelling' },
-      { icon: CableIcon, label: 'Wired/USB' },
-      { icon: FoamIcon, label: 'Memory Foam' },
-    ],
-  },
-]
-
 export default function WishlistItemsList() {
-  const { wishlistIds, removeFromWishlist, clearWishlist, addToCart, toggleWishlist } = useStore()
+  const { wishlistIds, removeFromWishlist, clearWishlist, addToCart } = useStore()
+  const { isArabic } = useLanguage()
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(false)
   const [addedItem, setAddedItem] = useState(null)
 
-  // Filter products by wishlistIds
-  const items = WISHLIST_CATALOG.filter((item) => wishlistIds.includes(item.id))
+  /* Fetch all products and filter by wishlistIds (supports _id, slug, or legacy string IDs) */
+  const fetchWishlistProducts = useCallback(async () => {
+    if (!wishlistIds || wishlistIds.length === 0) {
+      setProducts([])
+      return
+    }
 
-  const handleAddToCart = (item) => {
-    addToCart()
-    setAddedItem(item.id)
-    setTimeout(() => {
-      setAddedItem(null)
-    }, 2000)
-  }
+    setLoading(true)
+    try {
+      // Fetch enough products to find all wishlist items
+      const result = await getProducts({ limit: 200, sort: 'newest' })
+      const allProducts = result?.products || []
 
-  const handleRestoreDefault = () => {
-    WISHLIST_CATALOG.forEach((item) => {
-      if (!wishlistIds.includes(item.id)) {
-        toggleWishlist(item.id)
-      }
+      const wishlistSet = new Set(wishlistIds.map(String))
+
+      const matched = allProducts.filter((p) => {
+        const id = String(p._id || '')
+        const slug = String(p.slug || '')
+        return wishlistSet.has(id) || wishlistSet.has(slug)
+      })
+
+      setProducts(matched)
+    } catch (err) {
+      console.warn('⚠️ Could not load wishlist products:', err.message)
+      setProducts([])
+    } finally {
+      setLoading(false)
+    }
+  }, [wishlistIds])
+
+  useEffect(() => {
+    fetchWishlistProducts()
+  }, [fetchWishlistProducts])
+
+  const handleAddToCart = (product) => {
+    const id = product.slug || product._id
+    addToCart({
+      id,
+      _id: product._id,
+      name: product.name || product.title,
+      price: product.price,
+      image: product.image || product.images?.[0] || '',
+      specs: product.specs,
+      quantity: 1,
     })
+    setAddedItem(id)
+    setTimeout(() => setAddedItem(null), 2000)
   }
 
   return (
     <section className="flex-1 min-w-0" aria-label="Wishlist Products">
-      {/* Header bar: "My Wishlist (4 Items)" + "Clear Wishlist" */}
+      {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-gray-150 mb-4 sm:mb-6">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
-          My Wishlist{' '}
+          {isArabic ? 'قائمة الرغبات' : 'My Wishlist'}{' '}
           <span className="text-[#dc1414] font-semibold text-lg sm:text-xl">
-            ({items.length} {items.length === 1 ? 'Item' : 'Items'})
+            ({wishlistIds.length} {isArabic ? 'عنصر' : wishlistIds.length === 1 ? 'Item' : 'Items'})
           </span>
         </h2>
 
-        {items.length > 0 && (
+        {wishlistIds.length > 0 && (
           <button
             type="button"
             onClick={clearWishlist}
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#dc1414] hover:text-[#b91c1c] hover:bg-red-50/80 px-2.5 py-1.5 rounded-lg border border-red-200 transition-colors cursor-pointer"
           >
             <TrashIcon className="w-4 h-4 shrink-0" />
-            <span>Clear Wishlist</span>
+            <span>{isArabic ? 'مسح القائمة' : 'Clear Wishlist'}</span>
           </button>
         )}
       </div>
 
+      {/* Loading skeletons */}
+      {loading && (
+        <div className="space-y-3.5">
+          {Array.from({ length: Math.min(wishlistIds.length, 3) }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      )}
+
       {/* Empty State */}
-      {items.length === 0 ? (
+      {!loading && wishlistIds.length === 0 && (
         <div className="bg-white rounded-2xl border border-dashed border-gray-250 p-8 sm:p-12 text-center shadow-xs">
           <div className="w-16 h-16 rounded-full bg-red-50 text-[#dc1414] flex items-center justify-center mx-auto mb-4">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-8 h-8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
             </svg>
           </div>
-          <h3 className="text-lg font-bold text-gray-900">Your wishlist is empty</h3>
+          <h3 className="text-lg font-bold text-gray-900">
+            {isArabic ? 'قائمة الرغبات فارغة' : 'Your wishlist is empty'}
+          </h3>
           <p className="text-sm text-gray-500 mt-1 max-w-md mx-auto">
-            You haven't saved any items yet. Explore our huge collection of high-performance laptops, gaming desktops, monitors and accessories.
+            {isArabic
+              ? 'لم تقم بحفظ أي عناصر بعد. استكشف مجموعتنا الكبيرة من الحواسيب المحمولة وأجهزة الألعاب والشاشات والملحقات.'
+              : 'You haven\'t saved any items yet. Explore our huge collection of high-performance laptops, gaming desktops, monitors and accessories.'}
           </p>
-          <div className="mt-5 flex items-center justify-center gap-3 flex-wrap">
+          <div className="mt-5">
             <Link
               href="/products"
-              className="px-5 py-2.5 rounded-xl bg-[#dc1414] hover:bg-[#b91c1c] text-white text-sm font-semibold shadow-xs transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#dc1414] hover:bg-[#b91c1c] text-white text-sm font-semibold shadow-xs transition-colors inline-block"
             >
-              Explore Products
+              {isArabic ? 'استكشف المنتجات' : 'Explore Products'}
             </Link>
-            <button
-              type="button"
-              onClick={handleRestoreDefault}
-              className="px-4 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium transition-colors cursor-pointer"
-            >
-              Restore 4 Sample Items
-            </button>
           </div>
         </div>
-      ) : (
+      )}
+
+      {/* Wishlist Items */}
+      {!loading && products.length > 0 && (
         <div className="space-y-3.5">
-          {items.map((item) => {
-            const Visual = item.visual
-            const isAdded = addedItem === item.id
+          {products.map((product) => {
+            const prodId = product.slug || String(product._id)
+            const title = product.name || product.title || 'Product'
+            const price = Number(product.price) || 0
+            const originalPrice = Number(product.originalPrice) || Number(product.comparePrice) || null
+            const discount = product.discount || (
+              originalPrice && originalPrice > price
+                ? `${Math.round(((originalPrice - price) / originalPrice) * 100)}% OFF`
+                : ''
+            )
+            const rawImg = product.image || product.images?.[0] || ''
+            const imgUrl = getProductImageUrl(rawImg)
+            const specChips = buildSpecChips(product.specs || {})
+            const isAdded = addedItem === prodId
+
+            // Badge color based on badge/tag
+            const badge = product.badge || product.tags?.[0] || ''
+            const badgeColorMap = {
+              Bestseller: 'bg-[#ff7a00] text-white',
+              'Hot Deal': 'bg-[#dc1414] text-white',
+              'New Arrival': 'bg-[#16a34a] text-white',
+              Gaming: 'bg-[#7c3aed] text-white',
+              Popular: 'bg-[#ea580c] text-white',
+              Featured: 'bg-[#0284c7] text-white',
+            }
+            const badgeColor = badgeColorMap[badge] || 'bg-gray-600 text-white'
 
             return (
               <article
-                key={item.id}
+                key={prodId}
                 className="bg-white rounded-2xl border border-gray-150 p-4 sm:p-5 shadow-xs hover:shadow-md transition-shadow flex flex-col md:flex-row md:items-center justify-between gap-4"
               >
-                {/* Left Side: Heart + Thumbnail + Info */}
+                {/* Left: Heart + Image + Info */}
                 <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                  {/* Remove Heart Button */}
+                  {/* Remove from wishlist - try both slug and _id */}
                   <button
                     type="button"
-                    onClick={() => removeFromWishlist(item.id)}
-                    aria-label={`Remove ${item.title} from wishlist`}
+                    onClick={() => {
+                      removeFromWishlist(product.slug || String(product._id))
+                      removeFromWishlist(String(product._id))
+                    }}
+                    aria-label={`Remove ${title} from wishlist`}
                     title="Remove from wishlist"
                     className="p-1 rounded-full hover:scale-110 active:scale-95 transition-transform shrink-0 cursor-pointer"
                   >
-                    <HeartSolidIcon className="w-5 h-5 text-[#e11414]" />
+                    <HeartSolidIcon className="w-5 h-5" />
                   </button>
 
-                  {/* Thumbnail Container */}
+                  {/* Product Image */}
                   <Link
-                    href={`/products/${item.id}`}
-                    className="w-24 h-20 sm:w-28 sm:h-24 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-center p-2 shrink-0 hover:border-[#dc1414]/40 transition-colors"
+                    href={`/products/${prodId}`}
+                    className="w-24 h-20 sm:w-28 sm:h-24 bg-gray-50/80 rounded-xl border border-gray-100 flex items-center justify-center p-2 shrink-0 hover:border-[#dc1414]/40 transition-colors overflow-hidden"
                   >
-                    <Visual className="w-full h-full max-h-[80px] object-contain" />
+                    {imgUrl ? (
+                      <img
+                        src={imgUrl}
+                        alt={title}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <svg className="w-10 h-10 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <rect x="3" y="4" width="18" height="12" rx="2" strokeWidth="1.5" />
+                        <path d="M7 20h10M12 16v4" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    )}
                   </Link>
 
                   {/* Product Details */}
                   <div className="min-w-0">
-                    {/* Tag / Badge */}
-                    <span
-                      className={`inline-block text-[10.5px] font-semibold px-2 py-0.5 rounded-full mb-1 ${item.tagColor}`}
-                    >
-                      {item.tag}
-                    </span>
+                    {badge && (
+                      <span className={`inline-block text-[10.5px] font-semibold px-2 py-0.5 rounded-full mb-1 ${badgeColor}`}>
+                        {badge}
+                      </span>
+                    )}
 
-                    {/* Title */}
-                    <Link href={`/products/${item.id}`} className="block">
+                    <Link href={`/products/${prodId}`} className="block">
                       <h3 className="text-[15px] sm:text-[16px] font-bold text-gray-900 truncate hover:text-[#dc1414] transition-colors">
-                        {item.title}
+                        {title}
                       </h3>
                     </Link>
 
-                    {/* Micro Specs */}
-                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11.5px] sm:text-[12px] text-gray-600 font-medium">
-                      {item.specs.map((spec, sIdx) => {
-                        const SpecIcon = spec.icon
-                        return (
-                          <div key={sIdx} className="inline-flex items-center gap-1 shrink-0">
-                            <SpecIcon className="w-3.5 h-3.5 text-gray-500" />
-                            <span>{spec.label}</span>
-                          </div>
-                        )
-                      })}
-                    </div>
+                    {/* Spec chips */}
+                    {specChips.length > 0 && (
+                      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11.5px] text-gray-600 font-medium">
+                        {specChips.map((chip, i) => (
+                          <span key={i} className="inline-flex items-center gap-1 shrink-0">
+                            <span className="w-1 h-1 rounded-full bg-gray-400 inline-block" />
+                            {chip}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Brand */}
+                    {product.brand && (
+                      <p className="mt-1 text-[11px] text-gray-400 font-medium">{product.brand}</p>
+                    )}
                   </div>
                 </div>
 
-                {/* Right Side: Price + Actions */}
+                {/* Right: Price + Actions */}
                 <div className="flex items-center justify-between md:justify-end gap-3 sm:gap-4 shrink-0 pt-3 md:pt-0 border-t md:border-t-0 border-gray-100">
-                  {/* Pricing Column */}
+                  {/* Pricing */}
                   <div className="text-left md:text-right">
                     <div className="text-lg sm:text-xl font-black text-[#dc1414] leading-tight">
-                      {item.price}
+                      {formatINR(price)}
                     </div>
-                    <div className="flex items-center gap-1.5 mt-0.5">
-                      <span className="text-[11.5px] text-gray-400 line-through">
-                        {item.originalPrice}
-                      </span>
-                      <span className="text-[10px] font-bold text-[#dc1414] bg-red-50 border border-red-100 px-1.5 py-0.2 rounded">
-                        {item.discount}
-                      </span>
-                    </div>
+                    {originalPrice && originalPrice > price && (
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        <span className="text-[11.5px] text-gray-400 line-through">
+                          {formatINR(originalPrice)}
+                        </span>
+                        {discount && (
+                          <span className="text-[10px] font-bold text-[#dc1414] bg-red-50 border border-red-100 px-1.5 rounded">
+                            {discount}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Add to Cart Button */}
+                  {/* Add to Cart */}
                   <button
                     type="button"
-                    onClick={() => handleAddToCart(item)}
+                    onClick={() => handleAddToCart(product)}
                     className={`inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-white shadow-xs transition-all cursor-pointer ${
                       isAdded
                         ? 'bg-emerald-600'
@@ -386,10 +329,18 @@ export default function WishlistItemsList() {
                     }`}
                   >
                     <CartIcon className="w-4 h-4 shrink-0" />
-                    <span>{isAdded ? 'Added!' : 'Add to Cart'}</span>
+                    <span>
+                      {isAdded
+                        ? isArabic
+                          ? 'تمت الإضافة!'
+                          : 'Added!'
+                        : isArabic
+                        ? 'أضف إلى السلة'
+                        : 'Add to Cart'}
+                    </span>
                   </button>
 
-                  {/* Options Menu Button */}
+                  {/* More options */}
                   <button
                     type="button"
                     aria-label="More options"
@@ -401,6 +352,24 @@ export default function WishlistItemsList() {
               </article>
             )
           })}
+        </div>
+      )}
+
+      {/* Wishlist IDs exist but no products matched (IDs may be stale/invalid) */}
+      {!loading && wishlistIds.length > 0 && products.length === 0 && (
+        <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-8 text-center">
+          <p className="text-gray-500 text-sm">
+            {isArabic
+              ? 'تعذر تحميل المنتجات المحفوظة، قد تكون غير متوفرة حالياً في المتجر.'
+              : 'Could not load your saved items. They may have been removed from our store.'}
+          </p>
+          <button
+            type="button"
+            onClick={clearWishlist}
+            className="mt-4 px-4 py-2 rounded-lg border border-red-200 text-[#dc1414] text-sm font-semibold hover:bg-red-50 transition-colors cursor-pointer"
+          >
+            {isArabic ? 'مسح القائمة' : 'Clear Wishlist'}
+          </button>
         </div>
       )}
     </section>

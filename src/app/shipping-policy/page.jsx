@@ -13,13 +13,16 @@ export default function ShippingPolicyPage() {
   return (
     <LegalPageLayout
       title="Shipping & Delivery Policy"
+      titleAr="سياسة الشحن والتوصيل في قطر"
       subtitle="How we pack, insure, and dispatch your high-performance laptops and custom PC rigs safely to your doorstep."
+      subtitleAr="كيف نقوم بتغليف وتأمين وشحن أجهزة الكمبيوتر المحمولة والمكتبية بأمان إلى باب منزلك في جميع أنحاء قطر."
       lastUpdated="18 November 2026"
       badge="Logistics & Delivery"
+      badgeAr="الخدمات اللوجستية والتوصيل"
     >
       <h2>1. Serviceable Areas & Coverage</h2>
       <p>
-        Prestige Computers ships to over <strong>19,000+ PIN codes across India</strong> via premier logistics partners (BlueDart Express, Delhivery, DTDC, and PCS Express Fleet). We also operate dedicated European and UK distribution hubs from our London technology studio.
+        Prestige Computers (PCS Doha) delivers across all municipalities in Qatar, including Doha, Lusail, Al Rayyan, Al Wakrah, and Al Daayen, with fast dispatch from our central Al-Mirqab Mall showroom and tech facility.
       </p>
 
       <h2>2. Delivery Timelines & Charges</h2>
@@ -36,21 +39,21 @@ export default function ShippingPolicyPage() {
           <tbody className="divide-y divide-[#e5e7eb] text-[#4b5563]">
             <tr>
               <td className="border border-[#e5e7eb] p-3 font-semibold text-[#111827]">Standard Delivery</td>
-              <td className="border border-[#e5e7eb] p-3">2 – 4 Business Days</td>
-              <td className="border border-[#e5e7eb] p-3 text-[#16a34a] font-bold">FREE (₹0)</td>
-              <td className="border border-[#e5e7eb] p-3">All orders across India</td>
+              <td className="border border-[#e5e7eb] p-3">1 – 2 Business Days</td>
+              <td className="border border-[#e5e7eb] p-3 text-[#16a34a] font-bold">FREE (QAR 0)</td>
+              <td className="border border-[#e5e7eb] p-3">All orders across Qatar (Doha, Lusail, Al Rayyan, Al Wakrah)</td>
             </tr>
             <tr>
-              <td className="border border-[#e5e7eb] p-3 font-semibold text-[#111827]">Express Delivery</td>
-              <td className="border border-[#e5e7eb] p-3">24 – 48 Hours</td>
-              <td className="border border-[#e5e7eb] p-3 font-bold text-[#dc1414]">₹199</td>
-              <td className="border border-[#e5e7eb] p-3">Kanpur, Lucknow & Metros</td>
+              <td className="border border-[#e5e7eb] p-3 font-semibold text-[#111827]">Express Same-Day Delivery</td>
+              <td className="border border-[#e5e7eb] p-3">Within 3 – 5 Hours</td>
+              <td className="border border-[#e5e7eb] p-3 font-bold text-[#dc1414]">QAR 30</td>
+              <td className="border border-[#e5e7eb] p-3">Doha, Lusail &amp; Al Rayyan</td>
             </tr>
             <tr>
               <td className="border border-[#e5e7eb] p-3 font-semibold text-[#111827]">Same-Day Store Pickup</td>
               <td className="border border-[#e5e7eb] p-3">Ready in 2 Hours</td>
-              <td className="border border-[#e5e7eb] p-3 text-[#16a34a] font-bold">FREE (₹0)</td>
-              <td className="border border-[#e5e7eb] p-3">Kakadeo & Civil Lines Hubs</td>
+              <td className="border border-[#e5e7eb] p-3 text-[#16a34a] font-bold">FREE (QAR 0)</td>
+              <td className="border border-[#e5e7eb] p-3">Al-Mirqab Mall Showroom (Doha)</td>
             </tr>
           </tbody>
         </table>
@@ -83,7 +86,7 @@ export default function ShippingPolicyPage() {
       <ol>
         <li>Do NOT accept the delivery or share the delivery OTP.</li>
         <li>Ask the delivery executive to mark &ldquo;Damaged in Transit / Delivery Refused&rdquo;.</li>
-        <li>Notify our support team immediately at <code>+91 98765 43210</code> or <code>support@prestigecomputers.in</code>. A brand-new replacement will be prioritized for dispatch.</li>
+        <li>Notify our support team immediately at <code>+974 4145 3868</code> or <code>info@pcsdoha.net</code> (WhatsApp: <code>+974 6691 9155</code>). A replacement will be prioritized for dispatch.</li>
       </ol>
     </LegalPageLayout>
   )

@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { useLanguage } from '../../../context/LanguageContext'
 
 export default function NewsletterBanner() {
+  const { t, isRtl } = useLanguage()
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [error, setError] = useState('')
@@ -11,7 +13,7 @@ export default function NewsletterBanner() {
     e.preventDefault()
     const trimmed = email.trim()
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setError('Please enter a valid email address.')
+      setError(isRtl ? 'يرجى إدخال عنوان بريد إلكتروني صالح.' : 'Please enter a valid email address.')
       return
     }
     setError('')
@@ -81,11 +83,10 @@ export default function NewsletterBanner() {
               {/* Copy */}
               <div className="min-w-0">
                 <h2 className="text-[19px] sm:text-[22px] xl:text-[24px] font-bold text-white tracking-[-0.015em] leading-[1.2]">
-                  Stay Updated with Prestige Computers
+                  {t('newsletterTitle')}
                 </h2>
                 <p className="mt-1 text-[12.5px] sm:text-[13.5px] text-white/90 font-normal leading-snug">
-                  Get the latest deals, new arrivals, rental offers and tech tips
-                  straight to your inbox.
+                  {t('newsletterSubtitle')}
                 </p>
               </div>
             </div>
@@ -107,14 +108,14 @@ export default function NewsletterBanner() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>You&apos;re subscribed! Watch your inbox for deals.</span>
+                    <span>{t('subscribedSuccess')}</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setSubscribed(false)}
                     className="text-[12px] font-semibold text-[#dc1414] hover:underline shrink-0 cursor-pointer"
                   >
-                    Change
+                    {isRtl ? 'تغيير' : 'Change'}
                   </button>
                 </div>
               ) : (
@@ -124,7 +125,7 @@ export default function NewsletterBanner() {
                   className="bg-white rounded-xl p-1 flex items-center shadow-[0_6px_22px_rgba(0,0,0,0.22)] focus-within:ring-2 focus-within:ring-white/60 transition-shadow"
                 >
                   <label htmlFor="newsletter-email" className="sr-only">
-                    Email address
+                    {t('enterEmail')}
                   </label>
                   <input
                     id="newsletter-email"
@@ -134,20 +135,20 @@ export default function NewsletterBanner() {
                       setEmail(e.target.value)
                       if (error) setError('')
                     }}
-                    placeholder="Enter your email address"
+                    placeholder={t('enterEmail')}
                     className="flex-1 min-w-0 bg-transparent px-3.5 sm:px-4 py-2.5 text-[13.5px] text-[#111827] placeholder:text-[#6b7280] focus:outline-none"
                   />
                   <button
                     type="submit"
                     className="inline-flex items-center justify-center gap-2 bg-gradient-to-b from-[#dc1414] to-[#a9080b] hover:from-[#e61919] hover:to-[#bd0e12] active:scale-[0.99] text-white text-[13.5px] font-semibold px-5 sm:px-6 py-2.5 rounded-lg shadow-[0_2px_8px_rgba(169,8,11,0.35)] transition-all shrink-0 cursor-pointer group"
                   >
-                    <span>Subscribe</span>
+                    <span>{t('subscribe')}</span>
                     <svg
                       viewBox="0 0 16 16"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
-                      className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                      className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
                       aria-hidden="true"
                     >
                       <path

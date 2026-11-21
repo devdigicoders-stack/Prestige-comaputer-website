@@ -1,3 +1,7 @@
+'use client'
+
+import { useLanguage } from '../../../context/LanguageContext'
+
 function FastTruckIcon() {
   return (
     <svg
@@ -106,37 +110,49 @@ function SupportHeadsetIcon() {
 const TRUST_ITEMS = [
   {
     id: 'shipping',
-    title: 'Free Shipping',
-    subtitle: 'On orders over £500',
+    title: 'Free Shipping in Qatar',
+    titleAr: 'توصيل مجاني في قطر',
+    subtitle: 'Across Doha & municipalities',
+    subtitleAr: 'لجميع مناطق وبلديات الدوحة',
     Icon: FastTruckIcon,
   },
   {
     id: 'returns',
-    title: '30 Days Returns',
-    subtitle: 'Hassle-free & easy',
+    title: 'Prestige Guarantee',
+    titleAr: 'ضمان بريستيج المعتمد',
+    subtitle: 'Official warranty & returns',
+    subtitleAr: 'وفق شروط الاسترجاع الرسمية',
     Icon: ReturnsIcon,
   },
   {
     id: 'warranty',
-    title: 'Genuine Warranty',
-    subtitle: 'Manufacturer warranty included',
+    title: 'Genuine OEM Warranty',
+    titleAr: 'ضمان أصلي 100%',
+    subtitle: 'Brand-new & pre-owned covered',
+    subtitleAr: 'أجهزة جديدة ومستعملة معتمدة',
     Icon: ShieldWarrantyIcon,
   },
   {
     id: 'payments',
     title: 'Secure Payments',
-    subtitle: '100% safe & encrypted',
+    titleAr: 'دفع آمن ومحمي',
+    subtitle: 'Cards, Transfer & Showroom POS',
+    subtitleAr: 'بطاقات بنكية ونقاط بيع بالمعرض',
     Icon: SecureLockIcon,
   },
   {
     id: 'support',
-    title: '24/7 Support',
-    subtitle: "We're always here to help",
+    title: 'Dedicated Hardware Desk',
+    titleAr: 'دعم فني متخصص',
+    subtitle: 'Phone & WhatsApp assistance',
+    subtitleAr: 'مساعدة عبر الهاتف والواتساب',
     Icon: SupportHeadsetIcon,
   },
 ]
 
 export default function TrustStrip() {
+  const { isRtl } = useLanguage()
+
   return (
     <section
       className="w-full bg-white py-5 sm:py-6"
@@ -144,23 +160,27 @@ export default function TrustStrip() {
     >
       <div className="max-w-[1380px] mx-auto px-4 lg:px-6">
         <div className="rounded-2xl bg-[#fdf0f1] border border-[#f8dde0]/75 px-4 sm:px-6 py-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-5 lg:gap-y-0 lg:divide-x lg:divide-[#e5ccd0]">
-            {TRUST_ITEMS.map(({ id, title, subtitle, Icon }) => (
-              <div
-                key={id}
-                className="flex items-center justify-start lg:justify-center gap-3.5 px-3 xl:px-4"
-              >
-                <Icon />
-                <div className="min-w-0 leading-tight">
-                  <p className="text-[13.5px] font-bold text-[#111827] truncate">
-                    {title}
-                  </p>
-                  <p className="mt-0.5 text-[11.5px] text-[#4b5563] leading-snug">
-                    {subtitle}
-                  </p>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-5 lg:gap-y-0 lg:divide-x ${isRtl ? 'lg:divide-x-reverse' : ''} lg:divide-[#e5ccd0]`}>
+            {TRUST_ITEMS.map(({ id, title, titleAr, subtitle, subtitleAr, Icon }) => {
+              const displayTitle = isRtl && titleAr ? titleAr : title
+              const displaySubtitle = isRtl && subtitleAr ? subtitleAr : subtitle
+              return (
+                <div
+                  key={id}
+                  className="flex items-center justify-start lg:justify-center gap-3.5 px-3 xl:px-4 text-left rtl:text-right"
+                >
+                  <Icon />
+                  <div className="min-w-0 leading-tight">
+                    <p className="text-[13.5px] font-bold text-[#111827] truncate">
+                      {displayTitle}
+                    </p>
+                    <p className="mt-0.5 text-[11.5px] text-[#4b5563] leading-snug">
+                      {displaySubtitle}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

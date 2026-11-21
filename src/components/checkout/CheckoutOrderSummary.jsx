@@ -1,67 +1,135 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { useStore } from '../../context/StoreContext'
+import { getProductImageUrl } from '../../services/productApi'
+import { validateCouponApi } from '../../services/couponApi'
 import {
   WishlistLaptopVisual,
-  WishlistDesktopVisual,
-  WishlistHeadsetVisual,
 } from '../wishlist/WishlistVisuals'
 
 function formatINR(val) {
-  return `₹${Number(val).toLocaleString('en-IN')}`
+  return `₹${Math.round(Number(val) || 0).toLocaleString('en-IN')}`
 }
 
 export default function CheckoutOrderSummary({
   deliveryMethod = 'standard',
   onPlaceOrder,
 }) {
+  const { cartItems } = useStore()
   const [coupon, setCoupon] = useState('')
-  const [couponApplied, setCouponApplied] = useState(false)
+  const [appliedCoupon, setAppliedCoupon] = useState(null)
   const [couponError, setCouponError] = useState('')
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false)
 
-  const items = [
-    {
-      id: 'dell-inspiron-15',
-      name: 'Dell Inspiron 15 (2025)',
-      specs: 'Core i5 | 16GB RAM | 512GB SSD',
-      price: 52999,
-      quantity: 1,
-      visual: <WishlistLaptopVisual className="w-full h-full max-h-[50px] object-contain" />,
-    },
-    {
-      id: 'pcs-gaming-desktop-pro',
-      name: 'PCS Gaming Desktop Pro',
-      specs: 'Core i7 | 32GB RAM | 1TB SSD | RTX 4060',
-      price: 129999,
-      quantity: 1,
-      visual: <WishlistDesktopVisual className="w-full h-full max-h-[50px] object-contain" />,
-    },
-    {
-      id: 'hyperx-cloud-iii-headset',
-      name: 'HyperX Cloud III Headset',
-      specs: '7.1 Surround | Noise Cancelling',
-      price: 7999,
-      quantity: 1,
-      visual: <WishlistHeadsetVisual className="w-full h-full max-h-[50px] object-contain" />,
-    },
-  ]
+  const items = useMemo(() => {
+    if (Array.isArray(cartItems) && cartItems.length > 0) {
+      // ONLY selected cart items are eligible for checkout order
+      const selectedCartItems = cartItems.filter((c) => c.selected !== false)
+      return selectedCartItems.map((c) => ({
+        id: c.id || c.slug || c._id || 'prod',
+        name: c.name || c.title || 'Product Hardware System',
+        specs:
+          typeof c.specs === 'string'
+            ? c.specs
+            : c.specs?.cpu
+            ? `${c.specs.cpu} | ${c.specs.ram || ''}`
+            : Array.isArray(c.specs)
+            ? c.specs.map((s) => s.label || s).join(' | ')
+            : (c.subtitle || c.category || ''),
+        price: Number(c.price) || 0,
+        quantity: Math.max(1, Number(c.quantity || 1)),
+        image: c.image || '',
+        isFreeDelivery: c.isFreeDelivery !== false && Number(c.deliveryCharge || 0) === 0,
+        deliveryCharge: c.isFreeDelivery === false ? Number(c.deliveryCharge || 0) : 0,
+        type: c.type || 'Buy',
+      }))
+    }
+    return []
+  }, [cartItems])
 
-  const subtotal = items.reduce((acc, it) => acc + it.price * it.quantity, 0) // 1,90,997
-  const baseDiscount = 19999
-  const extraCouponDiscount = couponApplied ? 5000 : 0
-  const totalDiscount = baseDiscount + extraCouponDiscount
-  const deliveryCharge = deliveryMethod === 'express' ? 199 : 0
-  const finalTotal = subtotal - totalDiscount + deliveryCharge
+  const subtotal = items.reduce((acc, it) => acc + it.price * it.quantity, 0)
 
-  const handleApplyCoupon = (e) => {
+  // Base delivery charge from items
+  const baseDeliveryCharge = items.reduce((acc, it) => {
+    return acc + (it.isFreeDelivery ? 0 : it.deliveryCharge * it.quantity)
+  }, 0)
+  const expressSurcharge = deliveryMethod === 'express' ? 199 : 0
+  const rawDeliveryCharge = items.length > 0 ? baseDeliveryCharge + expressSurcharge : 0
+
+  // Calculate Coupon Discount dynamically
+  let couponDiscount = 0
+  let effectiveDeliveryCharge = rawDeliveryCharge
+
+  if (appliedCoupon) {
+    if (appliedCoupon.isFreeShipping || appliedCoupon.discountType === 'free_shipping') {
+      effectiveDeliveryCharge = 0
+      couponDiscount = 0
+    } else if (appliedCoupon.discountType === 'percentage') {
+      let disc = Math.round((subtotal * appliedCoupon.discountValue) / 100)
+      if (appliedCoupon.maxDiscountAmount && disc > appliedCoupon.maxDiscountAmount) {
+        disc = appliedCoupon.maxDiscountAmount
+      }
+      couponDiscount = disc
+    } else {
+      couponDiscount = Math.min(subtotal, appliedCoupon.discountAmount ?? appliedCoupon.discountValue)
+    }
+  }
+
+  const totalDiscount = couponDiscount
+  const finalTotal = Math.max(0, subtotal - totalDiscount + effectiveDeliveryCharge)
+
+  const handleApplyCoupon = async (e) => {
     e.preventDefault()
+    setCouponError('')
+
     if (!coupon.trim()) {
-      setCouponError('Please enter a coupon code')
+      setCouponError('Please enter a coupon code.')
       return
     }
-    setCouponApplied(true)
+
+    try {
+      setIsValidatingCoupon(true)
+      const res = await validateCouponApi({
+        code: coupon,
+        cartTotal: subtotal,
+        deliveryCharge: rawDeliveryCharge,
+      })
+
+      setAppliedCoupon({
+        code: res.code,
+        label: res.description,
+        discountType: res.discountType,
+        discountValue: res.discountValue,
+        discountAmount: res.discountAmount,
+        isFreeShipping: res.isFreeShipping,
+        maxDiscountAmount: res.maxDiscountAmount,
+      })
+      setCoupon('')
+    } catch (err) {
+      setCouponError(err.message || 'Invalid coupon code. Please try again.')
+    } finally {
+      setIsValidatingCoupon(false)
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null)
+    setCoupon('')
     setCouponError('')
+  }
+
+  const handleTriggerPlaceOrder = () => {
+    if (items.length === 0) return
+    onPlaceOrder?.({
+      items,
+      subtotal,
+      deliveryCharge: effectiveDeliveryCharge,
+      totalDiscount,
+      finalTotal,
+      couponCode: appliedCoupon?.code || '',
+    })
   }
 
   return (
@@ -84,37 +152,61 @@ export default function CheckoutOrderSummary({
         </Link>
       </div>
 
-      {/* Item List (3 Items matching mockup) */}
-      <div className="flex flex-col divide-y divide-[#f3f4f6] py-2">
-        {items.map((item) => (
-          <div key={item.id} className="py-3 flex items-center justify-between gap-3">
-            {/* Visual Thumbnail */}
-            <div className="w-14 h-12 bg-[#f8fafc] rounded-lg border border-[#e5e7eb] flex items-center justify-center p-1 shrink-0">
-              {item.visual}
-            </div>
-
-            {/* Title & Specs */}
-            <div className="flex-1 min-w-0">
-              <h3 className="text-[13px] font-bold text-[#111827] truncate">
-                {item.name}
-              </h3>
-              <p className="text-[11px] text-[#6b7280] truncate mt-0.5">
-                {item.specs}
-              </p>
-            </div>
-
-            {/* Price & Quantity */}
-            <div className="text-right shrink-0">
-              <div className="text-[14px] font-black text-[#dc1414]">
-                {formatINR(item.price)}
+      {/* Item List */}
+      {items.length === 0 ? (
+        <div className="py-8 text-center text-gray-500">
+          <p className="text-[13.5px] font-medium text-gray-700">Your cart is currently empty.</p>
+          <p className="text-[12px] text-gray-400 mt-1">Add items from the store to proceed.</p>
+          <Link
+            href="/products"
+            className="mt-3 inline-block px-4 py-1.5 rounded-lg bg-[#dc1414] text-white text-[12.5px] font-bold hover:bg-[#b91c1c] transition-colors"
+          >
+            Explore Products &rarr;
+          </Link>
+        </div>
+      ) : (
+        <div className="flex flex-col divide-y divide-[#f3f4f6] py-2 max-h-[280px] overflow-y-auto">
+          {items.map((item, idx) => (
+            <div key={item.id + idx} className="py-3 flex items-center justify-between gap-3">
+              {/* Visual Thumbnail */}
+              <div className="w-14 h-12 bg-[#f8fafc] rounded-lg border border-[#e5e7eb] flex items-center justify-center p-1 shrink-0 overflow-hidden">
+                {item.image ? (
+                  <img
+                    src={getProductImageUrl(item.image)}
+                    alt={item.name}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <WishlistLaptopVisual className="w-full h-full max-h-[50px] object-contain" />
+                )}
               </div>
-              <div className="text-[11px] text-[#6b7280] mt-0.5">
-                Qty: {item.quantity}
+
+              {/* Title & Specs */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-[13px] font-bold text-[#111827] truncate">
+                  {item.name}
+                </h3>
+                <p className="text-[11px] text-[#6b7280] truncate mt-0.5">
+                  {item.specs}
+                </p>
+                <span className="text-[10.5px] font-semibold text-emerald-600 block mt-0.5">
+                  {item.isFreeDelivery ? '✓ Free Delivery' : `+ ₹${item.deliveryCharge * item.quantity} Delivery`}
+                </span>
+              </div>
+
+              {/* Price & Quantity */}
+              <div className="text-right shrink-0">
+                <div className="text-[14px] font-black text-[#dc1414]">
+                  {formatINR(item.price * item.quantity)}
+                </div>
+                <div className="text-[11px] text-[#6b7280] mt-0.5">
+                  Qty: {item.quantity}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Coupon Code Section */}
       <div className="py-3 border-t border-b border-[#f3f4f6] my-1">
@@ -125,27 +217,42 @@ export default function CheckoutOrderSummary({
           <span>Have a Coupon Code?</span>
         </div>
 
-        <form onSubmit={handleApplyCoupon} className="flex gap-2">
-          <input
-            type="text"
-            value={coupon}
-            onChange={(e) => setCoupon(e.target.value)}
-            placeholder="Enter coupon code"
-            className="flex-1 bg-white border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[12.5px] rounded-lg px-3 py-1.5 outline-none"
-          />
-          <button
-            type="submit"
-            className="border-2 border-[#dc1414] text-[#dc1414] hover:bg-[#fef2f2] text-[12.5px] font-bold px-4 py-1.5 rounded-lg transition-colors cursor-pointer"
-          >
-            Apply
-          </button>
-        </form>
-
-        {couponApplied && (
-          <p className="mt-1.5 text-[11px] font-semibold text-[#16a34a]">
-            ✓ Coupon applied! Additional ₹5,000 saved.
-          </p>
+        {appliedCoupon ? (
+          <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-[12px]">
+            <div>
+              <span className="font-bold text-emerald-800 tracking-wider font-mono">
+                {appliedCoupon.code}
+              </span>
+              <p className="text-[11px] text-emerald-700">{appliedCoupon.label}</p>
+            </div>
+            <button
+              type="button"
+              onClick={handleRemoveCoupon}
+              className="text-[#dc1414] hover:underline font-bold text-[11.5px] cursor-pointer"
+            >
+              Remove
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleApplyCoupon} className="flex gap-2">
+            <input
+              type="text"
+              value={coupon}
+              disabled={isValidatingCoupon}
+              onChange={(e) => setCoupon(e.target.value)}
+              placeholder="e.g. PRESTIGE10, FIRSTBUY"
+              className="flex-1 bg-white border border-[#d1d5db] focus:border-[#dc1414] focus:ring-1 focus:ring-[#dc1414] text-[12.5px] rounded-lg px-3 py-1.5 outline-none uppercase disabled:bg-gray-100"
+            />
+            <button
+              type="submit"
+              disabled={isValidatingCoupon}
+              className="border-2 border-[#dc1414] text-[#dc1414] hover:bg-[#fef2f2] text-[12.5px] font-bold px-4 py-1.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+            >
+              {isValidatingCoupon ? 'Applying...' : 'Apply'}
+            </button>
+          </form>
         )}
+
         {couponError && (
           <p className="mt-1.5 text-[11px] font-semibold text-[#dc1414]">
             {couponError}
@@ -161,14 +268,14 @@ export default function CheckoutOrderSummary({
         </div>
 
         <div className="flex items-center justify-between text-[#16a34a] font-semibold">
-          <span>Discount</span>
-          <span>- {formatINR(totalDiscount)}</span>
+          <span>Discount {appliedCoupon ? `(${appliedCoupon.code})` : ''}</span>
+          <span>{totalDiscount > 0 ? `- ${formatINR(totalDiscount)}` : '₹0'}</span>
         </div>
 
         <div className="flex items-center justify-between text-[#4b5563]">
           <span>Delivery Charges</span>
-          <span className="font-bold text-[#111827]">
-            {deliveryCharge === 0 ? '₹0' : formatINR(deliveryCharge)}
+          <span className={`font-bold ${effectiveDeliveryCharge === 0 ? 'text-[#16a34a]' : 'text-[#111827]'}`}>
+            {effectiveDeliveryCharge === 0 ? 'Free' : formatINR(effectiveDeliveryCharge)}
           </span>
         </div>
       </div>
@@ -192,14 +299,19 @@ export default function CheckoutOrderSummary({
         {/* Place Order Button */}
         <button
           type="button"
-          onClick={onPlaceOrder}
-          className="w-full py-3.5 px-4 rounded-xl bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white font-bold text-[14.5px] flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
+          disabled={items.length === 0}
+          onClick={handleTriggerPlaceOrder}
+          className={`w-full py-3.5 px-4 rounded-xl font-bold text-[14.5px] flex items-center justify-center gap-2 shadow-xs transition-all ${
+            items.length === 0
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white cursor-pointer'
+          }`}
         >
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
             <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
           </svg>
-          <span>Place Order</span>
-          <span aria-hidden="true">&rarr;</span>
+          <span>{items.length === 0 ? 'Your Cart is Empty' : 'Place Order'}</span>
+          {items.length > 0 && <span aria-hidden="true">&rarr;</span>}
         </button>
 
         {/* Trust Badges */}

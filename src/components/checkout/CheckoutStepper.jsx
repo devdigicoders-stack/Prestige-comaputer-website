@@ -1,6 +1,6 @@
 'use client'
 
-export default function CheckoutStepper({ currentStep = 2, cartCount = 3 }) {
+export default function CheckoutStepper({ currentStep = 2, cartCount = 0 }) {
   const steps = [
     {
       id: 1,

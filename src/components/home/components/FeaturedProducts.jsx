@@ -1,10 +1,19 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import ProductCard from '../../product/ProductCard'
-import { FEATURED_PRODUCTS, FEATURED_TABS } from '../../../data/products'
 import { useStore } from '../../../context/StoreContext'
+import { useLanguage } from '../../../context/LanguageContext'
+import { getProducts } from '../../../services/productApi'
+
+const FEATURED_TABS = [
+  { id: 'All Products', labelEn: 'All Products', labelAr: 'جميع المنتجات' },
+  { id: 'Best Sellers', labelEn: 'Best Sellers', labelAr: 'الأكثر مبيعاً' },
+  { id: 'New Arrivals', labelEn: 'New Arrivals', labelAr: 'وصل حديثاً' },
+  { id: 'Top Deals', labelEn: 'Top Deals', labelAr: 'أقوى العروض' },
+  { id: 'Rentals', labelEn: 'Rentals', labelAr: 'أجهزة للإيجار' },
+]
 
 function ArrowRightIcon({ className = 'w-3.5 h-3.5' }) {
   return (
@@ -30,16 +39,46 @@ export default function FeaturedProducts({
   onAddToCart,
 }) {
   const store = useStore()
+  const { isRtl, t } = useLanguage()
   const activeWishlist = wishlistIds ?? store.wishlistIds
   const handleToggleWishlist = onToggleWishlist ?? store.toggleWishlist
   const handleAddToCart = onAddToCart ?? store.addToCart
 
   const [activeTab, setActiveTab] = useState('All Products')
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let isMounted = true
+    getProducts({ limit: 12, sort: 'popularity' })
+      .then((res) => {
+        if (isMounted && res?.products) {
+          setProducts(res.products)
+        }
+      })
+      .catch((err) => {
+        console.warn('Could not load featured products:', err.message)
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false)
+      })
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const displayedProducts = useMemo(() => {
-    if (activeTab === 'All Products') return FEATURED_PRODUCTS
-    return FEATURED_PRODUCTS.filter((item) => item.tags.includes(activeTab))
-  }, [activeTab])
+    if (activeTab === 'All Products') return products
+    if (activeTab === 'Rentals') {
+      return products.filter(
+        (item) =>
+          item.type === 'Buy & Rent' ||
+          item.type === 'Rent Only' ||
+          (item.tags && item.tags.includes('Rentals')),
+      )
+    }
+    return products.filter((item) => item.tags && item.tags.includes(activeTab))
+  }, [products, activeTab])
 
   return (
     <section
@@ -58,7 +97,7 @@ export default function FeaturedProducts({
                 aria-hidden="true"
               />
               <h2 className="text-[20px] sm:text-[22px] font-bold text-[#111827] tracking-[-0.02em] leading-tight">
-                Featured Products
+                {t('featuredProducts')}
               </h2>
             </div>
 
@@ -69,14 +108,14 @@ export default function FeaturedProducts({
               aria-label="Filter featured products"
             >
               {FEATURED_TABS.map((tab) => {
-                const isActive = activeTab === tab
+                const isActive = activeTab === tab.id
                 return (
                   <button
-                    key={tab}
+                    key={tab.id}
                     type="button"
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => setActiveTab(tab)}
+                    onClick={() => setActiveTab(tab.id)}
                     className={[
                       'px-4 py-1.5 rounded-lg text-[12.5px] font-medium whitespace-nowrap transition-all cursor-pointer',
                       isActive
@@ -84,7 +123,7 @@ export default function FeaturedProducts({
                         : 'bg-[#f4f5f7] text-[#374151] hover:bg-[#e8eaef] hover:text-[#111827]',
                     ].join(' ')}
                   >
-                    {tab}
+                    {isRtl ? tab.labelAr : tab.labelEn}
                   </button>
                 )
               })}
@@ -96,23 +135,39 @@ export default function FeaturedProducts({
             href="/products"
             className="self-start lg:self-auto inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#dc1414] hover:text-[#a80b0b] transition-colors whitespace-nowrap group cursor-pointer"
           >
-            <span>View All Products</span>
-            <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <span>{t('viewAllProducts')}</span>
+            <ArrowRightIcon className={`w-3.5 h-3.5 ${isRtl ? '-scale-x-100 group-hover:-translate-x-0.5' : 'group-hover:translate-x-0.5'} transition-transform`} />
           </Link>
         </div>
 
-        {/* 5-Column Product Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          {displayedProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              isWishlisted={activeWishlist.includes(product.id)}
-              onToggleWishlist={handleToggleWishlist}
-              onAddToCart={handleAddToCart}
-            />
-          ))}
-        </div>
+        {/* Products Grid */}
+        {loading ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 py-8 text-center text-[#6b7280]">
+            <div className="col-span-full py-12 flex items-center justify-center gap-2">
+              <div className="w-5 h-5 border-2 border-[#dc1414] border-t-transparent rounded-full animate-spin" />
+              <span className="text-[13px] font-medium">Loading featured products...</span>
+            </div>
+          </div>
+        ) : displayedProducts.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            {displayedProducts.map((product) => {
+              const prodId = product.slug || product.id || product._id
+              return (
+                <ProductCard
+                  key={prodId}
+                  product={product}
+                  isWishlisted={activeWishlist?.includes(prodId)}
+                  onToggleWishlist={handleToggleWishlist}
+                  onAddToCart={handleAddToCart}
+                />
+              )
+            })}
+          </div>
+        ) : (
+          <div className="py-12 text-center text-[13px] text-[#6b7280]">
+            No products found under this section.
+          </div>
+        )}
       </div>
     </section>
   )

@@ -13,13 +13,16 @@ export default function PrivacyPage() {
   return (
     <LegalPageLayout
       title="Privacy Policy"
+      titleAr="سياسة حماية البيانات والخصوصية"
       subtitle="Your privacy and trust are paramount. Learn how Prestige Computers collects, stores, and protects your personal and payment data."
+      subtitleAr="خصوصيتك وثقتك هي أولويتنا القصوى. تعرف على كيفية جمع وتخزين وحماية بياناتك الشخصية في بريستيج للكمبيوتر."
       lastUpdated="18 November 2026"
       badge="Data Protection"
+      badgeAr="حماية البيانات والخصوصية"
     >
       <h2>1. Overview & Commitment to Privacy</h2>
       <p>
-        Prestige Computers Pvt. Ltd. (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is dedicated to safeguarding your personal data and upholding your right to digital privacy. This Privacy Policy outlines our practices regarding the collection, storage, processing, and protection of information gathered through our storefront and services.
+        Prestige Computers (Prestige Computer Services / PCS Doha, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), located at Al-Mirqab Mall, Doha, Qatar, is dedicated to safeguarding your personal data and upholding your right to digital privacy. This Privacy Policy outlines our practices regarding the collection, storage, processing, and protection of information gathered through our storefront and services.
       </p>
 
       <h2>2. Information We Collect</h2>
@@ -77,14 +80,14 @@ export default function PrivacyPage() {
 
       <h2>8. Grievance Officer & Contact Information</h2>
       <p>
-        In accordance with the Information Technology Act 2000 and the Consumer Protection (E-Commerce) Rules 2020, the designated Grievance Officer for Prestige Computers is:
+        For inquiries regarding our data handling or privacy practices, please contact our designated officer:
       </p>
       <p>
-        <strong>Grievance & Data Privacy Officer</strong><br />
-        Prestige Computers Pvt. Ltd.<br />
-        D-104, Sharda Apartment, Kakadeo, Kanpur - 208025, Uttar Pradesh, India<br />
-        Email: <a href="mailto:privacy@prestigecomputers.in" className="text-[#dc1414] font-semibold hover:underline">privacy@prestigecomputers.in</a> | Direct: +91 98765 43210<br />
-        Working Hours: Monday – Saturday, 10:00 AM – 6:00 PM IST
+        <strong>Data Privacy &amp; Customer Support Desk</strong><br />
+        Prestige Computers (PCS Doha)<br />
+        Tower I, 2nd Floor, Office No 201, Al-Mirqab Mall, Al Mirqab Al Jadeed St, Doha, Qatar<br />
+        Email: <a href="mailto:info@pcsdoha.net" className="text-[#dc1414] font-semibold hover:underline">info@pcsdoha.net</a> | Direct: +974 4145 3868 | WhatsApp: +974 6691 9155<br />
+        Working Hours: Saturday – Thursday, 10:00 AM – 10:00 PM (Friday: 2:30 PM – 10:30 PM)
       </p>
     </LegalPageLayout>
   )

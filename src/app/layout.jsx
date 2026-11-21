@@ -3,26 +3,29 @@ import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import RegisterModal from '../components/auth/RegisterModal'
 import LoginModal from '../components/auth/LoginModal'
+import CartToastNotification from '../components/common/CartToastNotification'
 import RouteTransitionLoader from '../components/common/RouteTransitionLoader'
+import GlobalRentalModal from '../components/rentals/GlobalRentalModal'
 import { StoreProvider } from '../context/StoreContext'
+import { LanguageProvider } from '../context/LanguageContext'
 
 export const metadata = {
-  metadataBase: new URL('https://prestigecomputers.co.uk'),
+  metadataBase: new URL('https://pcsdoha.net'),
   title: {
-    default: 'Prestige Computers — A Tiny City Full of Amazing Computers',
+    default: 'Prestige Computers — Computer Retailer & IT Solutions | Doha, Qatar',
     template: '%s | Prestige Computers',
   },
   description:
-    'Buy or rent high-performance laptops, custom RTX gaming PCs, workstations, and computer accessories with flexible daily, weekly, and monthly rental plans. Fast UK delivery.',
+    'Prestige Computers (PCS Doha) at Al-Mirqab Mall, Doha. Brand-new systems, certified genuine pre-owned devices, custom gaming PCs, workstations, and B2B equipment rentals.',
   keywords: [
-    'buy laptop uk',
-    'rent a computer',
-    'computer rental london',
-    'custom gaming pcs',
-    'workstations london',
-    'macbook rental',
-    'prestige computers',
-    'pcs computers',
+    'buy laptop qatar',
+    'computer store doha',
+    'custom gaming pc qatar',
+    'workstations doha',
+    'laptop rental doha',
+    'prestige computers qatar',
+    'pcs doha',
+    'al mirqab mall computers',
   ],
   authors: [{ name: 'Prestige Computers' }],
   creator: 'Prestige Computers',
@@ -31,10 +34,10 @@ export const metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Prestige Computers — Buy, Rent & Upgrade High-Performance Hardware',
+    title: 'Prestige Computers (PCS Doha) — Computer Retailer & IT Solutions',
     description:
-      'Explore certified laptops, custom gaming rigs, workstations, and flexible rental plans across the UK.',
-    url: 'https://prestigecomputers.co.uk',
+      'Explore certified laptops, custom gaming rigs, workstations, and flexible rental plans in Doha, Qatar.',
+    url: 'https://pcsdoha.net',
     siteName: 'Prestige Computers',
     images: [
       {
@@ -44,14 +47,14 @@ export const metadata = {
         alt: 'Prestige Computers Storefront',
       },
     ],
-    locale: 'en_GB',
+    locale: 'en_QA',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Prestige Computers — Buy & Rent High-Performance Computers',
     description:
-      'Buy or rent latest laptops, custom gaming PCs, and components with flexible plans and official UK warranty.',
+      'Brand-new systems, certified pre-owned devices, and custom PC builds at Al-Mirqab Mall, Doha, Qatar.',
     images: ['/banner/product.png'],
   },
   robots: {
@@ -66,7 +69,14 @@ export const metadata = {
     },
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
 }
 
@@ -75,51 +85,53 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': 'ComputerStore',
     name: 'Prestige Computers',
-    alternateName: 'PCS',
-    url: 'https://prestigecomputers.co.uk',
-    logo: 'https://prestigecomputers.co.uk/logo.png',
-    image: 'https://prestigecomputers.co.uk/banner/product.png',
+    alternateName: 'Prestige Computer Services (PCS Doha)',
+    url: 'https://pcsdoha.net',
+    logo: 'https://pcsdoha.net/logo.png',
+    image: 'https://pcsdoha.net/banner/product.png',
     description:
-      'Leading UK computer retailer and rental provider offering high-performance laptops, custom desktop PCs, gaming rigs, and enterprise workstation solutions.',
-    telephone: '+44 20 7946 0958',
-    email: 'support@prestigecomputers.co.uk',
-    priceRange: '££',
+      'Qatar-based computer and IT equipment supplier established in 2020 at Al-Mirqab Mall, Doha. Brand-new systems, certified pre-owned devices, custom PCs, and B2B leasing.',
+    telephone: '+974 4145 3868',
+    email: 'info@pcsdoha.net',
+    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'London',
-      addressCountry: 'GB',
+      streetAddress: 'Tower I, 2nd Floor, Office No 201, Al-Mirqab Mall, Al Mirqab Al Jadeed St',
+      addressLocality: 'Doha',
+      addressCountry: 'QA',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '51.5074',
-      longitude: '-0.1278',
+      latitude: '25.281',
+      longitude: '51.503',
     },
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: [
+          'Saturday',
+          'Sunday',
           'Monday',
           'Tuesday',
           'Wednesday',
           'Thursday',
-          'Friday',
-          'Saturday',
         ],
-        opens: '09:00',
-        closes: '19:00',
+        opens: '10:00',
+        closes: '22:00',
       },
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Sunday'],
-        opens: '10:00',
-        closes: '16:00',
+        dayOfWeek: ['Friday'],
+        opens: '14:30',
+        closes: '22:30',
       },
     ],
     sameAs: [
-      'https://facebook.com',
-      'https://instagram.com',
-      'https://youtube.com',
-      'https://linkedin.com',
+      'https://www.instagram.com/prestigecomputers.qa/',
+      'https://www.facebook.com/pcsdoha/',
+      'https://www.tiktok.com/@prestigecomputers.qa',
+      'https://wa.me/97466919155',
+      'https://www.google.com/maps/place/?q=place_id:ChIJE2au-QvRRT4R5xkwxaUf4bo',
     ],
   }
 
@@ -134,12 +146,16 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
         <StoreProvider>
-          <RouteTransitionLoader />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <RegisterModal />
-          <LoginModal />
+          <LanguageProvider>
+            <RouteTransitionLoader />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <RegisterModal />
+            <LoginModal />
+            <CartToastNotification />
+            <GlobalRentalModal />
+          </LanguageProvider>
         </StoreProvider>
       </body>
     </html>

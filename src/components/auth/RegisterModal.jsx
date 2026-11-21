@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
+import { registerUser } from '../../services/authApi'
 
 export default function RegisterModal() {
   const {
@@ -54,7 +55,7 @@ export default function RegisterModal() {
     setFormData((prev) => ({ ...prev, userType: type }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!formData.fullName.trim()) {
@@ -83,21 +84,26 @@ export default function RegisterModal() {
     }
 
     setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
-      const user = {
-        name: formData.fullName,
-        email: formData.email,
-        mobile: formData.mobile,
+    setError('')
+    try {
+      const res = await registerUser({
+        name: formData.fullName.trim(),
+        email: formData.email.trim(),
+        mobile: formData.mobile.trim(),
+        password: formData.password,
         userType: formData.userType,
-      }
-      setCurrentUser(user)
+      })
+      setCurrentUser(res.user)
       setSuccess(true)
       setTimeout(() => {
         setSuccess(false)
         closeRegisterModal()
-      }, 1500)
-    }, 800)
+      }, 1200)
+    } catch (err) {
+      setError(err?.message || 'Registration failed. Please check your details.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -238,7 +244,11 @@ export default function RegisterModal() {
             {/* Error Message */}
             {error && (
               <div className="mb-2.5 p-2 rounded-lg bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-[11.5px] font-medium flex items-center gap-2 animate-fade-in">
-                <span>⚠️</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-red-600 shrink-0" aria-hidden="true">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
                 <span>{error}</span>
               </div>
             )}
@@ -246,7 +256,9 @@ export default function RegisterModal() {
             {/* Success Message */}
             {success && (
               <div className="mb-2.5 p-2.5 rounded-lg bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-[12px] font-bold flex items-center gap-2 animate-fade-in">
-                <span>✓</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-emerald-600 shrink-0" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
                 <span>Account created successfully! Welcome to Prestige Computers.</span>
               </div>
             )}

@@ -1,6 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { getActiveCategories } from '../../services/categoryApi'
+import { useLanguage } from '../../context/LanguageContext'
+
+const CATEGORY_TRANSLATIONS = {
+  'all': 'جميع المنتجات',
+  'laptops': 'أجهزة لابتوب',
+  'laptop': 'أجهزة لابتوب',
+  'desktops': 'أجهزة مكتبية',
+  'desktop': 'أجهزة مكتبية',
+  'workstations': 'محطات عمل',
+  'workstation': 'محطات عمل',
+  'gaming-pcs': 'تجميعات ألعاب',
+  'gaming': 'تجميعات ألعاب',
+  'components': 'قطع غيار',
+  'monitors': 'شاشات عرض',
+  'monitor': 'شاشات عرض',
+  'accessories': 'ملحقات وإكسسوارات',
+  'networking': 'أجهزة شبكات',
+  'software': 'برمجيات',
+  'all-in-one': 'الكل في واحد',
+}
 
 function ChevronIcon({ isOpen }) {
   return (
@@ -20,6 +41,7 @@ function ChevronIcon({ isOpen }) {
 }
 
 export default function ProductFilterSidebar({
+  products = [],
   selectedCategory,
   onSelectCategory,
   selectedBrands = [],
@@ -32,6 +54,7 @@ export default function ProductFilterSidebar({
   onToggleRam,
   onClearAll,
 }) {
+  const { isRtl } = useLanguage()
   const [openSections, setOpenSections] = useState({
     category: true,
     price: true,
@@ -44,28 +67,51 @@ export default function ProductFilterSidebar({
   })
 
   const [showMoreCategories, setShowMoreCategories] = useState(false)
+  const [liveCategories, setLiveCategories] = useState(null)
+
+  useEffect(() => {
+    let isMounted = true
+    getActiveCategories().then((data) => {
+      if (isMounted && Array.isArray(data) && data.length > 0) {
+        setLiveCategories(data)
+      }
+    })
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const toggleSection = (key) => {
     setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
-  const CATEGORY_FILTERS = [
-    { id: 'laptops', label: 'Laptops', count: 124 },
-    { id: 'desktops', label: 'Desktops', count: 68 },
-    { id: 'all-in-one', label: 'All-in-One PCs', count: 24 },
-    { id: 'workstations', label: 'Workstations', count: 18 },
-    { id: 'accessories', label: 'Accessories', count: 96 },
-    { id: 'monitors', label: 'Monitors', count: 32 },
-    { id: 'components', label: 'Components', count: 54 },
-  ]
+  const CATEGORY_FILTERS = liveCategories
+    ? liveCategories.map((c) => ({
+        id: c.slug,
+        label: c.name,
+        count: c.productCount || 0,
+      }))
+    : []
+
+  const brandCounts = useMemo(() => {
+    const counts = {}
+    if (Array.isArray(products)) {
+      products.forEach((p) => {
+        if (p.brand) {
+          counts[p.brand] = (counts[p.brand] || 0) + 1
+        }
+      })
+    }
+    return counts
+  }, [products])
 
   const BRAND_FILTERS = [
-    { id: 'Dell', label: 'Dell', count: 86 },
-    { id: 'HP', label: 'HP', count: 74 },
-    { id: 'ASUS', label: 'ASUS', count: 62 },
-    { id: 'Lenovo', label: 'Lenovo', count: 58 },
-    { id: 'Apple', label: 'Apple', count: 28 },
-    { id: 'PCS Custom', label: 'PCS Custom', count: 22 },
+    { id: 'Dell', label: 'Dell', count: brandCounts['Dell'] || 0 },
+    { id: 'HP', label: 'HP', count: brandCounts['HP'] || 0 },
+    { id: 'ASUS', label: 'ASUS', count: brandCounts['ASUS'] || 0 },
+    { id: 'Lenovo', label: 'Lenovo', count: brandCounts['Lenovo'] || 0 },
+    { id: 'Apple', label: 'Apple', count: brandCounts['Apple'] || 0 },
+    { id: 'PCS Custom', label: 'PCS Custom', count: brandCounts['PCS Custom'] || 0 },
   ]
 
   const PROCESSOR_FILTERS = [
@@ -101,7 +147,7 @@ export default function ProductFilterSidebar({
           >
             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
           </svg>
-          <h2 className="text-[16px] font-bold text-[#111827]">Filters</h2>
+          <h2 className="text-[16px] font-bold text-[#111827]">{isRtl ? 'تصفية النتائج' : 'Filters'}</h2>
         </div>
 
         <button
@@ -109,7 +155,7 @@ export default function ProductFilterSidebar({
           onClick={onClearAll}
           className="text-[12.5px] font-semibold text-[#dc1414] hover:text-[#b91c1c] hover:underline cursor-pointer transition-colors"
         >
-          Clear All
+          {isRtl ? 'مسح الكل' : 'Clear All'}
         </button>
       </div>
 
@@ -119,10 +165,10 @@ export default function ProductFilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection('category')}
-            className="w-full flex items-center justify-between text-left cursor-pointer group"
+            className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
           >
             <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors">
-              Category
+              {isRtl ? 'التصنيف' : 'Category'}
             </span>
             <ChevronIcon isOpen={openSections.category} />
           </button>
@@ -131,6 +177,7 @@ export default function ProductFilterSidebar({
             <div className="mt-3 space-y-2">
               {visibleCategories.map((cat) => {
                 const isChecked = selectedCategory === cat.id
+                const catLabel = isRtl ? (CATEGORY_TRANSLATIONS[cat.id] || cat.label) : cat.label
                 return (
                   <label
                     key={cat.id}
@@ -145,7 +192,7 @@ export default function ProductFilterSidebar({
                         }
                         className="w-4 h-4 rounded border-[#d1d5db] text-[#dc1414] focus:ring-[#dc1414] cursor-pointer accent-[#dc1414]"
                       />
-                      <span>{cat.label}</span>
+                      <span>{catLabel}</span>
                     </div>
                     <span className="text-[#9ca3af] text-[11.5px]">
                       ({cat.count})
@@ -154,13 +201,15 @@ export default function ProductFilterSidebar({
                 )
               })}
 
-              <button
-                type="button"
-                onClick={() => setShowMoreCategories((prev) => !prev)}
-                className="mt-1.5 text-[12px] font-semibold text-[#dc1414] hover:underline cursor-pointer block"
-              >
-                {showMoreCategories ? '- Show Less' : '+ Show More'}
-              </button>
+              {CATEGORY_FILTERS.length > 5 && (
+                <button
+                  type="button"
+                  onClick={() => setShowMoreCategories((prev) => !prev)}
+                  className="mt-1.5 text-[12px] font-semibold text-[#dc1414] hover:underline cursor-pointer block"
+                >
+                  {showMoreCategories ? (isRtl ? '- عرض أقل' : '- Show Less') : (isRtl ? '+ عرض المزيد' : '+ Show More')}
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -170,10 +219,10 @@ export default function ProductFilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection('price')}
-            className="w-full flex items-center justify-between text-left cursor-pointer group"
+            className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
           >
             <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors">
-              Price Range
+              {isRtl ? 'نطاق السعر' : 'Price Range'}
             </span>
             <ChevronIcon isOpen={openSections.price} />
           </button>
@@ -252,10 +301,10 @@ export default function ProductFilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection('brand')}
-            className="w-full flex items-center justify-between text-left cursor-pointer group"
+            className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
           >
             <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors">
-              Brand
+              {isRtl ? 'الماركة' : 'Brand'}
             </span>
             <ChevronIcon isOpen={openSections.brand} />
           </button>
@@ -293,10 +342,10 @@ export default function ProductFilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection('processor')}
-            className="w-full flex items-center justify-between text-left cursor-pointer group"
+            className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
           >
             <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors">
-              Processor
+              {isRtl ? 'المعالج' : 'Processor'}
             </span>
             <ChevronIcon isOpen={openSections.processor} />
           </button>
@@ -329,10 +378,10 @@ export default function ProductFilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection('ram')}
-            className="w-full flex items-center justify-between text-left cursor-pointer group"
+            className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
           >
             <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors">
-              RAM
+              {isRtl ? 'الذاكرة العشوائية (RAM)' : 'RAM'}
             </span>
             <ChevronIcon isOpen={openSections.ram} />
           </button>
@@ -361,17 +410,20 @@ export default function ProductFilterSidebar({
         </div>
 
         {/* Collapsible Sections for Storage Type, Screen Size, Operating System */}
-        {['Storage Type', 'Screen Size', 'Operating System'].map((title, idx) => {
-          const key = idx === 0 ? 'storage' : idx === 1 ? 'screen' : 'os'
+        {[
+          { key: 'storage', title: 'Storage Type', titleAr: 'سعة ونوع التخزين' },
+          { key: 'screen', title: 'Screen Size', titleAr: 'حجم ونوع الشاشة' },
+          { key: 'os', title: 'Operating System', titleAr: 'نظام التشغيل' },
+        ].map(({ key, title, titleAr }) => {
           return (
-            <div key={title} className="py-3.5">
+            <div key={key} className="py-3.5">
               <button
                 type="button"
                 onClick={() => toggleSection(key)}
-                className="w-full flex items-center justify-between text-left cursor-pointer group"
+                className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
               >
                 <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors">
-                  {title}
+                  {isRtl ? titleAr : title}
                 </span>
                 <ChevronIcon isOpen={openSections[key]} />
               </button>

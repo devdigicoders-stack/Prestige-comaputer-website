@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = 'https://prestigecomputers.co.uk'
+  const baseUrl = 'https://pcsdoha.net'
 
   return {
     rules: [
