@@ -7,12 +7,26 @@ import {
   updateUserAddress,
   deleteUserAddress,
 } from '../../services/authApi'
+import { useLanguage } from '../../context/LanguageContext'
+
+const QATAR_MUNICIPALITIES = [
+  'Doha',
+  'Al Rayyan',
+  'Al Wakrah',
+  'Lusail',
+  'Al Khor',
+  'Al Daayen',
+  'Umm Salal',
+  'Al Shamal',
+  'Al Shahaniya',
+]
 
 export default function DeliveryAddressSection({
   currentUser,
   selectedAddress,
   onSelectAddress,
 }) {
+  const { isArabic } = useLanguage()
   const [addresses, setAddresses] = useState([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -23,9 +37,10 @@ export default function DeliveryAddressSection({
     name: '',
     phone: '',
     street: '',
-    city: '',
-    state: '',
+    city: 'Doha',
+    state: 'Doha',
     postalCode: '',
+    country: 'Qatar',
     type: 'Home',
     isDefault: false,
   })
@@ -48,7 +63,13 @@ export default function DeliveryAddressSection({
         if (Array.isArray(liveAddresses) && liveAddresses.length > 0) {
           setAddresses(liveAddresses)
           const def = liveAddresses.find((a) => a.isDefault) || liveAddresses[0]
-          if (def && (!selectedAddress || !liveAddresses.some((p) => (p._id || p.id) === (selectedAddress._id || selectedAddress.id)))) {
+          if (
+            def &&
+            (!selectedAddress ||
+              !liveAddresses.some(
+                (p) => (p._id || p.id) === (selectedAddress._id || selectedAddress.id)
+              ))
+          ) {
             onSelectAddress(def)
           }
         } else {
@@ -74,11 +95,12 @@ export default function DeliveryAddressSection({
     setErrorMsg('')
     setFormData({
       name: currentUser?.name || '',
-      phone: currentUser?.phone || currentUser?.mobile || '',
+      phone: currentUser?.phone || currentUser?.mobile || '+974 ',
       street: '',
-      city: currentUser?.city || 'Kanpur',
-      state: 'Uttar Pradesh',
+      city: currentUser?.city || 'Doha',
+      state: 'Doha',
       postalCode: '',
+      country: 'Qatar',
       type: 'Home',
       isDefault: addresses.length === 0,
     })
@@ -93,9 +115,10 @@ export default function DeliveryAddressSection({
       name: addr.name || currentUser?.name || '',
       phone: addr.phone || '',
       street: addr.street || addr.address?.split(',')[0] || '',
-      city: addr.city || 'Kanpur',
-      state: addr.state || 'Uttar Pradesh',
+      city: addr.city || 'Doha',
+      state: addr.state || 'Doha',
       postalCode: addr.postalCode || '',
+      country: addr.country || 'Qatar',
       type: addr.type || 'Home',
       isDefault: !!addr.isDefault,
     })
@@ -104,6 +127,7 @@ export default function DeliveryAddressSection({
 
   const handleRemove = async (addrId, e) => {
     e.stopPropagation()
+    if (!confirm(isArabic ? 'هل تريد حذف هذا العنوان؟' : 'Are you sure you want to remove this address?')) return
     try {
       const updatedList = await deleteUserAddress(addrId)
       const list = Array.isArray(updatedList) ? updatedList : addresses.filter((a) => (a._id || a.id) !== addrId)
@@ -122,23 +146,29 @@ export default function DeliveryAddressSection({
     e.preventDefault()
     setErrorMsg('')
 
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.street.trim() || !formData.city.trim() || !formData.postalCode.trim()) {
-      setErrorMsg('Please fill in all required fields.')
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.street.trim() || !formData.city.trim()) {
+      setErrorMsg(isArabic ? 'يرجى ملء جميع الحقول المطلوبة (الاسم، الهاتف، الشارع، والمدينة).' : 'Please fill in all required fields (Name, Phone, Street, and City).')
       return
     }
 
     setSaving(true)
     try {
+      const payload = {
+        ...formData,
+        country: 'Qatar',
+        postalCode: formData.postalCode?.trim() || 'Doha',
+      }
+
       if (editingAddr) {
-        const res = await updateUserAddress(editingAddr._id || editingAddr.id, formData)
-        const updatedList = res?.addresses || addresses.map((a) => (a._id === editingAddr._id ? { ...a, ...formData } : a))
+        const res = await updateUserAddress(editingAddr._id || editingAddr.id, payload)
+        const updatedList = res?.addresses || addresses.map((a) => (a._id === editingAddr._id ? { ...a, ...payload } : a))
         setAddresses(updatedList)
         const savedItem = res?.address || updatedList.find((a) => (a._id || a.id) === (editingAddr._id || editingAddr.id))
         if (savedItem && (selectedAddress?._id || selectedAddress?.id) === (editingAddr._id || editingAddr.id)) {
           onSelectAddress(savedItem)
         }
       } else {
-        const res = await addUserAddress(formData)
+        const res = await addUserAddress(payload)
         const updatedList = res?.addresses || [...addresses, res?.address]
         setAddresses(updatedList)
         const newAddress = res?.address || updatedList[updatedList.length - 1]
@@ -156,7 +186,8 @@ export default function DeliveryAddressSection({
 
   const formatAddressString = (addr) => {
     if (addr.address) return addr.address
-    return `${addr.street}, ${addr.city}${addr.postalCode ? ' - ' + addr.postalCode : ''}, ${addr.state || 'Uttar Pradesh'}`
+    const parts = [addr.street, addr.city, addr.state !== addr.city ? addr.state : null, addr.country || 'Qatar'].filter(Boolean)
+    return parts.join(', ')
   }
 
   return (
@@ -168,7 +199,7 @@ export default function DeliveryAddressSection({
             1
           </span>
           <h2 className="text-[17px] sm:text-[18px] font-bold text-[#111827]">
-            Delivery Address
+            {isArabic ? 'عنوان التوصيل' : 'Delivery Address'}
           </h2>
         </div>
         <button
@@ -179,29 +210,29 @@ export default function DeliveryAddressSection({
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
             <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
           </svg>
-          <span>Add New Address</span>
+          <span>{isArabic ? 'إضافة عنوان جديد' : 'Add New Address'}</span>
         </button>
       </div>
 
       {/* Address Cards List */}
       {loading ? (
         <div className="py-8 text-center text-gray-500 text-[13px]">
-          Loading saved addresses from database...
+          {isArabic ? 'جاري تحميل العناوين المحفوظة...' : 'Loading saved addresses from database...'}
         </div>
       ) : addresses.length === 0 ? (
         <div className="border border-dashed border-[#d1d5db] rounded-2xl p-6 text-center bg-[#fafafa]">
           <p className="text-[13.5px] font-semibold text-[#4b5563]">
-            No delivery address added in your account yet.
+            {isArabic ? 'لم تتم إضافة عنوان توصيل بعد.' : 'No delivery address added in your account yet.'}
           </p>
           <p className="text-[12px] text-[#6b7280] mt-1">
-            Please add your shipping address to proceed with order delivery.
+            {isArabic ? 'يرجى إضافة عنوانك في قطر لإتمام عملية التوصيل.' : 'Please add your Qatar shipping address to proceed with order delivery.'}
           </p>
           <button
             type="button"
             onClick={handleOpenAdd}
             className="mt-3.5 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#dc1414] text-white text-[12.5px] font-bold hover:bg-[#b91c1c] transition-colors cursor-pointer"
           >
-            + Add Delivery Address
+            + {isArabic ? 'إضافة عنوان التوصيل' : 'Add Delivery Address'}
           </button>
         </div>
       ) : (
@@ -264,7 +295,7 @@ export default function DeliveryAddressSection({
                         </span>
                         {addr.isDefault && (
                           <span className="text-[10.5px] font-bold text-[#dc1414] bg-[#fee2e2] px-2 py-0.5 rounded-md">
-                            Default
+                            {isArabic ? 'افتراضي' : 'Default'}
                           </span>
                         )}
                       </div>
@@ -273,8 +304,8 @@ export default function DeliveryAddressSection({
                         {formatAddressString(addr)}
                       </p>
 
-                      <p className="mt-1 text-[12.5px] font-semibold text-[#111827]">
-                        Mobile: {addr.phone}
+                      <p className="mt-1 text-[12.5px] font-semibold text-[#111827] dir-ltr inline-block">
+                        {isArabic ? 'الهاتف:' : 'Mobile:'} {addr.phone}
                       </p>
                     </div>
                   </div>
@@ -290,7 +321,7 @@ export default function DeliveryAddressSection({
                         <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
                         <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
                       </svg>
-                      <span>Edit</span>
+                      <span>{isArabic ? 'تعديل' : 'Edit'}</span>
                     </button>
 
                     <button
@@ -301,7 +332,7 @@ export default function DeliveryAddressSection({
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
                         <path fillRule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z" clipRule="evenodd" />
                       </svg>
-                      <span>Remove</span>
+                      <span>{isArabic ? 'حذف' : 'Remove'}</span>
                     </button>
                   </div>
                 </div>
@@ -316,7 +347,13 @@ export default function DeliveryAddressSection({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-scale-up">
             <h3 className="text-[17px] font-bold text-[#111827] mb-4">
-              {editingAddr ? 'Edit Delivery Address (Live Database)' : 'Add New Delivery Address (Live Database)'}
+              {editingAddr
+                ? isArabic
+                  ? 'تعديل عنوان التوصيل'
+                  : 'Edit Delivery Address'
+                : isArabic
+                ? 'إضافة عنوان توصيل جديد (قطر)'
+                : 'Add Delivery Address (Qatar)'}
             </h3>
 
             {errorMsg && (
@@ -329,14 +366,14 @@ export default function DeliveryAddressSection({
               {/* Recipient Full Name */}
               <div>
                 <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  Full Name *
+                  {isArabic ? 'الاسم الكامل *' : 'Full Name *'}
                 </label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. Shiva Vishwakarma"
+                  placeholder={isArabic ? 'مثال: أحمد الكواري' : 'e.g. Ahmed Al-Kuwari'}
                   className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                 />
               </div>
@@ -344,70 +381,66 @@ export default function DeliveryAddressSection({
               {/* Contact Phone Number */}
               <div>
                 <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  Contact Mobile Number *
+                  {isArabic ? 'رقم الهاتف المحمول (قطر) *' : 'Contact Mobile Number (Qatar) *'}
                 </label>
                 <input
                   type="tel"
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder="+91 98765 43210"
-                  className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
+                  placeholder="+974 6691 9155"
+                  className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414] dir-ltr"
                 />
               </div>
 
-              {/* Flat/Building/Street */}
+              {/* Building/Street/Zone */}
               <div>
                 <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  Flat, House No., Building, Street Address *
+                  {isArabic
+                    ? 'رقم المبنى والشارع والمنطقة *'
+                    : 'Building No, Street No, Zone No (Qatar Address) *'}
                 </label>
                 <input
                   type="text"
                   required
                   value={formData.street}
                   onChange={(e) => setFormData({ ...formData, street: e.target.value })}
-                  placeholder="e.g. Flat 302, Royal Residency, VIP Road"
+                  placeholder={
+                    isArabic
+                      ? 'مثال: مبنى 201، شارع 840، منطقة 39 (المرقاب)'
+                      : 'e.g. Bldg 201, St 840, Zone 39 (Al Mirqab Mall)'
+                  }
                   className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                 />
               </div>
 
-              {/* City, State, Pincode in 3 columns */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              {/* Municipality / City Selector & District */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
                   <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    City *
+                    {isArabic ? 'البلدية / المدينة *' : 'Municipality / City *'}
                   </label>
-                  <input
-                    type="text"
-                    required
+                  <select
                     value={formData.city}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    placeholder="Kanpur"
-                    className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
-                  />
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value, state: e.target.value })}
+                    className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414] bg-white cursor-pointer"
+                  >
+                    {QATAR_MUNICIPALITIES.map((mun) => (
+                      <option key={mun} value={mun}>
+                        {mun}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div>
                   <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    State
+                    {isArabic ? 'المنطقة / الحي' : 'District / Area (Optional)'}
                   </label>
                   <input
                     type="text"
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                    placeholder="Uttar Pradesh"
-                    className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    PIN Code *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.postalCode}
-                    onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                    placeholder="208001"
+                    placeholder={isArabic ? 'مثال: السد، الخليج الغربي' : 'e.g. Al Sadd, West Bay'}
                     className="w-full text-[13px] border border-[#d1d5db] rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                   />
                 </div>
@@ -416,7 +449,7 @@ export default function DeliveryAddressSection({
               {/* Address Type Buttons */}
               <div>
                 <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  Address Type
+                  {isArabic ? 'نوع العنوان' : 'Address Type'}
                 </label>
                 <div className="flex gap-2">
                   {['Home', 'Office', 'Other'].map((t) => (
@@ -430,7 +463,7 @@ export default function DeliveryAddressSection({
                           : 'border-[#d1d5db] text-[#4b5563] hover:bg-gray-50'
                       }`}
                     >
-                      {t}
+                      {t === 'Home' ? (isArabic ? 'المنزل' : 'Home') : t === 'Office' ? (isArabic ? 'العمل' : 'Office') : (isArabic ? 'آخر' : 'Other')}
                     </button>
                   ))}
                 </div>
@@ -444,7 +477,9 @@ export default function DeliveryAddressSection({
                   onChange={(e) => setFormData({ ...formData, isDefault: e.target.checked })}
                   className="accent-[#dc1414] w-4 h-4"
                 />
-                <span className="text-[12.5px] font-medium text-[#374151]">Set as default delivery address</span>
+                <span className="text-[12.5px] font-medium text-[#374151]">
+                  {isArabic ? 'تعيين كعنوان توصيل افتراضي' : 'Set as default delivery address'}
+                </span>
               </label>
 
               {/* Form Buttons */}
@@ -455,14 +490,20 @@ export default function DeliveryAddressSection({
                   onClick={() => setIsModalOpen(false)}
                   className="px-4 py-2 text-[13px] font-semibold text-[#6b7280] hover:text-[#111827] cursor-pointer"
                 >
-                  Cancel
+                  {isArabic ? 'إلغاء' : 'Cancel'}
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
                   className="px-5 py-2 text-[13px] font-bold bg-[#dc1414] text-white rounded-xl hover:bg-[#b91c1c] transition-colors cursor-pointer disabled:opacity-50"
                 >
-                  {saving ? 'Saving to Database...' : 'Save Address'}
+                  {saving
+                    ? isArabic
+                      ? 'جاري الحفظ...'
+                      : 'Saving...'
+                    : isArabic
+                    ? 'حفظ العنوان'
+                    : 'Save Address'}
                 </button>
               </div>
             </form>

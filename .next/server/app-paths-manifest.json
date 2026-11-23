@@ -1,8 +1,17 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
+  "/cart/page": "app/cart/page.js",
+  "/checkout/page": "app/checkout/page.js",
   "/contact/page": "app/contact/page.js",
+  "/faq/page": "app/faq/page.js",
   "/page": "app/page.js",
+  "/products/[id]/page": "app/products/[id]/page.js",
   "/products/page": "app/products/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/refund-policy/page": "app/refund-policy/page.js",
   "/rentals/page": "app/rentals/page.js",
+  "/track-order/page": "app/track-order/page.js",
+  "/warranty/page": "app/warranty/page.js",
   "/wishlist/page": "app/wishlist/page.js"
 }

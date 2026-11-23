@@ -78,9 +78,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$orderApi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/orderApi.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/productApi.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -126,6 +128,7 @@ const STATUS_CONFIG = {
 function TrackOrderView() {
     var _trackedOrder_payment, _trackedOrder_payment_status, _trackedOrder_payment1, _trackedOrder_payment2, _trackedOrder_items, _trackedOrder_recipient, _trackedOrder_recipient1, _trackedOrder_recipient2, _trackedOrder_recipient3, _trackedOrder_payment3, _trackedOrder_payment_status1, _trackedOrder_payment4, _trackedOrder_payment5, _trackedOrder_payment6;
     _s();
+    const { isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [orderIdInput, setOrderIdInput] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [isSearching, setIsSearching] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [trackedOrder, setTrackedOrder] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -142,7 +145,7 @@ function TrackOrderView() {
     const executeTrack = async (targetId)=>{
         const cleanId = (targetId || orderIdInput).trim();
         if (!cleanId) {
-            setErrorMsg('Please enter a valid Order ID (e.g. PCS-2026-42492)');
+            setErrorMsg(isRtl ? 'يرجى إدخال رقم طلب صحيح (مثال: PCS-2026-42492)' : 'Please enter a valid Order ID (e.g. PCS-2026-42492)');
             return;
         }
         setIsSearching(true);
@@ -212,15 +215,15 @@ function TrackOrderView() {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/",
                                     className: "hover:text-[#dc1414] transition-colors",
-                                    children: "Home"
+                                    children: isRtl ? 'الرئيسية' : 'Home'
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 136,
+                                    lineNumber: 138,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                lineNumber: 135,
+                                lineNumber: 137,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -228,26 +231,26 @@ function TrackOrderView() {
                                 children: "/"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                lineNumber: 140,
+                                lineNumber: 142,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                 className: "font-semibold text-[#111827]",
-                                children: "Track Order"
+                                children: isRtl ? 'تتبع الطلب' : 'Track Order'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                lineNumber: 141,
+                                lineNumber: 143,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                        lineNumber: 134,
+                        lineNumber: 136,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                    lineNumber: 133,
+                    lineNumber: 135,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -260,46 +263,60 @@ function TrackOrderView() {
                                     className: "w-2 h-2 rounded-full bg-[#dc1414] animate-pulse"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 148,
+                                    lineNumber: 150,
                                     columnNumber: 13
                                 }, this),
-                                "Live Order Status"
+                                isRtl ? 'حالة الطلب المباشرة' : 'Live Order Status'
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 147,
+                            lineNumber: 149,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                             className: "text-2xl sm:text-4xl font-extrabold tracking-tight text-[#111827]",
-                            children: [
-                                "Track Your ",
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-[#dc1414]",
-                                    children: "Order Status"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 152,
-                                    columnNumber: 24
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                            children: isRtl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "تتبع ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "حالة طلبك"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                        lineNumber: 155,
+                                        columnNumber: 22
+                                    }, this)
+                                ]
+                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                children: [
+                                    "Track Your ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[#dc1414]",
+                                        children: "Order Status"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                        lineNumber: 157,
+                                        columnNumber: 28
+                                    }, this)
+                                ]
+                            }, void 0, true)
+                        }, void 0, false, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 151,
+                            lineNumber: 153,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "mt-2 text-sm sm:text-base text-[#6b7280]",
-                            children: "Enter your Order ID to check real-time order confirmation, assembly QC, and delivery schedule."
+                            children: isRtl ? 'أدخل رقم الطلب للتحقق من حالة التأكيد والتجهيز والشحن في دولة قطر.' : 'Enter your Order ID to check real-time order confirmation, assembly QC, and delivery schedule.'
                         }, void 0, false, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 154,
+                            lineNumber: 160,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                    lineNumber: 146,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -313,7 +330,7 @@ function TrackOrderView() {
                                     className: "relative flex-1 w-full flex items-center",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "pl-3.5 pr-2 text-[#9ca3af]",
+                                            className: "pl-3.5 pr-2 rtl:pr-3.5 rtl:pl-2 text-[#9ca3af]",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                 className: "w-5 h-5",
                                                 fill: "none",
@@ -326,35 +343,35 @@ function TrackOrderView() {
                                                     d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 168,
+                                                    lineNumber: 176,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 167,
+                                                lineNumber: 175,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 166,
+                                            lineNumber: 174,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                             type: "text",
                                             value: orderIdInput,
                                             onChange: (e)=>setOrderIdInput(e.target.value),
-                                            placeholder: "Enter Order ID (e.g. PCS-2026-42492)",
-                                            className: "w-full py-2.5 pr-8 bg-transparent text-sm sm:text-base font-semibold text-[#111827] uppercase placeholder:normal-case placeholder:font-normal placeholder:text-[#9ca3af] outline-none",
+                                            placeholder: isRtl ? 'أدخل رقم الطلب (مثال: PCS-2026-42492)' : 'Enter Order ID (e.g. PCS-2026-42492)',
+                                            className: "w-full py-2.5 pr-8 rtl:pl-8 rtl:pr-0 bg-transparent text-sm sm:text-base font-semibold text-[#111827] uppercase placeholder:normal-case placeholder:font-normal placeholder:text-[#9ca3af] outline-none",
                                             required: true
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 171,
+                                            lineNumber: 179,
                                             columnNumber: 15
                                         }, this),
                                         orderIdInput && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             type: "button",
                                             onClick: ()=>setOrderIdInput(''),
-                                            className: "pr-2 text-[#9ca3af] hover:text-[#111827] transition-colors",
+                                            className: "pr-2 rtl:pl-2 text-[#9ca3af] hover:text-[#111827] transition-colors",
                                             title: "Clear",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                 className: "w-4 h-4",
@@ -368,23 +385,23 @@ function TrackOrderView() {
                                                     d: "M6 18L18 6M6 6l12 12"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 187,
+                                                    lineNumber: 195,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 186,
+                                                lineNumber: 194,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 180,
+                                            lineNumber: 188,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 165,
+                                    lineNumber: 173,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -407,7 +424,7 @@ function TrackOrderView() {
                                                         className: "opacity-25"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                        lineNumber: 201,
+                                                        lineNumber: 209,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -416,34 +433,34 @@ function TrackOrderView() {
                                                         className: "opacity-75"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                        lineNumber: 202,
+                                                        lineNumber: 210,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 200,
+                                                lineNumber: 208,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "Checking..."
+                                                children: isRtl ? 'جاري الفحص...' : 'Checking...'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 204,
+                                                lineNumber: 212,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "Track Order"
+                                                children: isRtl ? 'تتبع الطلب' : 'Track Order'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 208,
+                                                lineNumber: 216,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-4 h-4",
+                                                className: "w-4 h-4 rtl:rotate-180",
                                                 fill: "none",
                                                 viewBox: "0 0 24 24",
                                                 stroke: "currentColor",
@@ -454,25 +471,25 @@ function TrackOrderView() {
                                                     d: "M14 5l7 7m0 0l-7 7m7-7H3"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 210,
+                                                    lineNumber: 218,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 209,
+                                                lineNumber: 217,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 193,
+                                    lineNumber: 201,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 161,
+                            lineNumber: 169,
                             columnNumber: 11
                         }, this),
                         errorMsg && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -490,31 +507,31 @@ function TrackOrderView() {
                                         d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                        lineNumber: 220,
+                                        lineNumber: 228,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 219,
+                                    lineNumber: 227,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: errorMsg
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 222,
+                                    lineNumber: 230,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 218,
+                            lineNumber: 226,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                    lineNumber: 160,
+                    lineNumber: 168,
                     columnNumber: 9
                 }, this),
                 !trackedOrder && !isSearching && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -534,17 +551,17 @@ function TrackOrderView() {
                                     d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 232,
+                                    lineNumber: 240,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                lineNumber: 231,
+                                lineNumber: 239,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 230,
+                            lineNumber: 238,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -552,7 +569,7 @@ function TrackOrderView() {
                             children: "Looking for your Order ID?"
                         }, void 0, false, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 235,
+                            lineNumber: 243,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -560,7 +577,7 @@ function TrackOrderView() {
                             children: "Your Order ID was provided when your order was confirmed. You can also quickly find it under your profile orders."
                         }, void 0, false, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 238,
+                            lineNumber: 246,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -574,7 +591,7 @@ function TrackOrderView() {
                                             children: "Go to My Orders"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 246,
+                                            lineNumber: 254,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -589,18 +606,18 @@ function TrackOrderView() {
                                                 d: "M9 5l7 7-7 7"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 248,
+                                                lineNumber: 256,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 247,
+                                            lineNumber: 255,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 242,
+                                    lineNumber: 250,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -609,19 +626,19 @@ function TrackOrderView() {
                                     children: "Contact Support"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 251,
+                                    lineNumber: 259,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 241,
+                            lineNumber: 249,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                    lineNumber: 229,
+                    lineNumber: 237,
                     columnNumber: 11
                 }, this),
                 trackedOrder && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -643,7 +660,7 @@ function TrackOrderView() {
                                                             children: "Order"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 269,
+                                                            lineNumber: 277,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -654,7 +671,7 @@ function TrackOrderView() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 272,
+                                                            lineNumber: 280,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -664,7 +681,7 @@ function TrackOrderView() {
                                                             children: copied ? '✓ Copied' : 'Copy'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 275,
+                                                            lineNumber: 283,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -674,20 +691,20 @@ function TrackOrderView() {
                                                                     className: "w-1.5 h-1.5 rounded-full ".concat(statusInfo.dot, " animate-pulse")
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 285,
+                                                                    lineNumber: 293,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 statusInfo.label
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 282,
+                                                            lineNumber: 290,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 276,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -705,12 +722,12 @@ function TrackOrderView() {
                                                                 d: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                lineNumber: 291,
+                                                                lineNumber: 299,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 290,
+                                                            lineNumber: 298,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -720,25 +737,25 @@ function TrackOrderView() {
                                                                     children: trackedOrder.placedDate
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 293,
+                                                                    lineNumber: 301,
                                                                     columnNumber: 38
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 293,
+                                                            lineNumber: 301,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 289,
+                                                    lineNumber: 297,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 267,
+                                            lineNumber: 275,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -763,25 +780,25 @@ function TrackOrderView() {
                                                                 d: "M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                lineNumber: 306,
+                                                                lineNumber: 314,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 305,
+                                                            lineNumber: 313,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "Print Receipt"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 308,
+                                                            lineNumber: 316,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 298,
+                                                    lineNumber: 306,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -791,24 +808,24 @@ function TrackOrderView() {
                                                         children: "Support"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                        lineNumber: 314,
+                                                        lineNumber: 322,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 310,
+                                                    lineNumber: 318,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 297,
+                                            lineNumber: 305,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 266,
+                                    lineNumber: 274,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -822,7 +839,7 @@ function TrackOrderView() {
                                                     children: "Estimated Delivery"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 322,
+                                                    lineNumber: 330,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
@@ -830,13 +847,13 @@ function TrackOrderView() {
                                                     children: trackedOrder.estimatedDelivery || 'In 2-4 Days'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 323,
+                                                    lineNumber: 331,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 321,
+                                            lineNumber: 329,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -847,21 +864,108 @@ function TrackOrderView() {
                                                     children: "Delivery Mode"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 328,
+                                                    lineNumber: 336,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                    className: "text-sm font-bold text-[#111827] block mt-0.5 capitalize",
-                                                    children: trackedOrder.deliveryMethod === 'express' ? '⚡ Express (1-2 Days)' : '🚚 Standard (2-4 Days)'
+                                                    className: "text-sm font-bold text-[#111827] flex items-center gap-1.5 mt-0.5 capitalize",
+                                                    children: trackedOrder.deliveryMethod === 'express' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                viewBox: "0 0 24 24",
+                                                                fill: "currentColor",
+                                                                className: "w-3.5 h-3.5 text-[#dc1414]",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    d: "M13 2 3 14h7v8l10-12h-7l0-8z"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                    lineNumber: 341,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                lineNumber: 340,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                children: "Express (1-2 Days)"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                lineNumber: 343,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                viewBox: "0 0 24 24",
+                                                                fill: "none",
+                                                                stroke: "currentColor",
+                                                                strokeWidth: "2",
+                                                                strokeLinecap: "round",
+                                                                strokeLinejoin: "round",
+                                                                className: "w-3.5 h-3.5 text-[#16a34a]",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
+                                                                        width: "16",
+                                                                        height: "13",
+                                                                        x: "1",
+                                                                        y: "3",
+                                                                        rx: "2"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                        lineNumber: 348,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
+                                                                        points: "16 8 20 8 23 11 23 16 16 16 16 8"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                        lineNumber: 349,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                                        cx: "5.5",
+                                                                        cy: "18.5",
+                                                                        r: "2.5"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                        lineNumber: 350,
+                                                                        columnNumber: 27
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                                        cx: "18.5",
+                                                                        cy: "18.5",
+                                                                        r: "2.5"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                        lineNumber: 351,
+                                                                        columnNumber: 27
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                lineNumber: 347,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                children: "Standard (2-4 Days)"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                lineNumber: 353,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 329,
+                                                    lineNumber: 337,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 327,
+                                            lineNumber: 335,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -872,7 +976,7 @@ function TrackOrderView() {
                                                     children: "Payment Mode"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 334,
+                                                    lineNumber: 359,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
@@ -880,13 +984,13 @@ function TrackOrderView() {
                                                     children: ((_trackedOrder_payment = trackedOrder.payment) === null || _trackedOrder_payment === void 0 ? void 0 : _trackedOrder_payment.method) || 'UPI'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 335,
+                                                    lineNumber: 360,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 333,
+                                            lineNumber: 358,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -897,7 +1001,7 @@ function TrackOrderView() {
                                                     children: "Payment Status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 340,
+                                                    lineNumber: 365,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
@@ -905,25 +1009,25 @@ function TrackOrderView() {
                                                     children: ((_trackedOrder_payment2 = trackedOrder.payment) === null || _trackedOrder_payment2 === void 0 ? void 0 : _trackedOrder_payment2.status) || 'Paid'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 341,
+                                                    lineNumber: 366,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 339,
+                                            lineNumber: 364,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 320,
+                                    lineNumber: 328,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 265,
+                            lineNumber: 273,
                             columnNumber: 13
                         }, this),
                         !isCancelled ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -939,7 +1043,7 @@ function TrackOrderView() {
                                                     children: "Order Progress Timeline"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 357,
+                                                    lineNumber: 382,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -947,13 +1051,13 @@ function TrackOrderView() {
                                                     children: "Live status updates directly from Prestige Computers assembly & fulfillment hub."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 360,
+                                                    lineNumber: 385,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 356,
+                                            lineNumber: 381,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -963,20 +1067,20 @@ function TrackOrderView() {
                                                     className: "w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 365,
+                                                    lineNumber: 390,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Live Sync Active"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 364,
+                                            lineNumber: 389,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 355,
+                                    lineNumber: 380,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -992,7 +1096,7 @@ function TrackOrderView() {
                                                     children: isDone ? '✓' : isCurrent ? '●' : idx + 1
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 378,
+                                                    lineNumber: 403,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1008,7 +1112,7 @@ function TrackOrderView() {
                                                                             children: step.title
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                            lineNumber: 393,
+                                                                            lineNumber: 418,
                                                                             columnNumber: 31
                                                                         }, this),
                                                                         isCurrent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1016,13 +1120,13 @@ function TrackOrderView() {
                                                                             children: "Current Status"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                            lineNumber: 401,
+                                                                            lineNumber: 426,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 392,
+                                                                    lineNumber: 417,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1030,36 +1134,61 @@ function TrackOrderView() {
                                                                     children: step.description
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 406,
+                                                                    lineNumber: 431,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 step.location && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                     className: "text-[11px] text-[#9ca3af] mt-1.5 flex items-center gap-1 font-medium",
                                                                     children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                            children: "📍"
-                                                                        }, void 0, false, {
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                            viewBox: "0 0 24 24",
+                                                                            fill: "none",
+                                                                            stroke: "currentColor",
+                                                                            strokeWidth: "2",
+                                                                            strokeLinecap: "round",
+                                                                            strokeLinejoin: "round",
+                                                                            className: "w-3 h-3 text-[#dc1414] shrink-0",
+                                                                            "aria-hidden": "true",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                                    d: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                                    lineNumber: 437,
+                                                                                    columnNumber: 35
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                                                                    cx: "12",
+                                                                                    cy: "10",
+                                                                                    r: "3"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
+                                                                                    lineNumber: 438,
+                                                                                    columnNumber: 35
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
                                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                            lineNumber: 411,
+                                                                            lineNumber: 436,
                                                                             columnNumber: 33
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                             children: step.location
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                            lineNumber: 412,
+                                                                            lineNumber: 440,
                                                                             columnNumber: 33
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 410,
+                                                                    lineNumber: 435,
                                                                     columnNumber: 31
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 391,
+                                                            lineNumber: 416,
                                                             columnNumber: 27
                                                         }, this),
                                                         step.timestamp && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1072,31 +1201,31 @@ function TrackOrderView() {
                                                             })
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 418,
+                                                            lineNumber: 446,
                                                             columnNumber: 29
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 390,
+                                                    lineNumber: 415,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, idx, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 376,
+                                            lineNumber: 401,
                                             columnNumber: 23
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 370,
+                                    lineNumber: 395,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 354,
+                            lineNumber: 379,
                             columnNumber: 15
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "bg-red-50 border border-red-200 rounded-2xl p-6 text-center",
@@ -1115,17 +1244,17 @@ function TrackOrderView() {
                                             d: "M6 18L18 6M6 6l12 12"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 437,
+                                            lineNumber: 465,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                        lineNumber: 436,
+                                        lineNumber: 464,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 435,
+                                    lineNumber: 463,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1133,7 +1262,7 @@ function TrackOrderView() {
                                     children: "This Order Has Been Cancelled"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 440,
+                                    lineNumber: 468,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1141,13 +1270,13 @@ function TrackOrderView() {
                                     children: "Stock has been returned to inventory. If you already made a payment, it will be refunded according to our return policy."
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 441,
+                                    lineNumber: 469,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 434,
+                            lineNumber: 462,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1165,7 +1294,7 @@ function TrackOrderView() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 451,
+                                            lineNumber: 479,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1179,7 +1308,7 @@ function TrackOrderView() {
                                                             className: "w-16 h-16 rounded-xl object-contain bg-[#f8fafc] border border-[#e5e7eb] shrink-0 p-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 458,
+                                                            lineNumber: 486,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1190,7 +1319,7 @@ function TrackOrderView() {
                                                                     children: item.name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 464,
+                                                                    lineNumber: 492,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 item.specs && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1198,7 +1327,7 @@ function TrackOrderView() {
                                                                     children: item.specs
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 468,
+                                                                    lineNumber: 496,
                                                                     columnNumber: 29
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1212,7 +1341,7 @@ function TrackOrderView() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                            lineNumber: 473,
+                                                                            lineNumber: 501,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1220,43 +1349,43 @@ function TrackOrderView() {
                                                                             children: item.price
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                            lineNumber: 474,
+                                                                            lineNumber: 502,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 472,
+                                                                    lineNumber: 500,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 463,
+                                                            lineNumber: 491,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, idx, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 457,
+                                                    lineNumber: 485,
                                                     columnNumber: 23
                                                 }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-[#6b7280] py-2",
                                                 children: "No hardware items found."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                lineNumber: 480,
+                                                lineNumber: 508,
                                                 columnNumber: 21
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 454,
+                                            lineNumber: 482,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 450,
+                                    lineNumber: 478,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1269,7 +1398,7 @@ function TrackOrderView() {
                                                     children: "Delivery Destination"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 488,
+                                                    lineNumber: 516,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1283,7 +1412,7 @@ function TrackOrderView() {
                                                                     children: (_trackedOrder_recipient = trackedOrder.recipient) === null || _trackedOrder_recipient === void 0 ? void 0 : _trackedOrder_recipient.name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 493,
+                                                                    lineNumber: 521,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 ((_trackedOrder_recipient1 = trackedOrder.recipient) === null || _trackedOrder_recipient1 === void 0 ? void 0 : _trackedOrder_recipient1.addressType) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1291,13 +1420,13 @@ function TrackOrderView() {
                                                                     children: trackedOrder.recipient.addressType
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 495,
+                                                                    lineNumber: 523,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 492,
+                                                            lineNumber: 520,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1305,7 +1434,7 @@ function TrackOrderView() {
                                                             children: (_trackedOrder_recipient2 = trackedOrder.recipient) === null || _trackedOrder_recipient2 === void 0 ? void 0 : _trackedOrder_recipient2.address
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 500,
+                                                            lineNumber: 528,
                                                             columnNumber: 21
                                                         }, this),
                                                         ((_trackedOrder_recipient3 = trackedOrder.recipient) === null || _trackedOrder_recipient3 === void 0 ? void 0 : _trackedOrder_recipient3.phone) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1323,31 +1452,31 @@ function TrackOrderView() {
                                                                         d: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                        lineNumber: 504,
+                                                                        lineNumber: 532,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 503,
+                                                                    lineNumber: 531,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                     children: trackedOrder.recipient.phone
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 506,
+                                                                    lineNumber: 534,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 502,
+                                                            lineNumber: 530,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 491,
+                                                    lineNumber: 519,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -1355,7 +1484,7 @@ function TrackOrderView() {
                                                     children: "Billing & Payment"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 511,
+                                                    lineNumber: 539,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1369,7 +1498,7 @@ function TrackOrderView() {
                                                                     children: "Payment Method"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 516,
+                                                                    lineNumber: 544,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1377,13 +1506,13 @@ function TrackOrderView() {
                                                                     children: (_trackedOrder_payment3 = trackedOrder.payment) === null || _trackedOrder_payment3 === void 0 ? void 0 : _trackedOrder_payment3.method
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 517,
+                                                                    lineNumber: 545,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 515,
+                                                            lineNumber: 543,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1394,7 +1523,7 @@ function TrackOrderView() {
                                                                     children: "Payment Status"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 520,
+                                                                    lineNumber: 548,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1402,13 +1531,13 @@ function TrackOrderView() {
                                                                     children: (_trackedOrder_payment5 = trackedOrder.payment) === null || _trackedOrder_payment5 === void 0 ? void 0 : _trackedOrder_payment5.status
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 521,
+                                                                    lineNumber: 549,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 519,
+                                                            lineNumber: 547,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1419,7 +1548,7 @@ function TrackOrderView() {
                                                                     children: "Total Amount"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 532,
+                                                                    lineNumber: 560,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1427,25 +1556,25 @@ function TrackOrderView() {
                                                                     children: (_trackedOrder_payment6 = trackedOrder.payment) === null || _trackedOrder_payment6 === void 0 ? void 0 : _trackedOrder_payment6.amount
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                                    lineNumber: 533,
+                                                                    lineNumber: 561,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                            lineNumber: 531,
+                                                            lineNumber: 559,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 514,
+                                                    lineNumber: 542,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 487,
+                                            lineNumber: 515,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1455,56 +1584,57 @@ function TrackOrderView() {
                                                     children: "Need assistance with delivery?"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 539,
+                                                    lineNumber: 567,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                                     href: "/contact",
                                                     className: "text-[#dc1414] font-bold hover:underline",
-                                                    children: "Kanpur Hub Support →"
+                                                    children: "Doha Hub Support →"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                                    lineNumber: 540,
+                                                    lineNumber: 568,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                            lineNumber: 538,
+                                            lineNumber: 566,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                                    lineNumber: 486,
+                                    lineNumber: 514,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                            lineNumber: 448,
+                            lineNumber: 476,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-                    lineNumber: 263,
+                    lineNumber: 271,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-            lineNumber: 131,
+            lineNumber: 133,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/track-order/TrackOrderView.jsx",
-        lineNumber: 130,
+        lineNumber: 132,
         columnNumber: 5
     }, this);
 }
-_s(TrackOrderView, "KokTnPyUa60RcUfoK4eIiF21m6U=", false, function() {
+_s(TrackOrderView, "nunL6NC/VuExXXBYGJ3UgiqiZ6g=", false, function() {
     return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLanguage"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransition"]
     ];
 });

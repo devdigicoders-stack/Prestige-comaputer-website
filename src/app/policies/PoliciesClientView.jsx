@@ -1,29 +1,53 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LegalPageLayout from '../../components/legal/LegalPageLayout'
 import { pcsPolicies } from '../../data/pcsPolicies'
+import { getPolicyBySlug } from '../../services/policyApi'
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function PoliciesClientView() {
   const { language, isRtl } = useLanguage()
   const [viewMode, setViewMode] = useState('auto') // 'auto' (follows language), 'en', 'ar', 'bilingual'
+  const [policy, setPolicy] = useState(null)
+
+  useEffect(() => {
+    let isMounted = true
+    getPolicyBySlug('policies')
+      .then((data) => {
+        if (isMounted && data) {
+          setPolicy(data)
+        }
+      })
+      .catch(() => {})
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const effectiveLang = viewMode === 'auto' ? language : viewMode === 'bilingual' ? 'en' : viewMode
   const isBilingual = viewMode === 'bilingual'
 
   const { aboutUs, brandNew, preOwned, additionalTerms } = pcsPolicies
 
+  const title = policy?.title || 'Official PCS Policies & Terms'
+  const titleAr = policy?.titleAr || 'وثيقة سياسات وشروط بريستيج الرسمية'
+  const subtitle = policy?.subtitle || 'Complete warranty coverage, return windows, refund procedures, and device terms under the Prestige Guarantee.'
+  const subtitleAr = policy?.subtitleAr || 'دليل شامل لضمان بريستيج، شروط الإرجاع والاستبدال، إجراءات استرداد الأموال، ومطالبات الصيانة المعتمدة في قطر.'
+  const badge = policy?.badge || 'ISO-Certified Policy Document'
+  const badgeAr = policy?.badgeAr || 'وثيقة سياسات معتمدة بموجب ISO'
+  const lastUpdated = policy?.lastUpdated || 'Updated Official Document 2026'
+
   return (
     <LegalPageLayout
-      title="Official PCS Policies & Terms"
-      titleAr="وثيقة سياسات وشروط بريستيج الرسمية"
-      subtitle="Complete warranty coverage, return windows, refund procedures, and device terms under the Prestige Guarantee."
-      subtitleAr="دليل شامل لضمان بريستيج، شروط الإرجاع والاستبدال، إجراءات استرداد الأموال، ومطالبات الصيانة المعتمدة في قطر."
-      badge="ISO-Certified Policy Document"
-      badgeAr="وثيقة سياسات معتمدة بموجب ISO"
-      lastUpdated="Updated Official Document 2026"
+      title={title}
+      titleAr={titleAr}
+      subtitle={subtitle}
+      subtitleAr={subtitleAr}
+      badge={badge}
+      badgeAr={badgeAr}
+      lastUpdated={lastUpdated}
     >
       {/* View Mode Switcher Pills */}
       <div className="not-prose mb-8 p-3 rounded-2xl bg-[#f8fafc] border border-[#e2e8f0] flex flex-wrap items-center justify-between gap-3">

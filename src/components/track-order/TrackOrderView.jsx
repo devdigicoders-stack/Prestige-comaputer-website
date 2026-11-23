@@ -566,7 +566,7 @@ export default function TrackOrderView() {
                 <div className="mt-5 pt-3 border-t border-[#f1f5f9] text-[11px] text-[#6b7280] flex items-center justify-between">
                   <span>Need assistance with delivery?</span>
                   <Link href="/contact" className="text-[#dc1414] font-bold hover:underline">
-                    Kanpur Hub Support →
+                    Doha Hub Support →
                   </Link>
                 </div>
               </div>

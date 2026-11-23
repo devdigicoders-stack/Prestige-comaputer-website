@@ -1,9 +1,9 @@
-import LegalPageLayout from '../../components/legal/LegalPageLayout'
+import DynamicLegalPage from '../../components/legal/DynamicLegalPage'
 
 export const metadata = {
   title: 'Shipping & Delivery Policy | Prestige Computers',
   description:
-    'Details on delivery timelines, express shipping, double-boxed fragile PC packaging, 100% transit insurance, and tracking at Prestige Computers.',
+    'Details on delivery timelines, express shipping, double-boxed fragile PC packaging, 100% transit insurance, and tracking at Prestige Computers in Qatar.',
   alternates: {
     canonical: '/shipping-policy',
   },
@@ -11,14 +11,15 @@ export const metadata = {
 
 export default function ShippingPolicyPage() {
   return (
-    <LegalPageLayout
-      title="Shipping & Delivery Policy"
-      titleAr="سياسة الشحن والتوصيل في قطر"
-      subtitle="How we pack, insure, and dispatch your high-performance laptops and custom PC rigs safely to your doorstep."
-      subtitleAr="كيف نقوم بتغليف وتأمين وشحن أجهزة الكمبيوتر المحمولة والمكتبية بأمان إلى باب منزلك في جميع أنحاء قطر."
-      lastUpdated="18 November 2026"
-      badge="Logistics & Delivery"
-      badgeAr="الخدمات اللوجستية والتوصيل"
+    <DynamicLegalPage
+      slug="shipping-policy"
+      fallbackTitle="Shipping & Delivery Policy"
+      fallbackTitleAr="سياسة الشحن والتوصيل في قطر"
+      fallbackSubtitle="How we pack, insure, and dispatch your high-performance laptops and custom PC rigs safely to your doorstep."
+      fallbackSubtitleAr="كيف نقوم بتغليف وتأمين وشحن أجهزة الكمبيوتر المحمولة والمكتبية بأمان إلى باب منزلك في جميع أنحاء قطر."
+      fallbackLastUpdated="18 November 2026"
+      fallbackBadge="Logistics & Delivery"
+      fallbackBadgeAr="الخدمات اللوجستية والتوصيل"
     >
       <h2>1. Serviceable Areas & Coverage</h2>
       <p>
@@ -88,6 +89,6 @@ export default function ShippingPolicyPage() {
         <li>Ask the delivery executive to mark &ldquo;Damaged in Transit / Delivery Refused&rdquo;.</li>
         <li>Notify our support team immediately at <code>+974 4145 3868</code> or <code>info@pcsdoha.net</code> (WhatsApp: <code>+974 6691 9155</code>). A replacement will be prioritized for dispatch.</li>
       </ol>
-    </LegalPageLayout>
+    </DynamicLegalPage>
   )
 }

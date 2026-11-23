@@ -6,6 +6,8 @@ import { getRentalPlans, submitRentalRequest } from '../../services/rentalApi'
 import { getProductImageUrl } from '../../services/productApi'
 import { getUserAddresses } from '../../services/authApi'
 import { useStore } from '../../context/StoreContext'
+import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 
 const DEFAULT_TENURE_OPTIONS = [
   { months: 1, label: '1 Month', discount: 0, tag: 'Short Term' },
@@ -14,12 +16,43 @@ const DEFAULT_TENURE_OPTIONS = [
   { months: 12, label: '12 Months', discount: 15, tag: '15% OFF - Best Value' },
 ]
 
+const QATAR_MUNICIPALITIES = [
+  'Doha',
+  'Al Rayyan',
+  'Al Wakrah',
+  'Lusail',
+  'Al Khor',
+  'Al Daayen',
+  'Umm Salal',
+  'Al Shamal',
+  'Al Shahaniya',
+]
+
 const DOC_TYPES = [
-  { value: 'Aadhaar Card', placeholder: 'Enter 12-digit Aadhaar Number (e.g. 5421 8901 2345)' },
-  { value: 'PAN Card', placeholder: 'Enter 10-digit PAN (e.g. ABCDE1234F)' },
-  { value: 'Voter ID', placeholder: 'Enter Voter ID Number (e.g. WBD1234567)' },
-  { value: 'Driving License', placeholder: 'Enter Driving License No (e.g. UP-7820200012345)' },
-  { value: 'Company GSTIN', placeholder: 'Enter 15-digit Company GSTIN (e.g. 09AAAAA0000A1Z5)' },
+  {
+    value: 'Qatar ID (QID)',
+    labelEn: 'Qatar ID (QID)',
+    labelAr: 'البطاقة الشخصية القطرية (QID)',
+    placeholder: 'Enter 11-digit QID (e.g. 29063401234)',
+  },
+  {
+    value: 'Passport',
+    labelEn: 'Passport',
+    labelAr: 'جواز السفر',
+    placeholder: 'Enter Passport Number (e.g. N1234567)',
+  },
+  {
+    value: 'Commercial Registration (CR)',
+    labelEn: 'Company CR (Corporate)',
+    labelAr: 'السجل التجاري للشركات (CR)',
+    placeholder: 'Enter Qatar CR Number (e.g. 123456)',
+  },
+  {
+    value: 'Qatar Driving License',
+    labelEn: 'Qatar Driving License',
+    labelAr: 'رخصة القيادة القطرية',
+    placeholder: 'Enter Qatari Driving License Number',
+  },
 ]
 
 const LEASE_PURPOSES = [
@@ -33,22 +66,40 @@ const LEASE_PURPOSES = [
 
 const PAYMENT_METHODS = [
   {
-    id: 'Cash on Delivery',
-    title: 'Pay on Doorstep Delivery',
-    subtitle: 'Inspect device first, then pay via Cash or UPI QR to delivery agent.',
-    badge: 'Zero Risk',
+    id: 'Cash / Card on Delivery (POS)',
+    titleEn: 'Pay on Doorstep Delivery (Cash / POS Terminal)',
+    titleAr: 'الدفع عند الاستلام (نقداً أو بالبطاقة عبر جهاز POS)',
+    subtitleEn: 'Inspect device first, then pay via Cash or POS Terminal to delivery courier.',
+    subtitleAr: 'افحص الجهاز وتأكد من الضمان أولاً، ثم ادفع نقداً أو بالبطاقة للمندوب.',
+    badgeEn: 'Zero Advance',
+    badgeAr: 'بدون دفع مسبق',
   },
   {
     id: 'Instant Online Payment',
-    title: 'Instant Online Payment (UPI / Cards)',
-    subtitle: 'Fast-track priority warehouse dispatch via UPI, Debit/Credit Card or NetBanking.',
-    badge: 'Priority Dispatch',
+    titleEn: 'Instant Online Card Payment (Visa / Mastercard)',
+    titleAr: 'دفع فوري إلكتروني (فيزا / ماستركارد)',
+    subtitleEn: 'Fast-track priority warehouse dispatch via encrypted credit or debit card.',
+    subtitleAr: 'تجهيز فوري سريع بأولوية الإرسال عبر بطاقة الائتمان أو الخصم.',
+    badgeEn: 'Priority Dispatch',
+    badgeAr: 'أولوية التجهيز',
   },
   {
     id: 'Corporate Net-30 Lease',
-    title: 'Corporate Net-30 Invoice',
-    subtitle: 'For registered companies with GST invoice & monthly bank transfer billing.',
-    badge: 'B2B Invoicing',
+    titleEn: 'Corporate Net-30 Lease Invoice',
+    titleAr: 'فاتورة تأجير الشركات (آجل 30 يوم)',
+    subtitleEn: 'For registered companies in Qatar with CR and monthly bank transfer billing.',
+    subtitleAr: 'للشركات والمؤسسات المعتمدة في قطر مع فوترة بنكية شهرية.',
+    badgeEn: 'B2B Billing',
+    badgeAr: 'فوترة تجارية',
+  },
+  {
+    id: 'Showroom Pickup & Pay',
+    titleEn: 'Pay & Collect at Showroom (Al-Mirqab Mall)',
+    titleAr: 'الاستلام والدفع في المعرض (المرقاب مول)',
+    subtitleEn: 'Collect in person from our Al-Mirqab Mall showroom in Doha (Ready in 2 Hours).',
+    subtitleAr: 'استلم بنفسك من معرضنا في المرقاب مول، الدوحة (جاهز خلال ساعتين).',
+    badgeEn: 'Inspect First',
+    badgeAr: 'فحص فوري',
   },
 ]
 
@@ -59,6 +110,7 @@ export default function RentalBookingModal({
   onSuccess,
 }) {
   const { currentUser, openLoginModal } = useStore()
+  const { isArabic } = useLanguage()
   const fileInputRef = useRef(null)
 
   // Lease parameters
@@ -73,18 +125,19 @@ export default function RentalBookingModal({
   const [recipientName, setRecipientName] = useState('')
   const [recipientPhone, setRecipientPhone] = useState('')
   const [address, setAddress] = useState('')
-  const [city, setCity] = useState('Kanpur')
-  const [state, setState] = useState('Uttar Pradesh')
-  const [pincode, setPincode] = useState('')
+  const [city, setCity] = useState('Doha')
+  const [state, setState] = useState('Al Mirqab')
+  const [zone, setZone] = useState('')
 
   // KYC state
-  const [docType, setDocType] = useState('Aadhaar Card')
+  const [docType, setDocType] = useState('Qatar ID (QID)')
   const [docNumber, setDocNumber] = useState('')
   const [purpose, setPurpose] = useState('Personal Work & Study')
   const [attachedFile, setAttachedFile] = useState(null)
+  const [fileBase64, setFileBase64] = useState('')
 
   // Payment & Terms
-  const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery')
+  const [paymentMethod, setPaymentMethod] = useState('Cash / Card on Delivery (POS)')
   const [agreeTerms, setAgreeTerms] = useState(true)
 
   // Status
@@ -127,10 +180,9 @@ export default function RentalBookingModal({
     const initUserData = async () => {
       if (currentUser) {
         setRecipientName(currentUser.name || '')
-        setRecipientPhone(currentUser.phone || currentUser.mobile || '')
-        setAddress(currentUser.address || '')
+        setRecipientPhone(currentUser.phone || currentUser.mobile || '+974 ')
+        if (currentUser.address) setAddress(currentUser.address)
         if (currentUser.city) setCity(currentUser.city)
-        if (currentUser.postalCode) setPincode(currentUser.postalCode)
 
         try {
           const addresses = await getUserAddresses()
@@ -139,19 +191,21 @@ export default function RentalBookingModal({
             const defaultAddr = addresses.find((a) => a.isDefault) || addresses[0]
             if (defaultAddr) {
               setSelectedAddressId(defaultAddr._id || defaultAddr.id)
-              setRecipientName(defaultAddr.name || defaultAddr.recipientName || currentUser.name || '')
-              setRecipientPhone(defaultAddr.phone || currentUser.phone || currentUser.mobile || '')
+              setRecipientName(defaultAddr.name || currentUser.name || '')
+              setRecipientPhone(defaultAddr.phone || currentUser.phone || currentUser.mobile || '+974 ')
               setAddress(defaultAddr.street || defaultAddr.address || '')
               if (defaultAddr.city) setCity(defaultAddr.city)
               if (defaultAddr.state) setState(defaultAddr.state)
-              if (defaultAddr.postalCode || defaultAddr.pincode) {
-                setPincode(defaultAddr.postalCode || defaultAddr.pincode)
+              if (defaultAddr.postalCode && defaultAddr.postalCode !== 'Doha') {
+                setZone(defaultAddr.postalCode)
               }
             }
           }
         } catch {
-          // If address fetch fails, keep currentUser defaults
+          // Keep current user defaults
         }
+      } else {
+        setRecipientPhone('+974 ')
       }
     }
 
@@ -170,32 +224,41 @@ export default function RentalBookingModal({
     }
     const addrId = addr._id || addr.id
     setSelectedAddressId(addrId)
-    setRecipientName(addr.name || addr.recipientName || currentUser?.name || '')
-    setRecipientPhone(addr.phone || currentUser?.phone || currentUser?.mobile || '')
+    setRecipientName(addr.name || currentUser?.name || '')
+    setRecipientPhone(addr.phone || currentUser?.phone || currentUser?.mobile || '+974 ')
     setAddress(addr.street || addr.address || '')
     if (addr.city) setCity(addr.city)
     if (addr.state) setState(addr.state)
-    if (addr.postalCode || addr.pincode) setPincode(addr.postalCode || addr.pincode)
+    if (addr.postalCode && addr.postalCode !== 'Doha') setZone(addr.postalCode)
   }
 
-  // Handle document file attachment
+  // Handle document file attachment with Base64 encoding for Admin inspection
   const handleFileChange = (e) => {
     const file = e.target.files?.[0]
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
-        setErrorMsg('Attached file exceeds 10MB limit. Please upload a smaller file.')
+        setErrorMsg(isArabic ? 'حجم الملف يتجاوز 10 ميجابايت. يرجى اختيار ملف أصغر.' : 'Attached file exceeds 10MB limit. Please upload a smaller file.')
         return
       }
-      setAttachedFile({
-        name: file.name,
-        size: (file.size / 1024).toFixed(1) + ' KB',
-      })
-      setErrorMsg('')
+
+      const reader = new FileReader()
+      reader.onload = () => {
+        setFileBase64(reader.result)
+        setAttachedFile({
+          name: file.name,
+          size: (file.size / 1024).toFixed(1) + ' KB',
+          type: file.type,
+          dataUrl: reader.result,
+        })
+        setErrorMsg('')
+      }
+      reader.readAsDataURL(file)
     }
   }
 
   const handleRemoveFile = () => {
     setAttachedFile(null)
+    setFileBase64('')
     if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
@@ -213,34 +276,35 @@ export default function RentalBookingModal({
   }, [startOption, customStartDate])
 
   // Calculate dynamic return date
-  const { calcEndDate, formattedStartDate, formattedEndDate } = useMemo(() => {
+  const { formattedStartDate, formattedEndDate } = useMemo(() => {
     const sDate = new Date(effectiveStartDate)
     const eDate = new Date(sDate)
     eDate.setMonth(eDate.getMonth() + durationMonths)
 
     return {
-      calcEndDate: eDate,
-      formattedStartDate: sDate.toLocaleDateString('en-IN', {
+      formattedStartDate: sDate.toLocaleDateString(isArabic ? 'ar-QA' : 'en-US', {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
       }),
-      formattedEndDate: eDate.toLocaleDateString('en-IN', {
+      formattedEndDate: eDate.toLocaleDateString(isArabic ? 'ar-QA' : 'en-US', {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
       }),
     }
-  }, [effectiveStartDate, durationMonths])
+  }, [effectiveStartDate, durationMonths, isArabic])
 
   // Pricing calculations
   const rawRent =
     product?.rentPerMonth ||
     (product?.rentPrice ? String(product.rentPrice).replace(/[^\d.]/g, '') : null) ||
-    (product?.price ? Math.round(Number(product.price) * 0.05) : 1999)
-  const baseMonthlyRent = Math.max(100, Number(rawRent) || 1999)
+    (product?.price ? Math.round(Number(product.price) * 0.05) : 350)
+  const baseMonthlyRent = Math.max(50, Number(rawRent) || 350)
 
-  const selectedOption = tenureOptions.find((t) => t.months === durationMonths) || tenureOptions[0] || { months: 1, discount: 0, tag: 'Short Term' }
+  const selectedOption =
+    tenureOptions.find((t) => t.months === durationMonths) ||
+    tenureOptions[0] || { months: 1, discount: 0, tag: 'Short Term' }
   const discountMultiplier = 1 - selectedOption.discount / 100
   const effectiveMonthlyRent = Math.round(baseMonthlyRent * discountMultiplier)
   const monthlySavings = baseMonthlyRent - effectiveMonthlyRent
@@ -285,34 +349,45 @@ export default function RentalBookingModal({
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!currentUser) {
-      setErrorMsg('Please log in to submit a rental hardware application.')
-      openLoginModal?.()
+    if (!recipientName.trim()) {
+      setErrorMsg(isArabic ? 'يرجى إدخال اسم المستلم بالكامل.' : 'Please enter customer full name.')
       return
     }
 
-    if (!recipientName.trim()) {
-      setErrorMsg('Please enter customer full name.')
+    const cleanPhone = recipientPhone.replace(/\D/g, '')
+    if (!cleanPhone || cleanPhone.length < 7) {
+      setErrorMsg(
+        isArabic
+          ? 'يرجى إدخال رقم هاتف قطري صالح (مثال: +974 6691 9155).'
+          : 'Please enter a valid Qatar contact phone number (e.g. +974 6691 9155).'
+      )
       return
     }
-    if (!recipientPhone.trim() || recipientPhone.trim().length < 10) {
-      setErrorMsg('Please enter a valid 10-digit mobile contact number.')
-      return
-    }
+
     if (!address.trim()) {
-      setErrorMsg('Please provide your complete delivery street address.')
+      setErrorMsg(
+        isArabic
+          ? 'يرجى إدخال عنوان التوصيل بالتفصيل (رقم المبنى والشارع والمنطقة).'
+          : 'Please provide complete delivery street address (Building No, Street No, Zone).'
+      )
       return
     }
-    if (!pincode.trim() || pincode.trim().length < 6) {
-      setErrorMsg('Please enter a valid 6-digit postal PIN code.')
-      return
-    }
+
     if (!docNumber.trim()) {
-      setErrorMsg(`Please enter your valid ${docType} ID number for KYC verification.`)
+      setErrorMsg(
+        isArabic
+          ? `يرجى إدخال رقم ${currentDocTypeConfig.labelAr} للتحقق من الهوية.`
+          : `Please enter your valid ${docType} ID number for KYC verification.`
+      )
       return
     }
+
     if (!agreeTerms) {
-      setErrorMsg('Please check and accept the hardware lease agreement terms to proceed.')
+      setErrorMsg(
+        isArabic
+          ? 'يرجى الموافقة على شروط عقد تأجير الأجهزة وضمان الاسترجاع للمتابعة.'
+          : 'Please check and accept the hardware lease agreement terms to proceed.'
+      )
       return
     }
 
@@ -322,7 +397,7 @@ export default function RentalBookingModal({
     try {
       const payload = {
         productId: product?.id || product?._id,
-        productTitle: product?.title || product?.name || 'Prestige Rental Hardware',
+        productTitle: product?.title || product?.name || 'Prestige Rental Hardware System',
         productImage: rawImage || '',
         productSpecs: formattedSpecs,
         tenureType: 'monthly',
@@ -334,18 +409,18 @@ export default function RentalBookingModal({
         paymentMethod,
         customer: {
           name: recipientName.trim(),
-          email: currentUser.email || '',
+          email: currentUser?.email || 'customer@pcsdoha.net',
           phone: recipientPhone.trim(),
           address: address.trim(),
-          city: city.trim() || 'Kanpur',
-          state: state.trim() || 'Uttar Pradesh',
-          postalCode: pincode.trim(),
+          city: city.trim() || 'Doha',
+          state: state.trim() || city.trim() || 'Doha',
+          postalCode: zone.trim() || 'Doha',
         },
         kycDetails: {
           documentType: docType,
           documentNumber: docNumber.trim(),
           purpose,
-          documentFile: attachedFile ? attachedFile.name : '',
+          documentFile: fileBase64 || (attachedFile ? attachedFile.name : ''),
         },
       }
 
@@ -353,26 +428,41 @@ export default function RentalBookingModal({
       setSubmittedRental(res)
       onSuccess?.(res)
     } catch (err) {
-      setErrorMsg(err.message || 'Failed to submit rental request. Please try again.')
+      setErrorMsg(
+        err.message ||
+          (isArabic
+            ? 'تعذر إرسال طلب التأجير. يرجى المحاولة مرة أخرى.'
+            : 'Failed to submit rental request. Please try again.')
+      )
     } finally {
       setIsSubmitting(false)
     }
   }
 
+  // Pre-filled WhatsApp direct confirmation for priority dispatch
+  const agreementId = submittedRental?.rentalId || 'RT-PENDING'
+  const deviceName = submittedRental?.productSnapshot?.title || product?.title || product?.name || 'Prestige Hardware'
+  const waText = encodeURIComponent(
+    `Hello Prestige Computers Doha! I have submitted a Rental Lease Application #${agreementId} for ${deviceName} (${durationMonths} Months lease, Total: QAR ${totalInitialPay}). Please confirm KYC approval and delivery slot.`
+  )
+  const waHref = `https://wa.me/97466919155?text=${waText}`
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-xs p-2 sm:p-4 overflow-y-auto">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-[#e5e7eb] overflow-hidden my-auto max-h-[95vh] flex flex-col animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-xs p-2 sm:p-4 overflow-y-auto animate-fade-in">
+      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-[#e5e7eb] overflow-hidden my-auto max-h-[95vh] flex flex-col animate-scale-up">
         {/* Modal Header */}
         <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-[#f1f5f9] bg-[#fafbfc] shrink-0">
           <div>
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#dc1414] animate-pulse" />
               <h3 className="text-base sm:text-lg font-extrabold text-[#111827]">
-                Rent Hardware Lease Agreement
+                {isArabic ? 'عقد تأجير أجهزة الكمبيوتر والمعدات' : 'Rent Hardware Lease Agreement'}
               </h3>
             </div>
             <p className="text-xs text-[#6b7280] mt-0.5">
-              Doorstep delivery &bull; Zero maintenance &bull; 100% refundable deposit
+              {isArabic
+                ? 'توصيل لباب منزلك في قطر • صيانة فورية واستبدال مجاني • تأمين مسترد 100%'
+                : 'Doorstep delivery across Qatar • Zero maintenance & instant swap • 100% refundable deposit'}
             </p>
           </div>
           <button
@@ -388,85 +478,135 @@ export default function RentalBookingModal({
         </div>
 
         {/* Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-5">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-4.5">
           {submittedRental ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200">
+              <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200 shadow-xs ring-8 ring-emerald-50/60">
                 <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
+
               <div>
                 <h4 className="text-xl font-extrabold text-[#111827]">
-                  Rental Lease Registered Successfully!
+                  {isArabic ? 'تم تقديم طلب التأجير بنجاح!' : 'Rental Lease Registered Successfully!'}
                 </h4>
                 <p className="text-sm font-semibold text-[#dc1414] mt-1 font-mono">
-                  Agreement #{submittedRental.rentalId}
+                  {isArabic ? 'رقم العقد:' : 'Agreement'} #{submittedRental.rentalId}
                 </p>
                 <p className="text-xs text-[#6b7280] max-w-md mx-auto mt-2 leading-relaxed">
-                  Our Kanpur logistics hub has received your hardware lease request. Your KYC verification will be processed within 2-4 hours, followed by express doorstep delivery and diagnostics setup.
+                  {isArabic
+                    ? 'مركز التوزيع بالدوحة (المرقاب مول) استلم طلبك. سيتم مراجعة بيانات الهوية وتجهيز الجهاز للتوصيل أو الاستلام خلال ساعات.'
+                    : 'Our Doha logistics hub (Al Mirqab Mall) has received your lease request. KYC verification will be approved within 2-4 hours, followed by express doorstep delivery and setup.'}
                 </p>
               </div>
 
-              {/* Submitted Lease Summary */}
-              <div className="bg-[#f8fafc] p-4 rounded-xl border border-[#f1f5f9] text-xs space-y-2 text-left max-w-lg mx-auto">
-                <div className="flex justify-between items-center py-1 border-b border-[#f1f5f9]">
-                  <span className="text-[#6b7280]">Hardware Device:</span>
-                  <strong className="text-[#111827] text-right font-semibold">
+              {/* Submitted Lease Summary Card */}
+              <div className="bg-[#f8fafc] p-4 rounded-2xl border border-[#e2e8f0] text-xs space-y-2.5 text-left max-w-lg mx-auto">
+                <div className="flex justify-between items-center py-1 border-b border-gray-150">
+                  <span className="text-[#64748b]">{isArabic ? 'الجهاز المستأجر:' : 'Hardware Device:'}</span>
+                  <strong className="text-[#111827] text-right font-semibold truncate max-w-[220px]">
                     {submittedRental.productSnapshot?.title || product?.title || product?.name}
                   </strong>
                 </div>
-                <div className="flex justify-between items-center py-1 border-b border-[#f1f5f9]">
-                  <span className="text-[#6b7280]">Lease Tenure:</span>
+                <div className="flex justify-between items-center py-1 border-b border-gray-150">
+                  <span className="text-[#64748b]">{isArabic ? 'مدة الإيجار:' : 'Lease Tenure:'}</span>
                   <strong className="text-[#111827]">
-                    {submittedRental.duration} Months ({formattedStartDate} &rarr; {formattedEndDate})
+                    {submittedRental.duration} {isArabic ? 'أشهر' : 'Months'} ({formattedStartDate} &rarr; {formattedEndDate})
                   </strong>
                 </div>
-                <div className="flex justify-between items-center py-1 border-b border-[#f1f5f9]">
-                  <span className="text-[#6b7280]">Monthly Rent:</span>
+                <div className="flex justify-between items-center py-1 border-b border-gray-150">
+                  <span className="text-[#64748b]">{isArabic ? 'الإيجار الشهري الصافي:' : 'Monthly Rent:'}</span>
                   <strong className="text-[#dc1414] font-bold">
-                    ₹{Number(submittedRental.rentAmountPerUnit).toLocaleString('en-IN')}/mo
+                    {formatCurrency(submittedRental.rentAmountPerUnit, isArabic)}/mo
                   </strong>
                 </div>
-                <div className="flex justify-between items-center py-1 border-b border-[#f1f5f9]">
-                  <span className="text-[#6b7280]">Refundable Deposit:</span>
+                <div className="flex justify-between items-center py-1 border-b border-gray-150">
+                  <span className="text-[#64748b]">{isArabic ? 'مبلغ التأمين المسترد:' : 'Refundable Deposit:'}</span>
                   <strong className="text-emerald-700 font-bold">
-                    ₹{Number(submittedRental.securityDeposit).toLocaleString('en-IN')} (100% Refundable)
+                    {formatCurrency(submittedRental.securityDeposit, isArabic)} (100% {isArabic ? 'مسترد' : 'Refundable'})
                   </strong>
                 </div>
-                <div className="flex justify-between items-center py-1 border-b border-[#f1f5f9]">
-                  <span className="text-[#6b7280]">Payment Method:</span>
+                <div className="flex justify-between items-center py-1 border-b border-gray-150">
+                  <span className="text-[#64748b]">{isArabic ? 'طريقة الدفع:' : 'Payment Method:'}</span>
                   <span className="font-semibold text-[#111827] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">
                     {paymentMethod}
                   </span>
                 </div>
                 <div className="flex justify-between items-center pt-1">
-                  <span className="text-[#6b7280]">Delivery Address:</span>
-                  <strong className="text-[#111827] text-right truncate max-w-[260px]">
-                    {address}, {city} - {pincode}
+                  <span className="text-[#64748b]">{isArabic ? 'عنوان التوصيل / الاستلام:' : 'Delivery Address:'}</span>
+                  <strong className="text-[#111827] text-right truncate max-w-[240px]">
+                    {address}, {city}
                   </strong>
                 </div>
               </div>
 
-              <div className="pt-3 flex flex-wrap items-center justify-center gap-3">
+              {/* WhatsApp Expedite Button */}
+              <div className="max-w-lg mx-auto">
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#25D366]/10 border border-[#25D366]/30 text-[#128C7E] hover:bg-[#25D366]/20 font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-[#25D366]">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.02 2.6c.13.17 1.77 2.7 4.28 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32Z" />
+                  </svg>
+                  <span>{isArabic ? 'تأكيد فوري عبر واتساب للموافقة السريعة' : 'Confirm on WhatsApp for Priority Dispatch (+974)'}</span>
+                </a>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href="/profile?tab=rentals"
                   onClick={onClose}
                   className="px-5 py-2.5 rounded-xl bg-[#dc1414] hover:bg-[#b91c1c] text-white text-xs font-bold transition-all shadow-sm"
                 >
-                  View My Rental Dashboard &rarr;
+                  {isArabic ? 'عرض لوحة تحكم التأجير' : 'View My Rental Dashboard'} &rarr;
                 </Link>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2.5 rounded-xl border border-[#d1d5db] text-xs font-bold text-[#374151] hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2.5 rounded-xl border border-[#d1d5db] text-xs font-bold text-[#374151] hover:bg-gray-50 transition-colors cursor-pointer"
                 >
-                  Done
+                  {isArabic ? 'تم' : 'Done'}
                 </button>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* User Authentication Status Banner */}
+              {currentUser ? (
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span>
+                      {isArabic ? 'مسجل الدخول باسم:' : 'Signed in as:'}{' '}
+                      <strong className="text-emerald-950">{currentUser.name || currentUser.email}</strong>
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded">
+                    {isArabic ? 'حساب معتمد' : 'Verified Customer'}
+                  </span>
+                </div>
+              ) : (
+                <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center justify-between flex-wrap gap-2">
+                  <span>
+                    {isArabic
+                      ? 'غير مسجل الدخول؟ يمكنك تسجيل الدخول لملء العنوان بضغطة زر، أو المتابعة كضيف أدناه.'
+                      : 'Not signed in? You can sign in for 1-click address autofill, or continue as guest below.'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={openLoginModal}
+                    className="font-bold text-[#dc1414] hover:underline cursor-pointer shrink-0"
+                  >
+                    {isArabic ? 'تسجيل الدخول' : 'Sign In Now'} &rarr;
+                  </button>
+                </div>
+              )}
+
               {errorMsg && (
                 <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-[#dc1414] font-medium flex items-center gap-2">
                   <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -477,7 +617,7 @@ export default function RentalBookingModal({
               )}
 
               {/* Hardware Summary Card */}
-              <div className="flex items-center gap-3.5 bg-[#f8fafc] p-3.5 rounded-xl border border-[#f1f5f9]">
+              <div className="flex items-center gap-3.5 bg-[#f8fafc] p-3.5 rounded-2xl border border-[#f1f5f9]">
                 <img
                   src={productImageUrl}
                   alt={product?.title || product?.name || 'Prestige Rental Hardware'}
@@ -491,7 +631,7 @@ export default function RentalBookingModal({
                       </span>
                     )}
                     <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-                      In Stock Kanpur
+                      {isArabic ? 'متوفر في مستودع الدوحة' : 'In Stock Doha'}
                     </span>
                   </div>
                   <h4 className="text-xs sm:text-sm font-bold text-[#111827] truncate mt-0.5">
@@ -500,9 +640,9 @@ export default function RentalBookingModal({
                   <p className="text-[11px] text-[#6b7280] truncate mt-0.5">
                     {formattedSpecs}
                   </p>
-                  <div className="flex items-center gap-2 mt-1">
+                  <div className="flex items-center gap-2 mt-1 flex-wrap">
                     <span className="text-xs font-extrabold text-[#dc1414]">
-                      ₹{effectiveMonthlyRent.toLocaleString('en-IN')}/mo
+                      {formatCurrency(effectiveMonthlyRent, isArabic)}/mo
                     </span>
                     {selectedOption.discount > 0 && (
                       <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
@@ -510,7 +650,7 @@ export default function RentalBookingModal({
                       </span>
                     )}
                     <span className="text-[10px] text-[#6b7280]">
-                      Deposit: ₹{securityDeposit.toLocaleString('en-IN')} (Refundable)
+                      {isArabic ? 'التأمين المسترد:' : 'Deposit:'} {formatCurrency(securityDeposit, isArabic)}
                     </span>
                   </div>
                 </div>
@@ -520,11 +660,11 @@ export default function RentalBookingModal({
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-xs font-bold uppercase tracking-wider text-[#374151]">
-                    Select Rental Duration
+                    {isArabic ? 'اختر مدة التأجير' : 'Select Rental Duration'}
                   </label>
                   {totalTenureSavings > 0 && (
                     <span className="text-[11px] font-bold text-emerald-600">
-                      Save ₹{totalTenureSavings.toLocaleString('en-IN')} across {durationMonths} Mo
+                      {isArabic ? 'توفير' : 'Save'} {formatCurrency(totalTenureSavings, isArabic)} ({durationMonths} {isArabic ? 'شهر' : 'Mo'})
                     </span>
                   )}
                 </div>
@@ -549,16 +689,19 @@ export default function RentalBookingModal({
                 </div>
                 <div className="flex flex-wrap items-center justify-between text-[11px] text-[#6b7280] mt-1.5 px-0.5">
                   <span>
-                    Lease Return Date: <strong className="text-[#111827]">{formattedEndDate}</strong>
+                    {isArabic ? 'تاريخ نهاية الإيجار:' : 'Lease Return Date:'}{' '}
+                    <strong className="text-[#111827]">{formattedEndDate}</strong>
                   </span>
-                  <span className="text-gray-400">Extendable or convertible to purchase anytime</span>
+                  <span className="text-gray-400">
+                    {isArabic ? 'قابل للتجديد أو الشراء النهائي في أي وقت' : 'Extendable or convertible to purchase anytime'}
+                  </span>
                 </div>
               </div>
 
               {/* Delivery Start Date */}
               <div className="space-y-1.5">
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
-                  Hardware Delivery &amp; Lease Start Date
+                  {isArabic ? 'تاريخ بدء العقد والتوصيل' : 'Delivery & Lease Start Date'}
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   <button
@@ -570,8 +713,8 @@ export default function RentalBookingModal({
                         : 'border-[#e5e7eb] text-[#4b5563] hover:border-gray-300'
                     }`}
                   >
-                    <span className="block text-xs">Today (Express)</span>
-                    <span className="block text-[10px] opacity-75">Within 4 Hours</span>
+                    <span className="block text-xs">{isArabic ? 'اليوم (سريع)' : 'Today (Express)'}</span>
+                    <span className="block text-[10px] opacity-75">{isArabic ? 'خلال 4 ساعات' : 'Within 4 Hours'}</span>
                   </button>
                   <button
                     type="button"
@@ -582,8 +725,8 @@ export default function RentalBookingModal({
                         : 'border-[#e5e7eb] text-[#4b5563] hover:border-gray-300'
                     }`}
                   >
-                    <span className="block text-xs">Tomorrow</span>
-                    <span className="block text-[10px] opacity-75">Morning Slot</span>
+                    <span className="block text-xs">{isArabic ? 'غداً' : 'Tomorrow'}</span>
+                    <span className="block text-[10px] opacity-75">{isArabic ? 'الفترة الصباحية' : 'Morning Slot'}</span>
                   </button>
                   <button
                     type="button"
@@ -594,8 +737,8 @@ export default function RentalBookingModal({
                         : 'border-[#e5e7eb] text-[#4b5563] hover:border-gray-300'
                     }`}
                   >
-                    <span className="block text-xs">Pick Specific Date</span>
-                    <span className="block text-[10px] opacity-75">Custom Schedule</span>
+                    <span className="block text-xs">{isArabic ? 'تحديد موعد' : 'Pick Specific Date'}</span>
+                    <span className="block text-[10px] opacity-75">{isArabic ? 'جدول مخصص' : 'Custom Schedule'}</span>
                   </button>
                 </div>
                 {startOption === 'custom' && (
@@ -615,11 +758,11 @@ export default function RentalBookingModal({
               <div className="space-y-2 pt-1">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-bold uppercase tracking-wider text-[#374151]">
-                    Delivery Recipient &amp; Address
+                    {isArabic ? 'بيانات المستلم وعنوان التوصيل (قطر)' : 'Recipient & Delivery Address (Qatar)'}
                   </label>
                   {savedAddresses.length > 0 && (
                     <span className="text-[11px] text-[#6b7280]">
-                      {savedAddresses.length} Saved Address{savedAddresses.length > 1 ? 'es' : ''} Found
+                      {savedAddresses.length} {isArabic ? 'عناوين محفوظة' : 'Saved Addresses'}
                     </span>
                   )}
                 </div>
@@ -657,7 +800,7 @@ export default function RentalBookingModal({
                           : 'border-[#e5e7eb] text-[#6b7280] hover:border-gray-300'
                       }`}
                     >
-                      + Custom Address
+                      + {isArabic ? 'عنوان مخصص' : 'Custom Address'}
                     </button>
                   </div>
                 )}
@@ -667,7 +810,7 @@ export default function RentalBookingModal({
                     type="text"
                     value={recipientName}
                     onChange={(e) => setRecipientName(e.target.value)}
-                    placeholder="Full Customer Name *"
+                    placeholder={isArabic ? 'اسم المستلم بالكامل *' : 'Full Customer Name *'}
                     className="w-full px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none"
                     required
                   />
@@ -675,37 +818,40 @@ export default function RentalBookingModal({
                     type="tel"
                     value={recipientPhone}
                     onChange={(e) => setRecipientPhone(e.target.value)}
-                    placeholder="10-digit Mobile Phone Number *"
-                    className="w-full px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none"
+                    placeholder={isArabic ? 'رقم الهاتف (+974 6691 9155) *' : 'Contact Phone (+974 6691 9155) *'}
+                    className="w-full px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none dir-ltr"
                     required
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5">
-                  <input
-                    type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Complete Street Address, House/Office No. *"
-                    className="sm:col-span-2 px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none"
-                    required
-                  />
-                  <input
-                    type="text"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    placeholder="City (e.g. Kanpur)"
-                    className="px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none"
-                    required
-                  />
-                  <input
-                    type="text"
-                    value={pincode}
-                    onChange={(e) => setPincode(e.target.value)}
-                    placeholder="PIN Code *"
-                    className="px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none"
-                    required
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <div className="sm:col-span-1">
+                    <select
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className="w-full px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none bg-white font-medium"
+                    >
+                      {QATAR_MUNICIPALITIES.map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder={
+                        isArabic
+                          ? 'رقم المبنى، رقم الشارع، رقم المنطقة (مثال: مبنى 201، شارع 840) *'
+                          : 'Building No, Street No, Zone No (e.g. Bldg 201, St 840, Zone 39) *'
+                      }
+                      className="w-full px-3 py-2 rounded-xl border border-[#d1d5db] text-xs focus:border-[#dc1414] outline-none"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -713,13 +859,13 @@ export default function RentalBookingModal({
               <div className="space-y-2 pt-1">
                 <div className="flex items-center justify-between">
                   <label className="text-xs font-bold uppercase tracking-wider text-[#374151]">
-                    KYC Verification &amp; Identity Details
+                    {isArabic ? 'بيانات التحقق من الهوية (KYC)' : 'KYC Verification & Identity Details'}
                   </label>
                   <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                    Bank-Grade 256-bit Encrypted
+                    {isArabic ? 'تشفير بنكي آمن 256-بت' : 'Bank-Grade 256-bit Encrypted'}
                   </span>
                 </div>
 
@@ -731,7 +877,7 @@ export default function RentalBookingModal({
                   >
                     {DOC_TYPES.map((d) => (
                       <option key={d.value} value={d.value}>
-                        {d.value}
+                        {isArabic ? d.labelAr : d.labelEn}
                       </option>
                     ))}
                   </select>
@@ -748,7 +894,7 @@ export default function RentalBookingModal({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <div>
                     <label className="block text-[11px] text-[#6b7280] font-medium mb-1">
-                      Primary Purpose of Lease
+                      {isArabic ? 'الغرض الأساسي من الاستئجار' : 'Primary Purpose of Lease'}
                     </label>
                     <select
                       value={purpose}
@@ -766,7 +912,7 @@ export default function RentalBookingModal({
                   {/* Document Attachment / Upload */}
                   <div>
                     <label className="block text-[11px] text-[#6b7280] font-medium mb-1">
-                      Upload Document Copy (Front / Back / PDF)
+                      {isArabic ? 'إرفاق صورة الهوية / السجل التجاري' : 'Upload Document Copy (Front / Back / PDF)'}
                     </label>
                     <input
                       type="file"
@@ -778,9 +924,17 @@ export default function RentalBookingModal({
                     {attachedFile ? (
                       <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-xs">
                         <div className="flex items-center gap-1.5 truncate">
-                          <svg className="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
+                          {attachedFile.dataUrl && attachedFile.type?.startsWith('image/') ? (
+                            <img
+                              src={attachedFile.dataUrl}
+                              alt="KYC Preview"
+                              className="w-5 h-5 rounded object-cover border border-emerald-300 shrink-0"
+                            />
+                          ) : (
+                            <svg className="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          )}
                           <span className="font-semibold text-emerald-800 truncate">{attachedFile.name}</span>
                           <span className="text-[10px] text-emerald-600 shrink-0">({attachedFile.size})</span>
                         </div>
@@ -801,7 +955,9 @@ export default function RentalBookingModal({
                         <svg className="w-4 h-4 text-[#9ca3af]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                         </svg>
-                        <span>Attach {docType} Copy (Optional)</span>
+                        <span>
+                          {isArabic ? `إرفاق صورة ${currentDocTypeConfig.labelAr} (اختياري)` : `Attach ${docType} Copy (Optional)`}
+                        </span>
                       </button>
                     )}
                   </div>
@@ -811,7 +967,7 @@ export default function RentalBookingModal({
               {/* Payment Method Selector */}
               <div className="space-y-1.5 pt-1">
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
-                  Select Payment Preference
+                  {isArabic ? 'اختر طريقة الدفع المفضلة' : 'Select Payment Preference'}
                 </label>
                 <div className="space-y-2">
                   {PAYMENT_METHODS.map((pm) => {
@@ -820,9 +976,9 @@ export default function RentalBookingModal({
                       <div
                         key={pm.id}
                         onClick={() => setPaymentMethod(pm.id)}
-                        className={`p-3 rounded-xl border cursor-pointer transition-all flex items-start gap-3 ${
+                        className={`p-3 rounded-2xl border cursor-pointer transition-all flex items-start gap-3 ${
                           isSelected
-                            ? 'border-[#dc1414] bg-[#fee2e2]/15 ring-2 ring-[#dc1414]/20'
+                            ? 'border-[#dc1414] bg-[#fee2e2]/15 ring-2 ring-[#dc1414]/20 shadow-xs'
                             : 'border-[#e5e7eb] bg-white hover:border-gray-300'
                         }`}
                       >
@@ -833,14 +989,18 @@ export default function RentalBookingModal({
                           onChange={() => setPaymentMethod(pm.id)}
                           className="mt-0.5 accent-[#dc1414]"
                         />
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-[#111827]">{pm.title}</span>
-                            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">
-                              {pm.badge}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-[#111827]">
+                              {isArabic ? pm.titleAr : pm.titleEn}
+                            </span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 shrink-0">
+                              {isArabic ? pm.badgeAr : pm.badgeEn}
                             </span>
                           </div>
-                          <p className="text-[11px] text-[#6b7280] mt-0.5">{pm.subtitle}</p>
+                          <p className="text-[11px] text-[#6b7280] mt-0.5">
+                            {isArabic ? pm.subtitleAr : pm.subtitleEn}
+                          </p>
                         </div>
                       </div>
                     )
@@ -849,48 +1009,52 @@ export default function RentalBookingModal({
               </div>
 
               {/* Transparent Pricing Breakdown */}
-              <div className="bg-[#f8fafc] p-3.5 rounded-xl border border-[#f1f5f9] text-xs space-y-2">
+              <div className="bg-[#f8fafc] p-4 rounded-2xl border border-[#e2e8f0] text-xs space-y-2">
                 <div className="flex justify-between items-center text-[#6b7280]">
-                  <span>Base Monthly Rent</span>
-                  <span className="text-[#111827] font-semibold">₹{baseMonthlyRent.toLocaleString('en-IN')}/mo</span>
+                  <span>{isArabic ? 'الإيجار الشهري الأساسي' : 'Base Monthly Rent'}</span>
+                  <span className="text-[#111827] font-semibold">{formatCurrency(baseMonthlyRent, isArabic)}/mo</span>
                 </div>
                 {selectedOption.discount > 0 && (
                   <div className="flex justify-between items-center text-emerald-600 font-semibold">
-                    <span>Tenure Discount ({selectedOption.tag})</span>
-                    <span>-₹{monthlySavings.toLocaleString('en-IN')}/mo</span>
+                    <span>{isArabic ? 'خصم مدة العقد' : 'Tenure Discount'} ({selectedOption.tag})</span>
+                    <span>-{formatCurrency(monthlySavings, isArabic)}/mo</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center text-[#111827] font-bold">
-                  <span>Net Monthly Rent ({durationMonths} Month Lease)</span>
-                  <span>₹{effectiveMonthlyRent.toLocaleString('en-IN')}/mo</span>
+                  <span>
+                    {isArabic ? 'صافي الإيجار الشهري' : 'Net Monthly Rent'} ({durationMonths} {isArabic ? 'أشهر' : 'Month Lease'})
+                  </span>
+                  <span>{formatCurrency(effectiveMonthlyRent, isArabic)}/mo</span>
                 </div>
                 <div className="flex justify-between items-center text-[#6b7280]">
-                  <span>100% Refundable Security Deposit</span>
+                  <span>{isArabic ? 'مبلغ التأمين المسترد 100%' : '100% Refundable Security Deposit'}</span>
                   <span className="font-bold text-emerald-700">
-                    ₹{securityDeposit.toLocaleString('en-IN')} (Refundable)
+                    {formatCurrency(securityDeposit, isArabic)} ({isArabic ? 'مسترد بالكامل' : 'Refundable'})
                   </span>
                 </div>
                 <div className="flex justify-between items-center text-[#6b7280]">
-                  <span>Express Doorstep Delivery &amp; Setup</span>
+                  <span>{isArabic ? 'التوصيل والتركيب لباب منزلك' : 'Express Doorstep Delivery & Setup'}</span>
                   <span className="font-bold text-emerald-700">
-                    <span className="line-through text-gray-400 font-normal mr-1">₹499</span>
-                    FREE
+                    <span className="line-through text-gray-400 font-normal mr-1">{isArabic ? '499 ر.ق' : 'QAR 499'}</span>
+                    {isArabic ? 'مجاني' : 'FREE'}
                   </span>
                 </div>
                 <div className="flex justify-between items-center text-[#6b7280]">
-                  <span>Hardware Replacement Warranty &amp; QC</span>
-                  <span className="font-bold text-emerald-700">INCLUDED</span>
+                  <span>{isArabic ? 'ضمان الصيانة والاستبدال الفوري' : 'Hardware Swap Warranty & QC'}</span>
+                  <span className="font-bold text-emerald-700">{isArabic ? 'مشمول' : 'INCLUDED'}</span>
                 </div>
 
-                <div className="flex justify-between items-center pt-2 border-t border-[#e2e8f0] font-bold text-sm">
+                <div className="flex justify-between items-center pt-2.5 border-t border-[#e2e8f0] font-bold text-sm">
                   <div>
-                    <span className="text-[#111827] block">Initial Payable at Delivery</span>
+                    <span className="text-[#111827] block">
+                      {isArabic ? 'المبلغ المطلوب عند الاستلام' : 'Initial Payable at Delivery'}
+                    </span>
                     <span className="text-[10px] text-[#6b7280] font-normal">
-                      1st Month Rent + 100% Refundable Deposit
+                      {isArabic ? 'إيجار الشهر الأول + التأمين المسترد' : '1st Month Rent + 100% Refundable Deposit'}
                     </span>
                   </div>
                   <span className="text-[#dc1414] text-base font-extrabold">
-                    ₹{totalInitialPay.toLocaleString('en-IN')}
+                    {formatCurrency(totalInitialPay, isArabic)}
                   </span>
                 </div>
               </div>
@@ -904,7 +1068,9 @@ export default function RentalBookingModal({
                   className="mt-0.5 rounded border-[#d1d5db] text-[#dc1414] focus:ring-[#dc1414] accent-[#dc1414]"
                 />
                 <span className="leading-relaxed">
-                  I agree to Prestige Computer Hardware Lease Agreement terms, zero-maintenance replacement guarantee, and 100% deposit refund policy upon device return.
+                  {isArabic
+                    ? 'أوافق على بنود عقد تأجير الأجهزة لبرستيج كمبيوترز، وضمان الصيانة الفورية، وسياسة استرداد التأمين 100% عند إرجاع الجهاز بحالة سليمة.'
+                    : 'I agree to Prestige Computer Hardware Lease Agreement terms, zero-maintenance replacement guarantee, and 100% deposit refund policy upon device return.'}
                 </span>
               </label>
 
@@ -913,7 +1079,7 @@ export default function RentalBookingModal({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white text-sm font-bold rounded-xl shadow-[0_4px_14px_rgba(220,20,20,0.35)] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                  className="w-full py-3.5 bg-[#dc1414] hover:bg-[#b91c1c] active:scale-[0.99] text-white text-sm font-bold rounded-2xl shadow-[0_4px_14px_rgba(220,20,20,0.35)] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <>
@@ -921,11 +1087,15 @@ export default function RentalBookingModal({
                         <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
                         <path fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" className="opacity-75" />
                       </svg>
-                      <span>Submitting Rental Application...</span>
+                      <span>{isArabic ? 'جاري إرسال طلب التأجير...' : 'Submitting Rental Application...'}</span>
                     </>
                   ) : (
                     <>
-                      <span>Submit Rental Request &bull; Pay ₹{totalInitialPay.toLocaleString('en-IN')}</span>
+                      <span>
+                        {isArabic
+                          ? `تأكيد طلب التأجير • المستحق ${formatCurrency(totalInitialPay, isArabic)}`
+                          : `Submit Rental Request • Pay ${formatCurrency(totalInitialPay, isArabic)}`}
+                      </span>
                       <span>&rarr;</span>
                     </>
                   )}

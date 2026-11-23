@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import { getProducts, getProductImageUrl } from '../../services/productApi'
 
 /* Micro Icons */
@@ -265,12 +266,14 @@ export default function HeaderSearchBar({ onSearchSubmit }) {
       {/* Pill Search Input Form */}
       <form onSubmit={handleSubmit} className="relative w-full">
         <div
-          className={`flex items-center bg-white rounded-full p-1 pl-4 sm:pl-5 rtl:pl-1 rtl:pr-4 sm:rtl:pr-5 shadow-[0_2px_12px_rgba(0,0,0,0.28)] transition-all ${
+          className={`flex items-center bg-white rounded-full p-1 pl-3.5 sm:pl-4 rtl:pl-1 rtl:pr-3.5 sm:rtl:pr-4 border-2 transition-all ${
             isOpen
-              ? 'ring-2 ring-[#dc1414] shadow-[0_4px_20px_rgba(220,20,20,0.22)]'
-              : 'hover:shadow-[0_4px_16px_rgba(0,0,0,0.32)] focus-within:ring-2 focus-within:ring-[#dc1414]/70'
+              ? 'border-[#dc1414] ring-4 ring-[#dc1414]/15 shadow-[0_4px_20px_rgba(220,20,20,0.18)]'
+              : 'border-gray-300 hover:border-gray-400 focus-within:border-[#dc1414] focus-within:ring-4 focus-within:ring-[#dc1414]/15 shadow-xs hover:shadow-sm'
           }`}
         >
+          {/* Leading Search Icon for clean affordance */}
+          <SearchIcon className="w-4 h-4 text-gray-400 shrink-0 mr-2 rtl:mr-0 rtl:ml-2" />
           <input
             ref={inputRef}
             type="text"
@@ -287,7 +290,7 @@ export default function HeaderSearchBar({ onSearchSubmit }) {
                 ? 'ابحث عن أجهزة لابتوب، تجميعات PC، شاشات، ملحقات...'
                 : 'Search 10,000+ laptops, gaming PCs, rentals, components...'
             }
-            className="w-full bg-transparent text-[13px] sm:text-[13.5px] text-[#111827] placeholder:text-[#6b7280] focus:outline-none"
+            className="w-full bg-transparent text-[13px] sm:text-[13.5px] font-medium text-[#111827] placeholder:text-gray-400 focus:outline-none"
             aria-autocomplete="list"
             aria-expanded={isOpen}
           />
@@ -431,11 +434,11 @@ export default function HeaderSearchBar({ onSearchSubmit }) {
                           {/* Price & Action */}
                           <div className="text-right rtl:text-left shrink-0 pl-2 rtl:pl-0 rtl:pr-2">
                             <span className="text-[13.5px] font-extrabold text-[#dc1414] block">
-                              ₹{price.toLocaleString('en-IN')}
+                              {formatCurrency(price, isArabic)}
                             </span>
                             {originalPrice && originalPrice > price && (
                               <span className="text-[11px] text-gray-400 line-through block">
-                                ₹{originalPrice.toLocaleString('en-IN')}
+                                {formatCurrency(originalPrice, isArabic)}
                               </span>
                             )}
                           </div>

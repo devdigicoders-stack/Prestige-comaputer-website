@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { getPolicyBySlug } from '../../services/policyApi'
 import { useLanguage } from '../../context/LanguageContext'
 
 const FAQ_DATA = [
@@ -157,9 +158,26 @@ const CATEGORIES_MAP = [
 
 export default function FaqView() {
   const { isArabic } = useLanguage()
+  const [dynamicFaqs, setDynamicFaqs] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
   const [openIndexes, setOpenIndexes] = useState([0, 1])
+
+  useEffect(() => {
+    let isMounted = true
+    getPolicyBySlug('faq')
+      .then((data) => {
+        if (isMounted && data?.faqs?.length) {
+          setDynamicFaqs(data.faqs)
+        }
+      })
+      .catch(() => {})
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  const activeFaqs = dynamicFaqs.length > 0 ? dynamicFaqs : FAQ_DATA
 
   const toggleAccordion = (idx) => {
     setOpenIndexes((prev) =>
@@ -167,7 +185,7 @@ export default function FaqView() {
     )
   }
 
-  const filteredFaqs = FAQ_DATA.filter((faq) => {
+  const filteredFaqs = activeFaqs.filter((faq) => {
     const matchCategory =
       selectedCategory === 'All' || faq.category === selectedCategory
     const qText = isArabic ? (faq.questionAr || faq.question) : faq.question

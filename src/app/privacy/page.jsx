@@ -1,9 +1,9 @@
-import LegalPageLayout from '../../components/legal/LegalPageLayout'
+import DynamicLegalPage from '../../components/legal/DynamicLegalPage'
 
 export const metadata = {
   title: 'Privacy Policy | Prestige Computers',
   description:
-    'Learn how Prestige Computers collects, secures, and protects your personal information, rental KYC documents, and payment details in accordance with Indian IT laws.',
+    'Learn how Prestige Computers collects, secures, and protects your personal information, rental KYC documents, and payment details in accordance with Qatar personal data protection laws.',
   alternates: {
     canonical: '/privacy',
   },
@@ -11,14 +11,15 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPageLayout
-      title="Privacy Policy"
-      titleAr="سياسة حماية البيانات والخصوصية"
-      subtitle="Your privacy and trust are paramount. Learn how Prestige Computers collects, stores, and protects your personal and payment data."
-      subtitleAr="خصوصيتك وثقتك هي أولويتنا القصوى. تعرف على كيفية جمع وتخزين وحماية بياناتك الشخصية في بريستيج للكمبيوتر."
-      lastUpdated="18 November 2026"
-      badge="Data Protection"
-      badgeAr="حماية البيانات والخصوصية"
+    <DynamicLegalPage
+      slug="privacy"
+      fallbackTitle="Privacy Policy"
+      fallbackTitleAr="سياسة حماية البيانات والخصوصية"
+      fallbackSubtitle="Your privacy and trust are paramount. Learn how Prestige Computers collects, stores, and protects your personal and payment data."
+      fallbackSubtitleAr="خصوصيتك وثقتك هي أولويتنا القصوى. تعرف على كيفية جمع وتخزين وحماية بياناتك الشخصية في بريستيج للكمبيوتر."
+      fallbackLastUpdated="18 November 2026"
+      fallbackBadge="Data Protection"
+      fallbackBadgeAr="حماية البيانات والخصوصية"
     >
       <h2>1. Overview & Commitment to Privacy</h2>
       <p>
@@ -32,7 +33,7 @@ export default function PrivacyPage() {
       <ul>
         <li><strong>Account Information:</strong> Name, email address, mobile phone number, delivery address, and account login credentials.</li>
         <li><strong>Transaction & Order Details:</strong> Hardware items purchased, order history, invoice records, and delivery status.</li>
-        <li><strong>Rental KYC & Identity Verification:</strong> Government-issued identification documents (Aadhaar Card, Driving License, Passport, or Business GST Certificate) provided exclusively for verifying equipment custody under our &ldquo;Rent On&rdquo; program.</li>
+        <li><strong>Rental KYC & Identity Verification:</strong> Government-issued identification documents (Qatar ID - QID, Qatari Driving License, Passport, or Business Commercial Registration - CR) provided exclusively for verifying equipment custody under our &ldquo;Rent On&rdquo; program.</li>
         <li><strong>Technical & Device Data:</strong> IP address, browser type, operating system, and anonymous usage telemetry collected via secure cookies to optimize website performance.</li>
       </ul>
 
@@ -89,6 +90,6 @@ export default function PrivacyPage() {
         Email: <a href="mailto:info@pcsdoha.net" className="text-[#dc1414] font-semibold hover:underline">info@pcsdoha.net</a> | Direct: +974 4145 3868 | WhatsApp: +974 6691 9155<br />
         Working Hours: Saturday – Thursday, 10:00 AM – 10:00 PM (Friday: 2:30 PM – 10:30 PM)
       </p>
-    </LegalPageLayout>
+    </DynamicLegalPage>
   )
 }

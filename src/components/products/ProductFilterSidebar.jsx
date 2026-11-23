@@ -5,22 +5,12 @@ import { getActiveCategories } from '../../services/categoryApi'
 import { useLanguage } from '../../context/LanguageContext'
 
 const CATEGORY_TRANSLATIONS = {
-  'all': 'جميع المنتجات',
-  'laptops': 'أجهزة لابتوب',
-  'laptop': 'أجهزة لابتوب',
-  'desktops': 'أجهزة مكتبية',
-  'desktop': 'أجهزة مكتبية',
-  'workstations': 'محطات عمل',
-  'workstation': 'محطات عمل',
-  'gaming-pcs': 'تجميعات ألعاب',
-  'gaming': 'تجميعات ألعاب',
-  'components': 'قطع غيار',
-  'monitors': 'شاشات عرض',
-  'monitor': 'شاشات عرض',
-  'accessories': 'ملحقات وإكسسوارات',
-  'networking': 'أجهزة شبكات',
-  'software': 'برمجيات',
-  'all-in-one': 'الكل في واحد',
+  all: 'جميع المعروضات',
+  gaming: 'قسم الألعاب (جيمنج)',
+  'gaming-pcs': 'قسم الألعاب (جيمنج)',
+  business: 'أجهزة الأعمال والشركات',
+  'pre-owned': 'مستعمل مضمون (فحص كامل)',
+  'genuine-pre-owned': 'مستعمل مضمون (فحص كامل)',
 }
 
 function ChevronIcon({ isOpen }) {
@@ -44,6 +34,8 @@ export default function ProductFilterSidebar({
   products = [],
   selectedCategory,
   onSelectCategory,
+  selectedCondition = 'all',
+  onSelectCondition,
   selectedBrands = [],
   onToggleBrand,
   priceRange = [10000, 200000],
@@ -56,6 +48,7 @@ export default function ProductFilterSidebar({
 }) {
   const { isRtl } = useLanguage()
   const [openSections, setOpenSections] = useState({
+    condition: true,
     category: true,
     price: true,
     brand: true,
@@ -85,13 +78,17 @@ export default function ProductFilterSidebar({
     setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
-  const CATEGORY_FILTERS = liveCategories
+  const CATEGORY_FILTERS = liveCategories && liveCategories.length > 0
     ? liveCategories.map((c) => ({
         id: c.slug,
         label: c.name,
         count: c.productCount || 0,
       }))
-    : []
+    : [
+        { id: 'gaming', label: 'Gaming', count: 4 },
+        { id: 'business', label: 'Business', count: 4 },
+        { id: 'pre-owned', label: 'Genuine Pre-Owned', count: 4 },
+      ]
 
   const brandCounts = useMemo(() => {
     const counts = {}
@@ -125,9 +122,7 @@ export default function ProductFilterSidebar({
 
   const RAM_FILTERS = ['8 GB', '16 GB', '32 GB', '64 GB']
 
-  const visibleCategories = showMoreCategories
-    ? CATEGORY_FILTERS
-    : CATEGORY_FILTERS.slice(0, 5)
+  const visibleCategories = CATEGORY_FILTERS
 
   return (
     <aside
@@ -160,7 +155,55 @@ export default function ProductFilterSidebar({
       </div>
 
       <div className="divide-y divide-[#f3f4f6]">
-        {/* SECTION 1: Category */}
+                {/* SECTION 0: Core Business Pillars / Condition (Gaming, Business, Pre-Owned) */}
+        <div className="py-3.5">
+          <button
+            type="button"
+            onClick={() => toggleSection('condition')}
+            className="w-full flex items-center justify-between text-left rtl:text-right cursor-pointer group"
+          >
+            <span className="text-[13.5px] font-bold text-[#111827] group-hover:text-[#dc1414] transition-colors flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#dc1414] animate-pulse"></span>
+              {isRtl ? 'أقسام ومنتجات المتجر' : 'Store Division / Condition'}
+            </span>
+            <ChevronIcon isOpen={openSections.condition} />
+          </button>
+
+          {openSections.condition && (
+            <div className="mt-3 space-y-1.5">
+              {[
+                { id: 'all', label: 'All Catalog', labelAr: 'جميع المعروضات', badge: null },
+                { id: 'gaming', label: 'Gaming Division', labelAr: 'قسم الألعاب (جيمنج)', badge: 'HOT', color: 'bg-purple-100 text-purple-700' },
+                { id: 'business', label: 'Business & Enterprise', labelAr: 'أجهزة الأعمال والشركات', badge: 'PRO', color: 'bg-blue-100 text-blue-700' },
+                { id: 'pre-owned', label: 'Genuine Pre-Owned', labelAr: 'مستعمل مضمون (فحص كامل)', badge: 'SAVE', color: 'bg-emerald-100 text-emerald-700' },
+                { id: 'brand-new', label: 'Brand New In-Box', labelAr: 'أجهزة جديدة بالكرتون', badge: 'NEW', color: 'bg-red-100 text-red-700' },
+              ].map((pill) => {
+                const isSelected = selectedCondition === pill.id
+                return (
+                  <button
+                    key={pill.id}
+                    type="button"
+                    onClick={() => onSelectCondition && onSelectCondition(pill.id)}
+                    className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-[12.5px] font-medium transition-all text-left rtl:text-right cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#dc1414] text-white shadow-xs font-semibold'
+                        : 'bg-gray-50/80 text-[#374151] hover:bg-gray-100 hover:text-black'
+                    }`}
+                  >
+                    <span>{isRtl ? pill.labelAr : pill.label}</span>
+                    {pill.badge && (
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-md font-bold ${isSelected ? 'bg-white/20 text-white' : pill.color}`}>
+                        {pill.badge}
+                      </span>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+        </div>
+
+{/* SECTION 1: Category */}
         <div className="py-3.5">
           <button
             type="button"
@@ -257,7 +300,7 @@ export default function ProductFilterSidebar({
               {/* Price Input Boxes Row */}
               <div className="flex items-center gap-2">
                 <div className="flex-1 bg-[#f9fafb] border border-[#e5e7eb] rounded-lg px-2.5 py-1.5 text-[12px] font-medium text-[#111827] flex items-center">
-                  <span>₹</span>
+                  <span>{isRtl ? 'ر.ق' : 'QAR'}</span>
                   <input
                     type="number"
                     value={priceRange[0]}
@@ -271,7 +314,7 @@ export default function ProductFilterSidebar({
                 <span className="text-[#9ca3af] text-[12px]">—</span>
 
                 <div className="flex-1 bg-[#f9fafb] border border-[#e5e7eb] rounded-lg px-2.5 py-1.5 text-[12px] font-medium text-[#111827] flex items-center">
-                  <span>₹</span>
+                  <span>{isRtl ? 'ر.ق' : 'QAR'}</span>
                   <input
                     type="number"
                     value={priceRange[1]}

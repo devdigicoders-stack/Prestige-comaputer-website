@@ -18,7 +18,7 @@ export default function ProductDetailsView({
     rating: 4.8,
     reviewCount: 328,
     soldCount: '1,245+ Sold',
-    emi: '₹2,542/month',
+    emi: 'QAR 125/month',
     badge: 'Bestseller',
   },
 }) {

@@ -4,13 +4,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getMyOrders } from '../../services/orderApi'
 import { getProductImageUrl } from '../../services/productApi'
+import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import {
   WishlistLaptopVisual,
 } from '../wishlist/WishlistVisuals'
-
-function formatINR(val) {
-  return `₹${Number(val || 0).toLocaleString('en-IN')}`
-}
 
 function getStatusStyle(status = 'Pending') {
   switch (status) {
@@ -28,6 +26,7 @@ function getStatusStyle(status = 'Pending') {
 }
 
 export default function ProfileOrdersTab() {
+  const { isArabic, isRtl } = useLanguage()
   const [filter, setFilter] = useState('all')
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
@@ -156,7 +155,7 @@ export default function ProfileOrdersTab() {
                   <div className="text-left sm:text-right">
                     <span className="text-[11px] text-[#6b7280] block">Total Amount</span>
                     <span className="text-[16px] font-black text-[#dc1414]">
-                      {formatINR(order.totalPrice)}
+                      {formatCurrency(order.totalPrice, isArabic)}
                     </span>
                   </div>
                 </div>
@@ -213,7 +212,7 @@ export default function ProfileOrdersTab() {
                         </div>
                         <div className="text-right shrink-0">
                           <span className="text-[13.5px] font-bold text-[#111827] block">
-                            {formatINR(it.price * (it.quantity || 1))}
+                            {formatCurrency(it.price * (it.quantity || 1), isArabic)}
                           </span>
                           <span className="text-[11px] text-[#6b7280]">Qty: {it.quantity || 1}</span>
                         </div>

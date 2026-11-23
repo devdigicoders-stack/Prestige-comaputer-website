@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStore } from '../../context/StoreContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import { getProductImageUrl } from '../../services/productApi'
 
 export default function CartToastNotification() {
@@ -101,7 +102,7 @@ export default function CartToastNotification() {
           </p>
           {prod.price && (
             <p className="text-[13px] font-extrabold text-[#dc1414] mt-0.5">
-              ₹{Number(prod.price).toLocaleString('en-IN')}
+              {formatCurrency(prod.price)}
             </p>
           )}
           <p className="text-[11px] text-gray-500 leading-tight mt-0.5">

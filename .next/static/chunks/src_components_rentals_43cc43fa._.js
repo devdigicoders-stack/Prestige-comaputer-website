@@ -52,7 +52,7 @@ function CalendarSmallIcon(param) {
     }, this);
 }
 _c = CalendarSmallIcon;
-function RupeeSmallIcon(param) {
+function CostEffectiveSmallIcon(param) {
     let { className = 'w-4 h-4' } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         className: className,
@@ -67,14 +67,14 @@ function RupeeSmallIcon(param) {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
                 cx: "12",
                 cy: "12",
-                r: "10"
+                r: "9"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
                 lineNumber: 36,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                d: "M7 8h10M7 11.5h6.5M13.5 8a3.5 3.5 0 0 1-3.5 3.5H7l7 6"
+                d: "M12 6v12M8 10h8M9 14h6"
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
                 lineNumber: 37,
@@ -87,7 +87,7 @@ function RupeeSmallIcon(param) {
         columnNumber: 5
     }, this);
 }
-_c1 = RupeeSmallIcon;
+_c1 = CostEffectiveSmallIcon;
 function LoopSmallIcon(param) {
     let { className = 'w-4 h-4' } = param;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -279,7 +279,7 @@ function RentalsHeroBanner() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(RupeeSmallIcon, {}, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CostEffectiveSmallIcon, {}, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsHeroBanner.jsx",
                                         lineNumber: 135,
                                         columnNumber: 13
@@ -378,7 +378,7 @@ _s(RentalsHeroBanner, "mCnZ6Umb87gm4hUZ8oMgl/VI5Pg=", false, function() {
 _c4 = RentalsHeroBanner;
 var _c, _c1, _c2, _c3, _c4;
 __turbopack_context__.k.register(_c, "CalendarSmallIcon");
-__turbopack_context__.k.register(_c1, "RupeeSmallIcon");
+__turbopack_context__.k.register(_c1, "CostEffectiveSmallIcon");
 __turbopack_context__.k.register(_c2, "LoopSmallIcon");
 __turbopack_context__.k.register(_c3, "ArrowRightIcon");
 __turbopack_context__.k.register(_c4, "RentalsHeroBanner");
@@ -2365,7 +2365,7 @@ function RentalsPopularPlans() {
                         title: p.name || p.title,
                         specs: specsText,
                         price: rent,
-                        formattedPrice: p.rentPrice || "₹".concat(rent.toLocaleString('en-IN')),
+                        formattedPrice: p.rentPrice || "QAR ".concat(rent.toLocaleString('en-US')),
                         imageUrl: rawImg,
                         deposit: p.deposit || 0,
                         rentPerMonth: rent,
@@ -2460,10 +2460,10 @@ function RentalsPopularPlans() {
                         lineNumber: 108,
                         columnNumber: 13
                     }, this)) : plans.map((plan)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "group bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#dc1414]/40 relative",
+                        className: "group bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#dc1414]/40 relative overflow-hidden",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between mb-2",
+                                className: "flex items-center justify-between mb-1",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-[11px] font-bold px-2.5 py-0.5 rounded-md shadow-xs ".concat(plan.badgeColor),
                                     children: plan.badge
@@ -2478,11 +2478,11 @@ function RentalsPopularPlans() {
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "h-[140px] flex items-center justify-center my-2 p-2 transition-transform duration-200 group-hover:scale-103",
+                                className: "w-full h-[150px] sm:h-[155px] bg-[#f8fafc] rounded-xl border border-[#f1f5f9] flex items-center justify-center p-3 my-3 relative overflow-hidden group-hover:border-[#dc1414]/20 transition-colors",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                     src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getProductImageUrl"])(plan.imageUrl),
                                     alt: plan.title,
-                                    className: "max-h-[130px] max-w-[170px] object-contain drop-shadow-[0_8px_16px_rgba(15,23,42,0.1)]",
+                                    className: "max-h-[110px] max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 select-none",
                                     onError: (e)=>{
                                         e.currentTarget.style.display = 'none';
                                     }
@@ -2497,47 +2497,56 @@ function RentalsPopularPlans() {
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "mt-2 text-center",
+                                className: "text-center flex-1 flex flex-col justify-between",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "text-[16px] font-bold text-[#111827] leading-snug line-clamp-1",
-                                        children: plan.title
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 147,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-1 text-[11.5px] text-[#6b7280] leading-snug font-medium line-clamp-1",
-                                        children: plan.specs
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 150,
-                                        columnNumber: 17
-                                    }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-3 flex items-baseline justify-center gap-1.5",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[22px] font-extrabold text-[#dc1414]",
-                                                children: plan.formattedPrice
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-[15.5px] font-bold text-[#111827] leading-snug line-clamp-1 group-hover:text-[#dc1414] transition-colors",
+                                                title: plan.title,
+                                                children: plan.title
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                                lineNumber: 156,
+                                                lineNumber: 148,
                                                 columnNumber: 19
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[12px] font-medium text-[#6b7280]",
-                                                children: isRtl ? '/ شهرياً' : '/ Month'
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "mt-1 text-[12px] text-[#6b7280] leading-snug font-medium line-clamp-1",
+                                                children: plan.specs
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                                lineNumber: 159,
+                                                lineNumber: 154,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 155,
+                                        lineNumber: 147,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mt-3 py-1 flex items-baseline justify-center gap-1.5 bg-gray-50/80 rounded-lg border border-gray-100",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[20px] font-black text-[#dc1414]",
+                                                children: plan.formattedPrice
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
+                                                lineNumber: 161,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[12px] font-semibold text-[#6b7280]",
+                                                children: isRtl ? '/ شهرياً' : '/ Month'
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
+                                                lineNumber: 164,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
+                                        lineNumber: 160,
                                         columnNumber: 17
                                     }, this)
                                 ]
@@ -2549,13 +2558,13 @@ function RentalsPopularPlans() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "button",
                                 onClick: ()=>handleOpenRental(plan),
-                                className: "mt-4 w-full py-2.5 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13px] font-bold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(220,16,16,0.35)] transition-all cursor-pointer",
+                                className: "mt-3.5 w-full py-2.5 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13px] font-bold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(220,16,16,0.3)] transition-all cursor-pointer",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: isRtl ? 'استأجر الآن' : 'Rent Now'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 171,
+                                        lineNumber: 176,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2570,18 +2579,18 @@ function RentalsPopularPlans() {
                                             strokeLinejoin: "round"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                            lineNumber: 179,
+                                            lineNumber: 184,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                        lineNumber: 172,
+                                        lineNumber: 177,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                                lineNumber: 166,
+                                lineNumber: 171,
                                 columnNumber: 15
                             }, this)
                         ]
@@ -2604,7 +2613,7 @@ function RentalsPopularPlans() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/rentals/RentalsPopularPlans.jsx",
-                lineNumber: 189,
+                lineNumber: 194,
                 columnNumber: 9
             }, this)
         ]

@@ -123,7 +123,7 @@ __turbopack_context__.s([
     "submitEnquiry",
     ()=>submitEnquiry
 ]);
-const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
 async function submitEnquiry(formData) {
     const res = await fetch(`${API_URL}/enquiries`, {
         method: 'POST',

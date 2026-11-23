@@ -4,10 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
-
-function formatINR(val) {
-  return `₹${Number(val).toLocaleString('en-IN')}`
-}
+import { formatCurrency } from '../../utils/formatCurrency'
 
 export default function ProductConfigurator({
   product = {
@@ -20,7 +17,7 @@ export default function ProductConfigurator({
     rating: 4.6,
     reviewCount: 328,
     soldCount: '1,245+ Sold',
-    emi: '₹2,542/month',
+    emi: 'QAR 125/month',
   },
 }) {
   const router = useRouter()
@@ -146,10 +143,10 @@ export default function ProductConfigurator({
       {/* Price Row */}
       <div className="flex items-baseline flex-wrap gap-2.5 pt-0.5">
         <span className="text-[28px] sm:text-[32px] font-extrabold text-[#dc1414] tracking-tight">
-          {formatINR(currentPrice)}
+          {formatCurrency(currentPrice, isArabic)}
         </span>
         <span className="text-[14.5px] text-[#9ca3af] line-through font-normal">
-          {formatINR(currentOriginalPrice)}
+          {formatCurrency(currentOriginalPrice, isArabic)}
         </span>
         <span className="text-[11.5px] font-bold text-[#dc1414] bg-[#fee2e2]/70 border border-[#fecaca] px-2 py-0.5 rounded-md">
           {product.discount}

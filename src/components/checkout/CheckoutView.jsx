@@ -12,12 +12,15 @@ import CheckoutSuccessModal from './CheckoutSuccessModal'
 import { FullscreenLoader } from '../common/BrandLoader'
 import { useStore } from '../../context/StoreContext'
 import { createOrder } from '../../services/orderApi'
+import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 
 export default function CheckoutView() {
   const { cartItems, removeFromCart, clearCart, currentUser, openLoginModal, openRegisterModal } = useStore()
+  const { isArabic } = useLanguage()
   const [selectedAddress, setSelectedAddress] = useState(null)
-  const [deliveryMethod, setDeliveryMethod] = useState('standard') // 'standard' | 'express'
-  const [selectedPayment, setSelectedPayment] = useState('upi') // 'upi' | 'card' | 'netbanking' | 'emi' | 'wallets' | 'cod'
+  const [deliveryMethod, setDeliveryMethod] = useState('standard') // 'standard' | 'express' | 'pickup'
+  const [selectedPayment, setSelectedPayment] = useState('card') // 'card' | 'cod' | 'pos' | 'qnb' | 'pickup'
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
   const [isPlacingOrder, setIsPlacingOrder] = useState(false)
   const [orderError, setOrderError] = useState('')
@@ -29,7 +32,11 @@ export default function CheckoutView() {
   const handlePlaceOrder = async (summaryData) => {
     // 1. Must be logged in
     if (!currentUser) {
-      setOrderError('You must be signed in to create and place an order. Please log in.')
+      setOrderError(
+        isArabic
+          ? 'يجب تسجيل الدخول لإنشاء وتأكيد الطلب. يرجى تسجيل الدخول.'
+          : 'You must be signed in to create and place an order. Please log in.'
+      )
       openLoginModal()
       return
     }
@@ -37,14 +44,24 @@ export default function CheckoutView() {
     // 2. Cart must contain items
     const itemsToOrder = summaryData?.items || []
     if (!itemsToOrder || itemsToOrder.length === 0) {
-      setOrderError('Your shopping cart is empty. Please add products before placing an order.')
+      setOrderError(
+        isArabic
+          ? 'سلة التسوق فارغة. يرجى إضافة منتجات قبل إتمام الطلب.'
+          : 'Your shopping cart is empty. Please add products before placing an order.'
+      )
       return
     }
 
-    // 3. Must have a selected delivery address
-    if (!selectedAddress || (!selectedAddress.street && !selectedAddress.address)) {
-      setOrderError('Please select or add a delivery shipping address.')
-      return
+    // 3. For delivery (standard/express), must have a selected delivery address
+    if (deliveryMethod !== 'pickup') {
+      if (!selectedAddress || (!selectedAddress.street && !selectedAddress.address)) {
+        setOrderError(
+          isArabic
+            ? 'يرجى تحديد أو إضافة عنوان التوصيل في قطر.'
+            : 'Please select or add a delivery shipping address in Qatar.'
+        )
+        return
+      }
     }
 
     setIsPlacingOrder(true)
@@ -58,21 +75,40 @@ export default function CheckoutView() {
 
       // Map payment methods cleanly for database
       const paymentMap = {
-        upi: 'UPI',
         card: 'Credit / Debit Card',
-        netbanking: 'NetBanking',
-        emi: 'EMI',
-        wallets: 'Wallets',
         cod: 'Cash on Delivery',
+        pos: 'POS Terminal on Delivery',
+        qnb: 'QNB Bank Transfer',
+        pickup: 'Showroom Collection & Pay',
+        // Backward compatibility fallbacks
+        upi: 'Credit / Debit Card',
+        netbanking: 'QNB Bank Transfer',
       }
 
-      const recipientName = selectedAddress?.name || currentUser.name || 'Customer'
-      const recipientPhone = selectedAddress?.phone || currentUser.phone || currentUser.mobile || '+974 6691 9155'
-      const streetAddress = selectedAddress?.street || selectedAddress?.address || 'Showroom Pickup'
-      const city = selectedAddress?.city || currentUser.city || 'Doha'
-      const state = selectedAddress?.state || 'Doha'
-      const postalCode = selectedAddress?.postalCode || ''
-      const addressType = selectedAddress?.type || 'Home'
+      const recipientName =
+        selectedAddress?.name || currentUser.name || (isArabic ? 'عميل برستيج' : 'Prestige Customer')
+      const recipientPhone =
+        selectedAddress?.phone || currentUser.phone || currentUser.mobile || '+974 6691 9155'
+      const streetAddress =
+        deliveryMethod === 'pickup'
+          ? 'Al-Mirqab Mall, Tower 1, Office 201, Doha'
+          : selectedAddress?.street || selectedAddress?.address || 'Doha'
+      const city =
+        deliveryMethod === 'pickup'
+          ? 'Doha'
+          : selectedAddress?.city || currentUser.city || 'Doha'
+      const state =
+        deliveryMethod === 'pickup'
+          ? 'Al Mirqab'
+          : selectedAddress?.state || 'Doha'
+      const postalCode =
+        deliveryMethod === 'pickup'
+          ? 'Doha'
+          : selectedAddress?.postalCode || 'Doha'
+      const addressType =
+        deliveryMethod === 'pickup'
+          ? 'Showroom'
+          : selectedAddress?.type || 'Home'
 
       const payload = {
         orderItems: itemsToOrder.map((it) => ({
@@ -97,27 +133,42 @@ export default function CheckoutView() {
           city,
           state,
           postalCode,
-          country: selectedAddress?.country || 'India',
+          country: selectedAddress?.country || 'Qatar',
           addressType,
         },
         deliveryMethod,
-        paymentMethod: paymentMap[selectedPayment] || 'UPI',
+        paymentMethod: paymentMap[selectedPayment] || 'Credit / Debit Card',
         itemsPrice: calcSubtotal,
         shippingPrice: calcDelivery,
         discountPrice: calcDiscount,
+        couponCode: summaryData?.couponCode || '',
+        coupon: summaryData?.appliedCoupon || null,
         totalPrice: calcTotal,
-        notes: summaryData?.couponCode ? `Coupon applied: ${summaryData.couponCode}` : '',
+        notes: summaryData?.couponCode
+          ? `Coupon applied: ${summaryData.couponCode} • Method: ${deliveryMethod}`
+          : `Method: ${deliveryMethod}`,
       }
 
       const created = await createOrder(payload)
       setPlacedOrderDetails(created)
-      // Remove only the checked-out items from cart, keeping unselected items
+
+      // Clean up session coupon
+      try {
+        sessionStorage.removeItem('pcs_applied_coupon')
+      } catch {}
+
+      // Remove checked-out items from cart, preserving any unselected items
       const orderedIds = itemsToOrder.map((it) => it.id)
       orderedIds.forEach((id) => removeFromCart(id))
       setIsSuccessModalOpen(true)
     } catch (err) {
       console.error('Order creation error:', err)
-      setOrderError(err?.message || 'Could not place order. Please try again.')
+      setOrderError(
+        err?.message ||
+          (isArabic
+            ? 'تعذر إتمام الطلب في الوقت الحالي. يرجى المحاولة مرة أخرى.'
+            : 'Could not place order. Please try again.')
+      )
     } finally {
       setIsPlacingOrder(false)
     }
@@ -136,10 +187,12 @@ export default function CheckoutView() {
           </div>
 
           <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
-            Sign In Required
+            {isArabic ? 'تسجيل الدخول مطلوب' : 'Sign In Required'}
           </h2>
           <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-            You must be signed in to Prestige Computers to checkout and place your order.
+            {isArabic
+              ? 'يجب تسجيل الدخول إلى حسابك في برستيج كمبيوترز لإتمام عملية الدفع وتأكيد الطلب.'
+              : 'You must be signed in to Prestige Computers to checkout and place your order.'}
           </p>
 
           <div className="mt-6 flex flex-col gap-3">
@@ -148,7 +201,7 @@ export default function CheckoutView() {
               onClick={openLoginModal}
               className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#e11414] to-[#b80808] hover:from-[#eb1a1a] hover:to-[#9f0606] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
             >
-              Sign In to Your Account
+              {isArabic ? 'تسجيل الدخول إلى حسابك' : 'Sign In to Your Account'}
             </button>
 
             <button
@@ -156,7 +209,7 @@ export default function CheckoutView() {
               onClick={openRegisterModal}
               className="w-full py-3 px-4 rounded-xl border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-gray-800 text-sm font-semibold transition-all cursor-pointer"
             >
-              Create a New Account
+              {isArabic ? 'إنشاء حساب جديد' : 'Create a New Account'}
             </button>
           </div>
 
@@ -165,7 +218,7 @@ export default function CheckoutView() {
               href="/products"
               className="text-xs font-medium text-gray-500 hover:text-[#dc1414] transition-colors"
             >
-              &larr; Back to Products Catalog
+              &larr; {isArabic ? 'العودة لكتالوج المنتجات' : 'Back to Products Catalog'}
             </Link>
           </div>
         </div>
@@ -198,7 +251,7 @@ export default function CheckoutView() {
               onClick={() => setOrderError('')}
               className="font-bold underline text-[12px] cursor-pointer"
             >
-              Dismiss
+              {isArabic ? 'إغلاق' : 'Dismiss'}
             </button>
           </div>
         )}
@@ -241,8 +294,12 @@ export default function CheckoutView() {
       {isPlacingOrder && (
         <FullscreenLoader
           isOpen={true}
-          title="Placing Your Order..."
-          subtitle="Reserving hardware stock and generating order invoice..."
+          title={isArabic ? 'جاري تأكيد وتجهيز الطلب...' : 'Placing Your Order...'}
+          subtitle={
+            isArabic
+              ? 'تخصيص المخزون وإصدار الفاتورة الرسمية لنظام برستيج...'
+              : 'Reserving hardware stock and generating official PCS invoice...'
+          }
         />
       )}
 
@@ -254,10 +311,21 @@ export default function CheckoutView() {
         paymentMethod={placedOrderDetails?.paymentMethod || selectedPayment}
         totalAmount={
           placedOrderDetails?.totalPrice
-            ? `₹${Number(placedOrderDetails.totalPrice).toLocaleString('en-IN')}`
-            : '₹0'
+            ? formatCurrency(placedOrderDetails.totalPrice, isArabic)
+            : isArabic
+            ? '0 ر.ق'
+            : 'QAR 0'
         }
-        estimatedDelivery={placedOrderDetails?.estimatedDelivery || 'In 2-4 business days'}
+        estimatedDelivery={
+          placedOrderDetails?.estimatedDelivery ||
+          (deliveryMethod === 'pickup'
+            ? isArabic
+              ? 'جاهز للاستلام خلال ساعتين من معرض المرقاب مول'
+              : 'Ready for pickup in 2 hours at Al-Mirqab Mall'
+            : isArabic
+            ? 'خلال 2-4 أيام عمل في قطر'
+            : 'In 2-4 business days across Qatar')
+        }
         shippingAddress={placedOrderDetails?.shippingAddress || selectedAddress}
       />
     </div>

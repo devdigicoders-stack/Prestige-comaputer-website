@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import { getProducts, getProductImageUrl } from '../../services/productApi'
 
 /* ── Icons ── */
@@ -39,11 +40,6 @@ function MoreDotsIcon({ className = 'w-4 h-4' }) {
       <circle cx="19" cy="12" r="1.8" />
     </svg>
   )
-}
-
-function formatINR(val) {
-  if (!val && val !== 0) return ''
-  return `₹${Number(val).toLocaleString('en-IN')}`
 }
 
 /* Build spec chips from product.specs */
@@ -302,12 +298,12 @@ export default function WishlistItemsList() {
                   {/* Pricing */}
                   <div className="text-left md:text-right">
                     <div className="text-lg sm:text-xl font-black text-[#dc1414] leading-tight">
-                      {formatINR(price)}
+                      {formatCurrency(price, isArabic)}
                     </div>
                     {originalPrice && originalPrice > price && (
                       <div className="flex items-center gap-1.5 mt-0.5">
                         <span className="text-[11.5px] text-gray-400 line-through">
-                          {formatINR(originalPrice)}
+                          {formatCurrency(originalPrice, isArabic)}
                         </span>
                         {discount && (
                           <span className="text-[10px] font-bold text-[#dc1414] bg-red-50 border border-red-100 px-1.5 rounded">

@@ -91,7 +91,7 @@ export default async function CategoriesPage() {
                     typeof cat.productCount === 'number'
                       ? `${cat.productCount} ${cat.productCount === 1 ? 'Product' : 'Products'}`
                       : `${cat.count || 0} Products`
-                  const startPrice = cat.startPrice || 'From ₹999'
+                  const startPrice = cat.startPrice || 'From QAR 299'
                   const rentPrice = cat.rentPrice || 'Rent Available'
                   const desc = cat.description || cat.desc
                   const features = cat.features?.length ? cat.features : ['Certified Hardware', 'Official Warranty', 'Fast Delivery']

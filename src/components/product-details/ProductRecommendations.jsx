@@ -5,11 +5,7 @@ import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
 import { getProductImageUrl, getProducts } from '../../services/productApi'
-
-function formatINR(val) {
-  if (val === null || val === undefined || isNaN(val)) return '₹0'
-  return `₹${Number(val).toLocaleString('en-IN')}`
-}
+import { formatCurrency } from '../../utils/formatCurrency'
 
 export default function ProductRecommendations({ relatedProducts = [] }) {
   const { isArabic } = useLanguage()
@@ -151,11 +147,11 @@ export default function ProductRecommendations({ relatedProducts = [] }) {
                   {/* Pricing */}
                   <div className="mt-1.5 flex items-baseline gap-2">
                     <span className="text-[15.5px] font-extrabold text-[#dc1414]">
-                      {formatINR(prod.price)}
+                      {formatCurrency(prod.price, isArabic)}
                     </span>
                     {prod.originalPrice && prod.originalPrice > prod.price && (
                       <span className="text-[11.5px] text-[#9ca3af] line-through">
-                        {formatINR(prod.originalPrice)}
+                        {formatCurrency(prod.originalPrice, isArabic)}
                       </span>
                     )}
                     {prod.discount && (

@@ -1,27 +1,51 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LegalPageLayout from '../../components/legal/LegalPageLayout'
 import { pcsPolicies } from '../../data/pcsPolicies'
+import { getPolicyBySlug } from '../../services/policyApi'
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function WarrantyClientView() {
   const { language, isRtl } = useLanguage()
+  const [policy, setPolicy] = useState(null)
+
+  useEffect(() => {
+    let isMounted = true
+    getPolicyBySlug('warranty')
+      .then((data) => {
+        if (isMounted && data) setPolicy(data)
+      })
+      .catch(() => {})
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
   const { brandNew, preOwned, additionalTerms } = pcsPolicies
 
   const bn = language === 'ar' ? brandNew.ar : brandNew.en
   const po = language === 'ar' ? preOwned.ar : preOwned.en
   const add = language === 'ar' ? additionalTerms.ar : additionalTerms.en
 
+  const title = policy?.title || 'Warranty & Guarantee Policy'
+  const titleAr = policy?.titleAr || 'سياسة الضمان وخدمات ما بعد البيع'
+  const subtitle = policy?.subtitle || 'Official Prestige Guarantee terms for brand-new and certified pre-owned computers, coverage details, exclusions, and QC service center procedures.'
+  const subtitleAr = policy?.subtitleAr || 'الشروط الرسمية لضمان بريستيج للأجهزة الجديدة والمستعملة، تفاصيل التغطية، الاستثناءات، وإجراءات مركز خدمة وضبط الجودة في الدوحة.'
+  const badge = policy?.badge || 'Prestige Guarantee'
+  const badgeAr = policy?.badgeAr || 'ضمان بريستيج المعتمد'
+  const lastUpdated = policy?.lastUpdated || 'Official PCS Policy 2026'
+
   return (
     <LegalPageLayout
-      title="Warranty & Guarantee Policy"
-      titleAr="سياسة الضمان وخدمات ما بعد البيع"
-      subtitle="Official Prestige Guarantee terms for brand-new and certified pre-owned computers, coverage details, exclusions, and QC service center procedures."
-      subtitleAr="الشروط الرسمية لضمان بريستيج للأجهزة الجديدة والمستعملة، تفاصيل التغطية، الاستثناءات، وإجراءات مركز خدمة وضبط الجودة في الدوحة."
-      lastUpdated="Official PCS Policy 2026"
-      badge="Prestige Guarantee"
-      badgeAr="ضمان بريستيج المعتمد"
+      title={title}
+      titleAr={titleAr}
+      subtitle={subtitle}
+      subtitleAr={subtitleAr}
+      lastUpdated={lastUpdated}
+      badge={badge}
+      badgeAr={badgeAr}
     >
       {/* Notice Pill Linking to Master Bilingual Policy */}
       <div className="not-prose mb-8 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">

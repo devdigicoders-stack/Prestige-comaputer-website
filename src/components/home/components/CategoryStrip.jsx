@@ -6,21 +6,12 @@ import { getActiveCategories, getCategoryImageUrl } from '../../../services/cate
 import { useLanguage } from '../../../context/LanguageContext'
 
 const CATEGORY_TRANSLATIONS = {
-  'laptops': 'أجهزة لابتوب',
-  'laptop': 'أجهزة لابتوب',
-  'desktops': 'أجهزة مكتبية',
-  'desktop': 'أجهزة مكتبية',
-  'workstations': 'محطات عمل',
-  'workstation': 'محطات عمل',
-  'gaming-pcs': 'تجميعات ألعاب',
-  'gaming': 'تجميعات ألعاب',
-  'components': 'قطع غيار',
-  'monitors': 'شاشات عرض',
-  'monitor': 'شاشات عرض',
-  'accessories': 'ملحقات وإكسسوارات',
-  'networking': 'أجهزة شبكات',
-  'software': 'برمجيات',
-  'all-in-one': 'الكل في واحد',
+  all: 'جميع المعروضات',
+  gaming: 'قسم الألعاب (جيمنج)',
+  'gaming-pcs': 'قسم الألعاب (جيمنج)',
+  business: 'أجهزة الأعمال والشركات',
+  'pre-owned': 'مستعمل مضمون (فحص كامل)',
+  'genuine-pre-owned': 'مستعمل مضمون (فحص كامل)',
 }
 
 function LaptopIllustration() {
@@ -338,7 +329,7 @@ export default function CategoryStrip() {
       aria-label="Shop by Category"
     >
       <div className="max-w-[1380px] mx-auto px-4 lg:px-6">
-        <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {isLoading ? (
             Array.from({ length: 9 }).map((_, idx) => (
               <div

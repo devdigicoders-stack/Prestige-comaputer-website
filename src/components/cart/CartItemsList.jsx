@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import {
   WishlistLaptopVisual,
   WishlistDesktopVisual,
@@ -419,12 +420,12 @@ export default function CartItemsList() {
                   {/* Pricing */}
                   <div className="text-left md:text-right">
                     <div className="text-lg sm:text-xl font-black text-[#dc1414] leading-tight">
-                      ₹{item.price.toLocaleString('en-IN')}
+                      {formatCurrency(item.price, isArabic)}
                     </div>
                     {item.originalPrice > item.price && (
                       <div className="flex items-center gap-1.5 mt-0.5">
                         <span className="text-[11.5px] text-gray-400 line-through">
-                          ₹{item.originalPrice.toLocaleString('en-IN')}
+                          {formatCurrency(item.originalPrice, isArabic)}
                         </span>
                         {item.discount && (
                           <span className="text-[10px] font-bold text-[#dc1414] bg-red-50 border border-red-100 px-1.5 py-0.2 rounded">
@@ -438,7 +439,7 @@ export default function CartItemsList() {
                         ? (isArabic ? '✓ توصيل مجاني' : '✓ Free Delivery')
                         : isArabic
                         ? `+ ${(item.deliveryCharge * (item.quantity || 1)).toLocaleString('en-IN')} ر.ق توصيل`
-                        : `+ ₹${(item.deliveryCharge * (item.quantity || 1)).toLocaleString('en-IN')} Delivery`}
+                        : `+ ${formatCurrency(item.deliveryCharge * (item.quantity || 1), isArabic)} Delivery`}
                     </span>
                   </div>
 

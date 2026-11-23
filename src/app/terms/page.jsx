@@ -1,4 +1,4 @@
-import LegalPageLayout from '../../components/legal/LegalPageLayout'
+import DynamicLegalPage from '../../components/legal/DynamicLegalPage'
 
 export const metadata = {
   title: 'Terms & Conditions | Prestige Computers',
@@ -11,14 +11,15 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPageLayout
-      title="Terms & Conditions"
-      titleAr="الشروط والأحكام العامة"
-      subtitle="Please read these terms and conditions carefully before purchasing, renting, or configuring hardware on Prestige Computers."
-      subtitleAr="يرجى قراءة هذه الشروط والأحكام بعناية قبل شراء أو استئجار أو تخصيص الأجهزة عبر بريستيج للكمبيوتر."
-      lastUpdated="18 November 2026"
-      badge="Legal Contract"
-      badgeAr="عقد وشروط قانونية"
+    <DynamicLegalPage
+      slug="terms"
+      fallbackTitle="Terms & Conditions"
+      fallbackTitleAr="الشروط والأحكام العامة"
+      fallbackSubtitle="Please read these terms and conditions carefully before purchasing, renting, or configuring hardware on Prestige Computers."
+      fallbackSubtitleAr="يرجى قراءة هذه الشروط والأحكام بعناية قبل شراء أو استئجار أو تخصيص الأجهزة عبر بريستيج للكمبيوتر."
+      fallbackLastUpdated="18 November 2026"
+      fallbackBadge="Legal Contract"
+      fallbackBadgeAr="عقد وشروط قانونية"
     >
       <h2>1. Introduction & Acceptance of Terms</h2>
       <p>
@@ -104,6 +105,6 @@ export default function TermsPage() {
         Tower I, 2nd Floor, Office No 201, Al-Mirqab Mall, Al Mirqab Al Jadeed St, Doha, Qatar<br />
         Email: <a href="mailto:info@pcsdoha.net" className="text-[#dc1414] font-semibold hover:underline">info@pcsdoha.net</a> | Phone: +974 4145 3868 | WhatsApp: +974 6691 9155
       </p>
-    </LegalPageLayout>
+    </DynamicLegalPage>
   )
 }

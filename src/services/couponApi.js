@@ -30,3 +30,25 @@ export async function validateCouponApi({ code, cartTotal = 0, deliveryCharge = 
 
   return json.data;
 }
+
+/**
+ * Fetch all currently active store coupons for cart & checkout
+ */
+export async function getActiveCouponsApi() {
+  try {
+    const res = await fetch(`${API_URL}/coupons/active`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) return [];
+    return json.data || [];
+  } catch (err) {
+    console.warn('Failed to fetch active store coupons:', err.message);
+    return [];
+  }
+}
+

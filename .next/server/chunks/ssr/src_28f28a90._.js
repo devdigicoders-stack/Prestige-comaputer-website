@@ -2495,6 +2495,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$orderApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/orderApi.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/productApi.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/formatCurrency.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlist$2f$WishlistVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/wishlist/WishlistVisuals.jsx [app-ssr] (ecmascript)");
 'use client';
 ;
@@ -2503,9 +2505,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlis
 ;
 ;
 ;
-function formatINR(val) {
-    return `₹${Number(val || 0).toLocaleString('en-IN')}`;
-}
+;
+;
 function getStatusStyle(status = 'Pending') {
     switch(status){
         case 'Delivered':
@@ -2533,6 +2534,7 @@ function getStatusStyle(status = 'Pending') {
     }
 }
 function ProfileOrdersTab() {
+    const { isArabic, isRtl } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [filter, setFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('all');
     const [orders, setOrders] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -2574,7 +2576,7 @@ function ProfileOrdersTab() {
                                 children: "Order History"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 70,
+                                lineNumber: 69,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2582,13 +2584,13 @@ function ProfileOrdersTab() {
                                 children: "Track status, view invoices and manage reorders."
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 73,
+                                lineNumber: 72,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 69,
+                        lineNumber: 68,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2613,18 +2615,18 @@ function ProfileOrdersTab() {
                                 children: tab.label
                             }, tab.id, false, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 85,
+                                lineNumber: 84,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 79,
+                        lineNumber: 78,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                lineNumber: 68,
+                lineNumber: 67,
                 columnNumber: 7
             }, this),
             loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2634,12 +2636,12 @@ function ProfileOrdersTab() {
                     children: "Loading your orders from database..."
                 }, void 0, false, {
                     fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                    lineNumber: 104,
+                    lineNumber: 103,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                lineNumber: 103,
+                lineNumber: 102,
                 columnNumber: 9
             }, this) : filteredOrders.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "bg-white rounded-2xl border border-[#e5e7eb] p-12 text-center text-[#6b7280] flex flex-col items-center",
@@ -2656,17 +2658,17 @@ function ProfileOrdersTab() {
                                 d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 110,
+                                lineNumber: 109,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                            lineNumber: 109,
+                            lineNumber: 108,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 108,
+                        lineNumber: 107,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2674,7 +2676,7 @@ function ProfileOrdersTab() {
                         children: "No orders found"
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 113,
+                        lineNumber: 112,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2682,7 +2684,7 @@ function ProfileOrdersTab() {
                         children: filter !== 'all' ? 'No orders match this status filter.' : "You haven't placed any orders yet."
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 114,
+                        lineNumber: 113,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2691,13 +2693,13 @@ function ProfileOrdersTab() {
                         children: "Explore Catalog →"
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 117,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                lineNumber: 107,
+                lineNumber: 106,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col gap-4",
@@ -2726,7 +2728,7 @@ function ProfileOrdersTab() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 145,
+                                                lineNumber: 144,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2737,7 +2739,7 @@ function ProfileOrdersTab() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 148,
+                                                lineNumber: 147,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2748,13 +2750,13 @@ function ProfileOrdersTab() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 151,
+                                                lineNumber: 150,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                        lineNumber: 144,
+                                        lineNumber: 143,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2765,27 +2767,27 @@ function ProfileOrdersTab() {
                                                 children: "Total Amount"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 157,
+                                                lineNumber: 156,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-[16px] font-black text-[#dc1414]",
-                                                children: formatINR(order.totalPrice)
+                                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatCurrency"])(order.totalPrice, isArabic)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 158,
+                                                lineNumber: 157,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                        lineNumber: 156,
+                                        lineNumber: 155,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 143,
+                                lineNumber: 142,
                                 columnNumber: 17
                             }, this),
                             order.courier && order.trackingNumber && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2801,7 +2803,7 @@ function ProfileOrdersTab() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                            lineNumber: 168,
+                                            lineNumber: 167,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2812,7 +2814,7 @@ function ProfileOrdersTab() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                            lineNumber: 171,
+                                            lineNumber: 170,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2821,18 +2823,18 @@ function ProfileOrdersTab() {
                                             children: "Track Live →"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                            lineNumber: 174,
+                                            lineNumber: 173,
                                             columnNumber: 23
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                    lineNumber: 167,
+                                    lineNumber: 166,
                                     columnNumber: 21
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 166,
+                                lineNumber: 165,
                                 columnNumber: 19
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2854,18 +2856,18 @@ function ProfileOrdersTab() {
                                                             className: "w-full h-full object-contain"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                            lineNumber: 194,
+                                                            lineNumber: 193,
                                                             columnNumber: 31
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlist$2f$WishlistVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WishlistLaptopVisual"], {
                                                             className: "w-full h-full max-h-[50px] object-contain"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                            lineNumber: 200,
+                                                            lineNumber: 199,
                                                             columnNumber: 31
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                        lineNumber: 192,
+                                                        lineNumber: 191,
                                                         columnNumber: 27
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2876,7 +2878,7 @@ function ProfileOrdersTab() {
                                                                 children: itemName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                                lineNumber: 204,
+                                                                lineNumber: 203,
                                                                 columnNumber: 29
                                                             }, this),
                                                             itemSpecs && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2884,19 +2886,19 @@ function ProfileOrdersTab() {
                                                                 children: itemSpecs
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                                lineNumber: 208,
+                                                                lineNumber: 207,
                                                                 columnNumber: 31
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                        lineNumber: 203,
+                                                        lineNumber: 202,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 191,
+                                                lineNumber: 190,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2904,10 +2906,10 @@ function ProfileOrdersTab() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-[13.5px] font-bold text-[#111827] block",
-                                                        children: formatINR(it.price * (it.quantity || 1))
+                                                        children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatCurrency"])(it.price * (it.quantity || 1), isArabic)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                        lineNumber: 215,
+                                                        lineNumber: 214,
                                                         columnNumber: 27
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2918,25 +2920,25 @@ function ProfileOrdersTab() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                        lineNumber: 218,
+                                                        lineNumber: 217,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                                lineNumber: 214,
+                                                lineNumber: 213,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, idx, true, {
                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                        lineNumber: 190,
+                                        lineNumber: 189,
                                         columnNumber: 23
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 185,
+                                lineNumber: 184,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2948,7 +2950,7 @@ function ProfileOrdersTab() {
                                         children: "Track Status"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                        lineNumber: 227,
+                                        lineNumber: 226,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2957,31 +2959,31 @@ function ProfileOrdersTab() {
                                         children: "Buy Again"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                        lineNumber: 234,
+                                        lineNumber: 233,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                                lineNumber: 226,
+                                lineNumber: 225,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, order._id || order.orderNumber, true, {
                         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                        lineNumber: 138,
+                        lineNumber: 137,
                         columnNumber: 15
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-                lineNumber: 125,
+                lineNumber: 124,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/profile/ProfileOrdersTab.jsx",
-        lineNumber: 66,
+        lineNumber: 65,
         columnNumber: 5
     }, this);
 }
@@ -2999,6 +3001,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$rentalApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/rentalApi.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/productApi.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlist$2f$WishlistVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/wishlist/WishlistVisuals.jsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/formatCurrency.js [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
@@ -3006,9 +3010,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlis
 ;
 ;
 ;
-function formatINR(val) {
-    return `₹${Number(val || 0).toLocaleString('en-IN')}`;
-}
+;
+;
 function getRentalStatusBadge(status = 'pending') {
     switch(status.toLowerCase()){
         case 'active':
@@ -3053,6 +3056,7 @@ function getRentalStatusBadge(status = 'pending') {
     }
 }
 function ProfileRentalsTab() {
+    const { isArabic } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [rentals, setRentals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -3083,7 +3087,7 @@ function ProfileRentalsTab() {
                                 children: "My Rental Devices & Leases"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                lineNumber: 86,
+                                lineNumber: 85,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3091,13 +3095,13 @@ function ProfileRentalsTab() {
                                 children: "Track rental applications, live lease status, hardware serial tags, and tenure extensions."
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                lineNumber: 89,
+                                lineNumber: 88,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 85,
+                        lineNumber: 84,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -3107,18 +3111,18 @@ function ProfileRentalsTab() {
                             children: "+ Rent Another Device"
                         }, void 0, false, {
                             fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                            lineNumber: 98,
+                            lineNumber: 97,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 94,
+                        lineNumber: 93,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                lineNumber: 84,
+                lineNumber: 83,
                 columnNumber: 7
             }, this),
             loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3128,7 +3132,7 @@ function ProfileRentalsTab() {
                         className: "w-6 h-6 border-2 border-[#dc1414] border-t-transparent rounded-full animate-spin"
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 105,
+                        lineNumber: 104,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3136,13 +3140,13 @@ function ProfileRentalsTab() {
                         children: "Loading your leased hardware agreements..."
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 106,
+                        lineNumber: 105,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                lineNumber: 104,
+                lineNumber: 103,
                 columnNumber: 9
             }, this) : rentals.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "bg-white rounded-2xl border border-[#e5e7eb] p-12 text-center text-[#6b7280] flex flex-col items-center",
@@ -3164,7 +3168,7 @@ function ProfileRentalsTab() {
                                     rx: "2"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                    lineNumber: 112,
+                                    lineNumber: 111,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -3174,7 +3178,7 @@ function ProfileRentalsTab() {
                                     y2: "21"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                    lineNumber: 113,
+                                    lineNumber: 112,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -3184,18 +3188,18 @@ function ProfileRentalsTab() {
                                     y2: "21"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                    lineNumber: 114,
+                                    lineNumber: 113,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                            lineNumber: 111,
+                            lineNumber: 110,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 110,
+                        lineNumber: 109,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3203,7 +3207,7 @@ function ProfileRentalsTab() {
                         children: "No active rental agreements"
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 117,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3211,7 +3215,7 @@ function ProfileRentalsTab() {
                         children: "You do not currently have any active equipment lease applications or active devices."
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 118,
+                        lineNumber: 117,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -3220,377 +3224,493 @@ function ProfileRentalsTab() {
                         children: "Explore Rental Hardware →"
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 121,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                lineNumber: 109,
+                lineNumber: 108,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col gap-4",
                 children: rentals.map((item)=>{
                     const statusBadge = getRentalStatusBadge(item.rentalStatus);
                     const deviceTitle = item.productSnapshot?.title || item.product?.title || 'Prestige Certified Hardware';
-                    const deviceSpecs = item.productSnapshot?.specs || item.product?.specs?.cpu ? `${item.product.specs.cpu} | ${item.product.specs.ram}` : '';
-                    const deviceImg = item.productSnapshot?.image || item.product?.images?.[0];
-                    const startDateStr = item.startDate ? new Date(item.startDate).toLocaleDateString('en-IN', {
+                    const deviceSpecs = item.productSnapshot?.specs || (item.product?.specs?.cpu ? `${item.product?.specs?.cpu} | ${item.product?.specs?.ram || ''}` : typeof item.product?.specs === 'string' ? item.product?.specs : '');
+                    const deviceImg = item.productSnapshot?.image || item.product?.images?.[0] || item.product?.image || '';
+                    const startDateStr = item.startDate ? new Date(item.startDate).toLocaleDateString(isArabic ? 'ar-QA' : 'en-US', {
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric'
                     }) : 'Now';
-                    const endDateStr = item.endDate ? new Date(item.endDate).toLocaleDateString('en-IN', {
+                    const endDateStr = item.endDate ? new Date(item.endDate).toLocaleDateString(isArabic ? 'ar-QA' : 'en-US', {
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric'
                     }) : 'Ongoing';
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs flex flex-col gap-4 hover:border-[#dc1414]/30 transition-colors",
+                        className: "bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 shadow-sm flex flex-col gap-5 hover:border-[#dc1414]/30 transition-all",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-3 border-b border-[#f3f4f6]",
+                                className: "flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-gray-100",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2.5 flex-wrap",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[15px] font-extrabold text-[#111827]",
-                                                children: deviceTitle
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 156,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[12px] font-mono text-[#6b7280]",
-                                                children: [
-                                                    "Agreement #",
-                                                    item.rentalId
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 159,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${statusBadge.style}`,
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `w-1.5 h-1.5 rounded-full ${statusBadge.dot} animate-pulse`
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 165,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    statusBadge.label
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 162,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 155,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-left sm:text-right",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[11px] text-[#6b7280] block",
-                                                children: "Monthly Rent"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 171,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[17px] font-black text-[#dc1414]",
-                                                children: [
-                                                    formatINR(item.rentAmountPerUnit),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[12px] font-medium text-[#6b7280]",
-                                                        children: "/mo"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 173,
-                                                        columnNumber: 58
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 172,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 170,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                lineNumber: 154,
-                                columnNumber: 17
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "grid grid-cols-1 md:grid-cols-12 gap-4 items-center",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "md:col-span-8 flex items-center gap-4",
+                                        className: "flex flex-col gap-1 min-w-0",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-16 h-16 bg-[#f8fafc] rounded-xl border border-[#e5e7eb] flex items-center justify-center p-1.5 shrink-0 overflow-hidden",
-                                                children: deviceImg ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                    src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getProductImageUrl"])(deviceImg),
-                                                    alt: deviceTitle,
-                                                    className: "w-full h-full object-contain"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                    lineNumber: 183,
-                                                    columnNumber: 25
-                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlist$2f$WishlistVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WishlistLaptopVisual"], {
-                                                    className: "w-full h-full max-h-[55px] object-contain"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                    lineNumber: 189,
-                                                    columnNumber: 25
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 181,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex flex-col min-w-0",
+                                                className: "flex items-center gap-2.5 flex-wrap",
                                                 children: [
-                                                    deviceSpecs && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                        className: "text-[13px] font-semibold text-[#111827] truncate",
-                                                        children: deviceSpecs
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 194,
-                                                        columnNumber: 25
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex items-center gap-3 text-[12px] text-[#6b7280] mt-1 flex-wrap",
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-[12px] font-mono font-bold px-2.5 py-0.5 rounded-md bg-gray-100 text-gray-700 border border-gray-200",
                                                         children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: [
-                                                                    "Tenure: ",
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                                        className: "text-[#111827] font-semibold",
-                                                                        children: [
-                                                                            item.duration,
-                                                                            " Months"
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                        lineNumber: 197,
-                                                                        columnNumber: 39
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                lineNumber: 197,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: "•"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                lineNumber: 198,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                children: [
-                                                                    "Lease Period: ",
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                                        className: "text-[#111827] font-semibold",
-                                                                        children: [
-                                                                            startDateStr,
-                                                                            " → ",
-                                                                            endDateStr
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                        lineNumber: 199,
-                                                                        columnNumber: 45
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                lineNumber: 199,
-                                                                columnNumber: 25
-                                                            }, this),
-                                                            item.serialNumber && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        children: "•"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                        lineNumber: 202,
-                                                                        columnNumber: 29
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "text-[#dc1414] font-mono font-bold",
-                                                                        children: [
-                                                                            "SN: ",
-                                                                            item.serialNumber
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                        lineNumber: 203,
-                                                                        columnNumber: 29
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true)
+                                                            "Agreement #",
+                                                            item.rentalId || item._id?.slice(-6)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 196,
+                                                        lineNumber: 162,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: `inline-flex items-center gap-1.5 text-[11.5px] font-bold px-2.5 py-0.5 rounded-full border ${statusBadge.style}`,
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: `w-1.5 h-1.5 rounded-full ${statusBadge.dot} animate-pulse`
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 168,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            statusBadge.label
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 165,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 192,
+                                                lineNumber: 161,
                                                 columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-[16px] sm:text-[18px] font-extrabold text-[#111827] mt-1",
+                                                children: deviceTitle
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 173,
+                                                columnNumber: 21
+                                            }, this),
+                                            deviceSpecs && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-[13px] text-gray-500 font-medium",
+                                                children: deviceSpecs
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 177,
+                                                columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 180,
+                                        lineNumber: 160,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "md:col-span-4 bg-[#f8fafc] p-3 rounded-xl border border-[#f1f5f9] text-xs space-y-1",
+                                        className: "sm:text-right shrink-0 bg-red-50/50 sm:bg-transparent p-3 sm:p-0 rounded-xl border sm:border-0 border-red-100/60 flex sm:flex-col justify-between items-center sm:items-end",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[#6b7280]",
-                                                        children: "Security Deposit:"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 212,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                        className: "text-emerald-700 font-bold",
-                                                        children: formatINR(item.securityDeposit)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 213,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] text-[#6b7280] font-medium block",
+                                                children: "Monthly Rent"
+                                            }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 211,
+                                                lineNumber: 184,
                                                 columnNumber: 21
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between",
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[18px] sm:text-[20px] font-black text-[#dc1414]",
                                                 children: [
+                                                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatCurrency"])(item.rentAmountPerUnit, isArabic),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[#6b7280]",
-                                                        children: "Deposit Status:"
+                                                        className: "text-[12px] font-semibold text-[#6b7280]",
+                                                        children: "/mo"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 216,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "font-semibold capitalize text-[#111827]",
-                                                        children: item.depositStatus || 'Pending'
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 187,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 215,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[#6b7280]",
-                                                        children: "KYC Status:"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 220,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `font-bold capitalize ${item.kycStatus === 'verified' ? 'text-emerald-700' : 'text-amber-700'}`,
-                                                        children: item.kycStatus || 'Pending'
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 221,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 219,
+                                                lineNumber: 185,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 210,
+                                        lineNumber: 183,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                lineNumber: 179,
+                                lineNumber: 159,
+                                columnNumber: 17
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-start sm:items-center gap-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "w-20 h-20 sm:w-24 sm:h-24 bg-[#f8fafc] rounded-2xl border border-gray-200 flex items-center justify-center p-2 shrink-0 overflow-hidden shadow-2xs",
+                                        children: deviceImg ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                            src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getProductImageUrl"])(deviceImg),
+                                            alt: deviceTitle,
+                                            className: "w-full h-full object-contain hover:scale-105 transition-transform"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                            lineNumber: 196,
+                                            columnNumber: 23
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$wishlist$2f$WishlistVisuals$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["WishlistLaptopVisual"], {
+                                            className: "w-full h-full max-h-[65px] object-contain"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                            lineNumber: 202,
+                                            columnNumber: 23
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                        lineNumber: 194,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-2.5 min-w-0 flex-1",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex flex-wrap items-center gap-2",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-50 border border-gray-200/90 text-[12px] text-gray-700",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-gray-500 font-medium",
+                                                                children: "Tenure:"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 209,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                                className: "text-gray-900 font-bold",
+                                                                children: [
+                                                                    item.duration,
+                                                                    " ",
+                                                                    item.duration === 1 ? 'Month' : 'Months'
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 210,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 208,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-50 border border-gray-200/90 text-[12px] text-gray-700",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-gray-500 font-medium",
+                                                                children: "Lease Period:"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 214,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                                className: "text-gray-900 font-semibold",
+                                                                children: [
+                                                                    startDateStr,
+                                                                    " → ",
+                                                                    endDateStr
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 215,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 213,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    item.serialNumber && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-50 border border-red-200 text-[12px] text-red-700 font-mono font-bold",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            children: [
+                                                                "SN: ",
+                                                                item.serialNumber
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                            lineNumber: 220,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 219,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 207,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-2 text-[12px] text-gray-600",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                        className: "w-4 h-4 text-gray-400 shrink-0",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                strokeLinecap: "round",
+                                                                strokeLinejoin: "round",
+                                                                strokeWidth: "2",
+                                                                d: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 227,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                strokeLinecap: "round",
+                                                                strokeLinejoin: "round",
+                                                                strokeWidth: "2",
+                                                                d: "M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 228,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 226,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        children: [
+                                                            "Fulfillment: ",
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                                className: "text-gray-800",
+                                                                children: item.deliveryMethod || 'Free Doorstep Delivery & Setup • Doha, Qatar'
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                                lineNumber: 230,
+                                                                columnNumber: 42
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 230,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 225,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                        lineNumber: 206,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                lineNumber: 193,
+                                columnNumber: 17
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "grid grid-cols-1 sm:grid-cols-3 gap-3.5 p-4 rounded-xl bg-gray-50/80 border border-gray-200",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-1",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-semibold text-gray-500 uppercase tracking-wider",
+                                                children: "Refundable Security Deposit"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 238,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-baseline gap-1.5",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-[15px] font-black text-emerald-700",
+                                                        children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["formatCurrency"])(item.securityDeposit, isArabic)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 242,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-[10.5px] text-gray-500 font-medium",
+                                                        children: "(Refunded upon return)"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 245,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 241,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                        lineNumber: 237,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-1 sm:border-l sm:border-gray-200 sm:pl-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-semibold text-gray-500 uppercase tracking-wider",
+                                                children: "Deposit Status"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 252,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[13px] font-bold capitalize text-gray-900 flex items-center gap-1.5",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: `w-2 h-2 rounded-full ${item.depositStatus === 'paid' ? 'bg-emerald-500' : 'bg-amber-500'}`
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 256,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    item.depositStatus === 'paid' ? 'Paid & Escrow Protected' : item.depositStatus || 'Pending Verification'
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 255,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                        lineNumber: 251,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-col gap-1 sm:border-l sm:border-gray-200 sm:pl-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-semibold text-gray-500 uppercase tracking-wider",
+                                                children: "KYC Verification"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 266,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: `text-[13px] font-bold capitalize flex items-center gap-1.5 ${item.kycStatus === 'verified' ? 'text-emerald-700' : 'text-amber-700'}`,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: `w-2 h-2 rounded-full ${item.kycStatus === 'verified' ? 'bg-emerald-500' : 'bg-amber-500'}`
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                        lineNumber: 274,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    item.kycStatus === 'verified' ? 'Verified (Qatar ID / CR)' : item.kycStatus || 'Under Verification'
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 269,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                        lineNumber: 265,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                lineNumber: 236,
                                 columnNumber: 17
                             }, this),
                             item.trackingTimeline && item.trackingTimeline.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-[#fcfdfd] p-3 rounded-xl border border-[#f1f5f9] text-xs space-y-1.5",
+                                className: "bg-[#fcfdfd] p-3.5 rounded-xl border border-gray-200/80 text-xs space-y-2",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[11px] font-bold uppercase tracking-wider text-[#6b7280] block",
-                                        children: "Application Updates"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] font-bold uppercase tracking-wider text-gray-500",
+                                                children: "Application Updates"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 290,
+                                                columnNumber: 23
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[11px] text-gray-400 font-medium",
+                                                children: "Prestige Doha Dispatch Desk"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 293,
+                                                columnNumber: 23
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 231,
+                                        lineNumber: 289,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "space-y-1",
-                                        children: item.trackingTimeline.slice(-2).map((tl, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center justify-between text-[#374151]",
+                                        className: "space-y-1.5",
+                                        children: item.trackingTimeline.slice(-3).map((tl, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-between text-gray-700 flex-wrap gap-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "flex items-center gap-1.5",
+                                                        className: "flex items-center gap-2",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "w-1.5 h-1.5 rounded-full bg-emerald-600"
+                                                                className: "w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                lineNumber: 238,
+                                                                lineNumber: 301,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                                                className: "text-gray-900",
                                                                 children: [
                                                                     tl.title,
                                                                     ":"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                                lineNumber: 239,
+                                                                lineNumber: 302,
                                                                 columnNumber: 29
                                                             }, this),
                                                             " ",
@@ -3598,107 +3718,123 @@ function ProfileRentalsTab() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 237,
+                                                        lineNumber: 300,
                                                         columnNumber: 27
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[11px] text-[#9ca3af]",
-                                                        children: new Date(tl.timestamp).toLocaleDateString('en-IN', {
+                                                        className: "text-[11px] text-gray-400 font-medium",
+                                                        children: new Date(tl.timestamp).toLocaleDateString(isArabic ? 'ar-QA' : 'en-US', {
                                                             month: 'short',
-                                                            day: 'numeric'
+                                                            day: 'numeric',
+                                                            year: 'numeric'
                                                         })
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                        lineNumber: 241,
+                                                        lineNumber: 304,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, idx, true, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 236,
+                                                lineNumber: 299,
                                                 columnNumber: 25
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 234,
+                                        lineNumber: 297,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                lineNumber: 230,
+                                lineNumber: 288,
                                 columnNumber: 19
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between pt-2 border-t border-[#f3f4f6]",
+                                className: "flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-gray-100",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[11px] text-[#6b7280]",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-2 text-[12px] text-gray-500",
                                         children: [
-                                            "Delivery: ",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                                className: "text-[#111827]",
-                                                children: item.deliveryMethod || 'Free Doorstep Delivery'
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "Questions about this agreement?"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 253,
-                                                columnNumber: 31
+                                                lineNumber: 320,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                href: "https://wa.me/97466919155",
+                                                target: "_blank",
+                                                rel: "noopener noreferrer",
+                                                className: "text-[#dc1414] font-bold hover:underline inline-flex items-center gap-1",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    children: "WhatsApp Concierge (+974 6691 9155)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                    lineNumber: 327,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
+                                                lineNumber: 321,
+                                                columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 252,
+                                        lineNumber: 319,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2",
+                                        className: "flex items-center gap-2.5 self-end sm:self-auto",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                 href: "/contact",
-                                                className: "px-3.5 py-1.5 rounded-lg border border-[#d1d5db] text-[#374151] hover:text-[#dc1414] hover:border-[#dc1414] text-[12px] font-bold transition-colors cursor-pointer",
-                                                children: "Kanpur Hub Support"
+                                                className: "px-4 py-2 rounded-xl border border-gray-300 text-gray-700 hover:text-[#dc1414] hover:border-[#dc1414] text-[12px] font-bold transition-colors cursor-pointer bg-white shadow-2xs",
+                                                children: "PCS Doha Hub"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 257,
+                                                lineNumber: 332,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                href: "/contact",
-                                                className: "px-3.5 py-1.5 rounded-lg bg-[#111827] text-white hover:bg-[#1f2937] text-[12px] font-bold transition-colors cursor-pointer",
+                                                href: "/rentals",
+                                                className: "px-4 py-2 rounded-xl bg-[#dc1414] text-white hover:bg-[#b91c1c] text-[12px] font-bold transition-colors cursor-pointer shadow-xs",
                                                 children: "Extend Lease / Upgrade"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                                lineNumber: 263,
+                                                lineNumber: 338,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                        lineNumber: 256,
+                                        lineNumber: 331,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                                lineNumber: 251,
+                                lineNumber: 318,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, item._id || item.rentalId, true, {
                         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                        lineNumber: 149,
+                        lineNumber: 154,
                         columnNumber: 15
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-                lineNumber: 129,
+                lineNumber: 128,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/profile/ProfileRentalsTab.jsx",
-        lineNumber: 82,
+        lineNumber: 81,
         columnNumber: 5
     }, this);
 }
@@ -3728,10 +3864,10 @@ function ProfileAddressesTab() {
         name: '',
         phone: '',
         street: '',
-        city: 'Kanpur',
-        state: 'Uttar Pradesh',
-        postalCode: '208001',
-        country: 'India',
+        city: 'Doha',
+        state: 'Doha',
+        postalCode: '',
+        country: 'Qatar',
         type: 'Home',
         isDefault: false
     });
@@ -3757,10 +3893,10 @@ function ProfileAddressesTab() {
             name: '',
             phone: '',
             street: '',
-            city: 'Kanpur',
-            state: 'Uttar Pradesh',
-            postalCode: '208001',
-            country: 'India',
+            city: 'Doha',
+            state: 'Doha',
+            postalCode: '',
+            country: 'Qatar',
             type: 'Home',
             isDefault: addresses.length === 0
         });
@@ -3772,10 +3908,10 @@ function ProfileAddressesTab() {
             name: addr.name || '',
             phone: addr.phone || '',
             street: addr.street || addr.address || '',
-            city: addr.city || 'Kanpur',
-            state: addr.state || 'Uttar Pradesh',
-            postalCode: addr.postalCode || '208001',
-            country: addr.country || 'India',
+            city: addr.city || 'Doha',
+            state: addr.state || 'Doha',
+            postalCode: addr.postalCode || '',
+            country: addr.country || 'Qatar',
             type: addr.type || 'Home',
             isDefault: !!addr.isDefault
         });
@@ -4169,7 +4305,43 @@ function ProfileAddressesTab() {
                                     type: "button",
                                     onClick: ()=>setIsModalOpen(false),
                                     className: "text-gray-400 hover:text-gray-600 p-1",
-                                    children: "✕"
+                                    "aria-label": "Close",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        viewBox: "0 0 24 24",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        strokeWidth: "2.2",
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        className: "w-4 h-4",
+                                        "aria-hidden": "true",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                                x1: "18",
+                                                y1: "6",
+                                                x2: "6",
+                                                y2: "18"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
+                                                lineNumber: 285,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                                                x1: "6",
+                                                y1: "6",
+                                                x2: "18",
+                                                y2: "18"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
+                                                lineNumber: 286,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
+                                        lineNumber: 284,
+                                        columnNumber: 17
+                                    }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
                                     lineNumber: 278,
@@ -4195,7 +4367,7 @@ function ProfileAddressesTab() {
                                                     children: "Contact Name *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 290,
+                                                    lineNumber: 294,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4210,13 +4382,13 @@ function ProfileAddressesTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 293,
+                                                    lineNumber: 297,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 289,
+                                            lineNumber: 293,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4226,7 +4398,7 @@ function ProfileAddressesTab() {
                                                     children: "Phone Number *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 303,
+                                                    lineNumber: 307,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4241,19 +4413,19 @@ function ProfileAddressesTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 306,
+                                                    lineNumber: 310,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 302,
+                                            lineNumber: 306,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                    lineNumber: 288,
+                                    lineNumber: 292,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4263,7 +4435,7 @@ function ProfileAddressesTab() {
                                             children: "Street Address / Flat / Building *"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 318,
+                                            lineNumber: 322,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -4278,13 +4450,13 @@ function ProfileAddressesTab() {
                                             className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414] resize-none"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 321,
+                                            lineNumber: 325,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                    lineNumber: 317,
+                                    lineNumber: 321,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4297,7 +4469,7 @@ function ProfileAddressesTab() {
                                                     children: "City *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 333,
+                                                    lineNumber: 337,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4311,13 +4483,13 @@ function ProfileAddressesTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 336,
+                                                    lineNumber: 340,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 332,
+                                            lineNumber: 336,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4327,7 +4499,7 @@ function ProfileAddressesTab() {
                                                     children: "State *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 345,
+                                                    lineNumber: 349,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4341,13 +4513,13 @@ function ProfileAddressesTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 348,
+                                                    lineNumber: 352,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 344,
+                                            lineNumber: 348,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4357,7 +4529,7 @@ function ProfileAddressesTab() {
                                                     children: "Pincode *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 357,
+                                                    lineNumber: 361,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -4371,19 +4543,19 @@ function ProfileAddressesTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 360,
+                                                    lineNumber: 364,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 356,
+                                            lineNumber: 360,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                    lineNumber: 331,
+                                    lineNumber: 335,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4405,12 +4577,12 @@ function ProfileAddressesTab() {
                                                     children: t
                                                 }, t, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 373,
+                                                    lineNumber: 377,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 371,
+                                            lineNumber: 375,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -4426,26 +4598,26 @@ function ProfileAddressesTab() {
                                                     className: "accent-[#dc1414]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 389,
+                                                    lineNumber: 393,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "Make Default"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                                    lineNumber: 395,
+                                                    lineNumber: 399,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 388,
+                                            lineNumber: 392,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                    lineNumber: 370,
+                                    lineNumber: 374,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4458,7 +4630,7 @@ function ProfileAddressesTab() {
                                             children: "Cancel"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 400,
+                                            lineNumber: 404,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -4468,19 +4640,19 @@ function ProfileAddressesTab() {
                                             children: isSubmitting ? 'Saving...' : 'Save Address'
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                            lineNumber: 407,
+                                            lineNumber: 411,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                                    lineNumber: 399,
+                                    lineNumber: 403,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/profile/ProfileAddressesTab.jsx",
-                            lineNumber: 287,
+                            lineNumber: 291,
                             columnNumber: 13
                         }, this)
                     ]
@@ -4512,23 +4684,31 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$authApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/authApi.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-ssr] (ecmascript)");
 'use client';
 ;
 ;
 ;
+;
 function ProfilePaymentsTab() {
+    const { isArabic } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLanguage"])();
     const [paymentMethods, setPaymentMethods] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [isAddUpiOpen, setIsAddUpiOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isAddCardOpen, setIsAddCardOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [upiHandle, setUpiHandle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [upiApp, setUpiApp] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('Google Pay');
+    const [isAddBankOpen, setIsAddBankOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Card form state
     const [cardForm, setCardForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         bank: '',
         cardType: 'Debit Card',
         brand: 'VISA',
         last4: '',
         exp: ''
+    });
+    // Bank account form state
+    const [bankForm, setBankForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+        bank: 'Qatar National Bank (QNB)',
+        handle: '',
+        app: 'Prestige Computers W.L.L.'
     });
     const [feedback, setFeedback] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -4548,36 +4728,10 @@ function ProfilePaymentsTab() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         loadMethods();
     }, []);
-    const handleAddUpi = async (e)=>{
-        e.preventDefault();
-        if (!upiHandle.includes('@')) {
-            alert('Please enter a valid UPI ID (e.g. name@okhdfcbank or 9876543210@upi)');
-            return;
-        }
-        setIsSubmitting(true);
-        try {
-            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$authApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["addPaymentMethod"])({
-                type: 'upi',
-                handle: upiHandle.trim(),
-                app: upiApp,
-                isDefault: paymentMethods.length === 0
-            });
-            if (Array.isArray(res)) setPaymentMethods(res);
-            else loadMethods();
-            setUpiHandle('');
-            setIsAddUpiOpen(false);
-            setFeedback('UPI ID saved successfully in database!');
-            setTimeout(()=>setFeedback(''), 3000);
-        } catch (err) {
-            alert(err.message || 'Failed to save UPI ID');
-        } finally{
-            setIsSubmitting(false);
-        }
-    };
     const handleAddCard = async (e)=>{
         e.preventDefault();
         if (cardForm.last4.length !== 4) {
-            alert('Please enter the last 4 digits of your card.');
+            alert(isArabic ? 'يرجى إدخال آخر 4 أرقام من البطاقة' : 'Please enter the last 4 digits of your card.');
             return;
         }
         setIsSubmitting(true);
@@ -4601,7 +4755,7 @@ function ProfilePaymentsTab() {
                 exp: ''
             });
             setIsAddCardOpen(false);
-            setFeedback('Card saved securely for checkout!');
+            setFeedback(isArabic ? 'تم حفظ البطاقة بأمان في قاعدة البيانات!' : 'Card saved securely for checkout!');
             setTimeout(()=>setFeedback(''), 3000);
         } catch (err) {
             alert(err.message || 'Failed to save card');
@@ -4609,20 +4763,51 @@ function ProfilePaymentsTab() {
             setIsSubmitting(false);
         }
     };
+    const handleAddBank = async (e)=>{
+        e.preventDefault();
+        if (!bankForm.handle.trim()) {
+            alert(isArabic ? 'يرجى إدخال رقم الآيبان IBAN' : 'Please enter your IBAN number.');
+            return;
+        }
+        setIsSubmitting(true);
+        try {
+            const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$authApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["addPaymentMethod"])({
+                type: 'bank',
+                bank: bankForm.bank.trim() || 'Qatar National Bank (QNB)',
+                handle: bankForm.handle.trim().toUpperCase(),
+                app: bankForm.app.trim() || 'Bank Deposit / Wire',
+                isDefault: paymentMethods.length === 0
+            });
+            if (Array.isArray(res)) setPaymentMethods(res);
+            else loadMethods();
+            setBankForm({
+                bank: 'Qatar National Bank (QNB)',
+                handle: '',
+                app: ''
+            });
+            setIsAddBankOpen(false);
+            setFeedback(isArabic ? 'تم حفظ بيانات الحساب البنكي بنجاح!' : 'Bank account saved successfully!');
+            setTimeout(()=>setFeedback(''), 3000);
+        } catch (err) {
+            alert(err.message || 'Failed to save bank account');
+        } finally{
+            setIsSubmitting(false);
+        }
+    };
     const handleRemove = async (id)=>{
-        if (!confirm('Are you sure you want to remove this payment method?')) return;
+        if (!confirm(isArabic ? 'هل أنت متأكد من رغبتك في حذف طريقة الدفع هذه؟' : 'Are you sure you want to remove this payment method?')) return;
         try {
             const res = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$authApi$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["deletePaymentMethod"])(id);
             if (Array.isArray(res)) setPaymentMethods(res);
             else setPaymentMethods((prev)=>prev.filter((p)=>(p._id || p.id) !== id));
-            setFeedback('Payment method removed.');
+            setFeedback(isArabic ? 'تم حذف طريقة الدفع.' : 'Payment method removed.');
             setTimeout(()=>setFeedback(''), 3000);
         } catch (err) {
             alert(err.message || 'Failed to remove payment method');
         }
     };
-    const upiList = paymentMethods.filter((p)=>p.type === 'upi');
-    const cardList = paymentMethods.filter((p)=>p.type === 'card');
+    const cardList = paymentMethods.filter((p)=>p.type === 'card' || !p.type && p.last4);
+    const bankList = paymentMethods.filter((p)=>p.type === 'bank' || p.type === 'qnb');
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-7 shadow-2xs flex flex-col gap-6",
         children: [
@@ -4631,24 +4816,24 @@ function ProfilePaymentsTab() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                         className: "text-[18px] font-bold text-[#111827]",
-                        children: "Saved Payment Methods"
+                        children: isArabic ? 'طرق الدفع المحفوظة' : 'Saved Payment Methods'
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 124,
+                        lineNumber: 135,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "text-[12.5px] text-[#6b7280] mt-0.5",
-                        children: "Manage your saved UPI accounts and bank cards for fast 1-click checkout."
+                        children: isArabic ? 'إدارة البطاقات البنكية القطرية وحسابات بنك قطر الوطني المحفوظة لإتمام الطلب بضغطة زر.' : 'Manage your saved bank cards and QNB banking details for fast 1-click checkout in Qatar.'
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 127,
+                        lineNumber: 138,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                lineNumber: 123,
+                lineNumber: 134,
                 columnNumber: 7
             }, this),
             feedback && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4656,7 +4841,7 @@ function ProfilePaymentsTab() {
                 children: feedback
             }, void 0, false, {
                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                lineNumber: 133,
+                lineNumber: 146,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4668,215 +4853,65 @@ function ProfilePaymentsTab() {
                                 className: "text-[14.5px] font-bold text-[#111827] flex items-center gap-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "UPI IDs"
+                                        children: isArabic ? 'البطاقات البنكية' : 'Credit & Debit Cards'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 142,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[10px] font-black text-[#097939] bg-[#dcfce7] px-2 py-0.5 rounded",
-                                        children: "UPI ►"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 143,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                lineNumber: 141,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                type: "button",
-                                onClick: ()=>setIsAddUpiOpen(true),
-                                className: "text-[12.5px] font-bold text-[#dc1414] hover:text-[#b91c1c] cursor-pointer",
-                                children: "+ Add New UPI"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                lineNumber: 147,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 140,
-                        columnNumber: 9
-                    }, this),
-                    loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "py-4 text-center text-gray-500 text-[12.5px] animate-pulse",
-                        children: "Loading saved UPI..."
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 157,
-                        columnNumber: 11
-                    }, this) : upiList.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "p-4 rounded-xl border border-dashed border-gray-300 text-center text-gray-500 text-[12.5px]",
-                        children: "No UPI accounts saved yet. Add your VPA for instant checkout."
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 159,
-                        columnNumber: 11
-                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
-                        children: upiList.map((upi)=>{
-                            const id = upi._id || upi.id;
-                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "rounded-xl border border-[#e5e7eb] p-4 flex items-center justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-3 min-w-0",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-9 h-9 rounded-lg bg-[#fee2e2] text-[#dc1414] flex items-center justify-center font-bold text-[12px] shrink-0",
-                                                children: "@"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 172,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "min-w-0",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[13px] font-bold text-[#111827] block truncate",
-                                                        children: upi.handle
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                        lineNumber: 176,
-                                                        columnNumber: 23
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-[11px] text-[#6b7280]",
-                                                        children: upi.app
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                        lineNumber: 179,
-                                                        columnNumber: 23
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 175,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 171,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2 shrink-0",
-                                        children: [
-                                            upi.isDefault && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[10px] font-bold text-[#16a34a] bg-[#dcfce7] px-2 py-0.5 rounded-full",
-                                                children: "Default"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 185,
-                                                columnNumber: 23
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                type: "button",
-                                                onClick: ()=>handleRemove(id),
-                                                className: "text-[11.5px] text-[#dc2626] hover:underline",
-                                                children: "Delete"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 189,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 183,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, id, true, {
-                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                lineNumber: 167,
-                                columnNumber: 17
-                            }, this);
-                        })
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 163,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                lineNumber: 139,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-between mb-3",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-[14.5px] font-bold text-[#111827] flex items-center gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Credit & Debit Cards"
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 208,
+                                        lineNumber: 155,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "text-[10.5px] font-medium text-[#6b7280]",
-                                        children: "Encrypted • PCI-DSS Secure"
+                                        children: isArabic ? 'مشفر • متوافق مع PCI-DSS' : 'Encrypted • PCI-DSS Secure'
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 209,
+                                        lineNumber: 156,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                lineNumber: 207,
+                                lineNumber: 154,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 type: "button",
                                 onClick: ()=>setIsAddCardOpen(true),
                                 className: "text-[12.5px] font-bold text-[#dc1414] hover:text-[#b91c1c] cursor-pointer",
-                                children: "+ Add New Card"
-                            }, void 0, false, {
+                                children: [
+                                    "+ ",
+                                    isArabic ? 'إضافة بطاقة جديدة' : 'Add New Card'
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                lineNumber: 213,
+                                lineNumber: 160,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 206,
+                        lineNumber: 153,
                         columnNumber: 9
                     }, this),
                     loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "py-4 text-center text-gray-500 text-[12.5px] animate-pulse",
-                        children: "Loading cards..."
+                        children: isArabic ? 'جاري تحميل البطاقات...' : 'Loading cards...'
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 223,
+                        lineNumber: 170,
                         columnNumber: 11
                     }, this) : cardList.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "p-4 rounded-xl border border-dashed border-gray-300 text-center text-gray-500 text-[12.5px]",
-                        children: "No cards saved yet. Add a credit or debit card for easy checkout."
+                        children: isArabic ? 'لم تقم بحفظ أي بطاقة دفع بعد. أضف بطاقة ائتمان أو خصم لسهولة إتمام الطلبات.' : 'No cards saved yet. Add a credit or debit card for seamless checkout.'
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 225,
+                        lineNumber: 174,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
                         children: cardList.map((card)=>{
                             const id = card._id || card.id;
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "rounded-xl border border-[#e5e7eb] p-4 flex flex-col justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors",
+                                className: "rounded-xl border border-[#e5e7eb] p-4 flex flex-col justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors shadow-2xs",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-start justify-between gap-3",
@@ -4885,43 +4920,43 @@ function ProfilePaymentsTab() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-[13px] font-bold text-[#111827] block",
-                                                        children: card.bank
+                                                        children: card.bank || 'Bank Card'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                        lineNumber: 239,
+                                                        lineNumber: 190,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-[11.5px] text-[#6b7280]",
                                                         children: [
-                                                            card.cardType,
+                                                            card.cardType || 'Debit Card',
                                                             " (",
-                                                            card.brand,
+                                                            card.brand || 'VISA',
                                                             ")"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                        lineNumber: 242,
+                                                        lineNumber: 193,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 238,
+                                                lineNumber: 189,
                                                 columnNumber: 21
                                             }, this),
                                             card.isDefault && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-[10px] font-bold text-[#16a34a] bg-[#dcfce7] px-2 py-0.5 rounded-full",
-                                                children: "Default"
+                                                children: isArabic ? 'افتراضي' : 'Default'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 247,
+                                                lineNumber: 198,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 237,
+                                        lineNumber: 188,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4931,216 +4966,213 @@ function ProfilePaymentsTab() {
                                                 className: "font-mono text-[13px] font-extrabold text-[#111827] tracking-wider",
                                                 children: [
                                                     "•••• •••• •••• ",
-                                                    card.last4
+                                                    card.last4 || '••••'
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 254,
+                                                lineNumber: 205,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 type: "button",
                                                 onClick: ()=>handleRemove(id),
-                                                className: "text-[11.5px] text-[#dc2626] hover:underline",
-                                                children: "Delete"
+                                                className: "text-[11.5px] text-[#dc2626] hover:underline cursor-pointer",
+                                                children: isArabic ? 'حذف' : 'Delete'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                lineNumber: 257,
+                                                lineNumber: 208,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                        lineNumber: 253,
+                                        lineNumber: 204,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, id, true, {
                                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                lineNumber: 233,
+                                lineNumber: 184,
                                 columnNumber: 17
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                        lineNumber: 229,
+                        lineNumber: 180,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                lineNumber: 205,
+                lineNumber: 152,
                 columnNumber: 7
             }, this),
-            isAddUpiOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white rounded-2xl w-full max-w-md p-5 shadow-xl",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                            className: "text-[16px] font-bold text-[#111827] mb-3",
-                            children: "Add UPI ID"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                            lineNumber: 276,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                            onSubmit: handleAddUpi,
-                            className: "flex flex-col gap-3 text-[13px]",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                            children: "Virtual Payment Address (VPA) *"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 279,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            type: "text",
-                                            required: true,
-                                            placeholder: "e.g. mobile@upi, name@okhdfcbank",
-                                            value: upiHandle,
-                                            onChange: (e)=>setUpiHandle(e.target.value),
-                                            className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 282,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 278,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                            children: "UPI Provider"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 293,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                                            value: upiApp,
-                                            onChange: (e)=>setUpiApp(e.target.value),
-                                            className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "Google Pay",
-                                                    children: "Google Pay"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 301,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "PhonePe",
-                                                    children: "PhonePe"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 302,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "Paytm UPI",
-                                                    children: "Paytm UPI"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 303,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "BHIM UPI",
-                                                    children: "BHIM UPI"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 304,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                    value: "Other Bank UPI",
-                                                    children: "Other Bank UPI"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 305,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 296,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 292,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center justify-end gap-2 pt-2",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "button",
-                                            onClick: ()=>setIsAddUpiOpen(false),
-                                            className: "px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700",
-                                            children: "Cancel"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 310,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            type: "submit",
-                                            disabled: isSubmitting,
-                                            className: "px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg",
-                                            children: isSubmitting ? 'Saving...' : 'Save UPI'
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 317,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 309,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                            lineNumber: 277,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                    lineNumber: 275,
-                    columnNumber: 11
-                }, this)
-            }, void 0, false, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center justify-between mb-3",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                className: "text-[14.5px] font-bold text-[#111827] flex items-center gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: isArabic ? 'الحسابات البنكية (QNB / IBAN)' : 'Bank Transfer Accounts (QNB / IBAN)'
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                        lineNumber: 227,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[10px] font-black text-[#0f766e] bg-[#f0fdfa] px-2 py-0.5 rounded",
+                                        children: "QATAR"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                        lineNumber: 228,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                lineNumber: 226,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "button",
+                                onClick: ()=>setIsAddBankOpen(true),
+                                className: "text-[12.5px] font-bold text-[#dc1414] hover:text-[#b91c1c] cursor-pointer",
+                                children: [
+                                    "+ ",
+                                    isArabic ? 'إضافة حساب بنكي' : 'Add Bank Account'
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                lineNumber: 232,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                        lineNumber: 225,
+                        columnNumber: 9
+                    }, this),
+                    loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "py-4 text-center text-gray-500 text-[12.5px] animate-pulse",
+                        children: isArabic ? 'جاري التحميل...' : 'Loading accounts...'
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                        lineNumber: 242,
+                        columnNumber: 11
+                    }, this) : bankList.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "p-4 rounded-xl border border-dashed border-gray-300 text-center text-gray-500 text-[12.5px]",
+                        children: isArabic ? 'لم تقم بحفظ أي حساب بنكي بعد. أضف رقم الآيبان للاسترداد المالي المباشر أو التحويل البنكي.' : 'No bank accounts saved yet. Add your Qatari IBAN for direct refunds and bank deposits.'
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                        lineNumber: 246,
+                        columnNumber: 11
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "grid grid-cols-1 sm:grid-cols-2 gap-3",
+                        children: bankList.map((b)=>{
+                            const id = b._id || b.id;
+                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "rounded-xl border border-[#e5e7eb] p-4 flex flex-col justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors shadow-2xs",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-start justify-between gap-3",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-[13px] font-bold text-[#111827] block",
+                                                        children: b.bank || 'Qatar National Bank'
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                        lineNumber: 262,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-[11.5px] text-[#6b7280]",
+                                                        children: b.app || 'Prestige Computers Account'
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                        lineNumber: 265,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                lineNumber: 261,
+                                                columnNumber: 21
+                                            }, this),
+                                            b.isDefault && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "text-[10px] font-bold text-[#16a34a] bg-[#dcfce7] px-2 py-0.5 rounded-full",
+                                                children: isArabic ? 'افتراضي' : 'Default'
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                lineNumber: 270,
+                                                columnNumber: 23
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                        lineNumber: 260,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between pt-2 border-t border-[#f3f4f6]",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "font-mono text-[11px] font-bold text-[#0f766e] tracking-tight truncate max-w-[200px]",
+                                                children: b.handle || 'QA02 QNBA ••••'
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                lineNumber: 277,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                type: "button",
+                                                onClick: ()=>handleRemove(id),
+                                                className: "text-[11.5px] text-[#dc2626] hover:underline cursor-pointer",
+                                                children: isArabic ? 'حذف' : 'Delete'
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                lineNumber: 280,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                        lineNumber: 276,
+                                        columnNumber: 19
+                                    }, this)
+                                ]
+                            }, id, true, {
+                                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                lineNumber: 256,
+                                columnNumber: 17
+                            }, this);
+                        })
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                        lineNumber: 252,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                lineNumber: 274,
-                columnNumber: 9
+                lineNumber: 224,
+                columnNumber: 7
             }, this),
             isAddCardOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-white rounded-2xl w-full max-w-md p-5 shadow-xl",
+                    className: "bg-white rounded-2xl w-full max-w-md p-5 shadow-xl animate-scale-up",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             className: "text-[16px] font-bold text-[#111827] mb-3",
-                            children: "Add Bank Card"
+                            children: isArabic ? 'إضافة بطاقة بنكية' : 'Add Bank Card'
                         }, void 0, false, {
                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                            lineNumber: 334,
+                            lineNumber: 299,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -5151,16 +5183,16 @@ function ProfilePaymentsTab() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                            children: "Bank Name *"
+                                            children: isArabic ? 'اسم البنك *' : 'Bank Name *'
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 337,
+                                            lineNumber: 304,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                             type: "text",
                                             required: true,
-                                            placeholder: "e.g. HDFC Bank, SBI, ICICI",
+                                            placeholder: isArabic ? 'مثال: QNB، البنك التجاري، بنك الدوحة' : 'e.g. QNB, Commercial Bank, Doha Bank',
                                             value: cardForm.bank,
                                             onChange: (e)=>setCardForm({
                                                     ...cardForm,
@@ -5169,13 +5201,13 @@ function ProfilePaymentsTab() {
                                             className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 340,
+                                            lineNumber: 307,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 336,
+                                    lineNumber: 303,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5185,10 +5217,10 @@ function ProfilePaymentsTab() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                                    children: "Card Type"
+                                                    children: isArabic ? 'نوع البطاقة' : 'Card Type'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 352,
+                                                    lineNumber: 319,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -5197,44 +5229,44 @@ function ProfilePaymentsTab() {
                                                             ...cardForm,
                                                             cardType: e.target.value
                                                         }),
-                                                    className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none",
+                                                    className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none bg-white",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Debit Card",
-                                                            children: "Debit Card"
+                                                            children: isArabic ? 'بطاقة خصم (Debit)' : 'Debit Card'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                            lineNumber: 360,
+                                                            lineNumber: 327,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "Credit Card",
-                                                            children: "Credit Card"
+                                                            children: isArabic ? 'بطاقة ائتمان (Credit)' : 'Credit Card'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                            lineNumber: 361,
+                                                            lineNumber: 328,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 355,
+                                                    lineNumber: 322,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 351,
+                                            lineNumber: 318,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                                    children: "Card Network"
+                                                    children: isArabic ? 'الشبكة' : 'Network'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 365,
+                                                    lineNumber: 332,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -5243,14 +5275,14 @@ function ProfilePaymentsTab() {
                                                             ...cardForm,
                                                             brand: e.target.value
                                                         }),
-                                                    className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none",
+                                                    className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none bg-white",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                             value: "VISA",
                                                             children: "VISA"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                            lineNumber: 373,
+                                                            lineNumber: 340,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -5258,33 +5290,25 @@ function ProfilePaymentsTab() {
                                                             children: "Mastercard"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                            lineNumber: 374,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                                            value: "RuPay",
-                                                            children: "RuPay"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                            lineNumber: 375,
+                                                            lineNumber: 341,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 368,
+                                                    lineNumber: 335,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 364,
+                                            lineNumber: 331,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 350,
+                                    lineNumber: 317,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5294,10 +5318,10 @@ function ProfilePaymentsTab() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                                    children: "Last 4 Digits *"
+                                                    children: isArabic ? 'آخر 4 أرقام *' : 'Last 4 Digits *'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 382,
+                                                    lineNumber: 348,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -5313,23 +5337,23 @@ function ProfilePaymentsTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none font-mono"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 385,
+                                                    lineNumber: 351,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 381,
+                                            lineNumber: 347,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                                     className: "block text-[12px] font-semibold text-[#374151] mb-1",
-                                                    children: "Expiry (MM/YY)"
+                                                    children: isArabic ? 'تاريخ الانتهاء (MM/YY)' : 'Expiry (MM/YY)'
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 396,
+                                                    lineNumber: 362,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -5343,19 +5367,19 @@ function ProfilePaymentsTab() {
                                                     className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none font-mono"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                                    lineNumber: 399,
+                                                    lineNumber: 365,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 395,
+                                            lineNumber: 361,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 380,
+                                    lineNumber: 346,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5364,50 +5388,252 @@ function ProfilePaymentsTab() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             type: "button",
                                             onClick: ()=>setIsAddCardOpen(false),
-                                            className: "px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700",
-                                            children: "Cancel"
+                                            className: "px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 cursor-pointer",
+                                            children: isArabic ? 'إلغاء' : 'Cancel'
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 410,
+                                            lineNumber: 376,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             type: "submit",
                                             disabled: isSubmitting,
-                                            className: "px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg",
-                                            children: isSubmitting ? 'Saving...' : 'Save Card'
+                                            className: "px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg cursor-pointer",
+                                            children: isSubmitting ? isArabic ? 'جاري الحفظ...' : 'Saving...' : isArabic ? 'حفظ البطاقة' : 'Save Card'
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                            lineNumber: 417,
+                                            lineNumber: 383,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                                    lineNumber: 409,
+                                    lineNumber: 375,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                            lineNumber: 335,
+                            lineNumber: 302,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                    lineNumber: 333,
+                    lineNumber: 298,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-                lineNumber: 332,
+                lineNumber: 297,
+                columnNumber: 9
+            }, this),
+            isAddBankOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-white rounded-2xl w-full max-w-md p-5 shadow-xl animate-scale-up",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            className: "text-[16px] font-bold text-[#111827] mb-3",
+                            children: isArabic ? 'إضافة حساب بنكي / آيبان (قطر)' : 'Add Qatar Bank Account / IBAN'
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                            lineNumber: 400,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                            onSubmit: handleAddBank,
+                            className: "flex flex-col gap-3 text-[13px]",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "block text-[12px] font-semibold text-[#374151] mb-1",
+                                            children: isArabic ? 'البنك القطري *' : 'Bank in Qatar *'
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 405,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                            value: bankForm.bank,
+                                            onChange: (e)=>setBankForm({
+                                                    ...bankForm,
+                                                    bank: e.target.value
+                                                }),
+                                            className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none bg-white",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "Qatar National Bank (QNB)",
+                                                    children: "Qatar National Bank (QNB)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                    lineNumber: 413,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "Commercial Bank of Qatar (CBQ)",
+                                                    children: "Commercial Bank of Qatar (CBQ)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                    lineNumber: 414,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "Qatar Islamic Bank (QIB)",
+                                                    children: "Qatar Islamic Bank (QIB)"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                    lineNumber: 415,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "Doha Bank",
+                                                    children: "Doha Bank"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                    lineNumber: 416,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "Masraf Al Rayan",
+                                                    children: "Masraf Al Rayan"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                    lineNumber: 417,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                    value: "Dukhan Bank",
+                                                    children: "Dukhan Bank"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                                    lineNumber: 418,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 408,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                    lineNumber: 404,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "block text-[12px] font-semibold text-[#374151] mb-1",
+                                            children: isArabic ? 'رقم الآيبان الدولي (IBAN) *' : 'Qatar IBAN (29 Characters) *'
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 423,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "text",
+                                            required: true,
+                                            placeholder: "QA00 QNBA 0000 0000 0000 0000 0000 0",
+                                            value: bankForm.handle,
+                                            onChange: (e)=>setBankForm({
+                                                    ...bankForm,
+                                                    handle: e.target.value.toUpperCase()
+                                                }),
+                                            className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none font-mono uppercase"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 426,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                    lineNumber: 422,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            className: "block text-[12px] font-semibold text-[#374151] mb-1",
+                                            children: isArabic ? 'اسم صاحب الحساب' : 'Account Beneficiary Name'
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 437,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "text",
+                                            placeholder: isArabic ? 'مثال: أحمد الكواري' : 'e.g. Ahmed Al-Kuwari',
+                                            value: bankForm.app,
+                                            onChange: (e)=>setBankForm({
+                                                    ...bankForm,
+                                                    app: e.target.value
+                                                }),
+                                            className: "w-full border border-gray-300 rounded-xl px-3 py-2 outline-none"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 440,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                    lineNumber: 436,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center justify-end gap-2 pt-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: ()=>setIsAddBankOpen(false),
+                                            className: "px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 cursor-pointer",
+                                            children: isArabic ? 'إلغاء' : 'Cancel'
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 450,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            disabled: isSubmitting,
+                                            className: "px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg cursor-pointer",
+                                            children: isSubmitting ? isArabic ? 'جاري الحفظ...' : 'Saving...' : isArabic ? 'حفظ الحساب' : 'Save Account'
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                            lineNumber: 457,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                                    lineNumber: 449,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                            lineNumber: 403,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                    lineNumber: 399,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
+                lineNumber: 398,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/profile/ProfilePaymentsTab.jsx",
-        lineNumber: 121,
+        lineNumber: 132,
         columnNumber: 5
     }, this);
 }
@@ -5847,10 +6073,36 @@ function ProfileNotificationsTab() {
                                 columnNumber: 11
                             }, this),
                             toastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-[11.5px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200",
+                                className: "inline-flex items-center gap-1.5 text-[11.5px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200",
                                 children: [
-                                    "✓ ",
-                                    toastMessage
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                        viewBox: "0 0 24 24",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        strokeWidth: "2.5",
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        className: "w-3 h-3 text-emerald-600",
+                                        "aria-hidden": "true",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("polyline", {
+                                            points: "20 6 9 17 4 12"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
+                                            lineNumber: 57,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
+                                        lineNumber: 56,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: toastMessage
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
+                                        lineNumber: 59,
+                                        columnNumber: 15
+                                    }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
@@ -5868,7 +6120,7 @@ function ProfileNotificationsTab() {
                         children: "Choose how you want Prestige Computers to communicate with you about your orders and rentals."
                     }, void 0, false, {
                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                        lineNumber: 60,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, this)
                 ]
@@ -5890,7 +6142,7 @@ function ProfileNotificationsTab() {
                                         children: "Order & Shipping Updates"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 68,
+                                        lineNumber: 71,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5898,13 +6150,13 @@ function ProfileNotificationsTab() {
                                         children: "Receive real-time tracking emails and SMS when items are packed, dispatched, and out for delivery."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 71,
+                                        lineNumber: 74,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 67,
+                                lineNumber: 70,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5915,18 +6167,18 @@ function ProfileNotificationsTab() {
                                     className: `w-5 h-5 rounded-full bg-white shadow-md absolute top-0.5 transition-transform ${prefs.orderUpdates ? 'right-0.5' : 'left-0.5'}`
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                    lineNumber: 82,
+                                    lineNumber: 85,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 75,
+                                lineNumber: 78,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                        lineNumber: 66,
+                        lineNumber: 69,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5939,7 +6191,7 @@ function ProfileNotificationsTab() {
                                         children: "WhatsApp Notifications"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 88,
+                                        lineNumber: 91,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5947,13 +6199,13 @@ function ProfileNotificationsTab() {
                                         children: "Get delivery status, tracking links and invoice copies directly on your WhatsApp number."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 91,
+                                        lineNumber: 94,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 87,
+                                lineNumber: 90,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -5964,18 +6216,18 @@ function ProfileNotificationsTab() {
                                     className: `w-5 h-5 rounded-full bg-white shadow-md absolute top-0.5 transition-transform ${prefs.whatsappAlerts ? 'right-0.5' : 'left-0.5'}`
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                    lineNumber: 102,
+                                    lineNumber: 105,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 95,
+                                lineNumber: 98,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                        lineNumber: 86,
+                        lineNumber: 89,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5988,7 +6240,7 @@ function ProfileNotificationsTab() {
                                         children: "Rental Tenure & Due Date Reminders"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 108,
+                                        lineNumber: 111,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5996,13 +6248,13 @@ function ProfileNotificationsTab() {
                                         children: "Alerts for upcoming monthly rental lease renewals and scheduled maintenance checkups."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 111,
+                                        lineNumber: 114,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 107,
+                                lineNumber: 110,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6013,18 +6265,18 @@ function ProfileNotificationsTab() {
                                     className: `w-5 h-5 rounded-full bg-white shadow-md absolute top-0.5 transition-transform ${prefs.rentalReminders ? 'right-0.5' : 'left-0.5'}`
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                    lineNumber: 122,
+                                    lineNumber: 125,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 115,
+                                lineNumber: 118,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                        lineNumber: 106,
+                        lineNumber: 109,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6037,7 +6289,7 @@ function ProfileNotificationsTab() {
                                         children: "Promotional Offers & Hardware Launches"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 128,
+                                        lineNumber: 131,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6045,13 +6297,13 @@ function ProfileNotificationsTab() {
                                         children: "Early bird discounts on new graphics cards, Intel/AMD CPUs, and gaming gear."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 131,
+                                        lineNumber: 134,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 127,
+                                lineNumber: 130,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6062,18 +6314,18 @@ function ProfileNotificationsTab() {
                                     className: `w-5 h-5 rounded-full bg-white shadow-md absolute top-0.5 transition-transform ${prefs.promotionalOffers ? 'right-0.5' : 'left-0.5'}`
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                    lineNumber: 142,
+                                    lineNumber: 145,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 135,
+                                lineNumber: 138,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                        lineNumber: 126,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6086,7 +6338,7 @@ function ProfileNotificationsTab() {
                                         children: "Price Drop & Stock Alerts"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 148,
+                                        lineNumber: 151,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6094,13 +6346,13 @@ function ProfileNotificationsTab() {
                                         children: "Notifications when items on your wishlist go on sale or restock."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                        lineNumber: 151,
+                                        lineNumber: 154,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 147,
+                                lineNumber: 150,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6111,24 +6363,24 @@ function ProfileNotificationsTab() {
                                     className: `w-5 h-5 rounded-full bg-white shadow-md absolute top-0.5 transition-transform ${prefs.priceDropAlerts ? 'right-0.5' : 'left-0.5'}`
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                    lineNumber: 162,
+                                    lineNumber: 165,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                                lineNumber: 155,
+                                lineNumber: 158,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                        lineNumber: 146,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/profile/ProfileNotificationsTab.jsx",
-                lineNumber: 65,
+                lineNumber: 68,
                 columnNumber: 7
             }, this)
         ]

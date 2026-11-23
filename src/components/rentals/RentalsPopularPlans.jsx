@@ -70,7 +70,7 @@ export default function RentalsPopularPlans() {
         title: p.name || p.title,
         specs: specsText,
         price: rent,
-        formattedPrice: p.rentPrice || `₹${rent.toLocaleString('en-IN')}`,
+        formattedPrice: p.rentPrice || `QAR ${rent.toLocaleString('en-US')}`,
         imageUrl: rawImg,
         deposit: p.deposit || 0,
         rentPerMonth: rent,
@@ -119,10 +119,10 @@ export default function RentalsPopularPlans() {
           plans.map((plan) => (
             <div
               key={plan.id}
-              className="group bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#dc1414]/40 relative"
+              className="group bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-5 flex flex-col justify-between transition-all duration-200 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#dc1414]/40 relative overflow-hidden"
             >
               {/* Top Badge */}
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-1">
                 <span
                   className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md shadow-xs ${plan.badgeColor}`}
                 >
@@ -130,12 +130,12 @@ export default function RentalsPopularPlans() {
                 </span>
               </div>
 
-              {/* Device Visual */}
-              <div className="h-[140px] flex items-center justify-center my-2 p-2 transition-transform duration-200 group-hover:scale-103">
+              {/* Device Visual Container - Fixed height with overflow-hidden to prevent overlap */}
+              <div className="w-full h-[150px] sm:h-[155px] bg-[#f8fafc] rounded-xl border border-[#f1f5f9] flex items-center justify-center p-3 my-3 relative overflow-hidden group-hover:border-[#dc1414]/20 transition-colors">
                 <img
                   src={getProductImageUrl(plan.imageUrl)}
                   alt={plan.title}
-                  className="max-h-[130px] max-w-[170px] object-contain drop-shadow-[0_8px_16px_rgba(15,23,42,0.1)]"
+                  className="max-h-[110px] max-w-[85%] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105 select-none"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none'
                   }}
@@ -143,20 +143,25 @@ export default function RentalsPopularPlans() {
               </div>
 
               {/* Info */}
-              <div className="mt-2 text-center">
-                <h3 className="text-[16px] font-bold text-[#111827] leading-snug line-clamp-1">
-                  {plan.title}
-                </h3>
-                <p className="mt-1 text-[11.5px] text-[#6b7280] leading-snug font-medium line-clamp-1">
-                  {plan.specs}
-                </p>
+              <div className="text-center flex-1 flex flex-col justify-between">
+                <div>
+                  <h3
+                    className="text-[15.5px] font-bold text-[#111827] leading-snug line-clamp-1 group-hover:text-[#dc1414] transition-colors"
+                    title={plan.title}
+                  >
+                    {plan.title}
+                  </h3>
+                  <p className="mt-1 text-[12px] text-[#6b7280] leading-snug font-medium line-clamp-1">
+                    {plan.specs}
+                  </p>
+                </div>
 
                 {/* Price */}
-                <div className="mt-3 flex items-baseline justify-center gap-1.5">
-                  <span className="text-[22px] font-extrabold text-[#dc1414]">
+                <div className="mt-3 py-1 flex items-baseline justify-center gap-1.5 bg-gray-50/80 rounded-lg border border-gray-100">
+                  <span className="text-[20px] font-black text-[#dc1414]">
                     {plan.formattedPrice}
                   </span>
-                  <span className="text-[12px] font-medium text-[#6b7280]">
+                  <span className="text-[12px] font-semibold text-[#6b7280]">
                     {isRtl ? '/ شهرياً' : '/ Month'}
                   </span>
                 </div>
@@ -166,7 +171,7 @@ export default function RentalsPopularPlans() {
               <button
                 type="button"
                 onClick={() => handleOpenRental(plan)}
-                className="mt-4 w-full py-2.5 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13px] font-bold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(220,16,16,0.35)] transition-all cursor-pointer"
+                className="mt-3.5 w-full py-2.5 rounded-xl bg-gradient-to-b from-[#e11414] to-[#b80808] hover:from-[#ed1a1a] hover:to-[#a30707] active:scale-[0.98] text-white text-[13px] font-bold flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(220,16,16,0.3)] transition-all cursor-pointer"
               >
                 <span>{isRtl ? 'استأجر الآن' : 'Rent Now'}</span>
                 <svg

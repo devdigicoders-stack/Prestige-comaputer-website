@@ -21,7 +21,7 @@ function CalendarSmallIcon({ className = 'w-4 h-4' }) {
   )
 }
 
-function RupeeSmallIcon({ className = 'w-4 h-4' }) {
+function CostEffectiveSmallIcon({ className = 'w-4 h-4' }) {
   return (
     <svg
       className={className}
@@ -33,8 +33,8 @@ function RupeeSmallIcon({ className = 'w-4 h-4' }) {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M7 8h10M7 11.5h6.5M13.5 8a3.5 3.5 0 0 1-3.5 3.5H7l7 6" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 6v12M8 10h8M9 14h6" />
     </svg>
   )
 }
@@ -132,7 +132,7 @@ export default function RentalsHeroBanner() {
           </div>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15">
-            <RupeeSmallIcon />
+            <CostEffectiveSmallIcon />
             <span className="font-medium">{isRtl ? 'أفضل تكلفة' : 'Cost Effective'}</span>
           </div>
 

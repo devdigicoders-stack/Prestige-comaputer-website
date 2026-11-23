@@ -6,14 +6,16 @@ import {
   addPaymentMethod,
   deletePaymentMethod,
 } from '../../services/authApi'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function ProfilePaymentsTab() {
+  const { isArabic } = useLanguage()
   const [paymentMethods, setPaymentMethods] = useState([])
   const [loading, setLoading] = useState(true)
-  const [isAddUpiOpen, setIsAddUpiOpen] = useState(false)
   const [isAddCardOpen, setIsAddCardOpen] = useState(false)
-  const [upiHandle, setUpiHandle] = useState('')
-  const [upiApp, setUpiApp] = useState('Google Pay')
+  const [isAddBankOpen, setIsAddBankOpen] = useState(false)
+
+  // Card form state
   const [cardForm, setCardForm] = useState({
     bank: '',
     cardType: 'Debit Card',
@@ -21,6 +23,14 @@ export default function ProfilePaymentsTab() {
     last4: '',
     exp: '',
   })
+
+  // Bank account form state
+  const [bankForm, setBankForm] = useState({
+    bank: 'Qatar National Bank (QNB)',
+    handle: '', // IBAN
+    app: 'Prestige Computers W.L.L.', // Beneficiary / Account holder
+  })
+
   const [feedback, setFeedback] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -42,38 +52,10 @@ export default function ProfilePaymentsTab() {
     loadMethods()
   }, [])
 
-  const handleAddUpi = async (e) => {
-    e.preventDefault()
-    if (!upiHandle.includes('@')) {
-      alert('Please enter a valid UPI ID (e.g. name@okhdfcbank or 9876543210@upi)')
-      return
-    }
-
-    setIsSubmitting(true)
-    try {
-      const res = await addPaymentMethod({
-        type: 'upi',
-        handle: upiHandle.trim(),
-        app: upiApp,
-        isDefault: paymentMethods.length === 0,
-      })
-      if (Array.isArray(res)) setPaymentMethods(res)
-      else loadMethods()
-      setUpiHandle('')
-      setIsAddUpiOpen(false)
-      setFeedback('UPI ID saved successfully in database!')
-      setTimeout(() => setFeedback(''), 3000)
-    } catch (err) {
-      alert(err.message || 'Failed to save UPI ID')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   const handleAddCard = async (e) => {
     e.preventDefault()
     if (cardForm.last4.length !== 4) {
-      alert('Please enter the last 4 digits of your card.')
+      alert(isArabic ? 'يرجى إدخال آخر 4 أرقام من البطاقة' : 'Please enter the last 4 digits of your card.')
       return
     }
 
@@ -92,7 +74,7 @@ export default function ProfilePaymentsTab() {
       else loadMethods()
       setCardForm({ bank: '', cardType: 'Debit Card', brand: 'VISA', last4: '', exp: '' })
       setIsAddCardOpen(false)
-      setFeedback('Card saved securely for checkout!')
+      setFeedback(isArabic ? 'تم حفظ البطاقة بأمان في قاعدة البيانات!' : 'Card saved securely for checkout!')
       setTimeout(() => setFeedback(''), 3000)
     } catch (err) {
       alert(err.message || 'Failed to save card')
@@ -101,31 +83,62 @@ export default function ProfilePaymentsTab() {
     }
   }
 
+  const handleAddBank = async (e) => {
+    e.preventDefault()
+    if (!bankForm.handle.trim()) {
+      alert(isArabic ? 'يرجى إدخال رقم الآيبان IBAN' : 'Please enter your IBAN number.')
+      return
+    }
+
+    setIsSubmitting(true)
+    try {
+      const res = await addPaymentMethod({
+        type: 'bank',
+        bank: bankForm.bank.trim() || 'Qatar National Bank (QNB)',
+        handle: bankForm.handle.trim().toUpperCase(),
+        app: bankForm.app.trim() || 'Bank Deposit / Wire',
+        isDefault: paymentMethods.length === 0,
+      })
+      if (Array.isArray(res)) setPaymentMethods(res)
+      else loadMethods()
+      setBankForm({ bank: 'Qatar National Bank (QNB)', handle: '', app: '' })
+      setIsAddBankOpen(false)
+      setFeedback(isArabic ? 'تم حفظ بيانات الحساب البنكي بنجاح!' : 'Bank account saved successfully!')
+      setTimeout(() => setFeedback(''), 3000)
+    } catch (err) {
+      alert(err.message || 'Failed to save bank account')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const handleRemove = async (id) => {
-    if (!confirm('Are you sure you want to remove this payment method?')) return
+    if (!confirm(isArabic ? 'هل أنت متأكد من رغبتك في حذف طريقة الدفع هذه؟' : 'Are you sure you want to remove this payment method?')) return
     try {
       const res = await deletePaymentMethod(id)
       if (Array.isArray(res)) setPaymentMethods(res)
       else setPaymentMethods((prev) => prev.filter((p) => (p._id || p.id) !== id))
-      setFeedback('Payment method removed.')
+      setFeedback(isArabic ? 'تم حذف طريقة الدفع.' : 'Payment method removed.')
       setTimeout(() => setFeedback(''), 3000)
     } catch (err) {
       alert(err.message || 'Failed to remove payment method')
     }
   }
 
-  const upiList = paymentMethods.filter((p) => p.type === 'upi')
-  const cardList = paymentMethods.filter((p) => p.type === 'card')
+  const cardList = paymentMethods.filter((p) => p.type === 'card' || (!p.type && p.last4))
+  const bankList = paymentMethods.filter((p) => p.type === 'bank' || p.type === 'qnb')
 
   return (
     <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-7 shadow-2xs flex flex-col gap-6">
       {/* Top Header */}
       <div className="pb-4 border-b border-[#f3f4f6]">
         <h2 className="text-[18px] font-bold text-[#111827]">
-          Saved Payment Methods
+          {isArabic ? 'طرق الدفع المحفوظة' : 'Saved Payment Methods'}
         </h2>
         <p className="text-[12.5px] text-[#6b7280] mt-0.5">
-          Manage your saved UPI accounts and bank cards for fast 1-click checkout.
+          {isArabic
+            ? 'إدارة البطاقات البنكية القطرية وحسابات بنك قطر الوطني المحفوظة لإتمام الطلب بضغطة زر.'
+            : 'Manage your saved bank cards and QNB banking details for fast 1-click checkout in Qatar.'}
         </p>
       </div>
 
@@ -135,79 +148,13 @@ export default function ProfilePaymentsTab() {
         </div>
       )}
 
-      {/* UPI Section */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-[14.5px] font-bold text-[#111827] flex items-center gap-2">
-            <span>UPI IDs</span>
-            <span className="text-[10px] font-black text-[#097939] bg-[#dcfce7] px-2 py-0.5 rounded">
-              UPI ►
-            </span>
-          </h3>
-          <button
-            type="button"
-            onClick={() => setIsAddUpiOpen(true)}
-            className="text-[12.5px] font-bold text-[#dc1414] hover:text-[#b91c1c] cursor-pointer"
-          >
-            + Add New UPI
-          </button>
-        </div>
-
-        {loading ? (
-          <div className="py-4 text-center text-gray-500 text-[12.5px] animate-pulse">Loading saved UPI...</div>
-        ) : upiList.length === 0 ? (
-          <div className="p-4 rounded-xl border border-dashed border-gray-300 text-center text-gray-500 text-[12.5px]">
-            No UPI accounts saved yet. Add your VPA for instant checkout.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {upiList.map((upi) => {
-              const id = upi._id || upi.id
-              return (
-                <div
-                  key={id}
-                  className="rounded-xl border border-[#e5e7eb] p-4 flex items-center justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-9 h-9 rounded-lg bg-[#fee2e2] text-[#dc1414] flex items-center justify-center font-bold text-[12px] shrink-0">
-                      @
-                    </div>
-                    <div className="min-w-0">
-                      <span className="text-[13px] font-bold text-[#111827] block truncate">
-                        {upi.handle}
-                      </span>
-                      <span className="text-[11px] text-[#6b7280]">{upi.app}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 shrink-0">
-                    {upi.isDefault && (
-                      <span className="text-[10px] font-bold text-[#16a34a] bg-[#dcfce7] px-2 py-0.5 rounded-full">
-                        Default
-                      </span>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => handleRemove(id)}
-                      className="text-[11.5px] text-[#dc2626] hover:underline"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </div>
-
       {/* Cards Section */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-[14.5px] font-bold text-[#111827] flex items-center gap-2">
-            <span>Credit &amp; Debit Cards</span>
+            <span>{isArabic ? 'البطاقات البنكية' : 'Credit & Debit Cards'}</span>
             <span className="text-[10.5px] font-medium text-[#6b7280]">
-              Encrypted &bull; PCI-DSS Secure
+              {isArabic ? 'مشفر • متوافق مع PCI-DSS' : 'Encrypted • PCI-DSS Secure'}
             </span>
           </h3>
           <button
@@ -215,15 +162,19 @@ export default function ProfilePaymentsTab() {
             onClick={() => setIsAddCardOpen(true)}
             className="text-[12.5px] font-bold text-[#dc1414] hover:text-[#b91c1c] cursor-pointer"
           >
-            + Add New Card
+            + {isArabic ? 'إضافة بطاقة جديدة' : 'Add New Card'}
           </button>
         </div>
 
         {loading ? (
-          <div className="py-4 text-center text-gray-500 text-[12.5px] animate-pulse">Loading cards...</div>
+          <div className="py-4 text-center text-gray-500 text-[12.5px] animate-pulse">
+            {isArabic ? 'جاري تحميل البطاقات...' : 'Loading cards...'}
+          </div>
         ) : cardList.length === 0 ? (
           <div className="p-4 rounded-xl border border-dashed border-gray-300 text-center text-gray-500 text-[12.5px]">
-            No cards saved yet. Add a credit or debit card for easy checkout.
+            {isArabic
+              ? 'لم تقم بحفظ أي بطاقة دفع بعد. أضف بطاقة ائتمان أو خصم لسهولة إتمام الطلبات.'
+              : 'No cards saved yet. Add a credit or debit card for seamless checkout.'}
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -232,34 +183,34 @@ export default function ProfilePaymentsTab() {
               return (
                 <div
                   key={id}
-                  className="rounded-xl border border-[#e5e7eb] p-4 flex flex-col justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors"
+                  className="rounded-xl border border-[#e5e7eb] p-4 flex flex-col justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors shadow-2xs"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <span className="text-[13px] font-bold text-[#111827] block">
-                        {card.bank}
+                        {card.bank || 'Bank Card'}
                       </span>
                       <span className="text-[11.5px] text-[#6b7280]">
-                        {card.cardType} ({card.brand})
+                        {card.cardType || 'Debit Card'} ({card.brand || 'VISA'})
                       </span>
                     </div>
                     {card.isDefault && (
                       <span className="text-[10px] font-bold text-[#16a34a] bg-[#dcfce7] px-2 py-0.5 rounded-full">
-                        Default
+                        {isArabic ? 'افتراضي' : 'Default'}
                       </span>
                     )}
                   </div>
 
                   <div className="flex items-center justify-between pt-2 border-t border-[#f3f4f6]">
                     <span className="font-mono text-[13px] font-extrabold text-[#111827] tracking-wider">
-                      •••• •••• •••• {card.last4}
+                      •••• •••• •••• {card.last4 || '••••'}
                     </span>
                     <button
                       type="button"
                       onClick={() => handleRemove(id)}
-                      className="text-[11.5px] text-[#dc2626] hover:underline"
+                      className="text-[11.5px] text-[#dc2626] hover:underline cursor-pointer"
                     >
-                      Delete
+                      {isArabic ? 'حذف' : 'Delete'}
                     </button>
                   </div>
                 </div>
@@ -269,78 +220,94 @@ export default function ProfilePaymentsTab() {
         )}
       </div>
 
-      {/* Add UPI Modal */}
-      {isAddUpiOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl w-full max-w-md p-5 shadow-xl">
-            <h3 className="text-[16px] font-bold text-[#111827] mb-3">Add UPI ID</h3>
-            <form onSubmit={handleAddUpi} className="flex flex-col gap-3 text-[13px]">
-              <div>
-                <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  Virtual Payment Address (VPA) *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. mobile@upi, name@okhdfcbank"
-                  value={upiHandle}
-                  onChange={(e) => setUpiHandle(e.target.value)}
-                  className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  UPI Provider
-                </label>
-                <select
-                  value={upiApp}
-                  onChange={(e) => setUpiApp(e.target.value)}
-                  className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
-                >
-                  <option value="Google Pay">Google Pay</option>
-                  <option value="PhonePe">PhonePe</option>
-                  <option value="Paytm UPI">Paytm UPI</option>
-                  <option value="BHIM UPI">BHIM UPI</option>
-                  <option value="Other Bank UPI">Other Bank UPI</option>
-                </select>
-              </div>
-
-              <div className="flex items-center justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsAddUpiOpen(false)}
-                  className="px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg"
-                >
-                  {isSubmitting ? 'Saving...' : 'Save UPI'}
-                </button>
-              </div>
-            </form>
-          </div>
+      {/* Bank Accounts Section (QNB & GCC Banking) */}
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-[14.5px] font-bold text-[#111827] flex items-center gap-2">
+            <span>{isArabic ? 'الحسابات البنكية (QNB / IBAN)' : 'Bank Transfer Accounts (QNB / IBAN)'}</span>
+            <span className="text-[10px] font-black text-[#0f766e] bg-[#f0fdfa] px-2 py-0.5 rounded">
+              QATAR
+            </span>
+          </h3>
+          <button
+            type="button"
+            onClick={() => setIsAddBankOpen(true)}
+            className="text-[12.5px] font-bold text-[#dc1414] hover:text-[#b91c1c] cursor-pointer"
+          >
+            + {isArabic ? 'إضافة حساب بنكي' : 'Add Bank Account'}
+          </button>
         </div>
-      )}
+
+        {loading ? (
+          <div className="py-4 text-center text-gray-500 text-[12.5px] animate-pulse">
+            {isArabic ? 'جاري التحميل...' : 'Loading accounts...'}
+          </div>
+        ) : bankList.length === 0 ? (
+          <div className="p-4 rounded-xl border border-dashed border-gray-300 text-center text-gray-500 text-[12.5px]">
+            {isArabic
+              ? 'لم تقم بحفظ أي حساب بنكي بعد. أضف رقم الآيبان للاسترداد المالي المباشر أو التحويل البنكي.'
+              : 'No bank accounts saved yet. Add your Qatari IBAN for direct refunds and bank deposits.'}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {bankList.map((b) => {
+              const id = b._id || b.id
+              return (
+                <div
+                  key={id}
+                  className="rounded-xl border border-[#e5e7eb] p-4 flex flex-col justify-between gap-3 bg-white hover:border-[#dc1414]/30 transition-colors shadow-2xs"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <span className="text-[13px] font-bold text-[#111827] block">
+                        {b.bank || 'Qatar National Bank'}
+                      </span>
+                      <span className="text-[11.5px] text-[#6b7280]">
+                        {b.app || 'Prestige Computers Account'}
+                      </span>
+                    </div>
+                    {b.isDefault && (
+                      <span className="text-[10px] font-bold text-[#16a34a] bg-[#dcfce7] px-2 py-0.5 rounded-full">
+                        {isArabic ? 'افتراضي' : 'Default'}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-[#f3f4f6]">
+                    <span className="font-mono text-[11px] font-bold text-[#0f766e] tracking-tight truncate max-w-[200px]">
+                      {b.handle || 'QA02 QNBA ••••'}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleRemove(id)}
+                      className="text-[11.5px] text-[#dc2626] hover:underline cursor-pointer"
+                    >
+                      {isArabic ? 'حذف' : 'Delete'}
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
 
       {/* Add Card Modal */}
       {isAddCardOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl w-full max-w-md p-5 shadow-xl">
-            <h3 className="text-[16px] font-bold text-[#111827] mb-3">Add Bank Card</h3>
+          <div className="bg-white rounded-2xl w-full max-w-md p-5 shadow-xl animate-scale-up">
+            <h3 className="text-[16px] font-bold text-[#111827] mb-3">
+              {isArabic ? 'إضافة بطاقة بنكية' : 'Add Bank Card'}
+            </h3>
             <form onSubmit={handleAddCard} className="flex flex-col gap-3 text-[13px]">
               <div>
                 <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                  Bank Name *
+                  {isArabic ? 'اسم البنك *' : 'Bank Name *'}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. HDFC Bank, SBI, ICICI"
+                  placeholder={isArabic ? 'مثال: QNB، البنك التجاري، بنك الدوحة' : 'e.g. QNB, Commercial Bank, Doha Bank'}
                   value={cardForm.bank}
                   onChange={(e) => setCardForm({ ...cardForm, bank: e.target.value })}
                   className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
@@ -350,29 +317,28 @@ export default function ProfilePaymentsTab() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    Card Type
+                    {isArabic ? 'نوع البطاقة' : 'Card Type'}
                   </label>
                   <select
                     value={cardForm.cardType}
                     onChange={(e) => setCardForm({ ...cardForm, cardType: e.target.value })}
-                    className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none"
+                    className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none bg-white"
                   >
-                    <option value="Debit Card">Debit Card</option>
-                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">{isArabic ? 'بطاقة خصم (Debit)' : 'Debit Card'}</option>
+                    <option value="Credit Card">{isArabic ? 'بطاقة ائتمان (Credit)' : 'Credit Card'}</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    Card Network
+                    {isArabic ? 'الشبكة' : 'Network'}
                   </label>
                   <select
                     value={cardForm.brand}
                     onChange={(e) => setCardForm({ ...cardForm, brand: e.target.value })}
-                    className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none"
+                    className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none bg-white"
                   >
                     <option value="VISA">VISA</option>
                     <option value="Mastercard">Mastercard</option>
-                    <option value="RuPay">RuPay</option>
                   </select>
                 </div>
               </div>
@@ -380,7 +346,7 @@ export default function ProfilePaymentsTab() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    Last 4 Digits *
+                    {isArabic ? 'آخر 4 أرقام *' : 'Last 4 Digits *'}
                   </label>
                   <input
                     type="text"
@@ -394,7 +360,7 @@ export default function ProfilePaymentsTab() {
                 </div>
                 <div>
                   <label className="block text-[12px] font-semibold text-[#374151] mb-1">
-                    Expiry (MM/YY)
+                    {isArabic ? 'تاريخ الانتهاء (MM/YY)' : 'Expiry (MM/YY)'}
                   </label>
                   <input
                     type="text"
@@ -410,16 +376,90 @@ export default function ProfilePaymentsTab() {
                 <button
                   type="button"
                   onClick={() => setIsAddCardOpen(false)}
-                  className="px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700"
+                  className="px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 cursor-pointer"
                 >
-                  Cancel
+                  {isArabic ? 'إلغاء' : 'Cancel'}
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg"
+                  className="px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg cursor-pointer"
                 >
-                  {isSubmitting ? 'Saving...' : 'Save Card'}
+                  {isSubmitting ? (isArabic ? 'جاري الحفظ...' : 'Saving...') : (isArabic ? 'حفظ البطاقة' : 'Save Card')}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Add Bank Account Modal */}
+      {isAddBankOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-2xl w-full max-w-md p-5 shadow-xl animate-scale-up">
+            <h3 className="text-[16px] font-bold text-[#111827] mb-3">
+              {isArabic ? 'إضافة حساب بنكي / آيبان (قطر)' : 'Add Qatar Bank Account / IBAN'}
+            </h3>
+            <form onSubmit={handleAddBank} className="flex flex-col gap-3 text-[13px]">
+              <div>
+                <label className="block text-[12px] font-semibold text-[#374151] mb-1">
+                  {isArabic ? 'البنك القطري *' : 'Bank in Qatar *'}
+                </label>
+                <select
+                  value={bankForm.bank}
+                  onChange={(e) => setBankForm({ ...bankForm, bank: e.target.value })}
+                  className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none bg-white"
+                >
+                  <option value="Qatar National Bank (QNB)">Qatar National Bank (QNB)</option>
+                  <option value="Commercial Bank of Qatar (CBQ)">Commercial Bank of Qatar (CBQ)</option>
+                  <option value="Qatar Islamic Bank (QIB)">Qatar Islamic Bank (QIB)</option>
+                  <option value="Doha Bank">Doha Bank</option>
+                  <option value="Masraf Al Rayan">Masraf Al Rayan</option>
+                  <option value="Dukhan Bank">Dukhan Bank</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[12px] font-semibold text-[#374151] mb-1">
+                  {isArabic ? 'رقم الآيبان الدولي (IBAN) *' : 'Qatar IBAN (29 Characters) *'}
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="QA00 QNBA 0000 0000 0000 0000 0000 0"
+                  value={bankForm.handle}
+                  onChange={(e) => setBankForm({ ...bankForm, handle: e.target.value.toUpperCase() })}
+                  className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none font-mono uppercase"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[12px] font-semibold text-[#374151] mb-1">
+                  {isArabic ? 'اسم صاحب الحساب' : 'Account Beneficiary Name'}
+                </label>
+                <input
+                  type="text"
+                  placeholder={isArabic ? 'مثال: أحمد الكواري' : 'e.g. Ahmed Al-Kuwari'}
+                  value={bankForm.app}
+                  onChange={(e) => setBankForm({ ...bankForm, app: e.target.value })}
+                  className="w-full border border-gray-300 rounded-xl px-3 py-2 outline-none"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsAddBankOpen(false)}
+                  className="px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 cursor-pointer"
+                >
+                  {isArabic ? 'إلغاء' : 'Cancel'}
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-5 py-1.5 bg-[#dc1414] hover:bg-[#b91c1c] text-white font-bold rounded-lg cursor-pointer"
+                >
+                  {isSubmitting ? (isArabic ? 'جاري الحفظ...' : 'Saving...') : (isArabic ? 'حفظ الحساب' : 'Save Account')}
                 </button>
               </div>
             </form>

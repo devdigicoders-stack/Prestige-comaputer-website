@@ -97,10 +97,10 @@ export const BLOG_POSTS = [
     tags: ['Computer Rental', 'Startups', 'Fintech', 'PCS Rent On'],
     content: `
       <h2>Preserve Your Working Capital</h2>
-      <p>Purchasing 10 high-spec laptops for a new startup team can cost upwards of ₹6,00,000 to ₹10,00,000 upfront. With Prestige Computers Rent On, that expense is converted into affordable, 100% tax-deductible monthly operating expenses (OPEX).</p>
+      <p>Purchasing 10 high-spec laptops for a new corporate or startup team in Qatar can cost upwards of QAR 25,000 to QAR 45,000 upfront. With Prestige Computers IT Leasing &amp; Rentals, that expense is converted into affordable, predictable monthly operating expenses (OPEX).</p>
 
       <h2>Zero Maintenance Headaches</h2>
-      <p>If any rented machine suffers a hardware malfunction, our Kanpur support depot provides instant replacement within 24 hours, guaranteeing zero team downtime.</p>
+      <p>If any rented machine suffers a hardware malfunction, our Doha support depot (Al Mirqab Mall) provides instant replacement within 24 hours, guaranteeing zero team downtime.</p>
     `,
   },
 ]

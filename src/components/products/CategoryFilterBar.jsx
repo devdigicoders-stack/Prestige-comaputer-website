@@ -5,22 +5,12 @@ import { getActiveCategories, getCategoryImageUrl } from '../../services/categor
 import { useLanguage } from '../../context/LanguageContext'
 
 const CATEGORY_TRANSLATIONS = {
-  'all': 'جميع المنتجات',
-  'laptops': 'أجهزة لابتوب',
-  'laptop': 'أجهزة لابتوب',
-  'desktops': 'أجهزة مكتبية',
-  'desktop': 'أجهزة مكتبية',
-  'workstations': 'محطات عمل',
-  'workstation': 'محطات عمل',
-  'gaming-pcs': 'تجميعات ألعاب',
-  'gaming': 'تجميعات ألعاب',
-  'components': 'قطع غيار',
-  'monitors': 'شاشات عرض',
-  'monitor': 'شاشات عرض',
-  'accessories': 'ملحقات وإكسسوارات',
-  'networking': 'أجهزة شبكات',
-  'software': 'برمجيات',
-  'all-in-one': 'الكل في واحد',
+  all: 'جميع المنتجات',
+  gaming: 'قسم الألعاب',
+  'gaming-pcs': 'قسم الألعاب',
+  business: 'أجهزة الأعمال',
+  'pre-owned': 'مستعمل مضمون',
+  'genuine-pre-owned': 'مستعمل مضمون',
 }
 
 function AllProductsIcon() {
@@ -46,8 +36,22 @@ export default function CategoryFilterBar({
     {
       id: 'all',
       label: 'All Products',
-      image: getCategoryImageUrl('/uploads/category-all-products.svg'),
-      count: 0,
+      count: 12,
+    },
+    {
+      id: 'gaming',
+      label: 'Gaming',
+      count: 4,
+    },
+    {
+      id: 'business',
+      label: 'Business',
+      count: 4,
+    },
+    {
+      id: 'pre-owned',
+      label: 'Genuine Pre-Owned',
+      count: 4,
     },
   ])
 

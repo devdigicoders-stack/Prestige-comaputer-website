@@ -669,10 +669,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$StoreContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/StoreContext.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/formatCurrency.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/productApi.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -692,12 +694,12 @@ var _s = __turbopack_context__.k.signature();
             d: "M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-            lineNumber: 13,
+            lineNumber: 14,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-        lineNumber: 12,
+        lineNumber: 13,
         columnNumber: 5
     }, this);
 }
@@ -716,12 +718,12 @@ function CartIcon(param) {
             d: "M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.7 2.822-7.1H5.106m2.394 7.1L5.106 5.272M7.5 21a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm10.5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-            lineNumber: 21,
+            lineNumber: 22,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-        lineNumber: 20,
+        lineNumber: 21,
         columnNumber: 5
     }, this);
 }
@@ -738,12 +740,12 @@ function HeartSolidIcon(param) {
             d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-            lineNumber: 29,
+            lineNumber: 30,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-        lineNumber: 28,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }
@@ -761,7 +763,7 @@ function MoreDotsIcon(param) {
                 r: "1.8"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 37,
+                lineNumber: 38,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -770,7 +772,7 @@ function MoreDotsIcon(param) {
                 r: "1.8"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 38,
+                lineNumber: 39,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -779,21 +781,17 @@ function MoreDotsIcon(param) {
                 r: "1.8"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 39,
+                lineNumber: 40,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-        lineNumber: 36,
+        lineNumber: 37,
         columnNumber: 5
     }, this);
 }
 _c3 = MoreDotsIcon;
-function formatINR(val) {
-    if (!val && val !== 0) return '';
-    return "₹".concat(Number(val).toLocaleString('en-IN'));
-}
 /* Build spec chips from product.specs */ function buildSpecChips() {
     let specs = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
     const chips = [];
@@ -815,14 +813,14 @@ function formatINR(val) {
                         className: "w-5 h-5 rounded-full bg-gray-200 shrink-0"
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 65,
+                        lineNumber: 61,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-24 h-20 sm:w-28 sm:h-24 bg-gray-100 rounded-xl shrink-0"
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 66,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -832,33 +830,33 @@ function formatINR(val) {
                                 className: "h-3 bg-gray-100 rounded w-16"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 68,
+                                lineNumber: 64,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-4 bg-gray-100 rounded w-3/4"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 69,
+                                lineNumber: 65,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "h-3 bg-gray-100 rounded w-1/2"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 70,
+                                lineNumber: 66,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 67,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 64,
+                lineNumber: 60,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -868,26 +866,26 @@ function formatINR(val) {
                         className: "w-20 h-8 bg-gray-100 rounded-lg"
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 74,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "w-24 h-9 bg-gray-100 rounded-xl"
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 75,
+                        lineNumber: 71,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 73,
+                lineNumber: 69,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-        lineNumber: 63,
+        lineNumber: 59,
         columnNumber: 5
     }, this);
 }
@@ -977,13 +975,13 @@ function WishlistItemsList() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 143,
+                                lineNumber: 139,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 141,
+                        lineNumber: 137,
                         columnNumber: 9
                     }, this),
                     wishlistIds.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -995,26 +993,26 @@ function WishlistItemsList() {
                                 className: "w-4 h-4 shrink-0"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 154,
+                                lineNumber: 150,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: isArabic ? 'مسح القائمة' : 'Clear Wishlist'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 155,
+                                lineNumber: 151,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 149,
+                        lineNumber: 145,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 140,
+                lineNumber: 136,
                 columnNumber: 7
             }, this),
             loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1023,12 +1021,12 @@ function WishlistItemsList() {
                     length: Math.min(wishlistIds.length, 3)
                 }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SkeletonCard, {}, i, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 164,
+                        lineNumber: 160,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 162,
+                lineNumber: 158,
                 columnNumber: 9
             }, this),
             !loading && wishlistIds.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1048,17 +1046,17 @@ function WishlistItemsList() {
                                 d: "M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 174,
+                                lineNumber: 170,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                            lineNumber: 173,
+                            lineNumber: 169,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 172,
+                        lineNumber: 168,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1066,7 +1064,7 @@ function WishlistItemsList() {
                         children: isArabic ? 'قائمة الرغبات فارغة' : 'Your wishlist is empty'
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 177,
+                        lineNumber: 173,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1074,7 +1072,7 @@ function WishlistItemsList() {
                         children: isArabic ? 'لم تقم بحفظ أي عناصر بعد. استكشف مجموعتنا الكبيرة من الحواسيب المحمولة وأجهزة الألعاب والشاشات والملحقات.' : 'You haven\'t saved any items yet. Explore our huge collection of high-performance laptops, gaming desktops, monitors and accessories.'
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 180,
+                        lineNumber: 176,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1085,18 +1083,18 @@ function WishlistItemsList() {
                             children: isArabic ? 'استكشف المنتجات' : 'Explore Products'
                         }, void 0, false, {
                             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                            lineNumber: 186,
+                            lineNumber: 182,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 185,
+                        lineNumber: 181,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 171,
+                lineNumber: 167,
                 columnNumber: 9
             }, this),
             !loading && products.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1142,12 +1140,12 @@ function WishlistItemsList() {
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                            lineNumber: 244,
+                                            lineNumber: 240,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                        lineNumber: 234,
+                                        lineNumber: 230,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1160,7 +1158,7 @@ function WishlistItemsList() {
                                             loading: "lazy"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                            lineNumber: 253,
+                                            lineNumber: 249,
                                             columnNumber: 23
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                             className: "w-10 h-10 text-gray-300",
@@ -1177,7 +1175,7 @@ function WishlistItemsList() {
                                                     strokeWidth: "1.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                    lineNumber: 261,
+                                                    lineNumber: 257,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1186,18 +1184,18 @@ function WishlistItemsList() {
                                                     strokeLinecap: "round"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                    lineNumber: 262,
+                                                    lineNumber: 258,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                            lineNumber: 260,
+                                            lineNumber: 256,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                        lineNumber: 248,
+                                        lineNumber: 244,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1208,7 +1206,7 @@ function WishlistItemsList() {
                                                 children: badge
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 270,
+                                                lineNumber: 266,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1219,12 +1217,12 @@ function WishlistItemsList() {
                                                     children: title
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                    lineNumber: 276,
+                                                    lineNumber: 272,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 275,
+                                                lineNumber: 271,
                                                 columnNumber: 21
                                             }, this),
                                             specChips.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1236,19 +1234,19 @@ function WishlistItemsList() {
                                                                 className: "w-1 h-1 rounded-full bg-gray-400 inline-block"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                                lineNumber: 286,
+                                                                lineNumber: 282,
                                                                 columnNumber: 29
                                                             }, this),
                                                             chip
                                                         ]
                                                     }, i, true, {
                                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                        lineNumber: 285,
+                                                        lineNumber: 281,
                                                         columnNumber: 27
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 283,
+                                                lineNumber: 279,
                                                 columnNumber: 23
                                             }, this),
                                             product.brand && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1256,19 +1254,19 @@ function WishlistItemsList() {
                                                 children: product.brand
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 295,
+                                                lineNumber: 291,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                        lineNumber: 268,
+                                        lineNumber: 264,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 232,
+                                lineNumber: 228,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1279,10 +1277,10 @@ function WishlistItemsList() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "text-lg sm:text-xl font-black text-[#dc1414] leading-tight",
-                                                children: formatINR(price)
+                                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(price, isArabic)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 304,
+                                                lineNumber: 300,
                                                 columnNumber: 21
                                             }, this),
                                             originalPrice && originalPrice > price && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1290,10 +1288,10 @@ function WishlistItemsList() {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-[11.5px] text-gray-400 line-through",
-                                                        children: formatINR(originalPrice)
+                                                        children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(originalPrice, isArabic)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                        lineNumber: 309,
+                                                        lineNumber: 305,
                                                         columnNumber: 25
                                                     }, this),
                                                     discount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1301,19 +1299,19 @@ function WishlistItemsList() {
                                                         children: discount
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 309,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 308,
+                                                lineNumber: 304,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                        lineNumber: 303,
+                                        lineNumber: 299,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1325,20 +1323,20 @@ function WishlistItemsList() {
                                                 className: "w-4 h-4 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 331,
+                                                lineNumber: 327,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: isAdded ? isArabic ? 'تمت الإضافة!' : 'Added!' : isArabic ? 'أضف إلى السلة' : 'Add to Cart'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                                lineNumber: 332,
+                                                lineNumber: 328,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                        lineNumber: 322,
+                                        lineNumber: 318,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1349,30 +1347,30 @@ function WishlistItemsList() {
                                             className: "w-4 h-4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                            lineNumber: 349,
+                                            lineNumber: 345,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                        lineNumber: 344,
+                                        lineNumber: 340,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                                lineNumber: 301,
+                                lineNumber: 297,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, prodId, true, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 227,
+                        lineNumber: 223,
                         columnNumber: 15
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 198,
+                lineNumber: 194,
                 columnNumber: 9
             }, this),
             !loading && wishlistIds.length > 0 && products.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1383,7 +1381,7 @@ function WishlistItemsList() {
                         children: isArabic ? 'تعذر تحميل المنتجات المحفوظة، قد تكون غير متوفرة حالياً في المتجر.' : 'Could not load your saved items. They may have been removed from our store.'
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 361,
+                        lineNumber: 357,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1393,19 +1391,19 @@ function WishlistItemsList() {
                         children: isArabic ? 'مسح القائمة' : 'Clear Wishlist'
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                        lineNumber: 366,
+                        lineNumber: 362,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-                lineNumber: 360,
+                lineNumber: 356,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/wishlist/WishlistItemsList.jsx",
-        lineNumber: 138,
+        lineNumber: 134,
         columnNumber: 5
     }, this);
 }
@@ -1439,10 +1437,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$StoreContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/StoreContext.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$LanguageContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/context/LanguageContext.jsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/utils/formatCurrency.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$productApi$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/productApi.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -1461,12 +1461,12 @@ function HeartToggleIcon(param) {
                 d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                lineNumber: 13,
+                lineNumber: 14,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-            lineNumber: 12,
+            lineNumber: 13,
             columnNumber: 7
         }, this);
     }
@@ -1482,12 +1482,12 @@ function HeartToggleIcon(param) {
             d: "M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-            lineNumber: 19,
+            lineNumber: 20,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-        lineNumber: 18,
+        lineNumber: 19,
         columnNumber: 5
     }, this);
 }
@@ -1506,12 +1506,12 @@ function ChevronLeftIcon(param) {
             d: "M15.75 19.5L8.25 12l7.5-7.5"
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-            lineNumber: 27,
+            lineNumber: 28,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-        lineNumber: 26,
+        lineNumber: 27,
         columnNumber: 5
     }, this);
 }
@@ -1530,12 +1530,12 @@ function ChevronRightIcon(param) {
             d: "M8.25 4.5l7.5 7.5-7.5 7.5"
         }, void 0, false, {
             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-            lineNumber: 35,
+            lineNumber: 36,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-        lineNumber: 34,
+        lineNumber: 35,
         columnNumber: 5
     }, this);
 }
@@ -1553,7 +1553,7 @@ function CartPlusIcon(param) {
                 d: "M2.5 4h2.5l2.2 10.2a1.5 1.5 0 0 0 1.46 1.2h8.84a1.5 1.5 0 0 0 1.45-1.13L20.5 7.5H6.2"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                lineNumber: 43,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1564,7 +1564,7 @@ function CartPlusIcon(param) {
                 stroke: "none"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                lineNumber: 44,
+                lineNumber: 45,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1575,21 +1575,17 @@ function CartPlusIcon(param) {
                 stroke: "none"
             }, void 0, false, {
                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                lineNumber: 45,
+                lineNumber: 46,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-        lineNumber: 42,
+        lineNumber: 43,
         columnNumber: 5
     }, this);
 }
 _c3 = CartPlusIcon;
-function formatINR(val) {
-    if (val === null || val === undefined || isNaN(val)) return '₹0';
-    return "₹".concat(Number(val).toLocaleString('en-IN'));
-}
 function WishlistRecommendations() {
     _s();
     const scrollContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
@@ -1672,7 +1668,7 @@ function WishlistRecommendations() {
                                     children: "أيضاً"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                    lineNumber: 117,
+                                    lineNumber: 113,
                                     columnNumber: 24
                                 }, this)
                             ]
@@ -1684,14 +1680,14 @@ function WishlistRecommendations() {
                                     children: "Also Like"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                    lineNumber: 121,
+                                    lineNumber: 117,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                        lineNumber: 114,
+                        lineNumber: 110,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1702,7 +1698,7 @@ function WishlistRecommendations() {
                                 children: isArabic ? 'عرض المزيد' : 'View More'
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                lineNumber: 130,
+                                lineNumber: 126,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1711,19 +1707,19 @@ function WishlistRecommendations() {
                                 children: "→"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                lineNumber: 131,
+                                lineNumber: 127,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                        lineNumber: 126,
+                        lineNumber: 122,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                lineNumber: 113,
+                lineNumber: 109,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1738,12 +1734,12 @@ function WishlistRecommendations() {
                             className: "w-4 h-4"
                         }, void 0, false, {
                             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                            lineNumber: 144,
+                            lineNumber: 140,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                        lineNumber: 138,
+                        lineNumber: 134,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1758,34 +1754,34 @@ function WishlistRecommendations() {
                                         className: "w-full h-32 bg-gray-100 rounded-xl mb-3"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                        lineNumber: 158,
+                                        lineNumber: 154,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-4 bg-gray-100 rounded w-3/4 mb-2"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                        lineNumber: 159,
+                                        lineNumber: 155,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-4 bg-gray-100 rounded w-1/2 mb-3"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                        lineNumber: 160,
+                                        lineNumber: 156,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "h-8 bg-gray-100 rounded-lg w-full mt-2"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                        lineNumber: 161,
+                                        lineNumber: 157,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, "skel-".concat(idx), true, {
                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                lineNumber: 154,
+                                lineNumber: 150,
                                 columnNumber: 15
                             }, this)) : recommendations.map((item)=>{
                             var _item_images, _item_images_, _item_images1;
@@ -1821,12 +1817,12 @@ function WishlistRecommendations() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                    lineNumber: 206,
+                                                    lineNumber: 202,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                lineNumber: 196,
+                                                lineNumber: 192,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1839,7 +1835,7 @@ function WishlistRecommendations() {
                                                     loading: "lazy"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                    lineNumber: 214,
+                                                    lineNumber: 210,
                                                     columnNumber: 25
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "w-full h-full flex flex-col items-center justify-center text-gray-300",
@@ -1857,7 +1853,7 @@ function WishlistRecommendations() {
                                                                 strokeWidth: "1.5"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                                lineNumber: 227,
+                                                                lineNumber: 223,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1866,29 +1862,29 @@ function WishlistRecommendations() {
                                                                 strokeLinecap: "round"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                                lineNumber: 228,
+                                                                lineNumber: 224,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                        lineNumber: 222,
+                                                        lineNumber: 218,
                                                         columnNumber: 27
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                    lineNumber: 221,
+                                                    lineNumber: 217,
                                                     columnNumber: 25
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                lineNumber: 209,
+                                                lineNumber: 205,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                        lineNumber: 195,
+                                        lineNumber: 191,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1904,12 +1900,12 @@ function WishlistRecommendations() {
                                                             children: title
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                            lineNumber: 239,
+                                                            lineNumber: 235,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                        lineNumber: 238,
+                                                        lineNumber: 234,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1917,18 +1913,18 @@ function WishlistRecommendations() {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-[16px] font-black text-[#dc1414]",
-                                                                children: formatINR(price)
+                                                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(price, isArabic)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                                lineNumber: 249,
+                                                                lineNumber: 245,
                                                                 columnNumber: 25
                                                             }, this),
                                                             originalPrice && originalPrice > price && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-[12px] text-gray-400 line-through",
-                                                                children: formatINR(originalPrice)
+                                                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$utils$2f$formatCurrency$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(originalPrice, isArabic)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                                lineNumber: 253,
+                                                                lineNumber: 249,
                                                                 columnNumber: 27
                                                             }, this),
                                                             discountText && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1936,19 +1932,19 @@ function WishlistRecommendations() {
                                                                 children: discountText
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                                lineNumber: 258,
+                                                                lineNumber: 254,
                                                                 columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                        lineNumber: 248,
+                                                        lineNumber: 244,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                lineNumber: 237,
+                                                lineNumber: 233,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1972,43 +1968,43 @@ function WishlistRecommendations() {
                                                             className: "w-3.5 h-3.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                            lineNumber: 282,
+                                                            lineNumber: 278,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: isArabic ? 'أضف إلى السلة' : 'Add to Cart'
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                            lineNumber: 283,
+                                                            lineNumber: 279,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                    lineNumber: 267,
+                                                    lineNumber: 263,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                                lineNumber: 266,
+                                                lineNumber: 262,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                        lineNumber: 236,
+                                        lineNumber: 232,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, prodId, true, {
                                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                                lineNumber: 190,
+                                lineNumber: 186,
                                 columnNumber: 17
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                        lineNumber: 148,
+                        lineNumber: 144,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2020,24 +2016,24 @@ function WishlistRecommendations() {
                             className: "w-4 h-4"
                         }, void 0, false, {
                             fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                            lineNumber: 300,
+                            lineNumber: 296,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                        lineNumber: 294,
+                        lineNumber: 290,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-                lineNumber: 136,
+                lineNumber: 132,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/wishlist/WishlistRecommendations.jsx",
-        lineNumber: 111,
+        lineNumber: 107,
         columnNumber: 5
     }, this);
 }

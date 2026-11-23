@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import { normalizeCartItem } from './CartItemsList'
+import { validateCouponApi, getActiveCouponsApi } from '../../services/couponApi'
 
 function LockIcon({ className = 'w-4 h-4' }) {
   return (
@@ -33,11 +35,14 @@ function TruckIcon({ className = 'w-4 h-4' }) {
 
 export default function OrderSummary() {
   const router = useRouter()
-  const { isRtl } = useLanguage()
+  const { isArabic, isRtl } = useLanguage()
   const { cartItems, openLoginModal, currentUser } = useStore()
   const [coupon, setCoupon] = useState('')
-  const [couponApplied, setCouponApplied] = useState(false)
+  const [appliedCoupon, setAppliedCoupon] = useState(null)
   const [couponError, setCouponError] = useState('')
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false)
+  const [availableCoupons, setAvailableCoupons] = useState([])
+  const [showAvailableOffers, setShowAvailableOffers] = useState(false)
 
   // Calculate Subtotal from cart items dynamically
   const selectedItems = (Array.isArray(cartItems) ? cartItems : [])
@@ -49,35 +54,114 @@ export default function OrderSummary() {
   const subtotal = selectedItems.reduce((acc, it) => acc + it.price * (it.quantity || 1), 0)
 
   // Dynamic delivery charge calculated from cart items
-  const deliveryCharges = selectedItems.reduce((acc, it) => {
+  const rawDeliveryCharges = selectedItems.reduce((acc, it) => {
     const isFree = it.isFreeDelivery !== false && Number(it.deliveryCharge || 0) === 0
     return acc + (isFree ? 0 : Number(it.deliveryCharge || 0) * (it.quantity || 1))
   }, 0)
 
-  // STRICT RULE: No discount applied automatically! Discount is ₹0 until a coupon is applied.
-  const couponDiscount = couponApplied
-    ? (coupon.trim().toUpperCase() === 'SAVE5'
-        ? Math.round(subtotal * 0.05)
-        : Math.round(subtotal * 0.1))
-    : 0
-  const totalDiscount = couponDiscount
-  const finalTotal = Math.max(0, subtotal - totalDiscount + deliveryCharges)
+  // Load available coupons and existing session coupon on mount
+  useEffect(() => {
+    let isMounted = true
+    getActiveCouponsApi().then((data) => {
+      if (isMounted && Array.isArray(data)) {
+        setAvailableCoupons(data)
+      }
+    })
 
-  const handleApplyCoupon = (e) => {
-    e.preventDefault()
-    const code = coupon.trim().toUpperCase()
+    try {
+      const saved = sessionStorage.getItem('pcs_applied_coupon')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (parsed && parsed.code) {
+          setAppliedCoupon(parsed)
+        }
+      }
+    } catch {}
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  // Dynamic live calculation of coupon discount
+  let couponDiscount = 0
+  let effectiveDeliveryCharge = rawDeliveryCharges
+
+  if (appliedCoupon) {
+    if (appliedCoupon.isFreeShipping || appliedCoupon.discountType === 'free_shipping') {
+      effectiveDeliveryCharge = 0
+      couponDiscount = 0
+    } else if (appliedCoupon.discountType === 'percentage') {
+      let disc = Math.round((subtotal * appliedCoupon.discountValue) / 100)
+      if (appliedCoupon.maxDiscountAmount && disc > appliedCoupon.maxDiscountAmount) {
+        disc = appliedCoupon.maxDiscountAmount
+      }
+      couponDiscount = disc
+    } else {
+      couponDiscount = Math.min(subtotal, appliedCoupon.discountAmount ?? appliedCoupon.discountValue)
+    }
+  }
+
+  const totalDiscount = couponDiscount
+  const finalTotal = Math.max(0, subtotal - totalDiscount + effectiveDeliveryCharge)
+
+  const handleApplyCouponCode = async (codeToApply) => {
+    const code = (codeToApply || coupon).trim().toUpperCase()
     if (!code) {
-      setCouponError('Please enter a coupon code')
+      setCouponError(isArabic ? 'يرجى إدخال رمز الخصم' : 'Please enter a coupon code')
       return
     }
-    setCouponApplied(true)
+
     setCouponError('')
+    setIsValidatingCoupon(true)
+
+    try {
+      const res = await validateCouponApi({
+        code,
+        cartTotal: subtotal,
+        deliveryCharge: rawDeliveryCharges,
+      })
+
+      const couponObj = {
+        code: res.code,
+        label: res.description,
+        discountType: res.discountType,
+        discountValue: res.discountValue,
+        discountAmount: res.discountAmount,
+        isFreeShipping: res.isFreeShipping,
+        maxDiscountAmount: res.maxDiscountAmount,
+      }
+
+      setAppliedCoupon(couponObj)
+      setCoupon('')
+      try {
+        sessionStorage.setItem('pcs_applied_coupon', JSON.stringify(couponObj))
+      } catch {}
+    } catch (err) {
+      setCouponError(err.message || (isArabic ? 'رمز الخصم غير صالح' : 'Invalid coupon code'))
+    } finally {
+      setIsValidatingCoupon(false)
+    }
+  }
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null)
+    setCoupon('')
+    setCouponError('')
+    try {
+      sessionStorage.removeItem('pcs_applied_coupon')
+    } catch {}
   }
 
   const handleCheckout = () => {
     if (!currentUser) {
       openLoginModal()
       return
+    }
+    if (appliedCoupon) {
+      try {
+        sessionStorage.setItem('pcs_applied_coupon', JSON.stringify(appliedCoupon))
+      } catch {}
     }
     router.push('/checkout')
   }
@@ -99,16 +183,16 @@ export default function OrderSummary() {
                 : `Subtotal (${totalCount} ${totalCount === 1 ? 'Item' : 'Items'})`}
             </span>
             <span className="font-bold text-gray-900">
-              ₹{subtotal.toLocaleString('en-IN')}
+              {formatCurrency(subtotal, isArabic)}
             </span>
           </div>
 
           <div className="flex items-center justify-between text-emerald-600 font-semibold">
             <span>
               {isRtl ? 'الخصم' : 'Discount'}{' '}
-              {couponApplied && coupon ? `(${coupon.trim().toUpperCase()})` : ''}
+              {appliedCoupon ? `(${appliedCoupon.code})` : ''}
             </span>
-            <span>{totalDiscount > 0 ? `- ₹${totalDiscount.toLocaleString('en-IN')}` : '₹0'}</span>
+            <span>{totalDiscount > 0 ? `- ${formatCurrency(totalDiscount, isArabic)}` : (isArabic ? '0 ر.ق' : 'QAR 0')}</span>
           </div>
 
           <div className="flex items-center justify-between text-gray-700">
@@ -116,10 +200,10 @@ export default function OrderSummary() {
               <TruckIcon className="w-4 h-4 text-gray-500" />
               <span>{isRtl ? 'رسوم التوصيل' : 'Delivery Charges'}</span>
             </span>
-            <span className={`font-semibold ${deliveryCharges === 0 ? 'text-emerald-600' : 'text-gray-900'}`}>
-              {deliveryCharges === 0
+            <span className={`font-semibold ${effectiveDeliveryCharge === 0 ? 'text-emerald-600' : 'text-gray-900'}`}>
+              {effectiveDeliveryCharge === 0
                 ? (isRtl ? 'مجاني' : 'Free')
-                : `₹${deliveryCharges.toLocaleString('en-IN')}`}
+                : formatCurrency(effectiveDeliveryCharge, isArabic)}
             </span>
           </div>
         </div>
@@ -136,7 +220,7 @@ export default function OrderSummary() {
               </span>
             </div>
             <span className="text-2xl font-black text-[#dc1414] tracking-tight">
-              ₹{finalTotal.toLocaleString('en-IN')}
+              {formatCurrency(finalTotal, isArabic)}
             </span>
           </div>
 
@@ -156,41 +240,111 @@ export default function OrderSummary() {
         <div className="mt-6 pt-5 border-t border-gray-100">
           <label
             htmlFor="cart-coupon-input"
-            className="flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-gray-800 mb-2.5"
+            className="flex items-center justify-between text-xs sm:text-[13px] font-bold text-gray-800 mb-2.5"
           >
-            <TicketIcon className="w-4 h-4 text-[#dc1414]" />
-            <span>{isRtl ? 'هل لديك كود خصم؟' : 'Have a Coupon Code?'}</span>
+            <span className="flex items-center gap-1.5">
+              <TicketIcon className="w-4 h-4 text-[#dc1414]" />
+              <span>{isRtl ? 'هل لديك كود خصم؟' : 'Have a Coupon Code?'}</span>
+            </span>
+            {availableCoupons.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowAvailableOffers(!showAvailableOffers)}
+                className="text-[11px] text-[#dc1414] hover:underline font-semibold cursor-pointer"
+              >
+                {showAvailableOffers
+                  ? (isRtl ? 'إخفاء العروض' : 'Hide Offers')
+                  : (isRtl ? 'عرض الكوبونات المتاحة' : 'View Offers')}
+              </button>
+            )}
           </label>
 
-          <form onSubmit={handleApplyCoupon} className="flex gap-2">
-            <input
-              id="cart-coupon-input"
-              type="text"
-              value={coupon}
-              onChange={(e) => {
-                setCoupon(e.target.value)
-                setCouponError('')
+          {appliedCoupon ? (
+            <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="px-2 py-0.5 rounded text-[11px] font-black bg-emerald-600 text-white tracking-wide">
+                  {appliedCoupon.code}
+                </span>
+                <span className="text-xs text-emerald-800 font-medium truncate">
+                  {appliedCoupon.label || (isRtl ? 'تم تطبيق الخصم' : 'Coupon applied!')}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={handleRemoveCoupon}
+                className="text-xs text-red-600 hover:text-red-800 font-bold px-2 py-1 hover:bg-red-50 rounded-lg transition-colors cursor-pointer shrink-0"
+              >
+                {isRtl ? 'إلغاء' : 'Remove'}
+              </button>
+            </div>
+          ) : (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                handleApplyCouponCode()
               }}
-              placeholder={isRtl ? 'أدخل كود الخصم' : 'Enter coupon code'}
-              className="flex-1 min-w-0 px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-gray-250 bg-gray-50/50 focus:outline-none focus:ring-1.5 focus:ring-[#dc1414] transition-all"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 rounded-xl border border-[#dc1414] text-[#dc1414] hover:bg-red-50 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+              className="flex gap-2"
             >
-              {isRtl ? 'تطبيق' : 'Apply'}
-            </button>
-          </form>
-
-          {couponApplied && (
-            <p className="text-[11.5px] text-emerald-600 font-semibold mt-1.5">
-              ✓ Coupon applied successfully! Extra 5% off included.
-            </p>
+              <input
+                id="cart-coupon-input"
+                type="text"
+                value={coupon}
+                onChange={(e) => {
+                  setCoupon(e.target.value)
+                  setCouponError('')
+                }}
+                placeholder={isRtl ? 'أدخل كود الخصم (مثال: PRESTIGE10)' : 'Enter coupon code (e.g. PRESTIGE10)'}
+                className="flex-1 min-w-0 px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-gray-250 bg-gray-50/50 focus:outline-none focus:ring-1.5 focus:ring-[#dc1414] transition-all uppercase"
+              />
+              <button
+                type="submit"
+                disabled={isValidatingCoupon || !coupon.trim()}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
+                  isValidatingCoupon || !coupon.trim()
+                    ? 'border border-gray-200 text-gray-400 bg-gray-100 cursor-not-allowed'
+                    : 'border border-[#dc1414] text-[#dc1414] hover:bg-red-50'
+                }`}
+              >
+                {isValidatingCoupon ? '...' : (isRtl ? 'تطبيق' : 'Apply')}
+              </button>
+            </form>
           )}
+
           {couponError && (
             <p className="text-[11.5px] text-red-600 font-medium mt-1.5">
               {couponError}
             </p>
+          )}
+
+          {/* Collapsible Available Offers List */}
+          {showAvailableOffers && availableCoupons.length > 0 && !appliedCoupon && (
+            <div className="mt-3 p-2.5 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
+              <span className="text-[11px] font-bold text-gray-700 block mb-1">
+                {isRtl ? 'الكوبونات المتاحة حالياً:' : 'Active Store Coupons:'}
+              </span>
+              {availableCoupons.map((c) => (
+                <div
+                  key={c.code}
+                  className="p-2 rounded-lg bg-white border border-gray-200/80 flex items-center justify-between gap-2 shadow-2xs"
+                >
+                  <div className="min-w-0">
+                    <span className="inline-block px-1.5 py-0.5 rounded text-[10px] font-black bg-red-100 text-[#dc1414] tracking-wide">
+                      {c.code}
+                    </span>
+                    <p className="text-[11px] text-gray-600 mt-0.5 truncate">
+                      {c.description}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleApplyCouponCode(c.code)}
+                    className="px-2.5 py-1 rounded text-[11px] font-bold bg-[#dc1414] hover:bg-[#b91c1c] text-white shrink-0 cursor-pointer transition-colors"
+                  >
+                    {isRtl ? 'تطبيق' : 'Apply'}
+                  </button>
+                </div>
+              ))}
+            </div>
           )}
         </div>
 

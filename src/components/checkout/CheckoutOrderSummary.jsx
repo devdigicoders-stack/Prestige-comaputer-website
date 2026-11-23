@@ -1,27 +1,52 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
 import { getProductImageUrl } from '../../services/productApi'
-import { validateCouponApi } from '../../services/couponApi'
+import { validateCouponApi, getActiveCouponsApi } from '../../services/couponApi'
+import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import {
   WishlistLaptopVisual,
 } from '../wishlist/WishlistVisuals'
-
-function formatINR(val) {
-  return `₹${Math.round(Number(val) || 0).toLocaleString('en-IN')}`
-}
 
 export default function CheckoutOrderSummary({
   deliveryMethod = 'standard',
   onPlaceOrder,
 }) {
   const { cartItems } = useStore()
+  const { isArabic, isRtl } = useLanguage()
   const [coupon, setCoupon] = useState('')
   const [appliedCoupon, setAppliedCoupon] = useState(null)
   const [couponError, setCouponError] = useState('')
   const [isValidatingCoupon, setIsValidatingCoupon] = useState(false)
+  const [availableCoupons, setAvailableCoupons] = useState([])
+  const [showAvailableOffers, setShowAvailableOffers] = useState(false)
+
+  // Restore coupon from session if applied on cart page, and load active promo coupons
+  useEffect(() => {
+    let isMounted = true
+    getActiveCouponsApi().then((data) => {
+      if (isMounted && Array.isArray(data)) {
+        setAvailableCoupons(data)
+      }
+    })
+
+    try {
+      const saved = sessionStorage.getItem('pcs_applied_coupon')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (parsed && parsed.code) {
+          setAppliedCoupon(parsed)
+        }
+      }
+    } catch {}
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const items = useMemo(() => {
     if (Array.isArray(cartItems) && cartItems.length > 0) {
@@ -51,12 +76,24 @@ export default function CheckoutOrderSummary({
 
   const subtotal = items.reduce((acc, it) => acc + it.price * it.quantity, 0)
 
-  // Base delivery charge from items
+  // Delivery charge calculations
   const baseDeliveryCharge = items.reduce((acc, it) => {
     return acc + (it.isFreeDelivery ? 0 : it.deliveryCharge * it.quantity)
   }, 0)
-  const expressSurcharge = deliveryMethod === 'express' ? 199 : 0
-  const rawDeliveryCharge = items.length > 0 ? baseDeliveryCharge + expressSurcharge : 0
+
+  let expressSurcharge = 0
+  if (deliveryMethod === 'express') {
+    expressSurcharge = 25
+  } else if (deliveryMethod === 'pickup') {
+    expressSurcharge = 0
+  }
+
+  const rawDeliveryCharge =
+    deliveryMethod === 'pickup'
+      ? 0
+      : items.length > 0
+      ? baseDeliveryCharge + expressSurcharge
+      : 0
 
   // Calculate Coupon Discount dynamically
   let couponDiscount = 0
@@ -80,24 +117,24 @@ export default function CheckoutOrderSummary({
   const totalDiscount = couponDiscount
   const finalTotal = Math.max(0, subtotal - totalDiscount + effectiveDeliveryCharge)
 
-  const handleApplyCoupon = async (e) => {
-    e.preventDefault()
+  const handleApplyCouponCode = async (codeToApply) => {
+    const code = (codeToApply || coupon).trim().toUpperCase()
     setCouponError('')
 
-    if (!coupon.trim()) {
-      setCouponError('Please enter a coupon code.')
+    if (!code) {
+      setCouponError(isArabic ? 'يرجى إدخال رمز القسيمة.' : 'Please enter a coupon code.')
       return
     }
 
     try {
       setIsValidatingCoupon(true)
       const res = await validateCouponApi({
-        code: coupon,
+        code,
         cartTotal: subtotal,
         deliveryCharge: rawDeliveryCharge,
       })
 
-      setAppliedCoupon({
+      const couponObj = {
         code: res.code,
         label: res.description,
         discountType: res.discountType,
@@ -105,10 +142,15 @@ export default function CheckoutOrderSummary({
         discountAmount: res.discountAmount,
         isFreeShipping: res.isFreeShipping,
         maxDiscountAmount: res.maxDiscountAmount,
-      })
+      }
+
+      setAppliedCoupon(couponObj)
       setCoupon('')
+      try {
+        sessionStorage.setItem('pcs_applied_coupon', JSON.stringify(couponObj))
+      } catch {}
     } catch (err) {
-      setCouponError(err.message || 'Invalid coupon code. Please try again.')
+      setCouponError(err.message || (isArabic ? 'رمز القسيمة غير صالح. يرجى المحاولة مرة أخرى.' : 'Invalid coupon code. Please try again.'))
     } finally {
       setIsValidatingCoupon(false)
     }
@@ -118,6 +160,9 @@ export default function CheckoutOrderSummary({
     setAppliedCoupon(null)
     setCoupon('')
     setCouponError('')
+    try {
+      sessionStorage.removeItem('pcs_applied_coupon')
+    } catch {}
   }
 
   const handleTriggerPlaceOrder = () => {
@@ -129,6 +174,7 @@ export default function CheckoutOrderSummary({
       totalDiscount,
       finalTotal,
       couponCode: appliedCoupon?.code || '',
+      appliedCoupon,
     })
   }
 
@@ -137,7 +183,10 @@ export default function CheckoutOrderSummary({
       {/* Header */}
       <div className="flex items-center justify-between pb-3.5 border-b border-[#f3f4f6]">
         <h2 className="text-[17px] font-bold text-[#111827]">
-          Order Summary <span className="text-[14px] font-semibold text-[#dc1414]">({items.length} Items)</span>
+          {isArabic ? 'ملخص الطلب' : 'Order Summary'}{' '}
+          <span className="text-[14px] font-semibold text-[#dc1414]">
+            ({items.length} {isArabic ? 'منتجات' : 'Items'})
+          </span>
         </h2>
         <Link
           href="/cart"
@@ -148,20 +197,24 @@ export default function CheckoutOrderSummary({
             <circle cx="9.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
             <circle cx="17.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
           </svg>
-          <span>Edit Cart</span>
+          <span>{isArabic ? 'تعديل السلة' : 'Edit Cart'}</span>
         </Link>
       </div>
 
       {/* Item List */}
       {items.length === 0 ? (
         <div className="py-8 text-center text-gray-500">
-          <p className="text-[13.5px] font-medium text-gray-700">Your cart is currently empty.</p>
-          <p className="text-[12px] text-gray-400 mt-1">Add items from the store to proceed.</p>
+          <p className="text-[13.5px] font-medium text-gray-700">
+            {isArabic ? 'سلة التسوق فارغة حالياً.' : 'Your cart is currently empty.'}
+          </p>
+          <p className="text-[12px] text-gray-400 mt-1">
+            {isArabic ? 'أضف منتجات من المتجر لمتابعة الطلب.' : 'Add items from the store to proceed.'}
+          </p>
           <Link
             href="/products"
             className="mt-3 inline-block px-4 py-1.5 rounded-lg bg-[#dc1414] text-white text-[12.5px] font-bold hover:bg-[#b91c1c] transition-colors"
           >
-            Explore Products &rarr;
+            {isArabic ? 'استعراض الأجهزة' : 'Explore Products'} &rarr;
           </Link>
         </div>
       ) : (
@@ -190,17 +243,21 @@ export default function CheckoutOrderSummary({
                   {item.specs}
                 </p>
                 <span className="text-[10.5px] font-semibold text-emerald-600 block mt-0.5">
-                  {item.isFreeDelivery ? '✓ Free Delivery' : `+ ₹${item.deliveryCharge * item.quantity} Delivery`}
+                  {item.isFreeDelivery
+                    ? isArabic
+                      ? '✓ توصيل مجاني'
+                      : '✓ Free Delivery'
+                    : `+ ${formatCurrency(item.deliveryCharge * item.quantity, isArabic)} ${isArabic ? 'شحن' : 'Delivery'}`}
                 </span>
               </div>
 
               {/* Price & Quantity */}
               <div className="text-right shrink-0">
                 <div className="text-[14px] font-black text-[#dc1414]">
-                  {formatINR(item.price * item.quantity)}
+                  {formatCurrency(item.price * item.quantity, isArabic)}
                 </div>
                 <div className="text-[11px] text-[#6b7280] mt-0.5">
-                  Qty: {item.quantity}
+                  {isArabic ? 'الكمية:' : 'Qty:'} {item.quantity}
                 </div>
               </div>
             </div>
@@ -210,11 +267,24 @@ export default function CheckoutOrderSummary({
 
       {/* Coupon Code Section */}
       <div className="py-3 border-t border-b border-[#f3f4f6] my-1">
-        <div className="flex items-center gap-1.5 text-[12.5px] font-bold text-[#111827] mb-2">
-          <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-[#dc1414]">
-            <path fillRule="evenodd" d="M4.5 2A2.5 2.5 0 0 0 2 4.5v3.879a2.5 2.5 0 0 0 .732 1.767l7.5 7.5a2.5 2.5 0 0 0 3.536 0l3.878-3.878a2.5 2.5 0 0 0 0-3.536l-7.5-7.5A2.5 2.5 0 0 0 8.38 2H4.5ZM5 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
-          </svg>
-          <span>Have a Coupon Code?</span>
+        <div className="flex items-center justify-between text-[12.5px] font-bold text-[#111827] mb-2">
+          <div className="flex items-center gap-1.5">
+            <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-[#dc1414]">
+              <path fillRule="evenodd" d="M4.5 2A2.5 2.5 0 0 0 2 4.5v3.879a2.5 2.5 0 0 0 .732 1.767l7.5 7.5a2.5 2.5 0 0 0 3.536 0l3.878-3.878a2.5 2.5 0 0 0 0-3.536l-7.5-7.5A2.5 2.5 0 0 0 8.38 2H4.5ZM5 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+            </svg>
+            <span>{isArabic ? 'هل لديك رمز قسيمة خصم؟' : 'Have a Coupon Code?'}</span>
+          </div>
+          {availableCoupons.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setShowAvailableOffers(!showAvailableOffers)}
+              className="text-[11px] text-[#dc1414] hover:underline font-semibold cursor-pointer"
+            >
+              {showAvailableOffers
+                ? (isArabic ? 'إخفاء العروض' : 'Hide Offers')
+                : (isArabic ? 'عرض الكوبونات المتاحة' : 'View Offers')}
+            </button>
+          )}
         </div>
 
         {appliedCoupon ? (
@@ -230,11 +300,17 @@ export default function CheckoutOrderSummary({
               onClick={handleRemoveCoupon}
               className="text-[#dc1414] hover:underline font-bold text-[11.5px] cursor-pointer"
             >
-              Remove
+              {isArabic ? 'إلغاء' : 'Remove'}
             </button>
           </div>
         ) : (
-          <form onSubmit={handleApplyCoupon} className="flex gap-2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              handleApplyCouponCode()
+            }}
+            className="flex gap-2"
+          >
             <input
               type="text"
               value={coupon}
@@ -248,7 +324,7 @@ export default function CheckoutOrderSummary({
               disabled={isValidatingCoupon}
               className="border-2 border-[#dc1414] text-[#dc1414] hover:bg-[#fef2f2] text-[12.5px] font-bold px-4 py-1.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
             >
-              {isValidatingCoupon ? 'Applying...' : 'Apply'}
+              {isValidatingCoupon ? (isArabic ? 'جاري التحقق...' : 'Applying...') : (isArabic ? 'تطبيق' : 'Apply')}
             </button>
           </form>
         )}
@@ -258,24 +334,59 @@ export default function CheckoutOrderSummary({
             {couponError}
           </p>
         )}
+
+        {/* Collapsible Available Store Offers */}
+        {showAvailableOffers && availableCoupons.length > 0 && !appliedCoupon && (
+          <div className="mt-2.5 p-2.5 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
+            <span className="text-[11px] font-bold text-gray-700 block mb-1">
+              {isArabic ? 'العروض والكوبونات المتاحة:' : 'Available Store Coupons:'}
+            </span>
+            {availableCoupons.map((c) => (
+              <div
+                key={c.code}
+                className="p-2 rounded-lg bg-white border border-gray-200/80 flex items-center justify-between gap-2 shadow-2xs"
+              >
+                <div className="min-w-0">
+                  <span className="inline-block px-1.5 py-0.5 rounded text-[10px] font-black bg-red-100 text-[#dc1414] tracking-wide">
+                    {c.code}
+                  </span>
+                  <p className="text-[11px] text-gray-600 mt-0.5 truncate">
+                    {c.description}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleApplyCouponCode(c.code)}
+                  className="px-2.5 py-1 rounded text-[11px] font-bold bg-[#dc1414] hover:bg-[#b91c1c] text-white shrink-0 cursor-pointer transition-colors"
+                >
+                  {isArabic ? 'تطبيق' : 'Apply'}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Price Calculations */}
       <div className="py-3.5 space-y-2 text-[13px]">
         <div className="flex items-center justify-between text-[#4b5563]">
-          <span>Subtotal ({items.length} Items)</span>
-          <span className="font-bold text-[#111827]">{formatINR(subtotal)}</span>
+          <span>{isArabic ? 'المجموع الفرعي' : 'Subtotal'} ({items.length} {isArabic ? 'منتجات' : 'Items'})</span>
+          <span className="font-bold text-[#111827]">{formatCurrency(subtotal, isArabic)}</span>
         </div>
 
         <div className="flex items-center justify-between text-[#16a34a] font-semibold">
-          <span>Discount {appliedCoupon ? `(${appliedCoupon.code})` : ''}</span>
-          <span>{totalDiscount > 0 ? `- ${formatINR(totalDiscount)}` : '₹0'}</span>
+          <span>{isArabic ? 'الخصم' : 'Discount'} {appliedCoupon ? `(${appliedCoupon.code})` : ''}</span>
+          <span>{totalDiscount > 0 ? `- ${formatCurrency(totalDiscount, isArabic)}` : (isArabic ? '0 ر.ق' : 'QAR 0')}</span>
         </div>
 
         <div className="flex items-center justify-between text-[#4b5563]">
-          <span>Delivery Charges</span>
+          <span>{isArabic ? 'رسوم التوصيل' : 'Delivery Charges'}</span>
           <span className={`font-bold ${effectiveDeliveryCharge === 0 ? 'text-[#16a34a]' : 'text-[#111827]'}`}>
-            {effectiveDeliveryCharge === 0 ? 'Free' : formatINR(effectiveDeliveryCharge)}
+            {effectiveDeliveryCharge === 0
+              ? isArabic
+                ? 'مجاني'
+                : 'Free'
+              : formatCurrency(effectiveDeliveryCharge, isArabic)}
           </span>
         </div>
       </div>
@@ -285,14 +396,14 @@ export default function CheckoutOrderSummary({
         <div className="flex items-baseline justify-between mb-4">
           <div>
             <span className="text-[15px] font-bold text-[#111827] block leading-tight">
-              Total Amount
+              {isArabic ? 'المبلغ الإجمالي' : 'Total Amount'}
             </span>
             <span className="text-[11px] text-[#6b7280]">
-              (Inclusive of all taxes)
+              {isArabic ? '(شامل جميع الرسوم وضمان المتجر)' : '(Inclusive of official warranty)'}
             </span>
           </div>
           <span className="text-[24px] sm:text-[26px] font-black text-[#dc1414] tracking-tight">
-            {formatINR(finalTotal)}
+            {formatCurrency(finalTotal, isArabic)}
           </span>
         </div>
 
@@ -310,7 +421,15 @@ export default function CheckoutOrderSummary({
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
             <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
           </svg>
-          <span>{items.length === 0 ? 'Your Cart is Empty' : 'Place Order'}</span>
+          <span>
+            {items.length === 0
+              ? isArabic
+                ? 'سلة التسوق فارغة'
+                : 'Your Cart is Empty'
+              : isArabic
+              ? 'تأكيد وإتمام الطلب'
+              : 'Place Order'}
+          </span>
           {items.length > 0 && <span aria-hidden="true">&rarr;</span>}
         </button>
 
@@ -320,18 +439,30 @@ export default function CheckoutOrderSummary({
             <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-[#16a34a]">
               <path fillRule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clipRule="evenodd" />
             </svg>
-            <span>100% Secure Payment</span>
+            <span>{isArabic ? 'دفع آمن 100%' : '100% Secure Payment'}</span>
           </span>
           <span>|</span>
-          <Link href="/refund-policy" className="hover:text-[#dc1414] hover:underline">Easy Returns</Link>
+          <Link href="/about" className="hover:text-[#dc1414] hover:underline">
+            {isArabic ? 'استبدال وضمان معتمد' : 'Authorized Warranty'}
+          </Link>
           <span>|</span>
-          <span>GST Invoice</span>
+          <span>{isArabic ? 'فاتورة رسمية معتمدة' : 'Official Store Invoice'}</span>
         </div>
 
         <p className="mt-2 text-center text-[10.5px] text-[#9ca3af] leading-tight">
-          By placing your order, you agree to Prestige Computers&apos;{' '}
-          <Link href="/terms" className="underline hover:text-[#dc1414]">Terms of Sale</Link> and{' '}
-          <Link href="/privacy" className="underline hover:text-[#dc1414]">Privacy Policy</Link>.
+          {isArabic ? (
+            <>
+              بإتمام هذا الطلب، أنت توافق على{' '}
+              <Link href="/terms" className="underline hover:text-[#dc1414]">شروط البيع</Link> و{' '}
+              <Link href="/privacy" className="underline hover:text-[#dc1414]">سياسة الخصوصية</Link> لبرستيج كمبيوترز.
+            </>
+          ) : (
+            <>
+              By placing your order, you agree to Prestige Computers&apos;{' '}
+              <Link href="/terms" className="underline hover:text-[#dc1414]">Terms of Sale</Link> and{' '}
+              <Link href="/privacy" className="underline hover:text-[#dc1414]">Privacy Policy</Link>.
+            </>
+          )}
         </p>
       </div>
     </aside>

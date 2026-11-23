@@ -15,14 +15,16 @@ export default function AllProductsView() {
   const { isArabic, isRtl } = useLanguage()
 
   const urlSearch = searchParams?.get('search') || searchParams?.get('q') || ''
+  const urlCategory = searchParams?.get('category') || searchParams?.get('cat') || ''
   const [searchQuery, setSearchQuery] = useState(urlSearch)
 
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedCategory, setSelectedCategory] = useState(urlCategory || 'all')
+  const [selectedCondition, setSelectedCondition] = useState('all')
   const [selectedBrands, setSelectedBrands] = useState([])
-  const [priceRange, setPriceRange] = useState([1000, 250000])
+  const [priceRange, setPriceRange] = useState([0, 250000])
   const [selectedProcessors, setSelectedProcessors] = useState([])
   const [selectedRam, setSelectedRam] = useState([])
   const [sortBy, setSortBy] = useState('popularity')
@@ -34,6 +36,10 @@ export default function AllProductsView() {
   useEffect(() => {
     setSearchQuery(urlSearch)
   }, [urlSearch])
+
+  useEffect(() => {
+    setSelectedCategory(urlCategory || 'all')
+  }, [urlCategory])
 
   // Fetch live products from backend (with search query or full catalog)
   useEffect(() => {
@@ -73,6 +79,21 @@ export default function AllProductsView() {
     )
   }
 
+    const handleSelectCategory = (catId) => {
+    const nextCat = catId || 'all'
+    setSelectedCategory(nextCat)
+    setCurrentPage(1)
+    const params = new URLSearchParams(searchParams?.toString() || '')
+    if (nextCat && nextCat !== 'all') {
+      params.set('category', nextCat)
+    } else {
+      params.delete('category')
+      params.delete('cat')
+    }
+    const qs = params.toString()
+    router.push(qs ? `/products?${qs}` : '/products')
+  }
+
   const handleToggleRam = (ram) => {
     setSelectedRam((prev) =>
       prev.includes(ram) ? prev.filter((r) => r !== ram) : [...prev, ram],
@@ -90,14 +111,14 @@ export default function AllProductsView() {
 
   const handleClearAll = () => {
     setSelectedCategory('all')
+    setSelectedCondition('all')
     setSelectedBrands([])
-    setPriceRange([1000, 250000])
+    setPriceRange([0, 250000])
     setSelectedProcessors([])
     setSelectedRam([])
     setCurrentPage(1)
-    if (urlSearch || searchQuery) {
-      handleClearSearch()
-    }
+    setSearchQuery('')
+    router.push('/products')
   }
 
   // Filtered & sorted products
@@ -123,13 +144,64 @@ export default function AllProductsView() {
           }
         }
 
-        // Category filter
-        if (selectedCategory !== 'all') {
-          const matchCat =
-            p.categorySlug === selectedCategory ||
-            (p.categoryName && p.categoryName.toLowerCase() === selectedCategory.toLowerCase()) ||
-            (p.category && (p.category.slug === selectedCategory || p.category.name === selectedCategory))
-          if (!matchCat) return false
+                // Category filter (Strict & Dynamic matching Gaming, Business, Pre-Owned)
+        if (selectedCategory && selectedCategory !== 'all') {
+          const target = selectedCategory.toLowerCase().trim()
+          const pCatSlug = (p.categorySlug || '').toLowerCase()
+          const pCatName = (p.categoryName || '').toLowerCase()
+          const pObjSlug = (p.category?.slug || '').toLowerCase()
+          const pObjName = (p.category?.name || '').toLowerCase()
+
+          const isGamingTarget = target === 'gaming' || target === 'gaming-pcs' || target === 'gaming-laptops'
+          const isBusinessTarget = target === 'business' || target === 'workstations' || target === 'desktops' || target === 'laptops'
+          const isPreOwnedTarget = target === 'pre-owned' || target === 'genuine-pre-owned'
+
+          let match = false
+          if (isGamingTarget) {
+            match = pCatSlug === 'gaming' || pCatSlug.includes('gaming') || pCatName.includes('gaming') || pObjSlug.includes('gaming')
+          } else if (isBusinessTarget) {
+            match = pCatSlug === 'business' || pCatSlug.includes('business') || pCatName.includes('business') || pObjSlug.includes('business')
+          } else if (isPreOwnedTarget) {
+            match = pCatSlug === 'pre-owned' || pCatSlug.includes('pre-owned') || pCatName.includes('pre-owned') || p.condition === 'Pre-Owned' || pObjSlug.includes('pre-owned')
+          } else {
+            match = pCatSlug === target || pCatName === target || pObjSlug === target || pObjName === target
+          }
+
+          if (!match) return false
+        }
+
+        
+        // Pillar / Condition filter (Gaming, Business, Genuine Pre-Owned, Brand New)
+        if (selectedCondition === 'pre-owned') {
+          const isPO =
+            p.condition === 'Pre-Owned' ||
+            p.condition === 'pre-owned' ||
+            (Array.isArray(p.tags) && p.tags.some((t) => typeof t === 'string' && t.toLowerCase().includes('pre-owned'))) ||
+            (p.name && p.name.toLowerCase().includes('pre-owned')) ||
+            (p.brand && p.brand.toLowerCase().includes('pre-owned'))
+          if (!isPO) return false
+        } else if (selectedCondition === 'brand-new') {
+          const isPO =
+            p.condition === 'Pre-Owned' ||
+            p.condition === 'pre-owned' ||
+            (Array.isArray(p.tags) && p.tags.some((t) => typeof t === 'string' && t.toLowerCase().includes('pre-owned'))) ||
+            (p.name && p.name.toLowerCase().includes('pre-owned')) ||
+            (p.brand && p.brand.toLowerCase().includes('pre-owned'))
+          if (isPO) return false
+        } else if (selectedCondition === 'gaming') {
+          const isG =
+            (p.categoryName && p.categoryName.toLowerCase().includes('gaming')) ||
+            (p.categorySlug && p.categorySlug.toLowerCase().includes('gaming')) ||
+            (Array.isArray(p.tags) && p.tags.some((t) => typeof t === 'string' && t.toLowerCase().includes('gaming'))) ||
+            (p.name && p.name.toLowerCase().includes('gaming')) ||
+            (p.specs?.gpu && p.specs.gpu.toLowerCase().includes('rtx'))
+          if (!isG) return false
+        } else if (selectedCondition === 'business') {
+          const isB =
+            (p.categoryName && (p.categoryName.toLowerCase().includes('workstation') || p.categoryName.toLowerCase().includes('desktop') || p.categoryName.toLowerCase().includes('business'))) ||
+            (Array.isArray(p.tags) && p.tags.some((t) => typeof t === 'string' && (t.toLowerCase().includes('business') || t.toLowerCase().includes('workstation')))) ||
+            (p.name && (p.name.toLowerCase().includes('thinkpad') || p.name.toLowerCase().includes('latitude') || p.name.toLowerCase().includes('probook') || p.name.toLowerCase().includes('precision') || p.name.toLowerCase().includes('workstation')))
+          if (!isB) return false
         }
 
         // Brand filter
@@ -164,15 +236,22 @@ export default function AllProductsView() {
         return true
       })
       .sort((a, b) => {
-        if (sortBy === 'price-low') return (a.price || 0) - (b.price || 0)
-        if (sortBy === 'price-high') return (b.price || 0) - (a.price || 0)
-        if (sortBy === 'rating') return (b.rating || 0) - (a.rating || 0)
+        if (sortBy === 'newest') {
+          const dateB = new Date(b.createdAt || b.updatedAt || 0).getTime()
+          const dateA = new Date(a.createdAt || a.updatedAt || 0).getTime()
+          if (dateB !== dateA) return dateB - dateA
+          return (b.id || 0) > (a.id || 0) ? 1 : -1
+        }
+        if (sortBy === 'price-low') return (Number(a.price) || 0) - (Number(b.price) || 0)
+        if (sortBy === 'price-high') return (Number(b.price) || 0) - (Number(a.price) || 0)
+        if (sortBy === 'rating') return (Number(b.rating) || 0) - (Number(a.rating) || 0)
         return (a.sortOrder || 0) - (b.sortOrder || 0) // popularity default
       })
   }, [
     products,
     searchQuery,
     selectedCategory,
+    selectedCondition,
     selectedBrands,
     priceRange,
     selectedProcessors,
@@ -211,10 +290,13 @@ export default function AllProductsView() {
       {/* 2. Category Filter Carousel Bar */}
       <CategoryFilterBar
         selectedCategory={selectedCategory}
-        onSelectCategory={(catId) => {
-          setSelectedCategory(catId)
-          setCurrentPage(1)
-        }}
+              selectedCondition={selectedCondition}
+              onSelectCondition={(cond) => {
+                handleSelectCategory(cond)
+                setSelectedCondition(cond)
+                setCurrentPage(1)
+              }}
+        onSelectCategory={handleSelectCategory}
       />
 
       {/* 3. Main Catalog Section (Filters Sidebar + Products Grid) */}
@@ -225,10 +307,7 @@ export default function AllProductsView() {
             <ProductFilterSidebar
               products={products}
               selectedCategory={selectedCategory}
-              onSelectCategory={(catId) => {
-                setSelectedCategory(catId)
-                setCurrentPage(1)
-              }}
+              onSelectCategory={handleSelectCategory}
               selectedBrands={selectedBrands}
               onToggleBrand={handleToggleBrand}
               priceRange={priceRange}
@@ -285,9 +364,10 @@ export default function AllProductsView() {
                     onChange={(e) => setSortBy(e.target.value)}
                     className="bg-white border border-[#d1d5db] rounded-lg px-2.5 py-1.5 text-[12.5px] font-medium text-[#111827] focus:outline-none focus:ring-1 focus:ring-[#dc1414] cursor-pointer"
                   >
-                    <option value="popularity">{isArabic ? 'الأكثر شيوعاً' : 'Popularity'}</option>
+                    <option value="popularity">{isArabic ? 'الأكثر شيوعاً' : 'Popularity / Best Selling'}</option>
+                    <option value="newest">{isArabic ? 'وصل حديثاً' : 'Newest First'}</option>
+                    <option value="price-high">{isArabic ? 'السعر: من الأعلى للأقل (الأغلى أولاً)' : 'Most Expensive First (Price: High to Low)'}</option>
                     <option value="price-low">{isArabic ? 'السعر: من الأقل للأعلى' : 'Price: Low to High'}</option>
-                    <option value="price-high">{isArabic ? 'السعر: من الأعلى للأقل' : 'Price: High to Low'}</option>
                     <option value="rating">{isArabic ? 'تقييم العملاء' : 'Customer Rating'}</option>
                   </select>
                 </div>

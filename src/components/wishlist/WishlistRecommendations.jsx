@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
 import { getProductImageUrl, getProducts } from '../../services/productApi'
 
 function HeartToggleIcon({ active = false, className = 'w-4 h-4' }) {
@@ -45,11 +46,6 @@ function CartPlusIcon({ className = 'w-3.5 h-3.5' }) {
       <circle cx="17.2" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
     </svg>
   )
-}
-
-function formatINR(val) {
-  if (val === null || val === undefined || isNaN(val)) return '₹0'
-  return `₹${Number(val).toLocaleString('en-IN')}`
 }
 
 export default function WishlistRecommendations() {
@@ -247,11 +243,11 @@ export default function WishlistRecommendations() {
                       {/* Pricing */}
                       <div className="mt-2 flex items-baseline gap-2 flex-wrap">
                         <span className="text-[16px] font-black text-[#dc1414]">
-                          {formatINR(price)}
+                          {formatCurrency(price, isArabic)}
                         </span>
                         {originalPrice && originalPrice > price && (
                           <span className="text-[12px] text-gray-400 line-through">
-                            {formatINR(originalPrice)}
+                            {formatCurrency(originalPrice, isArabic)}
                           </span>
                         )}
                         {discountText && (

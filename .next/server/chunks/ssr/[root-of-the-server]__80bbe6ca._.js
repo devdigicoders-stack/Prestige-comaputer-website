@@ -223,9 +223,9 @@ async function ProductDetailPage({ params }) {
         rating: matched?.rating || 4.8,
         reviewCount: matched?.reviewCount || matched?.numReviews || 328,
         soldCount: matched?.soldCount || '1,245+ Sold',
-        emi: matched?.emi || `₹${Math.round((matched?.price || 52999) / 24).toLocaleString('en-IN')}/month`,
+        emi: matched?.emi || `QAR ${Math.round((matched?.price || 2499) / 24).toLocaleString('en-US')}/month`,
         type: matched?.type || 'Buy & Rent',
-        rentPrice: matched?.rentPrice || (matched?.rentPerMonth ? `₹${Number(matched.rentPerMonth).toLocaleString('en-IN')}/mo` : ''),
+        rentPrice: matched?.rentPrice || (matched?.rentPerMonth ? `QAR ${Number(matched.rentPerMonth).toLocaleString('en-US')}/mo` : ''),
         rentPerMonth: Number(matched?.rentPerMonth) || 0,
         deposit: Number(matched?.deposit) || 0,
         stock: matched?.stock !== undefined ? matched.stock : 15,
@@ -266,7 +266,7 @@ async function ProductDetailPage({ params }) {
         offers: {
             '@type': 'Offer',
             price: productData.basePrice,
-            priceCurrency: 'INR',
+            priceCurrency: 'QAR',
             availability: productData.inStock && productData.stock > productData.outOfStockThreshold ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
             seller: {
                 '@type': 'Organization',

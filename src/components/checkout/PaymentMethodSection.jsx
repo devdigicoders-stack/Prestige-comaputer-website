@@ -1,9 +1,56 @@
 'use client'
 
+import { useState } from 'react'
+import { useLanguage } from '../../context/LanguageContext'
+
 export default function PaymentMethodSection({
-  selectedPayment = 'upi',
+  selectedPayment = 'card',
   onSelectPayment,
 }) {
+  const { isArabic, isRtl } = useLanguage()
+
+  // State for interactive card input fields
+  const [cardData, setCardData] = useState({
+    cardNumber: '',
+    cardHolder: '',
+    expiry: '',
+    cvv: '',
+  })
+
+  // Format card number with spaces every 4 digits
+  const handleCardNumberChange = (e) => {
+    const raw = e.target.value.replace(/\D/g, '').slice(0, 16)
+    const formatted = raw.match(/.{1,4}/g)?.join(' ') || raw
+    setCardData((prev) => ({ ...prev, cardNumber: formatted }))
+  }
+
+  // Format expiry date MM/YY
+  const handleExpiryChange = (e) => {
+    const raw = e.target.value.replace(/\D/g, '').slice(0, 4)
+    let formatted = raw
+    if (raw.length >= 2) {
+      formatted = `${raw.slice(0, 2)}/${raw.slice(2)}`
+    }
+    setCardData((prev) => ({ ...prev, expiry: formatted }))
+  }
+
+  const [copiedIban, setCopiedIban] = useState(false)
+  const qnbIban = 'QA02QNBA000000000012345678901'
+
+  const handleCopyIban = () => {
+    navigator.clipboard?.writeText(qnbIban)
+    setCopiedIban(true)
+    setTimeout(() => setCopiedIban(false), 2500)
+  }
+
+  // Detect card brand
+  const getCardBrand = () => {
+    const clean = cardData.cardNumber.replace(/\s/g, '')
+    if (clean.startsWith('4')) return 'VISA'
+    if (/^5[1-5]/.test(clean)) return 'MASTERCARD'
+    return 'CARD'
+  }
+
   return (
     <div className="bg-white rounded-2xl border border-[#e5e7eb] p-5 sm:p-6 shadow-2xs">
       {/* Header */}
@@ -12,7 +59,7 @@ export default function PaymentMethodSection({
           3
         </span>
         <h2 className="text-[17px] sm:text-[18px] font-bold text-[#111827]">
-          Payment Method
+          {isArabic ? 'طريقة الدفع' : 'Payment Method'}
         </h2>
       </div>
 
@@ -20,52 +67,13 @@ export default function PaymentMethodSection({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Left Column: Payment Options List (lg:col-span-7) */}
         <div className="lg:col-span-7 flex flex-col gap-2.5">
-          {/* 1. UPI */}
-          <div
-            onClick={() => onSelectPayment('upi')}
-            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
-              selectedPayment === 'upi'
-                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414]'
-                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
-                  selectedPayment === 'upi'
-                    ? 'border-[#dc1414] bg-white'
-                    : 'border-[#d1d5db] bg-white'
-                }`}
-              >
-                {selectedPayment === 'upi' && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
-                )}
-              </div>
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#dc1414]">
-                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="3" />
-              </svg>
-
-              <span className="text-[13px] font-semibold text-[#111827]">
-                UPI (Google Pay, PhonePe, Paytm, etc.)
-              </span>
-            </div>
-
-            <div className="flex items-center shrink-0">
-              <span className="text-[12px] font-black italic tracking-tighter text-[#097939]">
-                UPI
-              </span>
-              <span className="text-[10px] font-black text-[#ea580c] ml-0.5">►</span>
-            </div>
-          </div>
-
-          {/* 2. Credit / Debit Card */}
+          
+          {/* 1. Credit / Debit Card */}
           <div
             onClick={() => onSelectPayment('card')}
             className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
               selectedPayment === 'card'
-                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414]'
+                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414] shadow-xs'
                 : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
             }`}
           >
@@ -82,157 +90,33 @@ export default function PaymentMethodSection({
                 )}
               </div>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#4b5563]">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#dc1414]">
                 <rect x="2" y="5" width="20" height="14" rx="2" />
                 <line x1="2" y1="10" x2="22" y2="10" />
               </svg>
 
               <span className="text-[13px] font-semibold text-[#111827]">
-                Credit / Debit Card
+                {isArabic ? 'بطاقة ائتمان / مدى / خصم مباشر' : 'Credit / Debit Card (Visa, Mastercard)'}
               </span>
             </div>
 
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[11.5px] font-black text-[#1a1f71] italic tracking-tight">
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-[11px] font-black text-[#1a1f71] italic tracking-tight bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">
                 VISA
               </span>
-              <div className="flex -space-x-1 items-center">
-                <div className="w-3.5 h-3.5 rounded-full bg-[#eb001b]" />
-                <div className="w-3.5 h-3.5 rounded-full bg-[#f79e1b] opacity-90" />
+              <div className="flex -space-x-1 items-center bg-gray-50 px-1.5 py-0.5 rounded border border-gray-200">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-90" />
               </div>
-              <span className="text-[11px] font-bold text-[#0066b2]">
-                RuPay<span className="text-[#f15a24]">►</span>
-              </span>
             </div>
           </div>
 
-          {/* 3. Net Banking */}
-          <div
-            onClick={() => onSelectPayment('netbanking')}
-            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
-              selectedPayment === 'netbanking'
-                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414]'
-                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
-                  selectedPayment === 'netbanking'
-                    ? 'border-[#dc1414] bg-white'
-                    : 'border-[#d1d5db] bg-white'
-                }`}
-              >
-                {selectedPayment === 'netbanking' && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
-                )}
-              </div>
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#4b5563]">
-                <line x1="3" y1="21" x2="21" y2="21" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                <polyline points="5 6 12 3 19 6" />
-                <line x1="4" y1="10" x2="4" y2="21" />
-                <line x1="20" y1="10" x2="20" y2="21" />
-                <line x1="8" y1="14" x2="8" y2="17" />
-                <line x1="12" y1="14" x2="12" y2="17" />
-                <line x1="16" y1="14" x2="16" y2="17" />
-              </svg>
-
-              <span className="text-[13px] font-semibold text-[#111827]">
-                Net Banking (All Indian Banks)
-              </span>
-            </div>
-          </div>
-
-          {/* 4. EMI */}
-          <div
-            onClick={() => onSelectPayment('emi')}
-            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
-              selectedPayment === 'emi'
-                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414]'
-                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
-                  selectedPayment === 'emi'
-                    ? 'border-[#dc1414] bg-white'
-                    : 'border-[#d1d5db] bg-white'
-                }`}
-              >
-                {selectedPayment === 'emi' && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
-                )}
-              </div>
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#4b5563]">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-              </svg>
-
-              <span className="text-[13px] font-semibold text-[#111827]">
-                EMI (Credit Card / Debit Card)
-              </span>
-            </div>
-
-            <span className="text-[10px] font-bold text-[#dc1414] bg-[#fee2e2] px-2 py-0.5 rounded-md shrink-0">
-              No Cost EMI
-            </span>
-          </div>
-
-          {/* 5. Wallets */}
-          <div
-            onClick={() => onSelectPayment('wallets')}
-            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
-              selectedPayment === 'wallets'
-                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414]'
-                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
-                  selectedPayment === 'wallets'
-                    ? 'border-[#dc1414] bg-white'
-                    : 'border-[#d1d5db] bg-white'
-                }`}
-              >
-                {selectedPayment === 'wallets' && (
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
-                )}
-              </div>
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#4b5563]">
-                <path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                <path d="M16 3H4a2 2 0 0 0-2 2v2" />
-                <circle cx="16" cy="14" r="1.5" />
-              </svg>
-
-              <span className="text-[13px] font-semibold text-[#111827]">
-                Wallets (Paytm, Amazon Pay, etc.)
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[11px] font-bold text-[#00b9f5]">
-                paytm
-              </span>
-              <span className="text-[11px] font-bold text-[#111827]">
-                amazon
-              </span>
-            </div>
-          </div>
-
-          {/* 6. Cash on Delivery (COD) */}
+          {/* 2. Cash on Delivery (COD) */}
           <div
             onClick={() => onSelectPayment('cod')}
             className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
               selectedPayment === 'cod'
-                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414]'
+                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414] shadow-xs'
                 : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
             }`}
           >
@@ -256,226 +140,348 @@ export default function PaymentMethodSection({
               </svg>
 
               <span className="text-[13px] font-semibold text-[#111827]">
-                Cash on Delivery (Pay at Doorstep)
+                {isArabic ? 'الدفع نقداً عند الاستلام (COD)' : 'Cash on Delivery (Pay at Doorstep)'}
               </span>
             </div>
 
             <span className="text-[10.5px] font-bold text-[#15803d] bg-[#dcfce7] px-2 py-0.5 rounded-md shrink-0">
-              Verified Delivery
+              {isArabic ? 'بدون دفع مسبق' : 'Zero Advance'}
             </span>
           </div>
+
+          {/* 3. POS Terminal on Delivery */}
+          <div
+            onClick={() => onSelectPayment('pos')}
+            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
+              selectedPayment === 'pos'
+                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414] shadow-xs'
+                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
+                  selectedPayment === 'pos'
+                    ? 'border-[#dc1414] bg-white'
+                    : 'border-[#d1d5db] bg-white'
+                }`}
+              >
+                {selectedPayment === 'pos' && (
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
+                )}
+              </div>
+
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#2563eb]">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <line x1="8" y1="6" x2="16" y2="6" />
+                <line x1="8" y1="10" x2="16" y2="10" />
+                <circle cx="12" cy="16" r="1.5" />
+              </svg>
+
+              <span className="text-[13px] font-semibold text-[#111827]">
+                {isArabic ? 'جهاز نقاط البيع المحمول عند التوصيل (POS)' : 'POS Card Terminal on Delivery'}
+              </span>
+            </div>
+
+            <span className="text-[10px] font-bold text-[#1d4ed8] bg-[#eff6ff] px-2 py-0.5 rounded-md shrink-0">
+              {isArabic ? 'بطاقة عند الباب' : 'Tap & Pay'}
+            </span>
+          </div>
+
+          {/* 4. QNB Bank Direct Transfer */}
+          <div
+            onClick={() => onSelectPayment('qnb')}
+            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
+              selectedPayment === 'qnb'
+                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414] shadow-xs'
+                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
+                  selectedPayment === 'qnb'
+                    ? 'border-[#dc1414] bg-white'
+                    : 'border-[#d1d5db] bg-white'
+                }`}
+              >
+                {selectedPayment === 'qnb' && (
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
+                )}
+              </div>
+
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#0f766e]">
+                <line x1="3" y1="21" x2="21" y2="21" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <polyline points="5 6 12 3 19 6" />
+                <line x1="4" y1="10" x2="4" y2="21" />
+                <line x1="20" y1="10" x2="20" y2="21" />
+                <line x1="8" y1="14" x2="8" y2="17" />
+                <line x1="12" y1="14" x2="12" y2="17" />
+                <line x1="16" y1="14" x2="16" y2="17" />
+              </svg>
+
+              <span className="text-[13px] font-semibold text-[#111827]">
+                {isArabic ? 'تحويل بنكي مباشر (بنك قطر الوطني QNB)' : 'QNB / Bank Transfer (Direct Deposit)'}
+              </span>
+            </div>
+
+            <span className="text-[10px] font-bold text-[#0f766e] bg-[#f0fdfa] px-2 py-0.5 rounded-md shrink-0">
+              QNB Qatar
+            </span>
+          </div>
+
+          {/* 5. Showroom Pickup & Pay */}
+          <div
+            onClick={() => onSelectPayment('pickup')}
+            className={`rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 transition-all cursor-pointer ${
+              selectedPayment === 'pickup'
+                ? 'bg-[#fef2f2]/60 border-2 border-[#dc1414] shadow-xs'
+                : 'bg-white border border-[#e5e7eb] hover:border-[#9ca3af]'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${
+                  selectedPayment === 'pickup'
+                    ? 'border-[#dc1414] bg-white'
+                    : 'border-[#d1d5db] bg-white'
+                }`}
+              >
+                {selectedPayment === 'pickup' && (
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#dc1414]" />
+                )}
+              </div>
+
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4.5 h-4.5 text-[#b45309]">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+
+              <span className="text-[13px] font-semibold text-[#111827]">
+                {isArabic ? 'الاستلام والدفع في المعرض (المرقاب مول)' : 'Pay & Collect at Showroom (Al-Mirqab Mall)'}
+              </span>
+            </div>
+
+            <span className="text-[10px] font-bold text-[#b45309] bg-[#fffbeb] px-2 py-0.5 rounded-md shrink-0">
+              {isArabic ? 'فحص قبل الدفع' : 'Inspect First'}
+            </span>
+          </div>
+
         </div>
 
-        {/* Right Column: Dynamic Preview & Trust Card (lg:col-span-5) */}
+        {/* Right Column: Dynamic Preview / Details Widget (lg:col-span-5) */}
         <div className="lg:col-span-5">
-          <div className="bg-[#fff5f5] rounded-2xl border border-[#fee2e2] p-4 sm:p-5 flex flex-col justify-between min-h-[220px]">
-            {selectedPayment === 'upi' && (
-              <>
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-26 bg-[#dc1414] rounded-xl p-1 shadow-md shrink-0 flex flex-col items-center justify-between">
-                    <div className="w-3 h-0.5 bg-white/60 rounded-full my-0.5" />
-                    <div className="w-full flex-1 bg-white rounded-lg p-1.5 flex flex-col items-center justify-center">
-                      <div className="w-10 h-10 border-2 border-[#111827] p-0.5 grid grid-cols-3 gap-0.5">
-                        <div className="bg-[#111827]" />
-                        <div className="bg-[#111827]" />
-                        <div className="bg-transparent" />
-                        <div className="bg-transparent" />
-                        <div className="bg-[#dc1414]" />
-                        <div className="bg-[#111827]" />
-                        <div className="bg-[#111827]" />
-                        <div className="bg-transparent" />
-                        <div className="bg-[#111827]" />
-                      </div>
-                    </div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/70 my-0.5" />
-                  </div>
-
-                  <div className="flex flex-col">
-                    <h4 className="text-[13.5px] font-bold text-[#111827] mb-2 leading-tight">
-                      Pay Securely with UPI
-                    </h4>
-                    <div className="flex flex-col gap-1.5 text-[11.5px] text-[#374151] font-medium">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[#16a34a] font-bold">✓</span>
-                        <span>Fast & Instant Payment</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[#16a34a] font-bold">✓</span>
-                        <span>100% Secure & Encrypted</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[#16a34a] font-bold">✓</span>
-                        <span>Supports All UPI Apps</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between gap-2 pt-3 mt-3 border-t border-[#fecaca]/60">
-                  <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-md border border-[#e5e7eb] shadow-2xs">
-                    <span className="font-bold text-[11px] text-[#4285f4]">G</span>
-                    <span className="text-[11px] font-semibold text-[#5f6368]">Pay</span>
-                  </div>
-                  <div className="flex items-center gap-1 bg-white px-2 py-1 rounded-md border border-[#e5e7eb] shadow-2xs">
-                    <div className="w-3.5 h-3.5 rounded-full bg-[#5f259f] text-white flex items-center justify-center text-[9px] font-bold">
-                      पे
-                    </div>
-                    <span className="text-[10.5px] font-bold text-[#5f259f]">PhonePe</span>
-                  </div>
-                  <div className="flex items-center bg-white px-2 py-1 rounded-md border border-[#e5e7eb] shadow-2xs">
-                    <span className="text-[11px] font-black text-[#002e6e]">Pay</span>
-                    <span className="text-[11px] font-black text-[#00b9f5]">tm</span>
-                  </div>
-                  <div className="flex items-center bg-white px-2 py-1 rounded-md border border-[#e5e7eb] shadow-2xs">
-                    <span className="text-[10.5px] font-black text-[#138808]">BH</span>
-                    <span className="text-[10.5px] font-black text-[#ff9933]">IM</span>
-                  </div>
-                </div>
-              </>
-            )}
-
+          <div className="bg-[#f8fafc] rounded-2xl border border-[#e2e8f0] p-4 sm:p-5 min-h-[260px] flex flex-col justify-between">
+            
+            {/* VIEW 1: Card Input Details & Preview */}
             {selectedPayment === 'card' && (
-              <div className="flex flex-col justify-between h-full">
-                <div>
-                  <h4 className="text-[14px] font-bold text-[#111827] mb-1">
-                    Debit / Credit Card Payment
+              <div className="space-y-3.5">
+                <div className="flex items-center justify-between pb-2 border-b border-gray-200">
+                  <h4 className="text-[13.5px] font-bold text-[#111827]">
+                    {isArabic ? 'بيانات البطاقة البنكية' : 'Card Payment Details'}
                   </h4>
-                  <p className="text-[12px] text-[#4b5563] mb-3">
-                    We accept all major debit & credit cards issued in India.
-                  </p>
-                  <div className="space-y-1.5 text-[11.5px] text-[#374151]">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>256-Bit SSL Encrypted Transaction</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>3D Secure OTP Authentication</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Zero card details stored on servers</span>
-                    </div>
+                  <span className="text-[11px] font-extrabold text-[#1a1f71] bg-white px-2 py-0.5 rounded border border-gray-200">
+                    {getCardBrand()}
+                  </span>
+                </div>
+
+                {/* Card Number Input */}
+                <div>
+                  <label className="block text-[11.5px] font-semibold text-gray-700 mb-1">
+                    {isArabic ? 'رقم البطاقة' : 'Card Number'}
+                  </label>
+                  <input
+                    type="text"
+                    value={cardData.cardNumber}
+                    onChange={handleCardNumberChange}
+                    placeholder="4000 1234 5678 9010"
+                    className="w-full text-[13px] font-mono bg-white border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414] tracking-wider"
+                  />
+                </div>
+
+                {/* Cardholder Name */}
+                <div>
+                  <label className="block text-[11.5px] font-semibold text-gray-700 mb-1">
+                    {isArabic ? 'اسم صاحب البطاقة' : 'Cardholder Name'}
+                  </label>
+                  <input
+                    type="text"
+                    value={cardData.cardHolder}
+                    onChange={(e) => setCardData({ ...cardData, cardHolder: e.target.value.toUpperCase() })}
+                    placeholder="AHMED AL-THANI"
+                    className="w-full text-[13px] bg-white border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414] uppercase tracking-wide"
+                  />
+                </div>
+
+                {/* Expiry & CVV */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div>
+                    <label className="block text-[11.5px] font-semibold text-gray-700 mb-1">
+                      {isArabic ? 'تاريخ الانتهاء' : 'Expiry (MM/YY)'}
+                    </label>
+                    <input
+                      type="text"
+                      value={cardData.expiry}
+                      onChange={handleExpiryChange}
+                      placeholder="12/28"
+                      className="w-full text-[13px] font-mono bg-white border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11.5px] font-semibold text-gray-700 mb-1">
+                      {isArabic ? 'رمز الأمان (CVV)' : 'CVV / CVC'}
+                    </label>
+                    <input
+                      type="password"
+                      maxLength={4}
+                      value={cardData.cvv}
+                      onChange={(e) => setCardData({ ...cardData, cvv: e.target.value.replace(/\D/g, '') })}
+                      placeholder="•••"
+                      className="w-full text-[13px] font-mono bg-white border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#dc1414]"
+                    />
                   </div>
                 </div>
-                <div className="flex items-center gap-3 pt-3 mt-3 border-t border-[#fecaca]/60 text-[12px] font-bold text-[#374151]">
-                  <span>Visa</span>
-                  <span>Mastercard</span>
-                  <span>RuPay</span>
-                  <span>Amex</span>
-                </div>
+
+                <p className="text-[11px] text-gray-500 flex items-center gap-1.5 pt-1">
+                  <span className="text-[#16a34a] font-bold">🔒</span>
+                  <span>{isArabic ? 'تشفير آمن 256-بت متوافق مع معايير قطر' : '256-bit SSL encrypted PCI-DSS payment'}</span>
+                </p>
               </div>
             )}
 
-            {selectedPayment === 'netbanking' && (
-              <div className="flex flex-col justify-between h-full">
-                <div>
-                  <h4 className="text-[14px] font-bold text-[#111827] mb-1">
-                    Direct Net Banking
-                  </h4>
-                  <p className="text-[12px] text-[#4b5563] mb-3">
-                    Fast payment through your verified bank account portal.
-                  </p>
-                  <div className="space-y-1.5 text-[11.5px] text-[#374151]">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>SBI, HDFC, ICICI, Axis, PNB, Kotak</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Instant Confirmation & Invoice</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="pt-3 mt-3 border-t border-[#fecaca]/60 text-[11px] text-[#6b7280]">
-                  Over 50+ Indian banks supported
-                </div>
-              </div>
-            )}
-
-            {selectedPayment === 'emi' && (
-              <div className="flex flex-col justify-between h-full">
-                <div>
-                  <h4 className="text-[14px] font-bold text-[#111827] mb-1">
-                    Flexible No-Cost EMI
-                  </h4>
-                  <p className="text-[12px] text-[#4b5563] mb-3">
-                    Split your hardware purchase into easy 3, 6, 9 or 12 month installments.
-                  </p>
-                  <div className="space-y-1.5 text-[11.5px] text-[#374151]">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Zero processing fees on leading banks</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Available on Credit & Select Debit Cards</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="pt-3 mt-3 border-t border-[#fecaca]/60 text-[11.5px] font-semibold text-[#dc1414]">
-                  Installments start from ₹2,208/mo
-                </div>
-              </div>
-            )}
-
-            {selectedPayment === 'wallets' && (
-              <div className="flex flex-col justify-between h-full">
-                <div>
-                  <h4 className="text-[14px] font-bold text-[#111827] mb-1">
-                    Digital Wallets
-                  </h4>
-                  <p className="text-[12px] text-[#4b5563] mb-3">
-                    One-click payment through your favorite mobile wallet.
-                  </p>
-                  <div className="space-y-1.5 text-[11.5px] text-[#374151]">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Paytm Wallet, Amazon Pay, PhonePe Wallet</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Instant checkout without OTP delay</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="pt-3 mt-3 border-t border-[#fecaca]/60 text-[11px] text-[#6b7280]">
-                  Prepaid wallet balance utilized instantly
-                </div>
-              </div>
-            )}
-
+            {/* VIEW 2: Cash on Delivery Preview */}
             {selectedPayment === 'cod' && (
-              <div className="flex flex-col justify-between h-full">
-                <div>
-                  <h4 className="text-[14px] font-bold text-[#111827] mb-1">
-                    Cash on Delivery (Doorstep Payment)
-                  </h4>
-                  <p className="text-[12px] text-[#4b5563] mb-3">
-                    Pay with Cash or UPI QR Code directly to the courier agent when your package arrives.
-                  </p>
-                  <div className="space-y-1.5 text-[11.5px] text-[#374151]">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Pay only after hardware parcel arrives</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Secure delivery with OTP validation</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[#16a34a] font-bold">✓</span>
-                      <span>Cash or UPI QR accepted at doorstep</span>
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-[#16a34a] flex items-center justify-center mx-auto mb-2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-6 h-6">
+                    <rect x="2" y="6" width="20" height="12" rx="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <path d="M6 12h.01M18 12h.01" />
+                  </svg>
+                </div>
+                <h4 className="text-[14px] font-bold text-[#111827] text-center">
+                  {isArabic ? 'الدفع نقداً عند باب المنزل' : 'Cash on Doorstep Delivery'}
+                </h4>
+                <ul className="text-[12px] text-gray-600 space-y-2 pt-1 font-medium">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#16a34a] font-bold">✓</span>
+                    <span>{isArabic ? 'ادفع نقداً بالريال القطري عند استلام الجهاز' : 'Pay in cash (QAR) directly to the delivery agent'}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#16a34a] font-bold">✓</span>
+                    <span>{isArabic ? 'تحقق من سلامة العبوة وضمان المتجر قبل الدفع' : 'Inspect the tamper-proof sealed box and invoice first'}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#16a34a] font-bold">✓</span>
+                    <span>{isArabic ? 'استلام فاتورة رسمية فورية وضمان لمدة سنة' : 'Receive official tax invoice & 1-Year PCS Store Warranty'}</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* VIEW 3: POS Card Machine on Delivery */}
+            {selectedPayment === 'pos' && (
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-blue-100 text-[#2563eb] flex items-center justify-center mx-auto mb-2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-6 h-6">
+                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                    <line x1="8" y1="6" x2="16" y2="6" />
+                    <line x1="8" y1="10" x2="16" y2="10" />
+                    <circle cx="12" cy="16" r="1.5" />
+                  </svg>
+                </div>
+                <h4 className="text-[14px] font-bold text-[#111827] text-center">
+                  {isArabic ? 'جهاز نقاط البيع المحمول (POS)' : 'Portable POS Machine on Delivery'}
+                </h4>
+                <ul className="text-[12px] text-gray-600 space-y-2 pt-1 font-medium">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#2563eb] font-bold">✓</span>
+                    <span>{isArabic ? 'مندوب التوصيل يحمل جهاز دفع إلكتروني لاسلكي' : 'Courier brings wireless POS terminal to your location'}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#2563eb] font-bold">✓</span>
+                    <span>{isArabic ? 'يدعم بطاقات الفيزا والماستركارد والبطاقات البنكية القطرية' : 'Accepts Visa, Mastercard & GCC Bank Debit Cards'}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#2563eb] font-bold">✓</span>
+                    <span>{isArabic ? 'دفع سريع وخالي من المتاعب بدون نقود' : 'Contactless Tap-to-Pay with printed transaction slip'}</span>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {/* VIEW 4: QNB Bank Transfer */}
+            {selectedPayment === 'qnb' && (
+              <div className="space-y-2.5 text-[12px]">
+                <div className="flex items-center justify-between pb-1.5 border-b border-gray-200">
+                  <span className="font-bold text-[#0f766e] text-[13px]">
+                    {isArabic ? 'بيانات التحويل البنكي (QNB)' : 'QNB Official Bank Details'}
+                  </span>
+                  <span className="bg-[#f0fdfa] text-[#0f766e] font-extrabold text-[11px] px-2 py-0.5 rounded border border-[#ccfbf1]">
+                    QNB Qatar
+                  </span>
+                </div>
+
+                <div className="bg-white p-3 rounded-xl border border-gray-200 space-y-1.5 font-mono text-[11.5px]">
+                  <div>
+                    <span className="text-gray-500 font-sans block text-[11px]">Beneficiary Name:</span>
+                    <strong className="text-gray-900 font-sans">Prestige Computer Services W.L.L.</strong>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 font-sans block text-[11px]">Bank:</span>
+                    <strong className="text-gray-900 font-sans">Qatar National Bank (QNB)</strong>
+                  </div>
+                  <div>
+                    <span className="text-gray-500 font-sans block text-[11px]">IBAN:</span>
+                    <div className="flex items-center justify-between gap-1 text-[11px] font-bold text-[#0f766e]">
+                      <span className="break-all">{qnbIban}</span>
+                      <button
+                        type="button"
+                        onClick={handleCopyIban}
+                        className="text-[10.5px] font-sans font-bold px-2 py-0.5 rounded bg-gray-100 hover:bg-gray-200 text-gray-700 cursor-pointer shrink-0"
+                      >
+                        {copiedIban ? 'Copied!' : 'Copy'}
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div className="pt-3 mt-3 border-t border-[#fecaca]/60 text-[11.5px] font-semibold text-[#15803d]">
-                  ✓ Verified Prestige Computers Delivery
+
+                <p className="text-[11px] text-gray-500 leading-relaxed">
+                  {isArabic
+                    ? 'يرجى كتابة رقم الطلب في خانة الملاحظات بالتحويل. يمكنك إرسال إيصال التحويل عبر واتساب للتأكيد الفوري.'
+                    : 'Please mention your Order ID in the transfer remarks. Send receipt on WhatsApp (+974 6691 9155) for instant priority dispatch.'}
+                </p>
+              </div>
+            )}
+
+            {/* VIEW 5: Showroom Pickup */}
+            {selectedPayment === 'pickup' && (
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-[#b45309] flex items-center justify-center mx-auto mb-2">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="w-6 h-6">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <h4 className="text-[14px] font-bold text-[#111827] text-center">
+                  {isArabic ? 'الاستلام من معرض المرقاب مول' : 'Showroom Collection in Doha'}
+                </h4>
+                <div className="bg-white p-3 rounded-xl border border-gray-200 text-[12px] space-y-1">
+                  <strong className="text-gray-900 block font-semibold">Prestige Computers Showroom</strong>
+                  <p className="text-gray-600 leading-snug">
+                    Tower 1, 2nd Floor, Office No 201, Al-Mirqab Mall, Al Mirqab Al Jadeed St, Doha, Qatar
+                  </p>
+                  <p className="text-[11.5px] text-[#b45309] font-bold pt-1">
+                    Ready for pickup in 2 Hours • Sat–Thu 10 AM – 10 PM
+                  </p>
                 </div>
               </div>
             )}
+
           </div>
         </div>
+
       </div>
     </div>
   )

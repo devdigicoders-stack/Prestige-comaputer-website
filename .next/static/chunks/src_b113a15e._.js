@@ -137,7 +137,7 @@ __turbopack_context__.s([
     ()=>submitEnquiry
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
-const API_URL = ("TURBOPACK compile-time value", "https://prestige-comaputer-backend.onrender.com/api/v1") || 'http://localhost:5000/api/v1';
+const API_URL = ("TURBOPACK compile-time value", "http://localhost:5000/api/v1") || 'http://localhost:5000/api/v1';
 async function submitEnquiry(formData) {
     const res = await fetch("".concat(API_URL, "/enquiries"), {
         method: 'POST',

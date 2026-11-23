@@ -1,27 +1,51 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import LegalPageLayout from '../../components/legal/LegalPageLayout'
 import { pcsPolicies } from '../../data/pcsPolicies'
+import { getPolicyBySlug } from '../../services/policyApi'
 import { useLanguage } from '../../context/LanguageContext'
 
 export default function RefundPolicyClientView() {
   const { language, isRtl } = useLanguage()
+  const [policy, setPolicy] = useState(null)
+
+  useEffect(() => {
+    let isMounted = true
+    getPolicyBySlug('refund-policy')
+      .then((data) => {
+        if (isMounted && data) setPolicy(data)
+      })
+      .catch(() => {})
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
   const { brandNew, preOwned, additionalTerms } = pcsPolicies
 
   const bn = language === 'ar' ? brandNew.ar : brandNew.en
   const po = language === 'ar' ? preOwned.ar : preOwned.en
   const add = language === 'ar' ? additionalTerms.ar : additionalTerms.en
 
+  const title = policy?.title || 'Refund & Cancellation Policy'
+  const titleAr = policy?.titleAr || 'سياسة الإرجاع والاستبدال واسترداد الأموال'
+  const subtitle = policy?.subtitle || 'Clear and authoritative return windows, technical defect qualification, bank transfer refund timelines, and payment fee structures under the Prestige Guarantee.'
+  const subtitleAr = policy?.subtitleAr || 'الشروط الرسمية المعتمدة لمهلات الإرجاع، فحص العيوب الفنية، مواعيد استرداد الأموال عبر التحويل البنكي، ورسوم معالجة نقاط البيع والبطاقات.'
+  const badge = policy?.badge || 'Prestige Customer Protection'
+  const badgeAr = policy?.badgeAr || 'حماية عملاء بريستيج المعتمدة'
+  const lastUpdated = policy?.lastUpdated || 'Official PCS Policy 2026'
+
   return (
     <LegalPageLayout
-      title="Refund & Cancellation Policy"
-      titleAr="سياسة الإرجاع والاستبدال واسترداد الأموال"
-      subtitle="Clear and authoritative return windows, technical defect qualification, bank transfer refund timelines, and payment fee structures under the Prestige Guarantee."
-      subtitleAr="الشروط الرسمية المعتمدة لمهلات الإرجاع، فحص العيوب الفنية، مواعيد استرداد الأموال عبر التحويل البنكي، ورسوم معالجة نقاط البيع والبطاقات."
-      lastUpdated="Official PCS Policy 2026"
-      badge="Prestige Customer Protection"
-      badgeAr="حماية عملاء بريستيج المعتمدة"
+      title={title}
+      titleAr={titleAr}
+      subtitle={subtitle}
+      subtitleAr={subtitleAr}
+      lastUpdated={lastUpdated}
+      badge={badge}
+      badgeAr={badgeAr}
     >
       {/* Notice Pill Linking to Master Bilingual Policy */}
       <div className="not-prose mb-8 p-4 rounded-2xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">

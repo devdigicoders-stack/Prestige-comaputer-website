@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useStore } from '../../context/StoreContext'
 import { useLanguage } from '../../context/LanguageContext'
+import { formatCurrency } from '../../utils/formatCurrency'
+import { getWhatsAppInquiryUrl } from '../../utils/whatsapp'
 
 export default function ProductBuyRentSidebar({
   product,
@@ -39,7 +41,7 @@ export default function ProductBuyRentSidebar({
             ? `التوصيل متاح خلال 24-48 ساعة | الشحن: ${product.deliveryCharge} ر.ق`
             : 'التوصيل متاح خلال 24-48 ساعة | توصيل مجاني'
           : isPaid
-          ? `Delivery available in 24-48 hrs | Shipping: ₹${product.deliveryCharge}`
+          ? `Delivery available in 24-48 hrs | Shipping: ${formatCurrency(product.deliveryCharge, isArabic)}`
           : 'Delivery available in 24-48 hrs | Free Delivery',
       })
     }, 400)
@@ -216,7 +218,7 @@ export default function ProductBuyRentSidebar({
             {product?.isFreeDelivery === false && Number(product?.deliveryCharge) > 0
               ? isArabic
                 ? `الشحن: ${product.deliveryCharge} ر.ق`
-                : `Delivery: ₹${product.deliveryCharge}`
+                : `Delivery: QAR ${product.deliveryCharge}`
               : isArabic
               ? 'توصيل مجاني'
               : 'Free Delivery'}
@@ -277,6 +279,18 @@ export default function ProductBuyRentSidebar({
           </span>
         </div>
       </div>
+      {/* Direct WhatsApp Hotline Button (PCS Doha Showroom Hotline) */}
+      <a
+        href={getWhatsAppInquiryUrl(product)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2.5 shadow-sm transition-all duration-200 hover:shadow-md cursor-pointer text-[13.5px]"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 shrink-0" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+        <span>{isArabic ? 'استفسار عبر واتساب (+974 6691 9155)' : 'WhatsApp Inquiry (+974 6691 9155)'}</span>
+      </a>
     </div>
   )
 }
