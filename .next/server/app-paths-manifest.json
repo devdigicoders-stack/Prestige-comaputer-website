@@ -6,6 +6,7 @@
   "/contact/page": "app/contact/page.js",
   "/faq/page": "app/faq/page.js",
   "/page": "app/page.js",
+  "/policies/page": "app/policies/page.js",
   "/products/[id]/page": "app/products/[id]/page.js",
   "/products/page": "app/products/page.js",
   "/profile/page": "app/profile/page.js",
