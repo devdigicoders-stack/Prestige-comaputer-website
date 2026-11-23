@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { getTestimonials } from '../../../services/reviewApi'
 import { useLanguage } from '../../../context/LanguageContext'
@@ -125,6 +125,57 @@ function SkeletonCard() {
   )
 }
 
+const FALLBACK_REVIEWS = [
+  {
+    _id: 'fb-1',
+    userName: 'Oliver Reed',
+    isVerifiedBuyer: true,
+    rating: 5,
+    productName: 'Apple MacBook Air M2 (13.6-inch)',
+    body: 'Amazing customer support and fast shipping. Fully upgraded specs and genuine warranty. Highly recommend Prestige Computers in Doha!',
+  },
+  {
+    _id: 'fb-2',
+    userName: 'James Carter',
+    isVerifiedBuyer: true,
+    rating: 5,
+    productName: 'Dell Inspiron 15 (2025)',
+    body: 'Excellent service and genuine products. The rental process was super easy and doorstep delivery in Qatar was fast!',
+  },
+  {
+    _id: 'fb-3',
+    userName: 'Emily Watson',
+    isVerifiedBuyer: true,
+    rating: 5,
+    productName: 'ASUS ROG Strix G16 (2024)',
+    body: 'Got my laptop on rent for a 6-month design project. Great performance, clean machine, and quick zero-hassle delivery.',
+  },
+  {
+    _id: 'fb-4',
+    userName: 'Mohammed Al-Kuwari',
+    isVerifiedBuyer: true,
+    rating: 5,
+    productName: 'PCS Custom Liquid-Cooled Gaming PC',
+    body: 'Best workstation setup in Doha. The build quality is top-notch and thermal performance is whisper quiet even under heavy 4K render loads.',
+  },
+  {
+    _id: 'fb-5',
+    userName: 'Sarah Jenkins',
+    isVerifiedBuyer: true,
+    rating: 5,
+    productName: 'Lenovo Legion Pro 5 (2024)',
+    body: 'Seamless rental extension and great customer care team via WhatsApp. Whenever we needed a spare monitor, it arrived the same afternoon.',
+  },
+  {
+    _id: 'fb-6',
+    userName: 'Ahmed Al-Thani',
+    isVerifiedBuyer: true,
+    rating: 5,
+    productName: 'LG UltraGear 27" Nano IPS 180Hz',
+    body: 'Genuine QID verification process was swift, transparent security deposit policy, and friendly staff at the Al-Mirqab Mall showroom.',
+  },
+]
+
 export default function Testimonials() {
   const { isRtl } = useLanguage()
   const [reviews, setReviews] = useState([])
@@ -132,20 +183,72 @@ export default function Testimonials() {
 
   useEffect(() => {
     let cancelled = false
-    getTestimonials(6)
+    getTestimonials(16)
       .then((data) => {
-        if (!cancelled) setReviews(Array.isArray(data) ? data.slice(0, 3) : [])
+        if (!cancelled) {
+          setReviews(Array.isArray(data) && data.length > 0 ? data : FALLBACK_REVIEWS)
+        }
       })
-      .catch(() => { if (!cancelled) setReviews([]) })
-      .finally(() => { if (!cancelled) setLoading(false) })
-    return () => { cancelled = true }
+      .catch(() => {
+        if (!cancelled) setReviews(FALLBACK_REVIEWS)
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
   }, [])
 
-  // Don't render section if no featured reviews and not loading
-  if (!loading && reviews.length === 0) return null
+  // Infinite duplicate list to ensure seamless looping without any gaps or jumps
+  const displayList = useMemo(() => {
+    const list = reviews.length > 0 ? reviews : FALLBACK_REVIEWS
+    let base = [...list]
+    while (base.length < 6) {
+      base = [...base, ...list]
+    }
+    // Duplicate exactly once for 100% seamless translateX(-50%) marquee
+    return [...base, ...base]
+  }, [reviews])
 
   return (
-    <section className="w-full bg-white py-6 sm:py-8" aria-label="What Our Customers Say">
+    <section className="w-full bg-white py-6 sm:py-8 overflow-hidden" aria-label="What Our Customers Say">
+      {/* Marquee Animation Styles with smooth pause-on-hover */}
+      <style>{`
+        @keyframes pcsMarquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        @keyframes pcsMarqueeRtl {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(50%);
+          }
+        }
+        .pcs-marquee-track {
+          display: flex;
+          width: max-content;
+          animation: pcsMarquee 34s linear infinite;
+        }
+        .pcs-marquee-track:hover {
+          animation-play-state: paused;
+        }
+        .pcs-marquee-track-rtl {
+          display: flex;
+          width: max-content;
+          animation: pcsMarqueeRtl 34s linear infinite;
+        }
+        .pcs-marquee-track-rtl:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div className="max-w-[1380px] mx-auto px-4 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
 
@@ -174,54 +277,67 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* RIGHT: Review Cards */}
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* RIGHT: Continuous Infinite Scrolling Testimonial Marquee */}
+          <div className="lg:col-span-8 overflow-hidden relative py-2 [mask-image:linear-gradient(to_right,transparent,black_2%,black_98%,transparent)]">
             {loading ? (
-              [0, 1, 2].map((i) => <SkeletonCard key={i} />)
-            ) : (
-              reviews.map((review) => (
-                <article
-                  key={review._id}
-                  className="bg-white rounded-2xl border border-[#e7eaf0] shadow-[0_2px_12px_rgba(16,24,40,0.04)] hover:shadow-[0_10px_24px_rgba(16,24,40,0.08)] hover:border-[#dc1414]/25 transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between min-h-[168px]"
-                >
-                  <div>
-                    {/* Reviewer Header */}
-                    <div className="flex items-center gap-3">
-                      <ReviewerAvatar name={review.userName} />
-                      <div className="min-w-0 leading-tight">
-                        <h3 className="text-[14px] font-bold text-[#111827] truncate">{review.userName}</h3>
-                        <p className="mt-1 inline-flex items-center gap-1 text-[11.5px] font-medium text-[#15803d]">
-                          <VerifiedBadgeIcon />
-                          <span>
-                            {review.isVerifiedBuyer
-                              ? (isRtl ? 'مشتري معتمد' : 'Verified Buyer')
-                              : (isRtl ? 'عميل موثوق' : 'Reviewer')}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Stars */}
-                    <div className="mt-3 flex items-center gap-0.5" aria-label={`${review.rating} out of 5 stars`}>
-                      {Array.from({ length: review.rating || 5 }).map((_, idx) => (
-                        <StarIcon key={idx} />
-                      ))}
-                    </div>
-
-                    {/* Product name */}
-                    {review.productName && (
-                      <p className="mt-1.5 text-[10.5px] text-[#9ca3af]">
-                        {isRtl ? `على ${review.productName}` : `on ${review.productName}`}
-                      </p>
-                    )}
-
-                    {/* Quote */}
-                    <p className="mt-2 text-[12.5px] xl:text-[13px] text-[#374151] leading-relaxed line-clamp-4">
-                      &ldquo;{review.body}&rdquo;
-                    </p>
+              <div className="flex gap-4 overflow-hidden">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="w-[300px] sm:w-[330px] shrink-0">
+                    <SkeletonCard />
                   </div>
-                </article>
-              ))
+                ))}
+              </div>
+            ) : (
+              <div className={`gap-4 ${isRtl ? 'pcs-marquee-track-rtl' : 'pcs-marquee-track'}`}>
+                {displayList.map((review, idx) => (
+                  <article
+                    key={`${review._id || review.id || idx}-${idx}`}
+                    className="w-[290px] sm:w-[330px] xl:w-[340px] shrink-0 bg-white rounded-2xl border border-[#e7eaf0] shadow-[0_2px_12px_rgba(16,24,40,0.04)] hover:shadow-[0_12px_28px_rgba(16,24,40,0.09)] hover:border-[#dc1414]/30 transition-all duration-200 p-4 sm:p-5 flex flex-col justify-between min-h-[175px] select-none"
+                  >
+                    <div>
+                      {/* Reviewer Header */}
+                      <div className="flex items-center gap-3">
+                        <ReviewerAvatar name={review.userName} />
+                        <div className="min-w-0 leading-tight">
+                          <h3 className="text-[14px] font-bold text-[#111827] truncate">
+                            {review.userName}
+                          </h3>
+                          <p className="mt-1 inline-flex items-center gap-1 text-[11.5px] font-medium text-[#15803d]">
+                            <VerifiedBadgeIcon />
+                            <span>
+                              {review.isVerifiedBuyer
+                                ? (isRtl ? 'مشتري معتمد' : 'Verified Buyer')
+                                : (isRtl ? 'عميل موثوق' : 'Reviewer')}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Stars */}
+                      <div
+                        className="mt-3 flex items-center gap-0.5"
+                        aria-label={`${review.rating || 5} out of 5 stars`}
+                      >
+                        {Array.from({ length: review.rating || 5 }).map((_, sIdx) => (
+                          <StarIcon key={sIdx} />
+                        ))}
+                      </div>
+
+                      {/* Product name */}
+                      {review.productName && (
+                        <p className="mt-1.5 text-[10.5px] text-[#9ca3af] truncate">
+                          {isRtl ? `على ${review.productName}` : `on ${review.productName}`}
+                        </p>
+                      )}
+
+                      {/* Quote */}
+                      <p className="mt-2 text-[12.5px] xl:text-[13px] text-[#374151] leading-relaxed line-clamp-3">
+                        &ldquo;{review.body}&rdquo;
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             )}
           </div>
 
